@@ -1,0 +1,265 @@
+swagger: "2.0"
+info:
+  title: Research Pillars API
+  version: "1.0"
+  contact:
+    name: Research Enablement Team
+    url: https://data4life.care
+tags:
+  - name: Programs
+  - name: Surveys
+  - name: Questionnaires
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /programs:
+    get:
+      operationId: Programs_GetPrograms
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetProgramsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Programs
+  /programs/{name}:
+    get:
+      operationId: Programs_GetProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+  /programs/{name}/data:
+    get:
+      operationId: Programs_GetProgramData
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetProgramDataResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+  /programs/{name}/updatedAt:
+    get:
+      operationId: Programs_GetProgramUpdatedAt
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetProgramUpdatedAtResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+  /programs/{programName}/questionnaires:
+    get:
+      operationId: Questionnaires_GetQuestionnaires
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetQuestionnairesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: language
+          in: query
+          required: false
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/questionnaires/{name}:
+    get:
+      operationId: Questionnaires_GetQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: language
+          in: query
+          required: false
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/surveys:
+    get:
+      operationId: Surveys_GetSurveys
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetSurveysResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+  /programs/{programName}/surveys/{name}:
+    get:
+      operationId: Surveys_GetSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+definitions:
+  protobufAny:
+    type: object
+    properties:
+      '@type':
+        type: string
+    additionalProperties: {}
+  protobufNullValue:
+    type: string
+    enum:
+      - NULL_VALUE
+    default: NULL_VALUE
+    description: |-
+      `NullValue` is a singleton enumeration to represent the null value for the
+      `Value` type union.
+
+       The JSON representation for `NullValue` is JSON `null`.
+
+       - NULL_VALUE: Null value.
+  rpcStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'
+  staticGetProgramDataResponse:
+    type: object
+    properties:
+      program:
+        type: object
+      surveys:
+        type: array
+        items:
+          type: object
+      questionnaires:
+        type: array
+        items:
+          type: object
+  staticGetProgramResponse:
+    type: object
+    properties:
+      program:
+        type: object
+  staticGetProgramUpdatedAtResponse:
+    type: object
+    properties:
+      updatedAt:
+        type: string
+  staticGetProgramsResponse:
+    type: object
+    properties:
+      programs:
+        type: array
+        items:
+          type: object
+  staticGetQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        type: object
+  staticGetQuestionnairesResponse:
+    type: object
+    properties:
+      questionnaires:
+        type: array
+        items:
+          type: object
+  staticGetSurveyResponse:
+    type: object
+    properties:
+      survey:
+        type: object
+  staticGetSurveysResponse:
+    type: object
+    properties:
+      surveys:
+        type: array
+        items:
+          type: object

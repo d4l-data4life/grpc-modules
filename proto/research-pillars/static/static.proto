@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package proto.static;
+option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars/static";
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// clang-format off
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Research Pillars API";
+    version: "1.0";
+    contact: {
+      name: "Research Enablement Team";
+      url: "https://data4life.care";
+    };
+  };
+};
+// clang-format on
+
+/////////////////////////////////////////////////////////
+// Programs
+/////////////////////////////////////////////////////////
+
+service Programs {
+  rpc GetPrograms(GetProgramsRequest) returns (GetProgramsResponse) {
+    option (google.api.http) = {
+      get : "/programs"
+    };
+  }
+
+  rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}"
+    };
+  }
+
+  rpc GetProgramData(GetProgramDataRequest) returns (GetProgramDataResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}/data"
+    };
+  }
+
+  rpc GetProgramUpdatedAt(GetProgramUpdatedAtRequest) returns (GetProgramUpdatedAtResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}/updatedAt"
+    };
+  }
+}
+
+message GetProgramsRequest {}
+message GetProgramsResponse { repeated google.protobuf.Struct programs = 1; }
+
+message GetProgramRequest { string name = 1; }
+message GetProgramResponse { google.protobuf.Struct program = 1; }
+
+message GetProgramDataRequest { string name = 1; }
+message GetProgramDataResponse {
+  google.protobuf.Struct program = 1;
+  repeated google.protobuf.Struct surveys = 2;
+  repeated google.protobuf.Struct questionnaires = 3;
+}
+
+message GetProgramUpdatedAtRequest { string name = 1; }
+message GetProgramUpdatedAtResponse { string updatedAt = 1; }
+
+/////////////////////////////////////////////////////////
+// Surveys
+/////////////////////////////////////////////////////////
+
+service Surveys {
+  rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/surveys"
+    };
+  }
+
+  rpc GetSurvey(GetSurveyRequest) returns (GetSurveyResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/surveys/{name}"
+    };
+  }
+}
+
+message GetSurveysRequest { string programName = 1; }
+message GetSurveysResponse { repeated google.protobuf.Struct surveys = 1; }
+
+message GetSurveyRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetSurveyResponse { google.protobuf.Struct survey = 1; }
+
+/////////////////////////////////////////////////////////
+// Questionnaires
+/////////////////////////////////////////////////////////
+
+service Questionnaires {
+  rpc GetQuestionnaires(GetQuestionnairesRequest)
+      returns (GetQuestionnairesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires"
+    };
+  }
+
+  rpc GetQuestionnaire(GetQuestionnaireRequest)
+      returns (GetQuestionnaireResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires/{name}"
+    };
+  }
+}
+
+message GetQuestionnairesRequest {
+  string programName = 1;
+  string language = 2;
+}
+message GetQuestionnairesResponse {
+  repeated google.protobuf.Struct questionnaires = 1;
+}
+
+message GetQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+  string language = 3;
+}
+message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }

@@ -1,0 +1,417 @@
+syntax = "proto3";
+
+package proto.api;
+option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars/api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "research-pillars/types.proto";
+
+// clang-format off
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Research Pillars API";
+    version: "1.0";
+    contact: {
+      name: "Research Enablement Team";
+      url: "https://data4life.care";
+    };
+  };
+};
+// clang-format on
+
+/////////////////////////////////////////////////////////
+// Users
+/////////////////////////////////////////////////////////
+
+service Users {
+  rpc GetSelf(GetSelfRequest) returns (GetSelfResponse) {
+    option (google.api.http) = {
+      get : "/users/self"
+    };
+  }
+
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
+    option (google.api.http) = {
+      get : "/users"
+    };
+  }
+
+  rpc UpsertProgramRole(UpsertProgramRoleRequest)
+      returns (UpsertProgramRoleResponse) {
+    option (google.api.http) = {
+      post : "/users/roles",
+      body : "programRole"
+    };
+  }
+
+  rpc DeleteProgramRole(DeleteProgramRoleRequest)
+      returns (DeleteProgramRoleResponse) {
+    option (google.api.http) = {
+      delete : "/users/{userEmail}/role/{programName}",
+    };
+  }
+
+  rpc GetBlockedPrograms(GetBlockedProgramsRequest)
+      returns (GetBlockedProgramsResponse) {
+    option (google.api.http) = {
+      get : "/users/blocked-programs"
+    };
+  }
+
+  rpc BlockProgram(BlockProgramRequest) returns (BlockProgramResponse) {
+    option (google.api.http) = {
+      post : "/users/blocked-program/{programName}",
+    };
+  }
+
+  rpc UnblockProgram(UnblockProgramRequest) returns (UnblockProgramResponse) {
+    option (google.api.http) = {
+      delete : "/users/blocked-program",
+    };
+  }
+}
+
+message GetSelfRequest {}
+message GetSelfResponse { User user = 1; }
+
+message GetUsersRequest {}
+message GetUsersResponse { repeated User users = 1; }
+
+message UpsertProgramRoleRequest { ProgramRole programRole = 1; }
+message UpsertProgramRoleResponse {}
+
+message DeleteProgramRoleRequest {
+  string userEmail = 1;
+  string programName = 2;
+}
+message DeleteProgramRoleResponse {}
+
+message GetBlockedProgramsRequest {}
+message GetBlockedProgramsResponse {
+  repeated BlockedProgram blockedPrograms = 1;
+}
+
+message BlockProgramRequest { string programName = 1; }
+message BlockProgramResponse {}
+
+message UnblockProgramRequest {}
+message UnblockProgramResponse {}
+
+/////////////////////////////////////////////////////////
+// Programs
+/////////////////////////////////////////////////////////
+
+service Programs {
+  rpc GetPrograms(GetProgramsRequest) returns (GetProgramsResponse) {
+    option (google.api.http) = {
+      get : "/programs"
+    };
+  }
+
+  rpc GetProgramsList(GetProgramsListRequest)
+      returns (GetProgramsListResponse) {
+    option (google.api.http) = {
+      get : "/programslist"
+    };
+  }
+
+  rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}"
+    };
+  }
+
+  rpc GetProgramData(GetProgramDataRequest) returns (GetProgramDataResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}/data"
+    };
+  }
+
+  rpc UpsertProgram(UpsertProgramRequest) returns (UpsertProgramResponse) {
+    option (google.api.http) = {
+      post : "/programs",
+      body : "*"
+    };
+  }
+
+  rpc DeleteProgram(DeleteProgramRequest) returns (DeleteProgramResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{name}"
+    };
+  }
+
+  rpc PublishProgram(PublishProgramRequest) returns (PublishProgramResponse) {
+    option (google.api.http) = {
+      post : "/programs/{name}/publish",
+      body : "complete"
+    };
+  }
+
+  rpc LoadProgram(LoadProgramRequest) returns (LoadProgramResponse) {
+    option (google.api.http) = {
+      post : "/programs/{name}/load",
+      body : "complete"
+    };
+  }
+}
+
+message GetProgramsRequest {}
+message GetProgramsResponse { repeated google.protobuf.Struct programs = 1; }
+
+message GetProgramsListRequest {}
+message GetProgramsListResponse { repeated string programNames = 1; }
+
+message GetProgramRequest { string name = 1; }
+message GetProgramResponse {
+  google.protobuf.Struct program = 1;
+  repeated Diff diffs = 2;
+}
+
+message GetProgramDataRequest { string name = 1; }
+message GetProgramDataResponse {
+  google.protobuf.Struct program = 1;
+  repeated google.protobuf.Struct surveys = 2;
+  repeated Questionnaire questionnaires = 3;
+}
+
+message UpsertProgramRequest {
+  google.protobuf.Struct program = 1;
+  google.protobuf.Struct change = 2;
+}
+message UpsertProgramResponse {}
+
+message DeleteProgramRequest { string name = 1; }
+message DeleteProgramResponse {}
+
+message PublishProgramRequest {
+  string name = 1;
+  bool complete = 2;
+}
+message PublishProgramResponse {}
+
+message LoadProgramRequest {
+  string name = 1;
+  bool complete = 2;
+}
+message LoadProgramResponse {}
+
+/////////////////////////////////////////////////////////
+// Surveys
+/////////////////////////////////////////////////////////
+
+service Surveys {
+  rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/surveys"
+    };
+  }
+
+  rpc GetSurvey(GetSurveyRequest) returns (GetSurveyResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/surveys/{name}"
+    };
+  }
+
+  rpc UpsertSurvey(UpsertSurveyRequest) returns (UpsertSurveyResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/surveys",
+      body : "*"
+    };
+  }
+
+  rpc DeleteSurvey(DeleteSurveyRequest) returns (DeleteSurveyResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/surveys/{name}"
+    };
+  }
+
+  rpc PublishSurvey(PublishSurveyRequest) returns (PublishSurveyResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/surveys/{name}/publish",
+    };
+  }
+
+  rpc LoadSurvey(LoadSurveyRequest) returns (LoadSurveyResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/surveys/{name}/load",
+    };
+  }
+}
+
+message GetSurveysRequest { string programName = 1; }
+message GetSurveysResponse { repeated google.protobuf.Struct surveys = 1; }
+
+message GetSurveyRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetSurveyResponse {
+  google.protobuf.Struct survey = 1;
+  repeated Diff diffs = 2;
+}
+
+message UpsertSurveyRequest {
+  string programName = 1;
+  google.protobuf.Struct survey = 2;
+  google.protobuf.Struct change = 3;
+}
+message UpsertSurveyResponse {}
+
+message DeleteSurveyRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteSurveyResponse {}
+
+message PublishSurveyRequest {
+  string programName = 1;
+  string name = 2;
+}
+message PublishSurveyResponse {}
+
+message LoadSurveyRequest {
+  string programName = 1;
+  string name = 2;
+}
+message LoadSurveyResponse {}
+
+/////////////////////////////////////////////////////////
+// Questionnaires
+/////////////////////////////////////////////////////////
+
+service Questionnaires {
+  rpc GetQuestionnaires(GetQuestionnairesRequest)
+      returns (GetQuestionnairesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires"
+    };
+  }
+
+  rpc GetQuestionnaire(GetQuestionnaireRequest)
+      returns (GetQuestionnaireResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires/{name}"
+    };
+  }
+
+  rpc UpsertQuestionnaire(UpsertQuestionnaireRequest)
+      returns (UpsertQuestionnaireResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/questionnaires",
+      body : "*"
+    };
+  }
+
+  rpc DeleteQuestionnaire(DeleteQuestionnaireRequest)
+      returns (DeleteQuestionnaireResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/questionnaires/{name}"
+    };
+  }
+
+  rpc PublishQuestionnaire(PublishQuestionnaireRequest)
+      returns (PublishQuestionnaireResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/questionnaires/{name}/publish",
+    };
+  }
+
+  rpc LoadQuestionnaire(LoadQuestionnaireRequest)
+      returns (LoadQuestionnaireResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/questionnaires/{name}/load",
+    };
+  }
+}
+
+message GetQuestionnairesRequest { string programName = 1; }
+message GetQuestionnairesResponse { repeated Questionnaire questionnaires = 1; }
+
+message GetQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetQuestionnaireResponse {
+  Questionnaire questionnaire = 1;
+  repeated Diff diffs = 2;
+}
+
+message UpsertQuestionnaireRequest {
+  string programName = 1;
+  Questionnaire questionnaire = 2;
+  google.protobuf.Struct change = 3;
+}
+message UpsertQuestionnaireResponse {}
+
+message DeleteQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteQuestionnaireResponse {}
+
+message PublishQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+}
+message PublishQuestionnaireResponse {}
+
+message LoadQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+}
+message LoadQuestionnaireResponse {}
+
+/////////////////////////////////////////////////////////
+// Participant Codes
+/////////////////////////////////////////////////////////
+
+service ParticipantCodes {
+  rpc GetCodes(GetCodesRequest) returns (GetCodesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/codes"
+    };
+  }
+
+  rpc GenerateCodes(GenerateCodesRequest) returns (GenerateCodesResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/codes",
+      body : "amount"
+    };
+  }
+
+  rpc AssignCode(AssignCodeRequest) returns (AssignCodeResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/codes/{code}/assign",
+      body : "alpID"
+    };
+  }
+
+  rpc DeleteCode(DeleteCodeRequest) returns (DeleteCodeResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/codes/{code}",
+    };
+  }
+
+  rpc UnassignCode(UnassignCodeRequest) returns (UnassignCodeResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/codes/{code}/assign",
+    };
+  }
+}
+
+message GetCodesRequest { string programName = 1; }
+message GetCodesResponse { repeated ParticipantCode codes = 1; }
+
+message GenerateCodesRequest { string programName = 1; int32 amount = 2; }
+message GenerateCodesResponse {}
+
+message AssignCodeRequest { string programName = 1; string code = 2; string alpID = 3; }
+message AssignCodeResponse {}
+
+message DeleteCodeRequest { string programName = 1; string code = 2; }
+message DeleteCodeResponse {}
+
+message UnassignCodeRequest { string programName = 1; string code = 2; }
+message UnassignCodeResponse {}

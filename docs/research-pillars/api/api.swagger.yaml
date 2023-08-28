@@ -1,0 +1,1030 @@
+swagger: "2.0"
+info:
+  title: Research Pillars API
+  version: "1.0"
+  contact:
+    name: Research Enablement Team
+    url: https://data4life.care
+tags:
+  - name: Users
+  - name: Programs
+  - name: Surveys
+  - name: Questionnaires
+  - name: ParticipantCodes
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /programs:
+    get:
+      operationId: Programs_GetPrograms
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetProgramsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Programs
+    post:
+      operationId: Programs_UpsertProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/apiUpsertProgramRequest'
+      tags:
+        - Programs
+  /programs/{name}:
+    get:
+      operationId: Programs_GetProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+    delete:
+      operationId: Programs_DeleteProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+  /programs/{name}/data:
+    get:
+      operationId: Programs_GetProgramData
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetProgramDataResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
+  /programs/{name}/load:
+    post:
+      operationId: Programs_LoadProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiLoadProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: complete
+          in: body
+          required: true
+          schema:
+            type: boolean
+      tags:
+        - Programs
+  /programs/{name}/publish:
+    post:
+      operationId: Programs_PublishProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: complete
+          in: body
+          required: true
+          schema:
+            type: boolean
+      tags:
+        - Programs
+  /programs/{programName}/codes:
+    get:
+      operationId: ParticipantCodes_GetCodes
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetCodesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - ParticipantCodes
+    post:
+      operationId: ParticipantCodes_GenerateCodes
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGenerateCodesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: amount
+          in: body
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - ParticipantCodes
+  /programs/{programName}/codes/{code}:
+    delete:
+      operationId: ParticipantCodes_DeleteCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteCodeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: code
+          in: path
+          required: true
+          type: string
+      tags:
+        - ParticipantCodes
+  /programs/{programName}/codes/{code}/assign:
+    delete:
+      operationId: ParticipantCodes_UnassignCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUnassignCodeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: code
+          in: path
+          required: true
+          type: string
+      tags:
+        - ParticipantCodes
+    post:
+      operationId: ParticipantCodes_AssignCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiAssignCodeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: code
+          in: path
+          required: true
+          type: string
+        - name: alpID
+          in: body
+          required: true
+          schema:
+            type: string
+      tags:
+        - ParticipantCodes
+  /programs/{programName}/questionnaires:
+    get:
+      operationId: Questionnaires_GetQuestionnaires
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetQuestionnairesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+    post:
+      operationId: Questionnaires_UpsertQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              questionnaire:
+                $ref: '#/definitions/protoQuestionnaire'
+              change:
+                type: object
+      tags:
+        - Questionnaires
+  /programs/{programName}/questionnaires/{name}:
+    get:
+      operationId: Questionnaires_GetQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+    delete:
+      operationId: Questionnaires_DeleteQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/questionnaires/{name}/load:
+    post:
+      operationId: Questionnaires_LoadQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiLoadQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/questionnaires/{name}/publish:
+    post:
+      operationId: Questionnaires_PublishQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/surveys:
+    get:
+      operationId: Surveys_GetSurveys
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSurveysResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+    post:
+      operationId: Surveys_UpsertSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              survey:
+                type: object
+              change:
+                type: object
+      tags:
+        - Surveys
+  /programs/{programName}/surveys/{name}:
+    get:
+      operationId: Surveys_GetSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+    delete:
+      operationId: Surveys_DeleteSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+  /programs/{programName}/surveys/{name}/load:
+    post:
+      operationId: Surveys_LoadSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiLoadSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+  /programs/{programName}/surveys/{name}/publish:
+    post:
+      operationId: Surveys_PublishSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Surveys
+  /programslist:
+    get:
+      operationId: Programs_GetProgramsList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetProgramsListResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Programs
+  /users:
+    get:
+      operationId: Users_GetUsers
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetUsersResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Users
+  /users/blocked-program:
+    delete:
+      operationId: Users_UnblockProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUnblockProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Users
+  /users/blocked-program/{programName}:
+    post:
+      operationId: Users_BlockProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiBlockProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
+  /users/blocked-programs:
+    get:
+      operationId: Users_GetBlockedPrograms
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetBlockedProgramsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Users
+  /users/roles:
+    post:
+      operationId: Users_UpsertProgramRole
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertProgramRoleResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programRole
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/protoProgramRole'
+      tags:
+        - Users
+  /users/self:
+    get:
+      operationId: Users_GetSelf
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSelfResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Users
+  /users/{userEmail}/role/{programName}:
+    delete:
+      operationId: Users_DeleteProgramRole
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteProgramRoleResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: userEmail
+          in: path
+          required: true
+          type: string
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
+definitions:
+  apiAssignCodeResponse:
+    type: object
+  apiBlockProgramResponse:
+    type: object
+  apiDeleteCodeResponse:
+    type: object
+  apiDeleteProgramResponse:
+    type: object
+  apiDeleteProgramRoleResponse:
+    type: object
+  apiDeleteQuestionnaireResponse:
+    type: object
+  apiDeleteSurveyResponse:
+    type: object
+  apiGenerateCodesResponse:
+    type: object
+  apiGetBlockedProgramsResponse:
+    type: object
+    properties:
+      blockedPrograms:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoBlockedProgram'
+  apiGetCodesResponse:
+    type: object
+    properties:
+      codes:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoParticipantCode'
+  apiGetProgramDataResponse:
+    type: object
+    properties:
+      program:
+        type: object
+      surveys:
+        type: array
+        items:
+          type: object
+      questionnaires:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestionnaire'
+  apiGetProgramResponse:
+    type: object
+    properties:
+      program:
+        type: object
+      diffs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDiff'
+  apiGetProgramsListResponse:
+    type: object
+    properties:
+      programNames:
+        type: array
+        items:
+          type: string
+  apiGetProgramsResponse:
+    type: object
+    properties:
+      programs:
+        type: array
+        items:
+          type: object
+  apiGetQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        $ref: '#/definitions/protoQuestionnaire'
+      diffs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDiff'
+  apiGetQuestionnairesResponse:
+    type: object
+    properties:
+      questionnaires:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestionnaire'
+  apiGetSelfResponse:
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/protoUser'
+  apiGetSurveyResponse:
+    type: object
+    properties:
+      survey:
+        type: object
+      diffs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDiff'
+  apiGetSurveysResponse:
+    type: object
+    properties:
+      surveys:
+        type: array
+        items:
+          type: object
+  apiGetUsersResponse:
+    type: object
+    properties:
+      users:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoUser'
+  apiLoadProgramResponse:
+    type: object
+  apiLoadQuestionnaireResponse:
+    type: object
+  apiLoadSurveyResponse:
+    type: object
+  apiPublishProgramResponse:
+    type: object
+  apiPublishQuestionnaireResponse:
+    type: object
+  apiPublishSurveyResponse:
+    type: object
+  apiUnassignCodeResponse:
+    type: object
+  apiUnblockProgramResponse:
+    type: object
+  apiUpsertProgramRequest:
+    type: object
+    properties:
+      program:
+        type: object
+      change:
+        type: object
+  apiUpsertProgramResponse:
+    type: object
+  apiUpsertProgramRoleResponse:
+    type: object
+  apiUpsertQuestionnaireResponse:
+    type: object
+  apiUpsertSurveyResponse:
+    type: object
+  protoAnswer:
+    type: object
+    properties:
+      code:
+        type: string
+      languages:
+        type: object
+        additionalProperties:
+          type: string
+  protoAnswerset:
+    type: object
+    properties:
+      order:
+        type: string
+      answers:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoAnswer'
+  protoBlockedProgram:
+    type: object
+    properties:
+      userEmail:
+        type: string
+      programName:
+        type: string
+      timestamp:
+        type: string
+  protoCodeStatus:
+    type: string
+    enum:
+      - unused
+      - used
+    default: unused
+  protoDiff:
+    type: object
+    properties:
+      change:
+        type: object
+      timestamp:
+        type: string
+      user:
+        $ref: '#/definitions/protoUser'
+  protoEnableWhen:
+    type: object
+    properties:
+      question:
+        type: string
+      operator:
+        $ref: '#/definitions/protoOperator'
+      answerCoding:
+        type: string
+      answerDecimal:
+        type: number
+        format: double
+      answerDate:
+        type: string
+  protoInputType:
+    type: string
+    enum:
+      - display
+      - string
+      - text
+      - integer
+      - decimal
+      - date
+      - single_select
+      - multi_select
+      - year
+      - scale_numeric
+      - scale_ordinal
+    default: display
+    description: |-
+      coding
+       - multi_select: coding
+       - year: date
+       - scale_numeric: decimal
+       - scale_ordinal: integer
+    title: |-
+      - display: Default Types
+       - single_select: Mapped Types
+  protoOperator:
+    type: string
+    enum:
+      - exists
+      - eq
+      - neq
+      - gt
+      - lt
+      - gteq
+      - lteq
+    default: exists
+  protoParticipantCode:
+    type: object
+    properties:
+      code:
+        type: string
+      status:
+        $ref: '#/definitions/protoCodeStatus'
+  protoProgramRole:
+    type: object
+    properties:
+      userEmail:
+        type: string
+      programName:
+        type: string
+      role:
+        $ref: '#/definitions/protoRole'
+  protoQuestion:
+    type: object
+    properties:
+      linkId:
+        type: string
+      inputType:
+        $ref: '#/definitions/protoInputType'
+      required:
+        type: boolean
+      text:
+        type: object
+        additionalProperties:
+          type: string
+      answerset:
+        $ref: '#/definitions/protoAnswerset'
+      config:
+        type: object
+      enableWhen:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoEnableWhen'
+      enableBehavior:
+        type: string
+  protoQuestionnaire:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+      title:
+        type: object
+        additionalProperties:
+          type: string
+      questions:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestion'
+  protoRole:
+    type: string
+    enum:
+      - viewer
+      - editor
+      - manager
+      - expert
+    default: viewer
+  protoUser:
+    type: object
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      isAdmin:
+        type: boolean
+      programRoles:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoProgramRole'
+  protobufAny:
+    type: object
+    properties:
+      '@type':
+        type: string
+    additionalProperties: {}
+  protobufNullValue:
+    type: string
+    enum:
+      - NULL_VALUE
+    default: NULL_VALUE
+    description: |-
+      `NullValue` is a singleton enumeration to represent the null value for the
+      `Value` type union.
+
+       The JSON representation for `NullValue` is JSON `null`.
+
+       - NULL_VALUE: Null value.
+  rpcStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'

@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars";
+
+package proto;
+
+/////////////////////////////////////////////////////////
+// Type Definitions
+/////////////////////////////////////////////////////////
+
+message Questionnaire {
+  string name = 1;
+  string version = 2;
+  map<string, string> title = 3;
+  repeated Question questions = 4;
+}
+
+message Question {
+  string linkId = 1;
+  InputType inputType = 2;
+  bool required = 3;
+  map<string, string> text = 4;
+  optional Answerset answerset = 5;
+  optional google.protobuf.Struct config = 6;
+  repeated EnableWhen enable_when = 7;
+  optional string enable_behavior = 8;
+}
+
+enum InputType {
+  // Default Types
+  display = 0;
+  string = 1;
+  text = 2;
+  integer = 3;
+  decimal = 4;
+  date = 5;
+  // Mapped Types
+  single_select = 6;  // coding
+  multi_select = 7;   // coding
+  year = 8;           // date
+  scale_numeric = 9;  // decimal
+  scale_ordinal = 10; // integer
+}
+
+message Answerset {
+  string order = 1;
+  repeated Answer answers = 2;
+}
+
+message Answer {
+  string code = 1;
+  map<string, string> languages = 2;
+}
+
+message EnableWhen {
+  string question = 1;
+  Operator operator = 2;
+  optional string answer_coding = 3;
+  optional double answer_decimal = 4;
+  optional string answer_date = 5;
+}
+
+enum Operator {
+  exists = 0;
+  eq = 1;
+  neq = 2;
+  gt = 3;
+  lt = 4;
+  gteq = 5;
+  lteq = 6;
+}
+
+message Diff {
+  google.protobuf.Struct change = 1;
+  string timestamp = 2;
+  User user = 3;
+}
+
+message User {
+  string email = 1;
+  string name = 2;
+  bool isAdmin = 3;
+  repeated ProgramRole programRoles = 4;
+}
+
+message ProgramRole {
+  string userEmail = 1;
+  string programName = 2;
+  Role role = 3;
+}
+
+enum Role {
+  viewer = 0;
+  editor = 1;
+  manager = 2;
+  expert = 3;
+}
+
+message BlockedProgram {
+  string userEmail = 1;
+  string programName = 2;
+  string timestamp = 3;
+}
+
+enum CodeStatus {
+  unused = 0;
+  used = 1;
+}
+
+message ParticipantCode {
+  string code = 1;
+  CodeStatus status = 2;
+}
