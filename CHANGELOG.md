@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars] standalone surveys and questionnaires
-
 ### Changed
 
 ### Deprecated
@@ -21,6 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [v1.1.0] - 2023-09-07
+
+### Added
+
+- [research-pillars] standalone surveys and questionnaires
+
 ## [v1.0.0] - 2023-09-04
 
 ### Added
@@ -28,5 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.1.0...HEAD
+[v1.1.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/gesundheitscloud/grpc-modules/releases/tag/v1.0.0
