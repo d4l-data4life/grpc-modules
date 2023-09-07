@@ -1791,6 +1791,318 @@ func local_request_ParticipantCodes_UnassignCode_0(ctx context.Context, marshale
 
 }
 
+func request_StandaloneSurveys_GetStandaloneSurveys_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneSurveysRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetStandaloneSurveys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneSurveys_GetStandaloneSurveys_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneSurveysRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetStandaloneSurveys(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneSurveys_GetStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := client.GetStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneSurveys_GetStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := server.GetStandaloneSurvey(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneSurveys_UpsertStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpsertStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.UpsertStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneSurveys_UpsertStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpsertStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.UpsertStandaloneSurvey(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneSurveys_DeleteStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := client.DeleteStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneSurveys_DeleteStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteStandaloneSurveyRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := server.DeleteStandaloneSurvey(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneQuestionnairesRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetStandaloneQuestionnaires(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneQuestionnairesRequest
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetStandaloneQuestionnaires(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := client.GetStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := server.GetStandaloneQuestionnaire(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpsertStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.UpsertStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpsertStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.UpsertStandaloneQuestionnaire(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := client.DeleteStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteStandaloneQuestionnaireRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	msg, err := server.DeleteStandaloneQuestionnaire(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterUsersHandlerServer registers the http handlers for service Users to "mux".
 // UnaryRPC     :call UsersServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -2630,6 +2942,224 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		}
 
 		forward_ParticipantCodes_UnassignCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+// RegisterStandaloneSurveysHandlerServer registers the http handlers for service StandaloneSurveys to "mux".
+// UnaryRPC     :call StandaloneSurveysServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStandaloneSurveysHandlerFromEndpoint instead.
+func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StandaloneSurveysServer) error {
+
+	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+// RegisterStandaloneQuestionnairesHandlerServer registers the http handlers for service StandaloneQuestionnaires to "mux".
+// UnaryRPC     :call StandaloneQuestionnairesServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStandaloneQuestionnairesHandlerFromEndpoint instead.
+func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StandaloneQuestionnairesServer) error {
+
+	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -3691,4 +4221,302 @@ var (
 	forward_ParticipantCodes_DeleteCode_0 = runtime.ForwardResponseMessage
 
 	forward_ParticipantCodes_UnassignCode_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterStandaloneSurveysHandlerFromEndpoint is same as RegisterStandaloneSurveysHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterStandaloneSurveysHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+
+	return RegisterStandaloneSurveysHandler(ctx, mux, conn)
+}
+
+// RegisterStandaloneSurveysHandler registers the http handlers for service StandaloneSurveys to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterStandaloneSurveysHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterStandaloneSurveysHandlerClient(ctx, mux, NewStandaloneSurveysClient(conn))
+}
+
+// RegisterStandaloneSurveysHandlerClient registers the http handlers for service StandaloneSurveys
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "StandaloneSurveysClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "StandaloneSurveysClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "StandaloneSurveysClient" to call the correct interceptors.
+func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StandaloneSurveysClient) error {
+
+	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_StandaloneSurveys_GetStandaloneSurveys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
+
+	pattern_StandaloneSurveys_GetStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
+
+	pattern_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
+
+	pattern_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
+)
+
+var (
+	forward_StandaloneSurveys_GetStandaloneSurveys_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneSurveys_GetStandaloneSurvey_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterStandaloneQuestionnairesHandlerFromEndpoint is same as RegisterStandaloneQuestionnairesHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterStandaloneQuestionnairesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+
+	return RegisterStandaloneQuestionnairesHandler(ctx, mux, conn)
+}
+
+// RegisterStandaloneQuestionnairesHandler registers the http handlers for service StandaloneQuestionnaires to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterStandaloneQuestionnairesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterStandaloneQuestionnairesHandlerClient(ctx, mux, NewStandaloneQuestionnairesClient(conn))
+}
+
+// RegisterStandaloneQuestionnairesHandlerClient registers the http handlers for service StandaloneQuestionnaires
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "StandaloneQuestionnairesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "StandaloneQuestionnairesClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "StandaloneQuestionnairesClient" to call the correct interceptors.
+func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StandaloneQuestionnairesClient) error {
+
+	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
+
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
+
+	pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
+
+	pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
+)
+
+var (
+	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
+
+	forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
 )

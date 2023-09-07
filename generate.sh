@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 create_out_folder () {
     mkdir -p ../pkg/$1 ../docs/$1

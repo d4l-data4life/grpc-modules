@@ -11,6 +11,8 @@ tags:
   - name: Surveys
   - name: Questionnaires
   - name: ParticipantCodes
+  - name: StandaloneSurveys
+  - name: StandaloneQuestionnaires
 consumes:
   - application/json
 produces:
@@ -559,6 +561,146 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Programs
+  /questionnaires:
+    get:
+      operationId: StandaloneQuestionnaires_GetStandaloneQuestionnaires
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetStandaloneQuestionnairesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - StandaloneQuestionnaires
+    post:
+      operationId: StandaloneQuestionnaires_UpsertStandaloneQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertStandaloneQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/apiUpsertStandaloneQuestionnaireRequest'
+      tags:
+        - StandaloneQuestionnaires
+  /questionnaires/{name}:
+    get:
+      operationId: StandaloneQuestionnaires_GetStandaloneQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetStandaloneQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - StandaloneQuestionnaires
+    delete:
+      operationId: StandaloneQuestionnaires_DeleteStandaloneQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteStandaloneQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - StandaloneQuestionnaires
+  /surveys:
+    get:
+      operationId: StandaloneSurveys_GetStandaloneSurveys
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetStandaloneSurveysResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - StandaloneSurveys
+    post:
+      operationId: StandaloneSurveys_UpsertStandaloneSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertStandaloneSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/apiUpsertStandaloneSurveyRequest'
+      tags:
+        - StandaloneSurveys
+  /surveys/{name}:
+    get:
+      operationId: StandaloneSurveys_GetStandaloneSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetStandaloneSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - StandaloneSurveys
+    delete:
+      operationId: StandaloneSurveys_DeleteStandaloneSurvey
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteStandaloneSurveyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - StandaloneSurveys
   /users:
     get:
       operationId: Users_GetUsers
@@ -690,6 +832,10 @@ definitions:
     type: object
   apiDeleteQuestionnaireResponse:
     type: object
+  apiDeleteStandaloneQuestionnaireResponse:
+    type: object
+  apiDeleteStandaloneSurveyResponse:
+    type: object
   apiDeleteSurveyResponse:
     type: object
   apiGenerateCodesResponse:
@@ -771,6 +917,31 @@ definitions:
     properties:
       user:
         $ref: '#/definitions/protoUser'
+  apiGetStandaloneQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        $ref: '#/definitions/protoQuestionnaire'
+  apiGetStandaloneQuestionnairesResponse:
+    type: object
+    properties:
+      questionnaires:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestionnaire'
+  apiGetStandaloneSurveyResponse:
+    type: object
+    properties:
+      survey:
+        type: object
+  apiGetStandaloneSurveysResponse:
+    type: object
+    properties:
+      surveys:
+        type: array
+        items:
+          type: object
   apiGetSurveyResponse:
     type: object
     properties:
@@ -824,6 +995,20 @@ definitions:
   apiUpsertProgramRoleResponse:
     type: object
   apiUpsertQuestionnaireResponse:
+    type: object
+  apiUpsertStandaloneQuestionnaireRequest:
+    type: object
+    properties:
+      questionnaire:
+        $ref: '#/definitions/protoQuestionnaire'
+  apiUpsertStandaloneQuestionnaireResponse:
+    type: object
+  apiUpsertStandaloneSurveyRequest:
+    type: object
+    properties:
+      survey:
+        type: object
+  apiUpsertStandaloneSurveyResponse:
     type: object
   apiUpsertSurveyResponse:
     type: object

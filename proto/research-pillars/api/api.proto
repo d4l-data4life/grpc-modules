@@ -415,3 +415,109 @@ message DeleteCodeResponse {}
 
 message UnassignCodeRequest { string programName = 1; string code = 2; }
 message UnassignCodeResponse {}
+
+/////////////////////////////////////////////////////////
+// Standalone Surveys
+/////////////////////////////////////////////////////////
+
+service StandaloneSurveys {
+  rpc GetStandaloneSurveys(GetStandaloneSurveysRequest) returns (GetStandaloneSurveysResponse) {
+    option (google.api.http) = {
+      get : "/surveys"
+    };
+  }
+
+  rpc GetStandaloneSurvey(GetStandaloneSurveyRequest) returns (GetStandaloneSurveyResponse) {
+    option (google.api.http) = {
+      get : "/surveys/{name}"
+    };
+  }
+
+  rpc UpsertStandaloneSurvey(UpsertStandaloneSurveyRequest) returns (UpsertStandaloneSurveyResponse) {
+    option (google.api.http) = {
+      post : "/surveys",
+      body : "*"
+    };
+  }
+
+  rpc DeleteStandaloneSurvey(DeleteStandaloneSurveyRequest) returns (DeleteStandaloneSurveyResponse) {
+    option (google.api.http) = {
+      delete : "/surveys/{name}"
+    };
+  }
+}
+
+message GetStandaloneSurveysRequest { }
+message GetStandaloneSurveysResponse { repeated google.protobuf.Struct surveys = 1; }
+
+message GetStandaloneSurveyRequest {
+  string name = 1;
+}
+message GetStandaloneSurveyResponse {
+  google.protobuf.Struct survey = 1;
+}
+
+message UpsertStandaloneSurveyRequest {
+  google.protobuf.Struct survey = 1;
+}
+message UpsertStandaloneSurveyResponse {}
+
+message DeleteStandaloneSurveyRequest {
+  string name = 1;
+}
+message DeleteStandaloneSurveyResponse {}
+
+/////////////////////////////////////////////////////////
+// Standalone Questionnaires
+/////////////////////////////////////////////////////////
+
+service StandaloneQuestionnaires {
+  rpc GetStandaloneQuestionnaires(GetStandaloneQuestionnairesRequest)
+      returns (GetStandaloneQuestionnairesResponse) {
+    option (google.api.http) = {
+      get : "/questionnaires"
+    };
+  }
+
+  rpc GetStandaloneQuestionnaire(GetStandaloneQuestionnaireRequest)
+      returns (GetStandaloneQuestionnaireResponse) {
+    option (google.api.http) = {
+      get : "/questionnaires/{name}"
+    };
+  }
+
+  rpc UpsertStandaloneQuestionnaire(UpsertStandaloneQuestionnaireRequest)
+      returns (UpsertStandaloneQuestionnaireResponse) {
+    option (google.api.http) = {
+      post : "/questionnaires",
+      body : "*"
+    };
+  }
+
+  rpc DeleteStandaloneQuestionnaire(DeleteStandaloneQuestionnaireRequest)
+      returns (DeleteStandaloneQuestionnaireResponse) {
+    option (google.api.http) = {
+      delete : "/questionnaires/{name}"
+    };
+  }
+}
+
+message GetStandaloneQuestionnairesRequest { }
+message GetStandaloneQuestionnairesResponse { repeated Questionnaire questionnaires = 1; }
+
+message GetStandaloneQuestionnaireRequest {
+  string name = 1;
+}
+message GetStandaloneQuestionnaireResponse {
+  Questionnaire questionnaire = 1;
+}
+
+message UpsertStandaloneQuestionnaireRequest {
+  Questionnaire questionnaire = 1;
+}
+message UpsertStandaloneQuestionnaireResponse {}
+
+message DeleteStandaloneQuestionnaireRequest {
+  string name = 1;
+}
+message DeleteStandaloneQuestionnaireResponse {}
