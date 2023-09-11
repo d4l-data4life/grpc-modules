@@ -573,6 +573,11 @@ paths:
           description: An unexpected error response.
           schema:
             $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: language
+          in: query
+          required: false
+          type: string
       tags:
         - StandaloneQuestionnaires
     post:
@@ -611,6 +616,10 @@ paths:
           in: path
           required: true
           type: string
+        - name: language
+          in: query
+          required: false
+          type: string
       tags:
         - StandaloneQuestionnaires
     delete:
@@ -628,6 +637,10 @@ paths:
         - name: name
           in: path
           required: true
+          type: string
+        - name: language
+          in: query
+          required: false
           type: string
       tags:
         - StandaloneQuestionnaires

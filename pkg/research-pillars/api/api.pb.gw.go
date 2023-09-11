@@ -1947,9 +1947,20 @@ func local_request_StandaloneSurveys_DeleteStandaloneSurvey_0(ctx context.Contex
 
 }
 
+var (
+	filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetStandaloneQuestionnairesRequest
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := client.GetStandaloneQuestionnaires(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -1960,10 +1971,21 @@ func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx co
 	var protoReq GetStandaloneQuestionnairesRequest
 	var metadata runtime.ServerMetadata
 
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
 	msg, err := server.GetStandaloneQuestionnaires(ctx, &protoReq)
 	return msg, metadata, err
 
 }
+
+var (
+	filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+)
 
 func request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetStandaloneQuestionnaireRequest
@@ -1984,6 +2006,13 @@ func request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.C
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -2010,6 +2039,13 @@ func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx con
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetStandaloneQuestionnaire(ctx, &protoReq)
@@ -2051,6 +2087,10 @@ func local_request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(ctx 
 
 }
 
+var (
+	filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+)
+
 func request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq DeleteStandaloneQuestionnaireRequest
 	var metadata runtime.ServerMetadata
@@ -2070,6 +2110,13 @@ func request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx contex
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.DeleteStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -2096,6 +2143,13 @@ func local_request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx 
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.DeleteStandaloneQuestionnaire(ctx, &protoReq)

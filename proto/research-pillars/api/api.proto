@@ -502,13 +502,16 @@ service StandaloneQuestionnaires {
   }
 }
 
-message GetStandaloneQuestionnairesRequest { }
+message GetStandaloneQuestionnairesRequest {
+  string language = 1;
+}
 message GetStandaloneQuestionnairesResponse {
   repeated google.protobuf.Struct questionnaires = 1;
 }
 
 message GetStandaloneQuestionnaireRequest {
   string name = 1;
+  string language = 2;
 }
 message GetStandaloneQuestionnaireResponse {
   google.protobuf.Struct questionnaire = 1;
@@ -521,5 +524,6 @@ message UpsertStandaloneQuestionnaireResponse {}
 
 message DeleteStandaloneQuestionnaireRequest {
   string name = 1;
+  optional string language = 2;
 }
 message DeleteStandaloneQuestionnaireResponse {}
