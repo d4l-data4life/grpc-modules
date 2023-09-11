@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- [research-pillars] standalone questionnaire type needs to be struct as it is FHIR
+
 ### Security
 
 ## [v1.1.0] - 2023-09-07

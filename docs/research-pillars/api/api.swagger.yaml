@@ -921,7 +921,7 @@ definitions:
     type: object
     properties:
       questionnaire:
-        $ref: '#/definitions/protoQuestionnaire'
+        type: object
   apiGetStandaloneQuestionnairesResponse:
     type: object
     properties:
@@ -929,7 +929,6 @@ definitions:
         type: array
         items:
           type: object
-          $ref: '#/definitions/protoQuestionnaire'
   apiGetStandaloneSurveyResponse:
     type: object
     properties:
@@ -1000,7 +999,7 @@ definitions:
     type: object
     properties:
       questionnaire:
-        $ref: '#/definitions/protoQuestionnaire'
+        type: object
   apiUpsertStandaloneQuestionnaireResponse:
     type: object
   apiUpsertStandaloneSurveyRequest:

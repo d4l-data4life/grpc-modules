@@ -503,17 +503,19 @@ service StandaloneQuestionnaires {
 }
 
 message GetStandaloneQuestionnairesRequest { }
-message GetStandaloneQuestionnairesResponse { repeated Questionnaire questionnaires = 1; }
+message GetStandaloneQuestionnairesResponse {
+  repeated google.protobuf.Struct questionnaires = 1;
+}
 
 message GetStandaloneQuestionnaireRequest {
   string name = 1;
 }
 message GetStandaloneQuestionnaireResponse {
-  Questionnaire questionnaire = 1;
+  google.protobuf.Struct questionnaire = 1;
 }
 
 message UpsertStandaloneQuestionnaireRequest {
-  Questionnaire questionnaire = 1;
+  google.protobuf.Struct questionnaire = 1;
 }
 message UpsertStandaloneQuestionnaireResponse {}
 
