@@ -117,6 +117,12 @@ service Programs {
     };
   }
 
+  rpc IsNameAvailable(IsNameAvailableRequest) returns (IsNameAvailableResponse) {
+    option (google.api.http) = {
+      get : "/programslist/{name}"
+    };
+  }
+
   rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
     option (google.api.http) = {
       get : "/programs/{name}"
@@ -162,6 +168,11 @@ message GetProgramsResponse { repeated google.protobuf.Struct programs = 1; }
 
 message GetProgramsListRequest {}
 message GetProgramsListResponse { repeated string programNames = 1; }
+
+message IsNameAvailableRequest { string name = 1; }
+message IsNameAvailableResponse {
+  bool available = 1;
+}
 
 message GetProgramRequest { string name = 1; }
 message GetProgramResponse {

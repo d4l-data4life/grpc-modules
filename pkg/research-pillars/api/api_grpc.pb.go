@@ -333,6 +333,7 @@ var Users_ServiceDesc = grpc.ServiceDesc{
 const (
 	Programs_GetPrograms_FullMethodName     = "/proto.api.Programs/GetPrograms"
 	Programs_GetProgramsList_FullMethodName = "/proto.api.Programs/GetProgramsList"
+	Programs_IsNameAvailable_FullMethodName = "/proto.api.Programs/IsNameAvailable"
 	Programs_GetProgram_FullMethodName      = "/proto.api.Programs/GetProgram"
 	Programs_GetProgramData_FullMethodName  = "/proto.api.Programs/GetProgramData"
 	Programs_UpsertProgram_FullMethodName   = "/proto.api.Programs/UpsertProgram"
@@ -347,6 +348,7 @@ const (
 type ProgramsClient interface {
 	GetPrograms(ctx context.Context, in *GetProgramsRequest, opts ...grpc.CallOption) (*GetProgramsResponse, error)
 	GetProgramsList(ctx context.Context, in *GetProgramsListRequest, opts ...grpc.CallOption) (*GetProgramsListResponse, error)
+	IsNameAvailable(ctx context.Context, in *IsNameAvailableRequest, opts ...grpc.CallOption) (*IsNameAvailableResponse, error)
 	GetProgram(ctx context.Context, in *GetProgramRequest, opts ...grpc.CallOption) (*GetProgramResponse, error)
 	GetProgramData(ctx context.Context, in *GetProgramDataRequest, opts ...grpc.CallOption) (*GetProgramDataResponse, error)
 	UpsertProgram(ctx context.Context, in *UpsertProgramRequest, opts ...grpc.CallOption) (*UpsertProgramResponse, error)
@@ -375,6 +377,15 @@ func (c *programsClient) GetPrograms(ctx context.Context, in *GetProgramsRequest
 func (c *programsClient) GetProgramsList(ctx context.Context, in *GetProgramsListRequest, opts ...grpc.CallOption) (*GetProgramsListResponse, error) {
 	out := new(GetProgramsListResponse)
 	err := c.cc.Invoke(ctx, Programs_GetProgramsList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *programsClient) IsNameAvailable(ctx context.Context, in *IsNameAvailableRequest, opts ...grpc.CallOption) (*IsNameAvailableResponse, error) {
+	out := new(IsNameAvailableResponse)
+	err := c.cc.Invoke(ctx, Programs_IsNameAvailable_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -441,6 +452,7 @@ func (c *programsClient) LoadProgram(ctx context.Context, in *LoadProgramRequest
 type ProgramsServer interface {
 	GetPrograms(context.Context, *GetProgramsRequest) (*GetProgramsResponse, error)
 	GetProgramsList(context.Context, *GetProgramsListRequest) (*GetProgramsListResponse, error)
+	IsNameAvailable(context.Context, *IsNameAvailableRequest) (*IsNameAvailableResponse, error)
 	GetProgram(context.Context, *GetProgramRequest) (*GetProgramResponse, error)
 	GetProgramData(context.Context, *GetProgramDataRequest) (*GetProgramDataResponse, error)
 	UpsertProgram(context.Context, *UpsertProgramRequest) (*UpsertProgramResponse, error)
@@ -459,6 +471,9 @@ func (UnimplementedProgramsServer) GetPrograms(context.Context, *GetProgramsRequ
 }
 func (UnimplementedProgramsServer) GetProgramsList(context.Context, *GetProgramsListRequest) (*GetProgramsListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProgramsList not implemented")
+}
+func (UnimplementedProgramsServer) IsNameAvailable(context.Context, *IsNameAvailableRequest) (*IsNameAvailableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsNameAvailable not implemented")
 }
 func (UnimplementedProgramsServer) GetProgram(context.Context, *GetProgramRequest) (*GetProgramResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProgram not implemented")
@@ -523,6 +538,24 @@ func _Programs_GetProgramsList_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProgramsServer).GetProgramsList(ctx, req.(*GetProgramsListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Programs_IsNameAvailable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsNameAvailableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProgramsServer).IsNameAvailable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Programs_IsNameAvailable_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProgramsServer).IsNameAvailable(ctx, req.(*IsNameAvailableRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -649,6 +682,10 @@ var Programs_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProgramsList",
 			Handler:    _Programs_GetProgramsList_Handler,
+		},
+		{
+			MethodName: "IsNameAvailable",
+			Handler:    _Programs_IsNameAvailable_Handler,
 		},
 		{
 			MethodName: "GetProgram",

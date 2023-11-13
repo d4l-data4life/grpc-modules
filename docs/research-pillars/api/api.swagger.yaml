@@ -561,6 +561,25 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Programs
+  /programslist/{name}:
+    get:
+      operationId: Programs_IsNameAvailable
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiIsNameAvailableResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
   /questionnaires:
     get:
       operationId: StandaloneQuestionnaires_GetStandaloneQuestionnaires
@@ -979,6 +998,11 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoUser'
+  apiIsNameAvailableResponse:
+    type: object
+    properties:
+      available:
+        type: boolean
   apiLoadProgramResponse:
     type: object
   apiLoadQuestionnaireResponse:
