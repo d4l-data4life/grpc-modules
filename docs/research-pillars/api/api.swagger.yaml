@@ -13,6 +13,7 @@ tags:
   - name: ParticipantCodes
   - name: StandaloneSurveys
   - name: StandaloneQuestionnaires
+  - name: Uploads
 consumes:
   - application/json
 produces:
@@ -733,6 +734,71 @@ paths:
           type: string
       tags:
         - StandaloneSurveys
+  /uploads/subjects/{programName}:
+    get:
+      operationId: Uploads_GetSubjects
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSubjectsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
+  /uploads/subjects/{programName}/{subjectID}:
+    get:
+      operationId: Uploads_GetSubjectData
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSubjectDataResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
+  /uploads/subjects/{programName}/{subjectID}/raw:
+    get:
+      operationId: Uploads_GetSubjectRawData
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSubjectRawDataResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
   /users:
     get:
       operationId: Users_GetUsers
@@ -970,6 +1036,31 @@ definitions:
     type: object
     properties:
       surveys:
+        type: array
+        items:
+          type: object
+  apiGetSubjectDataResponse:
+    type: object
+    properties:
+      researchSubjects:
+        type: array
+        items:
+          type: object
+      questionnaireResponses:
+        type: array
+        items:
+          type: object
+  apiGetSubjectRawDataResponse:
+    type: object
+    properties:
+      uploads:
+        type: array
+        items:
+          type: object
+  apiGetSubjectsResponse:
+    type: object
+    properties:
+      subjects:
         type: array
         items:
           type: object

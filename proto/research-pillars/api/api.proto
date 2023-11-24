@@ -538,3 +538,47 @@ message DeleteStandaloneQuestionnaireRequest {
   optional string language = 2;
 }
 message DeleteStandaloneQuestionnaireResponse {}
+
+/////////////////////////////////////////////////////////
+// Uploads
+/////////////////////////////////////////////////////////
+
+service Uploads {
+  rpc GetSubjects(GetSubjectsRequest) returns (GetSubjectsResponse) {
+    option (google.api.http) = {
+      get : "/uploads/subjects/{programName}"
+    };
+  }
+
+  rpc GetSubjectData(GetSubjectDataRequest) returns (GetSubjectDataResponse) {
+    option (google.api.http) = {
+      get : "/uploads/subjects/{programName}/{subjectID}"
+    };
+  }
+
+  rpc GetSubjectRawData(GetSubjectRawDataRequest) returns (GetSubjectRawDataResponse) {
+    option (google.api.http) = {
+      get : "/uploads/subjects/{programName}/{subjectID}/raw"
+    };
+  }
+}
+
+message GetSubjectsRequest { string programName = 1; }
+message GetSubjectsResponse { repeated google.protobuf.Struct subjects = 1; }
+
+message GetSubjectDataRequest {
+  string programName = 1;
+  string subjectID = 2;
+}
+message GetSubjectDataResponse {
+  repeated google.protobuf.Struct researchSubjects = 1;
+  repeated google.protobuf.Struct questionnaireResponses = 2;
+}
+
+message GetSubjectRawDataRequest {
+  string programName = 1;
+  string subjectID = 2;
+}
+message GetSubjectRawDataResponse {
+  repeated google.protobuf.Struct uploads = 1;
+}

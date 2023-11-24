@@ -1906,3 +1906,167 @@ var StandaloneQuestionnaires_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "research-pillars/api/api.proto",
 }
+
+const (
+	Uploads_GetSubjects_FullMethodName       = "/proto.api.Uploads/GetSubjects"
+	Uploads_GetSubjectData_FullMethodName    = "/proto.api.Uploads/GetSubjectData"
+	Uploads_GetSubjectRawData_FullMethodName = "/proto.api.Uploads/GetSubjectRawData"
+)
+
+// UploadsClient is the client API for Uploads service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UploadsClient interface {
+	GetSubjects(ctx context.Context, in *GetSubjectsRequest, opts ...grpc.CallOption) (*GetSubjectsResponse, error)
+	GetSubjectData(ctx context.Context, in *GetSubjectDataRequest, opts ...grpc.CallOption) (*GetSubjectDataResponse, error)
+	GetSubjectRawData(ctx context.Context, in *GetSubjectRawDataRequest, opts ...grpc.CallOption) (*GetSubjectRawDataResponse, error)
+}
+
+type uploadsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUploadsClient(cc grpc.ClientConnInterface) UploadsClient {
+	return &uploadsClient{cc}
+}
+
+func (c *uploadsClient) GetSubjects(ctx context.Context, in *GetSubjectsRequest, opts ...grpc.CallOption) (*GetSubjectsResponse, error) {
+	out := new(GetSubjectsResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetSubjects_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadsClient) GetSubjectData(ctx context.Context, in *GetSubjectDataRequest, opts ...grpc.CallOption) (*GetSubjectDataResponse, error) {
+	out := new(GetSubjectDataResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetSubjectData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadsClient) GetSubjectRawData(ctx context.Context, in *GetSubjectRawDataRequest, opts ...grpc.CallOption) (*GetSubjectRawDataResponse, error) {
+	out := new(GetSubjectRawDataResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetSubjectRawData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UploadsServer is the server API for Uploads service.
+// All implementations must embed UnimplementedUploadsServer
+// for forward compatibility
+type UploadsServer interface {
+	GetSubjects(context.Context, *GetSubjectsRequest) (*GetSubjectsResponse, error)
+	GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error)
+	GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error)
+	mustEmbedUnimplementedUploadsServer()
+}
+
+// UnimplementedUploadsServer must be embedded to have forward compatible implementations.
+type UnimplementedUploadsServer struct {
+}
+
+func (UnimplementedUploadsServer) GetSubjects(context.Context, *GetSubjectsRequest) (*GetSubjectsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubjects not implemented")
+}
+func (UnimplementedUploadsServer) GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectData not implemented")
+}
+func (UnimplementedUploadsServer) GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectRawData not implemented")
+}
+func (UnimplementedUploadsServer) mustEmbedUnimplementedUploadsServer() {}
+
+// UnsafeUploadsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UploadsServer will
+// result in compilation errors.
+type UnsafeUploadsServer interface {
+	mustEmbedUnimplementedUploadsServer()
+}
+
+func RegisterUploadsServer(s grpc.ServiceRegistrar, srv UploadsServer) {
+	s.RegisterService(&Uploads_ServiceDesc, srv)
+}
+
+func _Uploads_GetSubjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubjectsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetSubjects(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetSubjects_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetSubjects(ctx, req.(*GetSubjectsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Uploads_GetSubjectData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubjectDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetSubjectData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetSubjectData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetSubjectData(ctx, req.(*GetSubjectDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Uploads_GetSubjectRawData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubjectRawDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetSubjectRawData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetSubjectRawData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetSubjectRawData(ctx, req.(*GetSubjectRawDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Uploads_ServiceDesc is the grpc.ServiceDesc for Uploads service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Uploads_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Uploads",
+	HandlerType: (*UploadsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSubjects",
+			Handler:    _Uploads_GetSubjects_Handler,
+		},
+		{
+			MethodName: "GetSubjectData",
+			Handler:    _Uploads_GetSubjectData_Handler,
+		},
+		{
+			MethodName: "GetSubjectRawData",
+			Handler:    _Uploads_GetSubjectRawData_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
