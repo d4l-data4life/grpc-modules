@@ -19,6 +19,53 @@ consumes:
 produces:
   - application/json
 paths:
+  /download/{programName}:
+    get:
+      operationId: Uploads_GetDownloadList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetDownloadListResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
+    post:
+      operationId: Uploads_GetDownloadTicket
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetDownloadTicketResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              subjectIDs:
+                type: array
+                items:
+                  type: string
+      tags:
+        - Uploads
   /programs:
     get:
       operationId: Programs_GetPrograms
@@ -954,6 +1001,18 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoParticipantCode'
+  apiGetDownloadListResponse:
+    type: object
+    properties:
+      subjects:
+        type: array
+        items:
+          type: object
+  apiGetDownloadTicketResponse:
+    type: object
+    properties:
+      url:
+        type: string
   apiGetProgramDataResponse:
     type: object
     properties:

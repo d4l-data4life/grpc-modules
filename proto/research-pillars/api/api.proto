@@ -561,6 +561,19 @@ service Uploads {
       get : "/uploads/subjects/{programName}/{subjectID}/raw"
     };
   }
+
+  rpc GetDownloadList(GetDownloadListRequest) returns (GetDownloadListResponse) {
+    option (google.api.http) = {
+      get : "/download/{programName}",
+    };
+  }
+
+  rpc GetDownloadTicket(GetDownloadTicketRequest) returns (GetDownloadTicketResponse) {
+    option (google.api.http) = {
+      post : "/download/{programName}",
+      body : "*"
+    };
+  }
 }
 
 message GetSubjectsRequest { string programName = 1; }
@@ -581,4 +594,19 @@ message GetSubjectRawDataRequest {
 }
 message GetSubjectRawDataResponse {
   repeated google.protobuf.Struct uploads = 1;
+}
+
+message GetDownloadListRequest {
+  string programName = 1;
+}
+message GetDownloadListResponse {
+  repeated google.protobuf.Struct subjects = 1;
+}
+
+message GetDownloadTicketRequest {
+  string programName = 1;
+  repeated string subjectIDs = 2;
+}
+message GetDownloadTicketResponse {
+  string url = 1;
 }

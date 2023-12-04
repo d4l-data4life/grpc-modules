@@ -1911,6 +1911,8 @@ const (
 	Uploads_GetSubjects_FullMethodName       = "/proto.api.Uploads/GetSubjects"
 	Uploads_GetSubjectData_FullMethodName    = "/proto.api.Uploads/GetSubjectData"
 	Uploads_GetSubjectRawData_FullMethodName = "/proto.api.Uploads/GetSubjectRawData"
+	Uploads_GetDownloadList_FullMethodName   = "/proto.api.Uploads/GetDownloadList"
+	Uploads_GetDownloadTicket_FullMethodName = "/proto.api.Uploads/GetDownloadTicket"
 )
 
 // UploadsClient is the client API for Uploads service.
@@ -1920,6 +1922,8 @@ type UploadsClient interface {
 	GetSubjects(ctx context.Context, in *GetSubjectsRequest, opts ...grpc.CallOption) (*GetSubjectsResponse, error)
 	GetSubjectData(ctx context.Context, in *GetSubjectDataRequest, opts ...grpc.CallOption) (*GetSubjectDataResponse, error)
 	GetSubjectRawData(ctx context.Context, in *GetSubjectRawDataRequest, opts ...grpc.CallOption) (*GetSubjectRawDataResponse, error)
+	GetDownloadList(ctx context.Context, in *GetDownloadListRequest, opts ...grpc.CallOption) (*GetDownloadListResponse, error)
+	GetDownloadTicket(ctx context.Context, in *GetDownloadTicketRequest, opts ...grpc.CallOption) (*GetDownloadTicketResponse, error)
 }
 
 type uploadsClient struct {
@@ -1957,6 +1961,24 @@ func (c *uploadsClient) GetSubjectRawData(ctx context.Context, in *GetSubjectRaw
 	return out, nil
 }
 
+func (c *uploadsClient) GetDownloadList(ctx context.Context, in *GetDownloadListRequest, opts ...grpc.CallOption) (*GetDownloadListResponse, error) {
+	out := new(GetDownloadListResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetDownloadList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *uploadsClient) GetDownloadTicket(ctx context.Context, in *GetDownloadTicketRequest, opts ...grpc.CallOption) (*GetDownloadTicketResponse, error) {
+	out := new(GetDownloadTicketResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetDownloadTicket_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UploadsServer is the server API for Uploads service.
 // All implementations must embed UnimplementedUploadsServer
 // for forward compatibility
@@ -1964,6 +1986,8 @@ type UploadsServer interface {
 	GetSubjects(context.Context, *GetSubjectsRequest) (*GetSubjectsResponse, error)
 	GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error)
 	GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error)
+	GetDownloadList(context.Context, *GetDownloadListRequest) (*GetDownloadListResponse, error)
+	GetDownloadTicket(context.Context, *GetDownloadTicketRequest) (*GetDownloadTicketResponse, error)
 	mustEmbedUnimplementedUploadsServer()
 }
 
@@ -1979,6 +2003,12 @@ func (UnimplementedUploadsServer) GetSubjectData(context.Context, *GetSubjectDat
 }
 func (UnimplementedUploadsServer) GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectRawData not implemented")
+}
+func (UnimplementedUploadsServer) GetDownloadList(context.Context, *GetDownloadListRequest) (*GetDownloadListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDownloadList not implemented")
+}
+func (UnimplementedUploadsServer) GetDownloadTicket(context.Context, *GetDownloadTicketRequest) (*GetDownloadTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDownloadTicket not implemented")
 }
 func (UnimplementedUploadsServer) mustEmbedUnimplementedUploadsServer() {}
 
@@ -2047,6 +2077,42 @@ func _Uploads_GetSubjectRawData_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Uploads_GetDownloadList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDownloadListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetDownloadList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetDownloadList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetDownloadList(ctx, req.(*GetDownloadListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Uploads_GetDownloadTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDownloadTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetDownloadTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetDownloadTicket_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetDownloadTicket(ctx, req.(*GetDownloadTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Uploads_ServiceDesc is the grpc.ServiceDesc for Uploads service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2065,6 +2131,14 @@ var Uploads_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSubjectRawData",
 			Handler:    _Uploads_GetSubjectRawData_Handler,
+		},
+		{
+			MethodName: "GetDownloadList",
+			Handler:    _Uploads_GetDownloadList_Handler,
+		},
+		{
+			MethodName: "GetDownloadTicket",
+			Handler:    _Uploads_GetDownloadTicket_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
