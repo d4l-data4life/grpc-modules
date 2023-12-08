@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars] Service for consents in api and static
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.5.0] - 2023-12-08
+
+### Added
+
+- [research-pillars] Service for consents in api and static
 
 ## [v1.4.0] - 2023-12-04
 
@@ -64,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.5.0...HEAD
+[v1.5.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.3.0...v1.4.0
 [v1.3.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.1.2...v1.2.0
