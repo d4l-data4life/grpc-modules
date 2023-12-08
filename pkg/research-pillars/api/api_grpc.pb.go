@@ -1505,6 +1505,281 @@ var ParticipantCodes_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Consents_GetConsents_FullMethodName          = "/proto.api.Consents/GetConsents"
+	Consents_GetConsent_FullMethodName           = "/proto.api.Consents/GetConsent"
+	Consents_UpsertConsent_FullMethodName        = "/proto.api.Consents/UpsertConsent"
+	Consents_DeleteConsent_FullMethodName        = "/proto.api.Consents/DeleteConsent"
+	Consents_DeleteConsentVersion_FullMethodName = "/proto.api.Consents/DeleteConsentVersion"
+	Consents_PublishConsent_FullMethodName       = "/proto.api.Consents/PublishConsent"
+)
+
+// ConsentsClient is the client API for Consents service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ConsentsClient interface {
+	GetConsents(ctx context.Context, in *GetConsentsRequest, opts ...grpc.CallOption) (*GetConsentsResponse, error)
+	GetConsent(ctx context.Context, in *GetConsentRequest, opts ...grpc.CallOption) (*GetConsentResponse, error)
+	UpsertConsent(ctx context.Context, in *UpsertConsentRequest, opts ...grpc.CallOption) (*UpsertConsentResponse, error)
+	DeleteConsent(ctx context.Context, in *DeleteConsentRequest, opts ...grpc.CallOption) (*DeleteConsentResponse, error)
+	DeleteConsentVersion(ctx context.Context, in *DeleteConsentVersionRequest, opts ...grpc.CallOption) (*DeleteConsentVersionResponse, error)
+	PublishConsent(ctx context.Context, in *PublishConsentRequest, opts ...grpc.CallOption) (*PublishConsentResponse, error)
+}
+
+type consentsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewConsentsClient(cc grpc.ClientConnInterface) ConsentsClient {
+	return &consentsClient{cc}
+}
+
+func (c *consentsClient) GetConsents(ctx context.Context, in *GetConsentsRequest, opts ...grpc.CallOption) (*GetConsentsResponse, error) {
+	out := new(GetConsentsResponse)
+	err := c.cc.Invoke(ctx, Consents_GetConsents_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) GetConsent(ctx context.Context, in *GetConsentRequest, opts ...grpc.CallOption) (*GetConsentResponse, error) {
+	out := new(GetConsentResponse)
+	err := c.cc.Invoke(ctx, Consents_GetConsent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) UpsertConsent(ctx context.Context, in *UpsertConsentRequest, opts ...grpc.CallOption) (*UpsertConsentResponse, error) {
+	out := new(UpsertConsentResponse)
+	err := c.cc.Invoke(ctx, Consents_UpsertConsent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) DeleteConsent(ctx context.Context, in *DeleteConsentRequest, opts ...grpc.CallOption) (*DeleteConsentResponse, error) {
+	out := new(DeleteConsentResponse)
+	err := c.cc.Invoke(ctx, Consents_DeleteConsent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) DeleteConsentVersion(ctx context.Context, in *DeleteConsentVersionRequest, opts ...grpc.CallOption) (*DeleteConsentVersionResponse, error) {
+	out := new(DeleteConsentVersionResponse)
+	err := c.cc.Invoke(ctx, Consents_DeleteConsentVersion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) PublishConsent(ctx context.Context, in *PublishConsentRequest, opts ...grpc.CallOption) (*PublishConsentResponse, error) {
+	out := new(PublishConsentResponse)
+	err := c.cc.Invoke(ctx, Consents_PublishConsent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ConsentsServer is the server API for Consents service.
+// All implementations must embed UnimplementedConsentsServer
+// for forward compatibility
+type ConsentsServer interface {
+	GetConsents(context.Context, *GetConsentsRequest) (*GetConsentsResponse, error)
+	GetConsent(context.Context, *GetConsentRequest) (*GetConsentResponse, error)
+	UpsertConsent(context.Context, *UpsertConsentRequest) (*UpsertConsentResponse, error)
+	DeleteConsent(context.Context, *DeleteConsentRequest) (*DeleteConsentResponse, error)
+	DeleteConsentVersion(context.Context, *DeleteConsentVersionRequest) (*DeleteConsentVersionResponse, error)
+	PublishConsent(context.Context, *PublishConsentRequest) (*PublishConsentResponse, error)
+	mustEmbedUnimplementedConsentsServer()
+}
+
+// UnimplementedConsentsServer must be embedded to have forward compatible implementations.
+type UnimplementedConsentsServer struct {
+}
+
+func (UnimplementedConsentsServer) GetConsents(context.Context, *GetConsentsRequest) (*GetConsentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsents not implemented")
+}
+func (UnimplementedConsentsServer) GetConsent(context.Context, *GetConsentRequest) (*GetConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsent not implemented")
+}
+func (UnimplementedConsentsServer) UpsertConsent(context.Context, *UpsertConsentRequest) (*UpsertConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertConsent not implemented")
+}
+func (UnimplementedConsentsServer) DeleteConsent(context.Context, *DeleteConsentRequest) (*DeleteConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConsent not implemented")
+}
+func (UnimplementedConsentsServer) DeleteConsentVersion(context.Context, *DeleteConsentVersionRequest) (*DeleteConsentVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConsentVersion not implemented")
+}
+func (UnimplementedConsentsServer) PublishConsent(context.Context, *PublishConsentRequest) (*PublishConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishConsent not implemented")
+}
+func (UnimplementedConsentsServer) mustEmbedUnimplementedConsentsServer() {}
+
+// UnsafeConsentsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConsentsServer will
+// result in compilation errors.
+type UnsafeConsentsServer interface {
+	mustEmbedUnimplementedConsentsServer()
+}
+
+func RegisterConsentsServer(s grpc.ServiceRegistrar, srv ConsentsServer) {
+	s.RegisterService(&Consents_ServiceDesc, srv)
+}
+
+func _Consents_GetConsents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).GetConsents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_GetConsents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).GetConsents(ctx, req.(*GetConsentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_GetConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).GetConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_GetConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).GetConsent(ctx, req.(*GetConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_UpsertConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).UpsertConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_UpsertConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).UpsertConsent(ctx, req.(*UpsertConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_DeleteConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).DeleteConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_DeleteConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).DeleteConsent(ctx, req.(*DeleteConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_DeleteConsentVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConsentVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).DeleteConsentVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_DeleteConsentVersion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).DeleteConsentVersion(ctx, req.(*DeleteConsentVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_PublishConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).PublishConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_PublishConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).PublishConsent(ctx, req.(*PublishConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Consents_ServiceDesc is the grpc.ServiceDesc for Consents service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Consents_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Consents",
+	HandlerType: (*ConsentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetConsents",
+			Handler:    _Consents_GetConsents_Handler,
+		},
+		{
+			MethodName: "GetConsent",
+			Handler:    _Consents_GetConsent_Handler,
+		},
+		{
+			MethodName: "UpsertConsent",
+			Handler:    _Consents_UpsertConsent_Handler,
+		},
+		{
+			MethodName: "DeleteConsent",
+			Handler:    _Consents_DeleteConsent_Handler,
+		},
+		{
+			MethodName: "DeleteConsentVersion",
+			Handler:    _Consents_DeleteConsentVersion_Handler,
+		},
+		{
+			MethodName: "PublishConsent",
+			Handler:    _Consents_PublishConsent_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
 	StandaloneSurveys_GetStandaloneSurveys_FullMethodName   = "/proto.api.StandaloneSurveys/GetStandaloneSurveys"
 	StandaloneSurveys_GetStandaloneSurvey_FullMethodName    = "/proto.api.StandaloneSurveys/GetStandaloneSurvey"
 	StandaloneSurveys_UpsertStandaloneSurvey_FullMethodName = "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey"

@@ -9,6 +9,7 @@ tags:
   - name: Programs
   - name: Surveys
   - name: Questionnaires
+  - name: Consents
 consumes:
   - application/json
 produces:
@@ -85,6 +86,76 @@ paths:
           type: string
       tags:
         - Programs
+  /programs/{programName}/consents:
+    get:
+      operationId: Consents_GetConsents
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetConsentsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+  /programs/{programName}/consents/{name}:
+    get:
+      operationId: Consents_GetConsent
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetConsentResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+  /programs/{programName}/consents/{name}/{version}:
+    get:
+      operationId: Consents_GetConsentVersion
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetConsentVersionResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: version
+          in: path
+          required: true
+          type: string
+          format: int64
+      tags:
+        - Consents
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -209,6 +280,25 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protobufAny'
+  staticGetConsentResponse:
+    type: object
+    properties:
+      consents:
+        type: array
+        items:
+          type: object
+  staticGetConsentVersionResponse:
+    type: object
+    properties:
+      consent:
+        type: object
+  staticGetConsentsResponse:
+    type: object
+    properties:
+      consents:
+        type: array
+        items:
+          type: object
   staticGetProgramDataResponse:
     type: object
     properties:

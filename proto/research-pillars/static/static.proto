@@ -127,3 +127,47 @@ message GetQuestionnaireRequest {
   string language = 3;
 }
 message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }
+
+/////////////////////////////////////////////////////////
+// Consents
+/////////////////////////////////////////////////////////
+
+service Consents {
+  rpc GetConsents(GetConsentsRequest) returns (GetConsentsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/consents"
+    };
+  }
+
+  rpc GetConsent(GetConsentRequest) returns (GetConsentResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/consents/{name}"
+    };
+  }
+
+  rpc GetConsentVersion(GetConsentVersionRequest) returns (GetConsentVersionResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/consents/{name}/{version}"
+    };
+  }
+}
+
+message GetConsentsRequest { string programName = 1; }
+message GetConsentsResponse { repeated google.protobuf.Struct consents = 1; }
+
+message GetConsentRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetConsentResponse {
+  repeated google.protobuf.Struct consents = 1;
+}
+
+message GetConsentVersionRequest {
+  string programName = 1;
+  string name = 2;
+  int64 version = 3;
+}
+message GetConsentVersionResponse {
+  google.protobuf.Struct consent = 1;
+}

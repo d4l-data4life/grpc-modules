@@ -11,6 +11,7 @@ tags:
   - name: Surveys
   - name: Questionnaires
   - name: ParticipantCodes
+  - name: Consents
   - name: StandaloneSurveys
   - name: StandaloneQuestionnaires
   - name: Uploads
@@ -319,6 +320,147 @@ paths:
             type: string
       tags:
         - ParticipantCodes
+  /programs/{programName}/consents:
+    get:
+      operationId: Consents_GetConsents
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetConsentsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+    post:
+      operationId: Consents_UpsertConsent
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertConsentResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              consent:
+                type: object
+      tags:
+        - Consents
+  /programs/{programName}/consents/{name}:
+    get:
+      operationId: Consents_GetConsent
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetConsentResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+    delete:
+      operationId: Consents_DeleteConsent
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteConsentResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+  /programs/{programName}/consents/{name}/publish:
+    post:
+      operationId: Consents_PublishConsent
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishConsentResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Consents
+  /programs/{programName}/consents/{name}/{version}:
+    delete:
+      operationId: Consents_DeleteConsentVersion
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteConsentVersionResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: version
+          in: path
+          required: true
+          type: string
+          format: int64
+      tags:
+        - Consents
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -971,6 +1113,10 @@ definitions:
     type: object
   apiDeleteCodeResponse:
     type: object
+  apiDeleteConsentResponse:
+    type: object
+  apiDeleteConsentVersionResponse:
+    type: object
   apiDeleteProgramResponse:
     type: object
   apiDeleteProgramRoleResponse:
@@ -1001,6 +1147,20 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoParticipantCode'
+  apiGetConsentResponse:
+    type: object
+    properties:
+      consents:
+        type: array
+        items:
+          type: object
+  apiGetConsentsResponse:
+    type: object
+    properties:
+      consents:
+        type: array
+        items:
+          type: object
   apiGetDownloadListResponse:
     type: object
     properties:
@@ -1159,6 +1319,8 @@ definitions:
     type: object
   apiLoadSurveyResponse:
     type: object
+  apiPublishConsentResponse:
+    type: object
   apiPublishProgramResponse:
     type: object
   apiPublishQuestionnaireResponse:
@@ -1168,6 +1330,8 @@ definitions:
   apiUnassignCodeResponse:
     type: object
   apiUnblockProgramResponse:
+    type: object
+  apiUpsertConsentResponse:
     type: object
   apiUpsertProgramRequest:
     type: object

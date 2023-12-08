@@ -428,6 +428,85 @@ message UnassignCodeRequest { string programName = 1; string code = 2; }
 message UnassignCodeResponse {}
 
 /////////////////////////////////////////////////////////
+// Consents
+/////////////////////////////////////////////////////////
+
+service Consents {
+  rpc GetConsents(GetConsentsRequest) returns (GetConsentsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/consents"
+    };
+  }
+
+  rpc GetConsent(GetConsentRequest) returns (GetConsentResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/consents/{name}"
+    };
+  }
+
+  rpc UpsertConsent(UpsertConsentRequest) returns (UpsertConsentResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/consents",
+      body : "*"
+    };
+  }
+
+  rpc DeleteConsent(DeleteConsentRequest) returns (DeleteConsentResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/consents/{name}",
+    };
+  }
+
+  rpc DeleteConsentVersion(DeleteConsentVersionRequest) returns (DeleteConsentVersionResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/consents/{name}/{version}",
+    };
+  }
+
+  rpc PublishConsent(PublishConsentRequest) returns (PublishConsentResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/consents/{name}/publish",
+    };
+  }
+}
+
+message GetConsentsRequest { string programName = 1; }
+message GetConsentsResponse { repeated google.protobuf.Struct consents = 1; }
+
+message GetConsentRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetConsentResponse {
+  repeated google.protobuf.Struct consents = 1;
+}
+
+message UpsertConsentRequest {
+  string programName = 1;
+  google.protobuf.Struct consent = 2;
+}
+message UpsertConsentResponse {}
+
+message DeleteConsentRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteConsentResponse {}
+
+message DeleteConsentVersionRequest {
+  string programName = 1;
+  string name = 2;
+  int64 version = 3;
+}
+message DeleteConsentVersionResponse {}
+
+message PublishConsentRequest {
+  string programName = 1;
+  string name = 2;
+}
+message PublishConsentResponse {}
+
+/////////////////////////////////////////////////////////
 // Standalone Surveys
 /////////////////////////////////////////////////////////
 

@@ -472,3 +472,167 @@ var Questionnaires_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "research-pillars/static/static.proto",
 }
+
+const (
+	Consents_GetConsents_FullMethodName       = "/proto.static.Consents/GetConsents"
+	Consents_GetConsent_FullMethodName        = "/proto.static.Consents/GetConsent"
+	Consents_GetConsentVersion_FullMethodName = "/proto.static.Consents/GetConsentVersion"
+)
+
+// ConsentsClient is the client API for Consents service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ConsentsClient interface {
+	GetConsents(ctx context.Context, in *GetConsentsRequest, opts ...grpc.CallOption) (*GetConsentsResponse, error)
+	GetConsent(ctx context.Context, in *GetConsentRequest, opts ...grpc.CallOption) (*GetConsentResponse, error)
+	GetConsentVersion(ctx context.Context, in *GetConsentVersionRequest, opts ...grpc.CallOption) (*GetConsentVersionResponse, error)
+}
+
+type consentsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewConsentsClient(cc grpc.ClientConnInterface) ConsentsClient {
+	return &consentsClient{cc}
+}
+
+func (c *consentsClient) GetConsents(ctx context.Context, in *GetConsentsRequest, opts ...grpc.CallOption) (*GetConsentsResponse, error) {
+	out := new(GetConsentsResponse)
+	err := c.cc.Invoke(ctx, Consents_GetConsents_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) GetConsent(ctx context.Context, in *GetConsentRequest, opts ...grpc.CallOption) (*GetConsentResponse, error) {
+	out := new(GetConsentResponse)
+	err := c.cc.Invoke(ctx, Consents_GetConsent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *consentsClient) GetConsentVersion(ctx context.Context, in *GetConsentVersionRequest, opts ...grpc.CallOption) (*GetConsentVersionResponse, error) {
+	out := new(GetConsentVersionResponse)
+	err := c.cc.Invoke(ctx, Consents_GetConsentVersion_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ConsentsServer is the server API for Consents service.
+// All implementations must embed UnimplementedConsentsServer
+// for forward compatibility
+type ConsentsServer interface {
+	GetConsents(context.Context, *GetConsentsRequest) (*GetConsentsResponse, error)
+	GetConsent(context.Context, *GetConsentRequest) (*GetConsentResponse, error)
+	GetConsentVersion(context.Context, *GetConsentVersionRequest) (*GetConsentVersionResponse, error)
+	mustEmbedUnimplementedConsentsServer()
+}
+
+// UnimplementedConsentsServer must be embedded to have forward compatible implementations.
+type UnimplementedConsentsServer struct {
+}
+
+func (UnimplementedConsentsServer) GetConsents(context.Context, *GetConsentsRequest) (*GetConsentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsents not implemented")
+}
+func (UnimplementedConsentsServer) GetConsent(context.Context, *GetConsentRequest) (*GetConsentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsent not implemented")
+}
+func (UnimplementedConsentsServer) GetConsentVersion(context.Context, *GetConsentVersionRequest) (*GetConsentVersionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConsentVersion not implemented")
+}
+func (UnimplementedConsentsServer) mustEmbedUnimplementedConsentsServer() {}
+
+// UnsafeConsentsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConsentsServer will
+// result in compilation errors.
+type UnsafeConsentsServer interface {
+	mustEmbedUnimplementedConsentsServer()
+}
+
+func RegisterConsentsServer(s grpc.ServiceRegistrar, srv ConsentsServer) {
+	s.RegisterService(&Consents_ServiceDesc, srv)
+}
+
+func _Consents_GetConsents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).GetConsents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_GetConsents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).GetConsents(ctx, req.(*GetConsentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_GetConsent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).GetConsent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_GetConsent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).GetConsent(ctx, req.(*GetConsentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Consents_GetConsentVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConsentVersionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsentsServer).GetConsentVersion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Consents_GetConsentVersion_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsentsServer).GetConsentVersion(ctx, req.(*GetConsentVersionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Consents_ServiceDesc is the grpc.ServiceDesc for Consents service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Consents_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.Consents",
+	HandlerType: (*ConsentsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetConsents",
+			Handler:    _Consents_GetConsents_Handler,
+		},
+		{
+			MethodName: "GetConsent",
+			Handler:    _Consents_GetConsent_Handler,
+		},
+		{
+			MethodName: "GetConsentVersion",
+			Handler:    _Consents_GetConsentVersion_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}
