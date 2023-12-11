@@ -2143,7 +2143,7 @@ func request_Consents_DeleteConsentVersion_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
 
-	protoReq.Version, err = runtime.Int64(val)
+	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
@@ -2189,7 +2189,7 @@ func local_request_Consents_DeleteConsentVersion_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
 
-	protoReq.Version, err = runtime.Int64(val)
+	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}

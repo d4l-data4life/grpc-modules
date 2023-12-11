@@ -61,6 +61,7 @@ message GetProgramDataResponse {
   google.protobuf.Struct program = 1;
   repeated google.protobuf.Struct surveys = 2;
   repeated google.protobuf.Struct questionnaires = 3;
+  repeated google.protobuf.Struct consents = 4;
 }
 
 message GetProgramUpdatedAtRequest { string name = 1; }
@@ -166,7 +167,7 @@ message GetConsentResponse {
 message GetConsentVersionRequest {
   string programName = 1;
   string name = 2;
-  int64 version = 3;
+  int32 version = 3;
 }
 message GetConsentVersionResponse {
   google.protobuf.Struct consent = 1;

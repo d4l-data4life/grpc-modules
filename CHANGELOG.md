@@ -11,11 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [research-pillars] change consent version parameter type to int32
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- [research-pillars] getProgamData doesnt return consents
 
 ### Security
 

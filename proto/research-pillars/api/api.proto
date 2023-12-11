@@ -185,6 +185,7 @@ message GetProgramDataResponse {
   google.protobuf.Struct program = 1;
   repeated google.protobuf.Struct surveys = 2;
   repeated Questionnaire questionnaires = 3;
+  repeated google.protobuf.Struct consents = 4;
 }
 
 message UpsertProgramRequest {
@@ -496,7 +497,7 @@ message DeleteConsentResponse {}
 message DeleteConsentVersionRequest {
   string programName = 1;
   string name = 2;
-  int64 version = 3;
+  int32 version = 3;
 }
 message DeleteConsentVersionResponse {}
 

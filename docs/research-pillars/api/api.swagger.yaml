@@ -457,8 +457,8 @@ paths:
         - name: version
           in: path
           required: true
-          type: string
-          format: int64
+          type: integer
+          format: int32
       tags:
         - Consents
   /programs/{programName}/questionnaires:
@@ -1187,6 +1187,10 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoQuestionnaire'
+      consents:
+        type: array
+        items:
+          type: object
   apiGetProgramResponse:
     type: object
     properties:
