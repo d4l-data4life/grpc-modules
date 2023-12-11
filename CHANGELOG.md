@@ -11,17 +11,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [research-pillars] change consent version parameter type to int32
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- [research-pillars] getProgamData doesnt return consents
-
 ### Security
+
+## [v1.5.1] - 2023-12-11
+
+### Changed
+
+- [research-pillars] change consent version parameter type to int32
+
+### Fixed
+
+- [research-pillars] getProgamData doesnt return consents
 
 ## [v1.5.0] - 2023-12-08
 
@@ -72,7 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.5.1...HEAD
+[v1.5.1]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.5.0...v1.5.1
 [v1.5.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.4.0...v1.5.0
 [v1.4.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.3.0...v1.4.0
 [v1.3.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.2.0...v1.3.0
