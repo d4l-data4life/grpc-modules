@@ -636,3 +636,93 @@ var Consents_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "research-pillars/static/static.proto",
 }
+
+const (
+	Utilities_Proxy_FullMethodName = "/proto.static.Utilities/Proxy"
+)
+
+// UtilitiesClient is the client API for Utilities service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type UtilitiesClient interface {
+	Proxy(ctx context.Context, in *ProxyRequest, opts ...grpc.CallOption) (*ProxyResponse, error)
+}
+
+type utilitiesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewUtilitiesClient(cc grpc.ClientConnInterface) UtilitiesClient {
+	return &utilitiesClient{cc}
+}
+
+func (c *utilitiesClient) Proxy(ctx context.Context, in *ProxyRequest, opts ...grpc.CallOption) (*ProxyResponse, error) {
+	out := new(ProxyResponse)
+	err := c.cc.Invoke(ctx, Utilities_Proxy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UtilitiesServer is the server API for Utilities service.
+// All implementations must embed UnimplementedUtilitiesServer
+// for forward compatibility
+type UtilitiesServer interface {
+	Proxy(context.Context, *ProxyRequest) (*ProxyResponse, error)
+	mustEmbedUnimplementedUtilitiesServer()
+}
+
+// UnimplementedUtilitiesServer must be embedded to have forward compatible implementations.
+type UnimplementedUtilitiesServer struct {
+}
+
+func (UnimplementedUtilitiesServer) Proxy(context.Context, *ProxyRequest) (*ProxyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Proxy not implemented")
+}
+func (UnimplementedUtilitiesServer) mustEmbedUnimplementedUtilitiesServer() {}
+
+// UnsafeUtilitiesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UtilitiesServer will
+// result in compilation errors.
+type UnsafeUtilitiesServer interface {
+	mustEmbedUnimplementedUtilitiesServer()
+}
+
+func RegisterUtilitiesServer(s grpc.ServiceRegistrar, srv UtilitiesServer) {
+	s.RegisterService(&Utilities_ServiceDesc, srv)
+}
+
+func _Utilities_Proxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UtilitiesServer).Proxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Utilities_Proxy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UtilitiesServer).Proxy(ctx, req.(*ProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Utilities_ServiceDesc is the grpc.ServiceDesc for Utilities service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Utilities_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.Utilities",
+	HandlerType: (*UtilitiesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Proxy",
+			Handler:    _Utilities_Proxy_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}

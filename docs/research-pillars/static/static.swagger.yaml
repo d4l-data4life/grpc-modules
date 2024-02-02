@@ -10,6 +10,7 @@ tags:
   - name: Surveys
   - name: Questionnaires
   - name: Consents
+  - name: Utilities
 consumes:
   - application/json
 produces:
@@ -248,6 +249,26 @@ paths:
           type: string
       tags:
         - Surveys
+  /utilities/proxy:
+    post:
+      operationId: Utilities_Proxy
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticProxyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/staticProxyRequest'
+      tags:
+        - Utilities
 definitions:
   protobufAny:
     type: object
@@ -357,3 +378,15 @@ definitions:
         type: array
         items:
           type: object
+  staticProxyRequest:
+    type: object
+    properties:
+      target:
+        type: string
+      params:
+        type: object
+  staticProxyResponse:
+    type: object
+    properties:
+      body:
+        type: object

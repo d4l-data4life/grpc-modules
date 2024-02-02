@@ -705,6 +705,40 @@ func local_request_Consents_GetConsentVersion_0(ctx context.Context, marshaler r
 
 }
 
+func request_Utilities_Proxy_0(ctx context.Context, marshaler runtime.Marshaler, client UtilitiesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ProxyRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.Proxy(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Utilities_Proxy_0(ctx context.Context, marshaler runtime.Marshaler, server UtilitiesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ProxyRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.Proxy(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterProgramsHandlerServer registers the http handlers for service Programs to "mux".
 // UnaryRPC     :call ProgramsServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -1010,6 +1044,40 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		}
 
 		forward_Consents_GetConsentVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+// RegisterUtilitiesHandlerServer registers the http handlers for service Utilities to "mux".
+// UnaryRPC     :call UtilitiesServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUtilitiesHandlerFromEndpoint instead.
+func RegisterUtilitiesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UtilitiesServer) error {
+
+	mux.Handle("POST", pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Utilities_Proxy_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Utilities_Proxy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1480,4 +1548,75 @@ var (
 	forward_Consents_GetConsent_0 = runtime.ForwardResponseMessage
 
 	forward_Consents_GetConsentVersion_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterUtilitiesHandlerFromEndpoint is same as RegisterUtilitiesHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterUtilitiesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+
+	return RegisterUtilitiesHandler(ctx, mux, conn)
+}
+
+// RegisterUtilitiesHandler registers the http handlers for service Utilities to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterUtilitiesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterUtilitiesHandlerClient(ctx, mux, NewUtilitiesClient(conn))
+}
+
+// RegisterUtilitiesHandlerClient registers the http handlers for service Utilities
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UtilitiesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UtilitiesClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "UtilitiesClient" to call the correct interceptors.
+func RegisterUtilitiesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UtilitiesClient) error {
+
+	mux.Handle("POST", pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Utilities_Proxy_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Utilities_Proxy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_Utilities_Proxy_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"utilities", "proxy"}, ""))
+)
+
+var (
+	forward_Utilities_Proxy_0 = runtime.ForwardResponseMessage
 )

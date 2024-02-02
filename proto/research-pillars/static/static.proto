@@ -172,3 +172,24 @@ message GetConsentVersionRequest {
 message GetConsentVersionResponse {
   google.protobuf.Struct consent = 1;
 }
+
+/////////////////////////////////////////////////////////
+// Utilities
+/////////////////////////////////////////////////////////
+
+service Utilities {
+  rpc Proxy(ProxyRequest) returns (ProxyResponse) {
+    option (google.api.http) = {
+      post : "/utilities/proxy",
+      body : "*"
+    };
+  }
+}
+
+message ProxyRequest {
+  string target = 1;
+  google.protobuf.Struct params = 2;
+}
+message ProxyResponse {
+  google.protobuf.Struct body = 1;
+}
