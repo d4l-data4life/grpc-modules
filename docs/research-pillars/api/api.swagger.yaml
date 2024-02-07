@@ -853,6 +853,25 @@ paths:
           type: string
       tags:
         - StandaloneQuestionnaires
+  /statistics/{programName}:
+    get:
+      operationId: Uploads_GetStatistics
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetStatisticsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
   /surveys:
     get:
       operationId: StandaloneSurveys_GetStandaloneSurveys
@@ -1262,6 +1281,11 @@ definitions:
         type: array
         items:
           type: object
+  apiGetStatisticsResponse:
+    type: object
+    properties:
+      participation:
+        type: object
   apiGetSubjectDataResponse:
     type: object
     properties:
