@@ -853,7 +853,7 @@ paths:
           type: string
       tags:
         - StandaloneQuestionnaires
-  /statistics/{programName}:
+  /statistics/{programName}/{type}:
     get:
       operationId: Uploads_GetStatistics
       responses:
@@ -869,6 +869,18 @@ paths:
         - name: programName
           in: path
           required: true
+          type: string
+        - name: type
+          in: path
+          required: true
+          type: string
+        - name: startDate
+          in: query
+          required: false
+          type: string
+        - name: endDate
+          in: query
+          required: false
           type: string
       tags:
         - Uploads
@@ -1284,7 +1296,7 @@ definitions:
   apiGetStatisticsResponse:
     type: object
     properties:
-      participation:
+      data:
         type: object
   apiGetSubjectDataResponse:
     type: object
@@ -1544,7 +1556,6 @@ definitions:
       - viewer
       - editor
       - manager
-      - expert
     default: viewer
   protoUser:
     type: object

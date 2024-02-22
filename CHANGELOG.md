@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [research-pillars] Adjusted statistics endpoint to be more dynamic
+
 ### Deprecated
 
 ### Removed

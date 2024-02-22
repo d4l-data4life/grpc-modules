@@ -2953,6 +2953,10 @@ func local_request_Uploads_GetDownloadTicket_0(ctx context.Context, marshaler ru
 
 }
 
+var (
+	filter_Uploads_GetStatistics_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0, "type": 1}, Base: []int{1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 2, 3, 3}}
+)
+
 func request_Uploads_GetStatistics_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetStatisticsRequest
 	var metadata runtime.ServerMetadata
@@ -2972,6 +2976,23 @@ func request_Uploads_GetStatistics_0(ctx context.Context, marshaler runtime.Mars
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+
+	val, ok = pathParams["type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "type")
+	}
+
+	protoReq.Type, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "type", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Uploads_GetStatistics_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetStatistics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -2998,6 +3019,23 @@ func local_request_Uploads_GetStatistics_0(ctx context.Context, marshaler runtim
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+
+	val, ok = pathParams["type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "type")
+	}
+
+	protoReq.Type, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "type", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Uploads_GetStatistics_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetStatistics(ctx, &protoReq)
@@ -4391,7 +4429,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6147,7 +6185,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6177,7 +6215,7 @@ var (
 
 	pattern_Uploads_GetDownloadTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
 
-	pattern_Uploads_GetStatistics_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"statistics", "programName"}, ""))
+	pattern_Uploads_GetStatistics_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2}, []string{"statistics", "programName", "type"}, ""))
 )
 
 var (

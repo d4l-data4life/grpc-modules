@@ -657,7 +657,7 @@ service Uploads {
 
   rpc GetStatistics(GetStatisticsRequest) returns (GetStatisticsResponse) {
     option (google.api.http) = {
-      get : "/statistics/{programName}"
+      get : "/statistics/{programName}/{type}"
     };
   }
 }
@@ -697,5 +697,12 @@ message GetDownloadTicketResponse {
   string url = 1;
 }
 
-message GetStatisticsRequest { string programName = 1; }
-message GetStatisticsResponse { google.protobuf.Struct participation = 1; }
+message GetStatisticsRequest {
+  string programName = 1;
+  string type = 2;
+  optional string startDate = 3;
+  optional string endDate = 4;
+}
+message GetStatisticsResponse {
+  google.protobuf.Struct data = 1;
+}
