@@ -173,11 +173,6 @@ paths:
           in: path
           required: true
           type: string
-        - name: complete
-          in: body
-          required: true
-          schema:
-            type: boolean
       tags:
         - Programs
   /programs/{name}/publish:
@@ -197,7 +192,7 @@ paths:
           in: path
           required: true
           type: string
-        - name: complete
+        - name: forTesting
           in: body
           required: true
           schema:

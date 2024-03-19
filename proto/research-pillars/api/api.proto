@@ -151,14 +151,13 @@ service Programs {
   rpc PublishProgram(PublishProgramRequest) returns (PublishProgramResponse) {
     option (google.api.http) = {
       post : "/programs/{name}/publish",
-      body : "complete"
+      body : "forTesting"
     };
   }
 
   rpc LoadProgram(LoadProgramRequest) returns (LoadProgramResponse) {
     option (google.api.http) = {
       post : "/programs/{name}/load",
-      body : "complete"
     };
   }
 }
@@ -199,13 +198,12 @@ message DeleteProgramResponse {}
 
 message PublishProgramRequest {
   string name = 1;
-  bool complete = 2;
+  bool forTesting = 2;
 }
 message PublishProgramResponse {}
 
 message LoadProgramRequest {
   string name = 1;
-  bool complete = 2;
 }
 message LoadProgramResponse {}
 
