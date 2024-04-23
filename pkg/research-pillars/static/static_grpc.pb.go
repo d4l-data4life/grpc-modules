@@ -474,6 +474,133 @@ var Questionnaires_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Routines_GetRoutines_FullMethodName = "/proto.static.Routines/GetRoutines"
+	Routines_GetRoutine_FullMethodName  = "/proto.static.Routines/GetRoutine"
+)
+
+// RoutinesClient is the client API for Routines service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type RoutinesClient interface {
+	GetRoutines(ctx context.Context, in *GetRoutinesRequest, opts ...grpc.CallOption) (*GetRoutinesResponse, error)
+	GetRoutine(ctx context.Context, in *GetRoutineRequest, opts ...grpc.CallOption) (*GetRoutineResponse, error)
+}
+
+type routinesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewRoutinesClient(cc grpc.ClientConnInterface) RoutinesClient {
+	return &routinesClient{cc}
+}
+
+func (c *routinesClient) GetRoutines(ctx context.Context, in *GetRoutinesRequest, opts ...grpc.CallOption) (*GetRoutinesResponse, error) {
+	out := new(GetRoutinesResponse)
+	err := c.cc.Invoke(ctx, Routines_GetRoutines_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) GetRoutine(ctx context.Context, in *GetRoutineRequest, opts ...grpc.CallOption) (*GetRoutineResponse, error) {
+	out := new(GetRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_GetRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// RoutinesServer is the server API for Routines service.
+// All implementations must embed UnimplementedRoutinesServer
+// for forward compatibility
+type RoutinesServer interface {
+	GetRoutines(context.Context, *GetRoutinesRequest) (*GetRoutinesResponse, error)
+	GetRoutine(context.Context, *GetRoutineRequest) (*GetRoutineResponse, error)
+	mustEmbedUnimplementedRoutinesServer()
+}
+
+// UnimplementedRoutinesServer must be embedded to have forward compatible implementations.
+type UnimplementedRoutinesServer struct {
+}
+
+func (UnimplementedRoutinesServer) GetRoutines(context.Context, *GetRoutinesRequest) (*GetRoutinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoutines not implemented")
+}
+func (UnimplementedRoutinesServer) GetRoutine(context.Context, *GetRoutineRequest) (*GetRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) mustEmbedUnimplementedRoutinesServer() {}
+
+// UnsafeRoutinesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RoutinesServer will
+// result in compilation errors.
+type UnsafeRoutinesServer interface {
+	mustEmbedUnimplementedRoutinesServer()
+}
+
+func RegisterRoutinesServer(s grpc.ServiceRegistrar, srv RoutinesServer) {
+	s.RegisterService(&Routines_ServiceDesc, srv)
+}
+
+func _Routines_GetRoutines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoutinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).GetRoutines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_GetRoutines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).GetRoutines(ctx, req.(*GetRoutinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_GetRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).GetRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_GetRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).GetRoutine(ctx, req.(*GetRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Routines_ServiceDesc is the grpc.ServiceDesc for Routines service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Routines_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.Routines",
+	HandlerType: (*RoutinesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetRoutines",
+			Handler:    _Routines_GetRoutines_Handler,
+		},
+		{
+			MethodName: "GetRoutine",
+			Handler:    _Routines_GetRoutine_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}
+
+const (
 	Consents_GetConsents_FullMethodName       = "/proto.static.Consents/GetConsents"
 	Consents_GetConsent_FullMethodName        = "/proto.static.Consents/GetConsent"
 	Consents_GetConsentVersion_FullMethodName = "/proto.static.Consents/GetConsentVersion"
@@ -721,6 +848,133 @@ var Utilities_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Proxy",
 			Handler:    _Utilities_Proxy_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}
+
+const (
+	Checks_Liveness_FullMethodName  = "/proto.static.Checks/Liveness"
+	Checks_Readiness_FullMethodName = "/proto.static.Checks/Readiness"
+)
+
+// ChecksClient is the client API for Checks service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ChecksClient interface {
+	Liveness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
+	Readiness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
+}
+
+type checksClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewChecksClient(cc grpc.ClientConnInterface) ChecksClient {
+	return &checksClient{cc}
+}
+
+func (c *checksClient) Liveness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error) {
+	out := new(ChecksResponse)
+	err := c.cc.Invoke(ctx, Checks_Liveness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checksClient) Readiness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error) {
+	out := new(ChecksResponse)
+	err := c.cc.Invoke(ctx, Checks_Readiness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ChecksServer is the server API for Checks service.
+// All implementations must embed UnimplementedChecksServer
+// for forward compatibility
+type ChecksServer interface {
+	Liveness(context.Context, *ChecksRequest) (*ChecksResponse, error)
+	Readiness(context.Context, *ChecksRequest) (*ChecksResponse, error)
+	mustEmbedUnimplementedChecksServer()
+}
+
+// UnimplementedChecksServer must be embedded to have forward compatible implementations.
+type UnimplementedChecksServer struct {
+}
+
+func (UnimplementedChecksServer) Liveness(context.Context, *ChecksRequest) (*ChecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
+}
+func (UnimplementedChecksServer) Readiness(context.Context, *ChecksRequest) (*ChecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
+}
+func (UnimplementedChecksServer) mustEmbedUnimplementedChecksServer() {}
+
+// UnsafeChecksServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ChecksServer will
+// result in compilation errors.
+type UnsafeChecksServer interface {
+	mustEmbedUnimplementedChecksServer()
+}
+
+func RegisterChecksServer(s grpc.ServiceRegistrar, srv ChecksServer) {
+	s.RegisterService(&Checks_ServiceDesc, srv)
+}
+
+func _Checks_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChecksServer).Liveness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Checks_Liveness_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChecksServer).Liveness(ctx, req.(*ChecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Checks_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChecksServer).Readiness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Checks_Readiness_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChecksServer).Readiness(ctx, req.(*ChecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Checks_ServiceDesc is the grpc.ServiceDesc for Checks service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Checks_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.Checks",
+	HandlerType: (*ChecksServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Liveness",
+			Handler:    _Checks_Liveness_Handler,
+		},
+		{
+			MethodName: "Readiness",
+			Handler:    _Checks_Readiness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

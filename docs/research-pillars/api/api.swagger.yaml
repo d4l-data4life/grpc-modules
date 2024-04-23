@@ -10,16 +10,46 @@ tags:
   - name: Programs
   - name: Surveys
   - name: Questionnaires
+  - name: Routines
   - name: ParticipantCodes
   - name: Consents
   - name: StandaloneSurveys
   - name: StandaloneQuestionnaires
   - name: Uploads
+  - name: Checks
 consumes:
   - application/json
 produces:
   - application/json
 paths:
+  /checks/liveness:
+    get:
+      operationId: Checks_Liveness
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiChecksResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Checks
+  /checks/readiness:
+    get:
+      operationId: Checks_Readiness
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiChecksResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Checks
   /download/{programName}:
     get:
       operationId: Uploads_GetDownloadList
@@ -594,6 +624,144 @@ paths:
           type: string
       tags:
         - Questionnaires
+  /programs/{programName}/routines:
+    get:
+      operationId: Routines_GetRoutines
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetRoutinesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
+    post:
+      operationId: Routines_UpsertRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              routine:
+                type: object
+              change:
+                type: object
+      tags:
+        - Routines
+  /programs/{programName}/routines/{name}:
+    get:
+      operationId: Routines_GetRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
+    delete:
+      operationId: Routines_DeleteRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
+  /programs/{programName}/routines/{name}/load:
+    post:
+      operationId: Routines_LoadRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiLoadRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
+  /programs/{programName}/routines/{name}/publish:
+    post:
+      operationId: Routines_PublishRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
   /programs/{programName}/surveys:
     get:
       operationId: Surveys_GetSurveys
@@ -1137,6 +1305,11 @@ definitions:
     type: object
   apiBlockProgramResponse:
     type: object
+  apiChecksResponse:
+    type: object
+    properties:
+      response:
+        type: string
   apiDeleteCodeResponse:
     type: object
   apiDeleteConsentResponse:
@@ -1148,6 +1321,8 @@ definitions:
   apiDeleteProgramRoleResponse:
     type: object
   apiDeleteQuestionnaireResponse:
+    type: object
+  apiDeleteRoutineResponse:
     type: object
   apiDeleteStandaloneQuestionnaireResponse:
     type: object
@@ -1217,6 +1392,10 @@ definitions:
         type: array
         items:
           type: object
+      routines:
+        type: array
+        items:
+          type: object
   apiGetProgramResponse:
     type: object
     properties:
@@ -1259,6 +1438,23 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoQuestionnaire'
+  apiGetRoutineResponse:
+    type: object
+    properties:
+      routine:
+        type: object
+      diffs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDiff'
+  apiGetRoutinesResponse:
+    type: object
+    properties:
+      routines:
+        type: array
+        items:
+          type: object
   apiGetSelfResponse:
     type: object
     properties:
@@ -1352,6 +1548,8 @@ definitions:
     type: object
   apiLoadQuestionnaireResponse:
     type: object
+  apiLoadRoutineResponse:
+    type: object
   apiLoadSurveyResponse:
     type: object
   apiPublishConsentResponse:
@@ -1359,6 +1557,8 @@ definitions:
   apiPublishProgramResponse:
     type: object
   apiPublishQuestionnaireResponse:
+    type: object
+  apiPublishRoutineResponse:
     type: object
   apiPublishSurveyResponse:
     type: object
@@ -1380,6 +1580,8 @@ definitions:
   apiUpsertProgramRoleResponse:
     type: object
   apiUpsertQuestionnaireResponse:
+    type: object
+  apiUpsertRoutineResponse:
     type: object
   apiUpsertStandaloneQuestionnaireRequest:
     type: object

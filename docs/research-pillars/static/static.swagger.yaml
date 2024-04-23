@@ -9,13 +9,43 @@ tags:
   - name: Programs
   - name: Surveys
   - name: Questionnaires
+  - name: Routines
   - name: Consents
   - name: Utilities
+  - name: Checks
 consumes:
   - application/json
 produces:
   - application/json
 paths:
+  /checks/liveness:
+    get:
+      operationId: Checks_Liveness
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticChecksResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Checks
+  /checks/readiness:
+    get:
+      operationId: Checks_Readiness
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticChecksResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      tags:
+        - Checks
   /programs:
     get:
       operationId: Programs_GetPrograms
@@ -207,6 +237,48 @@ paths:
           type: string
       tags:
         - Questionnaires
+  /programs/{programName}/routines:
+    get:
+      operationId: Routines_GetRoutines
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetRoutinesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
+  /programs/{programName}/routines/{name}:
+    get:
+      operationId: Routines_GetRoutine
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetRoutineResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Routines
   /programs/{programName}/surveys:
     get:
       operationId: Surveys_GetSurveys
@@ -301,6 +373,11 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protobufAny'
+  staticChecksResponse:
+    type: object
+    properties:
+      response:
+        type: string
   staticGetConsentResponse:
     type: object
     properties:
@@ -337,6 +414,10 @@ definitions:
         type: array
         items:
           type: object
+      routines:
+        type: array
+        items:
+          type: object
   staticGetProgramResponse:
     type: object
     properties:
@@ -363,6 +444,18 @@ definitions:
     type: object
     properties:
       questionnaires:
+        type: array
+        items:
+          type: object
+  staticGetRoutineResponse:
+    type: object
+    properties:
+      routine:
+        type: object
+  staticGetRoutinesResponse:
+    type: object
+    properties:
+      routines:
         type: array
         items:
           type: object

@@ -1267,6 +1267,281 @@ var Questionnaires_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Routines_GetRoutines_FullMethodName    = "/proto.api.Routines/GetRoutines"
+	Routines_GetRoutine_FullMethodName     = "/proto.api.Routines/GetRoutine"
+	Routines_UpsertRoutine_FullMethodName  = "/proto.api.Routines/UpsertRoutine"
+	Routines_DeleteRoutine_FullMethodName  = "/proto.api.Routines/DeleteRoutine"
+	Routines_PublishRoutine_FullMethodName = "/proto.api.Routines/PublishRoutine"
+	Routines_LoadRoutine_FullMethodName    = "/proto.api.Routines/LoadRoutine"
+)
+
+// RoutinesClient is the client API for Routines service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type RoutinesClient interface {
+	GetRoutines(ctx context.Context, in *GetRoutinesRequest, opts ...grpc.CallOption) (*GetRoutinesResponse, error)
+	GetRoutine(ctx context.Context, in *GetRoutineRequest, opts ...grpc.CallOption) (*GetRoutineResponse, error)
+	UpsertRoutine(ctx context.Context, in *UpsertRoutineRequest, opts ...grpc.CallOption) (*UpsertRoutineResponse, error)
+	DeleteRoutine(ctx context.Context, in *DeleteRoutineRequest, opts ...grpc.CallOption) (*DeleteRoutineResponse, error)
+	PublishRoutine(ctx context.Context, in *PublishRoutineRequest, opts ...grpc.CallOption) (*PublishRoutineResponse, error)
+	LoadRoutine(ctx context.Context, in *LoadRoutineRequest, opts ...grpc.CallOption) (*LoadRoutineResponse, error)
+}
+
+type routinesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewRoutinesClient(cc grpc.ClientConnInterface) RoutinesClient {
+	return &routinesClient{cc}
+}
+
+func (c *routinesClient) GetRoutines(ctx context.Context, in *GetRoutinesRequest, opts ...grpc.CallOption) (*GetRoutinesResponse, error) {
+	out := new(GetRoutinesResponse)
+	err := c.cc.Invoke(ctx, Routines_GetRoutines_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) GetRoutine(ctx context.Context, in *GetRoutineRequest, opts ...grpc.CallOption) (*GetRoutineResponse, error) {
+	out := new(GetRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_GetRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) UpsertRoutine(ctx context.Context, in *UpsertRoutineRequest, opts ...grpc.CallOption) (*UpsertRoutineResponse, error) {
+	out := new(UpsertRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_UpsertRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) DeleteRoutine(ctx context.Context, in *DeleteRoutineRequest, opts ...grpc.CallOption) (*DeleteRoutineResponse, error) {
+	out := new(DeleteRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_DeleteRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) PublishRoutine(ctx context.Context, in *PublishRoutineRequest, opts ...grpc.CallOption) (*PublishRoutineResponse, error) {
+	out := new(PublishRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_PublishRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routinesClient) LoadRoutine(ctx context.Context, in *LoadRoutineRequest, opts ...grpc.CallOption) (*LoadRoutineResponse, error) {
+	out := new(LoadRoutineResponse)
+	err := c.cc.Invoke(ctx, Routines_LoadRoutine_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// RoutinesServer is the server API for Routines service.
+// All implementations must embed UnimplementedRoutinesServer
+// for forward compatibility
+type RoutinesServer interface {
+	GetRoutines(context.Context, *GetRoutinesRequest) (*GetRoutinesResponse, error)
+	GetRoutine(context.Context, *GetRoutineRequest) (*GetRoutineResponse, error)
+	UpsertRoutine(context.Context, *UpsertRoutineRequest) (*UpsertRoutineResponse, error)
+	DeleteRoutine(context.Context, *DeleteRoutineRequest) (*DeleteRoutineResponse, error)
+	PublishRoutine(context.Context, *PublishRoutineRequest) (*PublishRoutineResponse, error)
+	LoadRoutine(context.Context, *LoadRoutineRequest) (*LoadRoutineResponse, error)
+	mustEmbedUnimplementedRoutinesServer()
+}
+
+// UnimplementedRoutinesServer must be embedded to have forward compatible implementations.
+type UnimplementedRoutinesServer struct {
+}
+
+func (UnimplementedRoutinesServer) GetRoutines(context.Context, *GetRoutinesRequest) (*GetRoutinesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoutines not implemented")
+}
+func (UnimplementedRoutinesServer) GetRoutine(context.Context, *GetRoutineRequest) (*GetRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) UpsertRoutine(context.Context, *UpsertRoutineRequest) (*UpsertRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) DeleteRoutine(context.Context, *DeleteRoutineRequest) (*DeleteRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) PublishRoutine(context.Context, *PublishRoutineRequest) (*PublishRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) LoadRoutine(context.Context, *LoadRoutineRequest) (*LoadRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoadRoutine not implemented")
+}
+func (UnimplementedRoutinesServer) mustEmbedUnimplementedRoutinesServer() {}
+
+// UnsafeRoutinesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to RoutinesServer will
+// result in compilation errors.
+type UnsafeRoutinesServer interface {
+	mustEmbedUnimplementedRoutinesServer()
+}
+
+func RegisterRoutinesServer(s grpc.ServiceRegistrar, srv RoutinesServer) {
+	s.RegisterService(&Routines_ServiceDesc, srv)
+}
+
+func _Routines_GetRoutines_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoutinesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).GetRoutines(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_GetRoutines_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).GetRoutines(ctx, req.(*GetRoutinesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_GetRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).GetRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_GetRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).GetRoutine(ctx, req.(*GetRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_UpsertRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).UpsertRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_UpsertRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).UpsertRoutine(ctx, req.(*UpsertRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_DeleteRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).DeleteRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_DeleteRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).DeleteRoutine(ctx, req.(*DeleteRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_PublishRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PublishRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).PublishRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_PublishRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).PublishRoutine(ctx, req.(*PublishRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Routines_LoadRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoadRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutinesServer).LoadRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Routines_LoadRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutinesServer).LoadRoutine(ctx, req.(*LoadRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Routines_ServiceDesc is the grpc.ServiceDesc for Routines service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Routines_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Routines",
+	HandlerType: (*RoutinesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetRoutines",
+			Handler:    _Routines_GetRoutines_Handler,
+		},
+		{
+			MethodName: "GetRoutine",
+			Handler:    _Routines_GetRoutine_Handler,
+		},
+		{
+			MethodName: "UpsertRoutine",
+			Handler:    _Routines_UpsertRoutine_Handler,
+		},
+		{
+			MethodName: "DeleteRoutine",
+			Handler:    _Routines_DeleteRoutine_Handler,
+		},
+		{
+			MethodName: "PublishRoutine",
+			Handler:    _Routines_PublishRoutine_Handler,
+		},
+		{
+			MethodName: "LoadRoutine",
+			Handler:    _Routines_LoadRoutine_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
 	ParticipantCodes_GetCodes_FullMethodName      = "/proto.api.ParticipantCodes/GetCodes"
 	ParticipantCodes_GenerateCodes_FullMethodName = "/proto.api.ParticipantCodes/GenerateCodes"
 	ParticipantCodes_AssignCode_FullMethodName    = "/proto.api.ParticipantCodes/AssignCode"
@@ -2451,6 +2726,133 @@ var Uploads_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStatistics",
 			Handler:    _Uploads_GetStatistics_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
+	Checks_Liveness_FullMethodName  = "/proto.api.Checks/Liveness"
+	Checks_Readiness_FullMethodName = "/proto.api.Checks/Readiness"
+)
+
+// ChecksClient is the client API for Checks service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ChecksClient interface {
+	Liveness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
+	Readiness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error)
+}
+
+type checksClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewChecksClient(cc grpc.ClientConnInterface) ChecksClient {
+	return &checksClient{cc}
+}
+
+func (c *checksClient) Liveness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error) {
+	out := new(ChecksResponse)
+	err := c.cc.Invoke(ctx, Checks_Liveness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *checksClient) Readiness(ctx context.Context, in *ChecksRequest, opts ...grpc.CallOption) (*ChecksResponse, error) {
+	out := new(ChecksResponse)
+	err := c.cc.Invoke(ctx, Checks_Readiness_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ChecksServer is the server API for Checks service.
+// All implementations must embed UnimplementedChecksServer
+// for forward compatibility
+type ChecksServer interface {
+	Liveness(context.Context, *ChecksRequest) (*ChecksResponse, error)
+	Readiness(context.Context, *ChecksRequest) (*ChecksResponse, error)
+	mustEmbedUnimplementedChecksServer()
+}
+
+// UnimplementedChecksServer must be embedded to have forward compatible implementations.
+type UnimplementedChecksServer struct {
+}
+
+func (UnimplementedChecksServer) Liveness(context.Context, *ChecksRequest) (*ChecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Liveness not implemented")
+}
+func (UnimplementedChecksServer) Readiness(context.Context, *ChecksRequest) (*ChecksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Readiness not implemented")
+}
+func (UnimplementedChecksServer) mustEmbedUnimplementedChecksServer() {}
+
+// UnsafeChecksServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ChecksServer will
+// result in compilation errors.
+type UnsafeChecksServer interface {
+	mustEmbedUnimplementedChecksServer()
+}
+
+func RegisterChecksServer(s grpc.ServiceRegistrar, srv ChecksServer) {
+	s.RegisterService(&Checks_ServiceDesc, srv)
+}
+
+func _Checks_Liveness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChecksServer).Liveness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Checks_Liveness_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChecksServer).Liveness(ctx, req.(*ChecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Checks_Readiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChecksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChecksServer).Readiness(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Checks_Readiness_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChecksServer).Readiness(ctx, req.(*ChecksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Checks_ServiceDesc is the grpc.ServiceDesc for Checks service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Checks_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Checks",
+	HandlerType: (*ChecksServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Liveness",
+			Handler:    _Checks_Liveness_Handler,
+		},
+		{
+			MethodName: "Readiness",
+			Handler:    _Checks_Readiness_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

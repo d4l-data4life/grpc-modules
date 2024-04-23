@@ -62,6 +62,7 @@ message GetProgramDataResponse {
   repeated google.protobuf.Struct surveys = 2;
   repeated google.protobuf.Struct questionnaires = 3;
   repeated google.protobuf.Struct consents = 4;
+  repeated google.protobuf.Struct routines = 5;
 }
 
 message GetProgramUpdatedAtRequest { string name = 1; }
@@ -130,6 +131,33 @@ message GetQuestionnaireRequest {
 message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }
 
 /////////////////////////////////////////////////////////
+// Routines
+/////////////////////////////////////////////////////////
+
+service Routines {
+  rpc GetRoutines(GetRoutinesRequest) returns (GetRoutinesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/routines"
+    };
+  }
+
+  rpc GetRoutine(GetRoutineRequest) returns (GetRoutineResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/routines/{name}"
+    };
+  }
+}
+
+message GetRoutinesRequest { string programName = 1; }
+message GetRoutinesResponse { repeated google.protobuf.Struct routines = 1; }
+
+message GetRoutineRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetRoutineResponse { google.protobuf.Struct routine = 1; }
+
+/////////////////////////////////////////////////////////
 // Consents
 /////////////////////////////////////////////////////////
 
@@ -193,3 +221,24 @@ message ProxyRequest {
 message ProxyResponse {
   google.protobuf.Struct body = 1;
 }
+
+/////////////////////////////////////////////////////////
+// Checks
+/////////////////////////////////////////////////////////
+
+service Checks {
+  rpc Liveness(ChecksRequest) returns (ChecksResponse) {
+    option (google.api.http) = {
+      get : "/checks/liveness"
+    };
+  }
+
+  rpc Readiness(ChecksRequest) returns (ChecksResponse) {
+    option (google.api.http) = {
+      get : "/checks/readiness"
+    };
+  }
+}
+
+message ChecksRequest { }
+message ChecksResponse { string response = 1; }

@@ -185,6 +185,7 @@ message GetProgramDataResponse {
   repeated google.protobuf.Struct surveys = 2;
   repeated Questionnaire questionnaires = 3;
   repeated google.protobuf.Struct consents = 4;
+  repeated google.protobuf.Struct routines = 5;
 }
 
 message UpsertProgramRequest {
@@ -372,6 +373,86 @@ message LoadQuestionnaireRequest {
   string name = 2;
 }
 message LoadQuestionnaireResponse {}
+
+/////////////////////////////////////////////////////////
+// Routines
+/////////////////////////////////////////////////////////
+
+service Routines {
+  rpc GetRoutines(GetRoutinesRequest) returns (GetRoutinesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/routines"
+    };
+  }
+
+  rpc GetRoutine(GetRoutineRequest) returns (GetRoutineResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/routines/{name}"
+    };
+  }
+
+  rpc UpsertRoutine(UpsertRoutineRequest) returns (UpsertRoutineResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/routines",
+      body : "*"
+    };
+  }
+
+  rpc DeleteRoutine(DeleteRoutineRequest) returns (DeleteRoutineResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/routines/{name}"
+    };
+  }
+
+  rpc PublishRoutine(PublishRoutineRequest) returns (PublishRoutineResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/routines/{name}/publish",
+    };
+  }
+
+  rpc LoadRoutine(LoadRoutineRequest) returns (LoadRoutineResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/routines/{name}/load",
+    };
+  }
+}
+
+message GetRoutinesRequest { string programName = 1; }
+message GetRoutinesResponse { repeated google.protobuf.Struct routines = 1; }
+
+message GetRoutineRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetRoutineResponse {
+  google.protobuf.Struct routine = 1;
+  repeated Diff diffs = 2;
+}
+
+message UpsertRoutineRequest {
+  string programName = 1;
+  google.protobuf.Struct routine = 2;
+  google.protobuf.Struct change = 3;
+}
+message UpsertRoutineResponse {}
+
+message DeleteRoutineRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteRoutineResponse {}
+
+message PublishRoutineRequest {
+  string programName = 1;
+  string name = 2;
+}
+message PublishRoutineResponse {}
+
+message LoadRoutineRequest {
+  string programName = 1;
+  string name = 2;
+}
+message LoadRoutineResponse {}
 
 /////////////////////////////////////////////////////////
 // Participant Codes
@@ -704,3 +785,24 @@ message GetStatisticsRequest {
 message GetStatisticsResponse {
   google.protobuf.Struct data = 1;
 }
+
+/////////////////////////////////////////////////////////
+// Checks
+/////////////////////////////////////////////////////////
+
+service Checks {
+  rpc Liveness(ChecksRequest) returns (ChecksResponse) {
+    option (google.api.http) = {
+      get : "/checks/liveness"
+    };
+  }
+
+  rpc Readiness(ChecksRequest) returns (ChecksResponse) {
+    option (google.api.http) = {
+      get : "/checks/readiness"
+    };
+  }
+}
+
+message ChecksRequest { }
+message ChecksResponse { string response = 1; }

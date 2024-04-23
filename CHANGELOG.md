@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [research-pillars] Add routines
+- [research-pillars] Checks service
+
 ### Changed
 
 ### Deprecated
