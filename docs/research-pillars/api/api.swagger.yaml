@@ -89,12 +89,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              subjectIDs:
-                type: array
-                items:
-                  type: string
+            $ref: '#/definitions/UploadsGetDownloadTicketBody'
       tags:
         - Uploads
   /programs:
@@ -384,10 +379,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              consent:
-                type: object
+            $ref: '#/definitions/ConsentsUpsertConsentBody'
       tags:
         - Consents
   /programs/{programName}/consents/{name}:
@@ -525,12 +517,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              questionnaire:
-                $ref: '#/definitions/protoQuestionnaire'
-              change:
-                type: object
+            $ref: '#/definitions/QuestionnairesUpsertQuestionnaireBody'
       tags:
         - Questionnaires
   /programs/{programName}/questionnaires/{name}:
@@ -663,12 +650,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              routine:
-                type: object
-              change:
-                type: object
+            $ref: '#/definitions/RoutinesUpsertRoutineBody'
       tags:
         - Routines
   /programs/{programName}/routines/{name}:
@@ -801,12 +783,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              survey:
-                type: object
-              change:
-                type: object
+            $ref: '#/definitions/SurveysUpsertSurveyBody'
       tags:
         - Surveys
   /programs/{programName}/surveys/{name}:
@@ -1301,6 +1278,43 @@ paths:
       tags:
         - Users
 definitions:
+  ConsentsUpsertConsentBody:
+    type: object
+    properties:
+      consent:
+        type: object
+  QuestionnairesUpsertQuestionnaireBody:
+    type: object
+    properties:
+      questionnaire:
+        $ref: '#/definitions/protoQuestionnaire'
+      change:
+        type: object
+  RoutinesUpsertRoutineBody:
+    type: object
+    properties:
+      routine:
+        type: object
+      change:
+        type: object
+  SurveysUpsertSurveyBody:
+    type: object
+    properties:
+      survey:
+        type: object
+      change:
+        type: object
+  UploadsGetDownloadTicketBody:
+    type: object
+    properties:
+      subjectIDs:
+        type: array
+        items:
+          type: string
+      includeRawFHIR:
+        type: boolean
+      includeETLCSV:
+        type: boolean
   apiAssignCodeResponse:
     type: object
   apiBlockProgramResponse:

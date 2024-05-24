@@ -1,5 +1,5 @@
 # grpc-modules
-Contains protbuf definitions for servers, their generated code and related utilities
+Contains protobuf definitions for servers, their generated code and related utilities
 
 ## Structure
 

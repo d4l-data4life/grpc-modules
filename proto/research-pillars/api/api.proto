@@ -771,6 +771,8 @@ message GetDownloadListResponse {
 message GetDownloadTicketRequest {
   string programName = 1;
   repeated string subjectIDs = 2;
+  bool includeRawFHIR = 3;
+  bool includeETLCSV = 4;
 }
 message GetDownloadTicketResponse {
   string url = 1;
