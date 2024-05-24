@@ -11,8 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [research-pillars] download ticket request extended to include flags for FHIR and CSV
-
 ### Deprecated
 
 ### Removed
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.11.0] - 2024-05-24
+
+### Changed
+
+- [research-pillars] download ticket request extended to include flags for FHIR and CSV
 
 ## [v1.10.0] - 2024-04-23
 
@@ -111,7 +115,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.11.0...HEAD
+[v1.11.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.10.0...v1.11.0
 [v1.10.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.9.0...v1.10.0
 [v1.9.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.8.0...v1.9.0
 [v1.8.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.7.0...v1.8.0
