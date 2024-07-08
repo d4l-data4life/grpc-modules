@@ -455,6 +455,86 @@ message LoadRoutineRequest {
 message LoadRoutineResponse {}
 
 /////////////////////////////////////////////////////////
+// Displays
+/////////////////////////////////////////////////////////
+
+service Displays {
+  rpc GetDisplays(GetDisplaysRequest) returns (GetDisplaysResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/displays"
+    };
+  }
+
+  rpc GetDisplay(GetDisplayRequest) returns (GetDisplayResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/displays/{name}"
+    };
+  }
+
+  rpc UpsertDisplay(UpsertDisplayRequest) returns (UpsertDisplayResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/displays",
+      body : "*"
+    };
+  }
+
+  rpc DeleteDisplay(DeleteDisplayRequest) returns (DeleteDisplayResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/displays/{name}"
+    };
+  }
+
+  rpc PublishDisplay(PublishDisplayRequest) returns (PublishDisplayResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/displays/{name}/publish",
+    };
+  }
+
+  rpc LoadDisplay(LoadDisplayRequest) returns (LoadDisplayResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/displays/{name}/load",
+    };
+  }
+}
+
+message GetDisplaysRequest { string programName = 1; }
+message GetDisplaysResponse { repeated google.protobuf.Struct displays = 1; }
+
+message GetDisplayRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetDisplayResponse {
+  google.protobuf.Struct display = 1;
+  repeated Diff diffs = 2;
+}
+
+message UpsertDisplayRequest {
+  string programName = 1;
+  google.protobuf.Struct display = 2;
+  google.protobuf.Struct change = 3;
+}
+message UpsertDisplayResponse {}
+
+message DeleteDisplayRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteDisplayResponse {}
+
+message PublishDisplayRequest {
+  string programName = 1;
+  string name = 2;
+}
+message PublishDisplayResponse {}
+
+message LoadDisplayRequest {
+  string programName = 1;
+  string name = 2;
+}
+message LoadDisplayResponse {}
+
+/////////////////////////////////////////////////////////
 // Participant Codes
 /////////////////////////////////////////////////////////
 

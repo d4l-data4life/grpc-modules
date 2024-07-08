@@ -11,6 +11,7 @@ tags:
   - name: Surveys
   - name: Questionnaires
   - name: Routines
+  - name: Displays
   - name: ParticipantCodes
   - name: Consents
   - name: StandaloneSurveys
@@ -478,6 +479,139 @@ paths:
           format: int32
       tags:
         - Consents
+  /programs/{programName}/displays:
+    get:
+      operationId: Displays_GetDisplays
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetDisplaysResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
+    post:
+      operationId: Displays_UpsertDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/DisplaysUpsertDisplayBody'
+      tags:
+        - Displays
+  /programs/{programName}/displays/{name}:
+    get:
+      operationId: Displays_GetDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
+    delete:
+      operationId: Displays_DeleteDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
+  /programs/{programName}/displays/{name}/load:
+    post:
+      operationId: Displays_LoadDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiLoadDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
+  /programs/{programName}/displays/{name}/publish:
+    post:
+      operationId: Displays_PublishDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiPublishDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -1283,6 +1417,13 @@ definitions:
     properties:
       consent:
         type: object
+  DisplaysUpsertDisplayBody:
+    type: object
+    properties:
+      display:
+        type: object
+      change:
+        type: object
   QuestionnairesUpsertQuestionnaireBody:
     type: object
     properties:
@@ -1330,6 +1471,8 @@ definitions:
     type: object
   apiDeleteConsentVersionResponse:
     type: object
+  apiDeleteDisplayResponse:
+    type: object
   apiDeleteProgramResponse:
     type: object
   apiDeleteProgramRoleResponse:
@@ -1373,6 +1516,23 @@ definitions:
     type: object
     properties:
       consents:
+        type: array
+        items:
+          type: object
+  apiGetDisplayResponse:
+    type: object
+    properties:
+      display:
+        type: object
+      diffs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDiff'
+  apiGetDisplaysResponse:
+    type: object
+    properties:
+      displays:
         type: array
         items:
           type: object
@@ -1558,6 +1718,8 @@ definitions:
     properties:
       available:
         type: boolean
+  apiLoadDisplayResponse:
+    type: object
   apiLoadProgramResponse:
     type: object
   apiLoadQuestionnaireResponse:
@@ -1567,6 +1729,8 @@ definitions:
   apiLoadSurveyResponse:
     type: object
   apiPublishConsentResponse:
+    type: object
+  apiPublishDisplayResponse:
     type: object
   apiPublishProgramResponse:
     type: object
@@ -1581,6 +1745,8 @@ definitions:
   apiUnblockProgramResponse:
     type: object
   apiUpsertConsentResponse:
+    type: object
+  apiUpsertDisplayResponse:
     type: object
   apiUpsertProgramRequest:
     type: object

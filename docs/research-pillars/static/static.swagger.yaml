@@ -10,6 +10,7 @@ tags:
   - name: Surveys
   - name: Questionnaires
   - name: Routines
+  - name: Displays
   - name: Consents
   - name: Utilities
   - name: Checks
@@ -187,6 +188,48 @@ paths:
           format: int32
       tags:
         - Consents
+  /programs/{programName}/displays:
+    get:
+      operationId: Displays_GetDisplays
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetDisplaysResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
+  /programs/{programName}/displays/{name}:
+    get:
+      operationId: Displays_GetDisplay
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetDisplayResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Displays
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -394,6 +437,18 @@ definitions:
     type: object
     properties:
       consents:
+        type: array
+        items:
+          type: object
+  staticGetDisplayResponse:
+    type: object
+    properties:
+      display:
+        type: object
+  staticGetDisplaysResponse:
+    type: object
+    properties:
+      displays:
         type: array
         items:
           type: object

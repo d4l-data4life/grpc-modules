@@ -158,6 +158,33 @@ message GetRoutineRequest {
 message GetRoutineResponse { google.protobuf.Struct routine = 1; }
 
 /////////////////////////////////////////////////////////
+// Routines
+/////////////////////////////////////////////////////////
+
+service Displays {
+  rpc GetDisplays(GetDisplaysRequest) returns (GetDisplaysResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/displays"
+    };
+  }
+
+  rpc GetDisplay(GetDisplayRequest) returns (GetDisplayResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/displays/{name}"
+    };
+  }
+}
+
+message GetDisplaysRequest { string programName = 1; }
+message GetDisplaysResponse { repeated google.protobuf.Struct displays = 1; }
+
+message GetDisplayRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetDisplayResponse { google.protobuf.Struct display = 1; }
+
+/////////////////////////////////////////////////////////
 // Consents
 /////////////////////////////////////////////////////////
 
