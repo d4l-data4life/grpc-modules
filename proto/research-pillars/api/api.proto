@@ -186,6 +186,7 @@ message GetProgramDataResponse {
   repeated Questionnaire questionnaires = 3;
   repeated google.protobuf.Struct consents = 4;
   repeated google.protobuf.Struct routines = 5;
+  repeated google.protobuf.Struct displays = 6;
 }
 
 message UpsertProgramRequest {
