@@ -17,9 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [research-pillars] Add displays to GetProgramData endpoints
-
 ### Security
+
+## [v1.12.1] - 2024-07-08
+
+### Fixed
+
+- [research-pillars] Add displays to GetProgramData endpoints
 
 ## [v1.12.0] - 2024-07-08
 
@@ -123,7 +127,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.12.1...HEAD
+[v1.12.1]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.12.0...v1.12.1
 [v1.12.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.11.0...v1.12.0
 [v1.11.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.10.0...v1.11.0
 [v1.10.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.9.0...v1.10.0

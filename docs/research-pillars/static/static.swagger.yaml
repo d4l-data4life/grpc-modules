@@ -473,6 +473,10 @@ definitions:
         type: array
         items:
           type: object
+      displays:
+        type: array
+        items:
+          type: object
   staticGetProgramResponse:
     type: object
     properties:
