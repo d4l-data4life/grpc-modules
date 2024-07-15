@@ -343,6 +343,7 @@ const (
 	Programs_IsNameAvailable_FullMethodName = "/proto.api.Programs/IsNameAvailable"
 	Programs_GetProgram_FullMethodName      = "/proto.api.Programs/GetProgram"
 	Programs_GetProgramData_FullMethodName  = "/proto.api.Programs/GetProgramData"
+	Programs_GetProgramDiffs_FullMethodName = "/proto.api.Programs/GetProgramDiffs"
 	Programs_UpsertProgram_FullMethodName   = "/proto.api.Programs/UpsertProgram"
 	Programs_DeleteProgram_FullMethodName   = "/proto.api.Programs/DeleteProgram"
 	Programs_PublishProgram_FullMethodName  = "/proto.api.Programs/PublishProgram"
@@ -358,6 +359,7 @@ type ProgramsClient interface {
 	IsNameAvailable(ctx context.Context, in *IsNameAvailableRequest, opts ...grpc.CallOption) (*IsNameAvailableResponse, error)
 	GetProgram(ctx context.Context, in *GetProgramRequest, opts ...grpc.CallOption) (*GetProgramResponse, error)
 	GetProgramData(ctx context.Context, in *GetProgramDataRequest, opts ...grpc.CallOption) (*GetProgramDataResponse, error)
+	GetProgramDiffs(ctx context.Context, in *GetProgramDiffsRequest, opts ...grpc.CallOption) (*GetProgramDiffsResponse, error)
 	UpsertProgram(ctx context.Context, in *UpsertProgramRequest, opts ...grpc.CallOption) (*UpsertProgramResponse, error)
 	DeleteProgram(ctx context.Context, in *DeleteProgramRequest, opts ...grpc.CallOption) (*DeleteProgramResponse, error)
 	PublishProgram(ctx context.Context, in *PublishProgramRequest, opts ...grpc.CallOption) (*PublishProgramResponse, error)
@@ -422,6 +424,16 @@ func (c *programsClient) GetProgramData(ctx context.Context, in *GetProgramDataR
 	return out, nil
 }
 
+func (c *programsClient) GetProgramDiffs(ctx context.Context, in *GetProgramDiffsRequest, opts ...grpc.CallOption) (*GetProgramDiffsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProgramDiffsResponse)
+	err := c.cc.Invoke(ctx, Programs_GetProgramDiffs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *programsClient) UpsertProgram(ctx context.Context, in *UpsertProgramRequest, opts ...grpc.CallOption) (*UpsertProgramResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpsertProgramResponse)
@@ -471,6 +483,7 @@ type ProgramsServer interface {
 	IsNameAvailable(context.Context, *IsNameAvailableRequest) (*IsNameAvailableResponse, error)
 	GetProgram(context.Context, *GetProgramRequest) (*GetProgramResponse, error)
 	GetProgramData(context.Context, *GetProgramDataRequest) (*GetProgramDataResponse, error)
+	GetProgramDiffs(context.Context, *GetProgramDiffsRequest) (*GetProgramDiffsResponse, error)
 	UpsertProgram(context.Context, *UpsertProgramRequest) (*UpsertProgramResponse, error)
 	DeleteProgram(context.Context, *DeleteProgramRequest) (*DeleteProgramResponse, error)
 	PublishProgram(context.Context, *PublishProgramRequest) (*PublishProgramResponse, error)
@@ -496,6 +509,9 @@ func (UnimplementedProgramsServer) GetProgram(context.Context, *GetProgramReques
 }
 func (UnimplementedProgramsServer) GetProgramData(context.Context, *GetProgramDataRequest) (*GetProgramDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProgramData not implemented")
+}
+func (UnimplementedProgramsServer) GetProgramDiffs(context.Context, *GetProgramDiffsRequest) (*GetProgramDiffsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProgramDiffs not implemented")
 }
 func (UnimplementedProgramsServer) UpsertProgram(context.Context, *UpsertProgramRequest) (*UpsertProgramResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpsertProgram not implemented")
@@ -612,6 +628,24 @@ func _Programs_GetProgramData_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Programs_GetProgramDiffs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProgramDiffsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProgramsServer).GetProgramDiffs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Programs_GetProgramDiffs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProgramsServer).GetProgramDiffs(ctx, req.(*GetProgramDiffsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Programs_UpsertProgram_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpsertProgramRequest)
 	if err := dec(in); err != nil {
@@ -710,6 +744,10 @@ var Programs_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProgramData",
 			Handler:    _Programs_GetProgramData_Handler,
+		},
+		{
+			MethodName: "GetProgramDiffs",
+			Handler:    _Programs_GetProgramDiffs_Handler,
 		},
 		{
 			MethodName: "UpsertProgram",

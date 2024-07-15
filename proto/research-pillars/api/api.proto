@@ -135,6 +135,12 @@ service Programs {
     };
   }
 
+  rpc GetProgramDiffs(GetProgramDiffsRequest) returns (GetProgramDiffsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{name}/diffs"
+    };
+  }
+
   rpc UpsertProgram(UpsertProgramRequest) returns (UpsertProgramResponse) {
     option (google.api.http) = {
       post : "/programs",
@@ -187,6 +193,15 @@ message GetProgramDataResponse {
   repeated google.protobuf.Struct consents = 4;
   repeated google.protobuf.Struct routines = 5;
   repeated google.protobuf.Struct displays = 6;
+}
+
+message GetProgramDiffsRequest { string name = 1; }
+message GetProgramDiffsResponse {
+  repeated google.protobuf.Struct program = 1;
+  repeated google.protobuf.Struct surveys = 2;
+  repeated google.protobuf.Struct questionnaires = 3;
+  repeated google.protobuf.Struct routines = 4;
+  repeated google.protobuf.Struct displays = 5;
 }
 
 message UpsertProgramRequest {

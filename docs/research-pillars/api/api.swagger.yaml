@@ -182,6 +182,25 @@ paths:
           type: string
       tags:
         - Programs
+  /programs/{name}/diffs:
+    get:
+      operationId: Programs_GetProgramDiffs
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetProgramDiffsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Programs
   /programs/{name}/load:
     post:
       operationId: Programs_LoadProgram
@@ -1563,6 +1582,29 @@ definitions:
           type: object
           $ref: '#/definitions/protoQuestionnaire'
       consents:
+        type: array
+        items:
+          type: object
+      routines:
+        type: array
+        items:
+          type: object
+      displays:
+        type: array
+        items:
+          type: object
+  apiGetProgramDiffsResponse:
+    type: object
+    properties:
+      program:
+        type: array
+        items:
+          type: object
+      surveys:
+        type: array
+        items:
+          type: object
+      questionnaires:
         type: array
         items:
           type: object
