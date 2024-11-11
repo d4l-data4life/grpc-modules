@@ -1312,6 +1312,33 @@ paths:
           type: string
       tags:
         - Uploads
+  /uploads/subjects/{programName}/{subjectID}/{resourceID}:
+    get:
+      operationId: Uploads_GetSubjectResource
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetSubjectResourceResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+        - name: resourceID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
   /users:
     get:
       operationId: Users_GetUsers
@@ -1727,6 +1754,11 @@ definitions:
         type: array
         items:
           type: object
+  apiGetSubjectResourceResponse:
+    type: object
+    properties:
+      resource:
+        type: object
   apiGetSubjectsResponse:
     type: object
     properties:

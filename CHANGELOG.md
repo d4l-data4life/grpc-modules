@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [research-pillars] Add method to fetch single uploaded resource by ID
+
 ### Changed
 
 ### Deprecated

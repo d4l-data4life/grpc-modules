@@ -817,6 +817,12 @@ service Uploads {
     };
   }
 
+  rpc GetSubjectResource(GetSubjectResourceRequest) returns (GetSubjectResourceResponse) {
+    option (google.api.http) = {
+      get : "/uploads/subjects/{programName}/{subjectID}/{resourceID}"
+    };
+  }
+
   rpc GetDownloadList(GetDownloadListRequest) returns (GetDownloadListResponse) {
     option (google.api.http) = {
       get : "/download/{programName}",
@@ -855,6 +861,15 @@ message GetSubjectRawDataRequest {
 }
 message GetSubjectRawDataResponse {
   repeated google.protobuf.Struct uploads = 1;
+}
+
+message GetSubjectResourceRequest {
+  string programName = 1;
+  string subjectID = 2;
+  string resourceID = 3;
+}
+message GetSubjectResourceResponse {
+  google.protobuf.Struct resource = 1;
 }
 
 message GetDownloadListRequest {
