@@ -8,6 +8,7 @@ package static
 
 import (
 	context "context"
+	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -1068,6 +1069,108 @@ var Utilities_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Proxy",
 			Handler:    _Utilities_Proxy_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}
+
+const (
+	Images_GetImage_FullMethodName = "/proto.static.Images/GetImage"
+)
+
+// ImagesClient is the client API for Images service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ImagesClient interface {
+	GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error)
+}
+
+type imagesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewImagesClient(cc grpc.ClientConnInterface) ImagesClient {
+	return &imagesClient{cc}
+}
+
+func (c *imagesClient) GetImage(ctx context.Context, in *GetImageRequest, opts ...grpc.CallOption) (*httpbody.HttpBody, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(httpbody.HttpBody)
+	err := c.cc.Invoke(ctx, Images_GetImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ImagesServer is the server API for Images service.
+// All implementations must embed UnimplementedImagesServer
+// for forward compatibility.
+type ImagesServer interface {
+	GetImage(context.Context, *GetImageRequest) (*httpbody.HttpBody, error)
+	mustEmbedUnimplementedImagesServer()
+}
+
+// UnimplementedImagesServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedImagesServer struct{}
+
+func (UnimplementedImagesServer) GetImage(context.Context, *GetImageRequest) (*httpbody.HttpBody, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetImage not implemented")
+}
+func (UnimplementedImagesServer) mustEmbedUnimplementedImagesServer() {}
+func (UnimplementedImagesServer) testEmbeddedByValue()                {}
+
+// UnsafeImagesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ImagesServer will
+// result in compilation errors.
+type UnsafeImagesServer interface {
+	mustEmbedUnimplementedImagesServer()
+}
+
+func RegisterImagesServer(s grpc.ServiceRegistrar, srv ImagesServer) {
+	// If the following call pancis, it indicates UnimplementedImagesServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Images_ServiceDesc, srv)
+}
+
+func _Images_GetImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImagesServer).GetImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Images_GetImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImagesServer).GetImage(ctx, req.(*GetImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Images_ServiceDesc is the grpc.ServiceDesc for Images service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Images_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.Images",
+	HandlerType: (*ImagesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetImage",
+			Handler:    _Images_GetImage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

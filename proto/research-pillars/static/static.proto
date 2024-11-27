@@ -4,6 +4,7 @@ package proto.static;
 option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars/static";
 
 import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 import "google/protobuf/struct.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
@@ -248,6 +249,23 @@ message ProxyRequest {
 }
 message ProxyResponse {
   google.protobuf.Struct body = 1;
+}
+
+/////////////////////////////////////////////////////////
+// Images
+/////////////////////////////////////////////////////////
+
+service Images {
+  rpc GetImage(GetImageRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/images/{name}"
+    };
+  }
+}
+
+message GetImageRequest {
+  string programName = 1;
+  string name = 2;
 }
 
 /////////////////////////////////////////////////////////

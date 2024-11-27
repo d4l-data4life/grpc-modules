@@ -10,6 +10,7 @@ package static
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,995 +25,788 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_Programs_GetPrograms_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetPrograms(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetPrograms_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetPrograms(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgramData_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgramData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgramData_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgramData(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgramUpdatedAt_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramUpdatedAtRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramUpdatedAtRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgramUpdatedAt(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgramUpdatedAt_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramUpdatedAtRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramUpdatedAtRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgramUpdatedAt(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_GetSurveys_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetSurveys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_GetSurveys_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetSurveys(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_GetSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_GetSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_Questionnaires_GetQuestionnaires_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_Questionnaires_GetQuestionnaires_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_Questionnaires_GetQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnairesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Questionnaires_GetQuestionnaires_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetQuestionnaires(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_GetQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnairesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Questionnaires_GetQuestionnaires_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetQuestionnaires(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_Questionnaires_GetQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0, "name": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
+var filter_Questionnaires_GetQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0, "name": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 
 func request_Questionnaires_GetQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Questionnaires_GetQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_GetQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Questionnaires_GetQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_GetRoutines_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutinesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutinesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetRoutines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_GetRoutines_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutinesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutinesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetRoutines(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_GetRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_GetRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_GetDisplays_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplaysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplaysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetDisplays(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_GetDisplays_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplaysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplaysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetDisplays(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_GetDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_GetDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_GetConsents_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetConsents(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_GetConsents_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetConsents(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_GetConsent_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetConsent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_GetConsent_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetConsent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_GetConsentVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentVersionRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentVersionRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	val, ok = pathParams["version"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
-
 	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-
 	msg, err := client.GetConsentVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_GetConsentVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentVersionRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentVersionRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	val, ok = pathParams["version"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
-
 	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-
 	msg, err := server.GetConsentVersion(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Utilities_Proxy_0(ctx context.Context, marshaler runtime.Marshaler, client UtilitiesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ProxyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ProxyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.Proxy(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Utilities_Proxy_0(ctx context.Context, marshaler runtime.Marshaler, server UtilitiesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ProxyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ProxyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.Proxy(ctx, &protoReq)
 	return msg, metadata, err
+}
 
+func request_Images_GetImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.GetImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Images_GetImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.GetImage(ctx, &protoReq)
+	return msg, metadata, err
 }
 
 func request_Checks_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, client ChecksClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.Liveness(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Checks_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, server ChecksServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.Liveness(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, client ChecksClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.Readiness(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, server ChecksServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.Readiness(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterProgramsHandlerServer registers the http handlers for service Programs to "mux".
@@ -1021,16 +815,13 @@ func local_request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProgramsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProgramsServer) error {
-
-	mux.Handle("GET", pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1042,20 +833,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1067,20 +853,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1092,20 +873,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramUpdatedAt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramUpdatedAt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgramUpdatedAt", runtime.WithHTTPPathPattern("/programs/{name}/updatedAt"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Programs/GetProgramUpdatedAt", runtime.WithHTTPPathPattern("/programs/{name}/updatedAt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1117,9 +893,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramUpdatedAt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1131,16 +905,13 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSurveysHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SurveysServer) error {
-
-	mux.Handle("GET", pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1152,20 +923,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1177,9 +943,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1191,16 +955,13 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterQuestionnairesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server QuestionnairesServer) error {
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1212,20 +973,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1237,9 +993,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1251,16 +1005,13 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRoutinesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server RoutinesServer) error {
-
-	mux.Handle("GET", pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1272,20 +1023,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1297,9 +1043,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1311,16 +1055,13 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDisplaysHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DisplaysServer) error {
-
-	mux.Handle("GET", pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1332,20 +1073,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplays_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1357,9 +1093,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1371,16 +1105,13 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterConsentsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ConsentsServer) error {
-
-	mux.Handle("GET", pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1392,20 +1123,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1417,20 +1143,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Consents/GetConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1442,9 +1163,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsentVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1456,16 +1175,13 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUtilitiesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUtilitiesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UtilitiesServer) error {
-
-	mux.Handle("POST", pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1477,9 +1193,37 @@ func RegisterUtilitiesHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Utilities_Proxy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
+	return nil
+}
+
+// RegisterImagesHandlerServer registers the http handlers for service Images to "mux".
+// UnaryRPC     :call ImagesServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterImagesHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
+func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ImagesServer) error {
+	mux.Handle(http.MethodGet, pattern_Images_GetImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Images_GetImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_GetImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -1491,16 +1235,13 @@ func RegisterUtilitiesHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterChecksHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ChecksServer) error {
-
-	mux.Handle("GET", pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1512,20 +1253,15 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.static.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1537,9 +1273,7 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1566,7 +1300,6 @@ func RegisterProgramsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterProgramsHandler(ctx, mux, conn)
 }
 
@@ -1582,14 +1315,11 @@ func RegisterProgramsHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ProgramsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProgramsClient) error {
-
-	mux.Handle("GET", pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1600,18 +1330,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1622,18 +1347,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1644,18 +1364,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramUpdatedAt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramUpdatedAt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgramUpdatedAt", runtime.WithHTTPPathPattern("/programs/{name}/updatedAt"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Programs/GetProgramUpdatedAt", runtime.WithHTTPPathPattern("/programs/{name}/updatedAt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1666,31 +1381,22 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramUpdatedAt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Programs_GetPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
-
-	pattern_Programs_GetProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
-
-	pattern_Programs_GetProgramData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "data"}, ""))
-
+	pattern_Programs_GetPrograms_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
+	pattern_Programs_GetProgram_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
+	pattern_Programs_GetProgramData_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "data"}, ""))
 	pattern_Programs_GetProgramUpdatedAt_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "updatedAt"}, ""))
 )
 
 var (
-	forward_Programs_GetPrograms_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_GetProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_GetProgramData_0 = runtime.ForwardResponseMessage
-
+	forward_Programs_GetPrograms_0         = runtime.ForwardResponseMessage
+	forward_Programs_GetProgram_0          = runtime.ForwardResponseMessage
+	forward_Programs_GetProgramData_0      = runtime.ForwardResponseMessage
 	forward_Programs_GetProgramUpdatedAt_0 = runtime.ForwardResponseMessage
 )
 
@@ -1715,7 +1421,6 @@ func RegisterSurveysHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 			}
 		}()
 	}()
-
 	return RegisterSurveysHandler(ctx, mux, conn)
 }
 
@@ -1731,14 +1436,11 @@ func RegisterSurveysHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "SurveysClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SurveysClient) error {
-
-	mux.Handle("GET", pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1749,18 +1451,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1771,24 +1468,19 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_Surveys_GetSurveys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
-
-	pattern_Surveys_GetSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
+	pattern_Surveys_GetSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
 )
 
 var (
 	forward_Surveys_GetSurveys_0 = runtime.ForwardResponseMessage
-
-	forward_Surveys_GetSurvey_0 = runtime.ForwardResponseMessage
+	forward_Surveys_GetSurvey_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterQuestionnairesHandlerFromEndpoint is same as RegisterQuestionnairesHandler but
@@ -1812,7 +1504,6 @@ func RegisterQuestionnairesHandlerFromEndpoint(ctx context.Context, mux *runtime
 			}
 		}()
 	}()
-
 	return RegisterQuestionnairesHandler(ctx, mux, conn)
 }
 
@@ -1828,14 +1519,11 @@ func RegisterQuestionnairesHandler(ctx context.Context, mux *runtime.ServeMux, c
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "QuestionnairesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client QuestionnairesClient) error {
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1846,18 +1534,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1868,24 +1551,19 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_Questionnaires_GetQuestionnaires_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
-
-	pattern_Questionnaires_GetQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_GetQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
 )
 
 var (
 	forward_Questionnaires_GetQuestionnaires_0 = runtime.ForwardResponseMessage
-
-	forward_Questionnaires_GetQuestionnaire_0 = runtime.ForwardResponseMessage
+	forward_Questionnaires_GetQuestionnaire_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterRoutinesHandlerFromEndpoint is same as RegisterRoutinesHandler but
@@ -1909,7 +1587,6 @@ func RegisterRoutinesHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterRoutinesHandler(ctx, mux, conn)
 }
 
@@ -1925,14 +1602,11 @@ func RegisterRoutinesHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "RoutinesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RoutinesClient) error {
-
-	mux.Handle("GET", pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1943,18 +1617,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1965,24 +1634,19 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_Routines_GetRoutines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
-
-	pattern_Routines_GetRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
+	pattern_Routines_GetRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
 )
 
 var (
 	forward_Routines_GetRoutines_0 = runtime.ForwardResponseMessage
-
-	forward_Routines_GetRoutine_0 = runtime.ForwardResponseMessage
+	forward_Routines_GetRoutine_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterDisplaysHandlerFromEndpoint is same as RegisterDisplaysHandler but
@@ -2006,7 +1670,6 @@ func RegisterDisplaysHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterDisplaysHandler(ctx, mux, conn)
 }
 
@@ -2022,14 +1685,11 @@ func RegisterDisplaysHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "DisplaysClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DisplaysClient) error {
-
-	mux.Handle("GET", pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2040,18 +1700,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplays_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2062,24 +1717,19 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
 	pattern_Displays_GetDisplays_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
-
-	pattern_Displays_GetDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
+	pattern_Displays_GetDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
 )
 
 var (
 	forward_Displays_GetDisplays_0 = runtime.ForwardResponseMessage
-
-	forward_Displays_GetDisplay_0 = runtime.ForwardResponseMessage
+	forward_Displays_GetDisplay_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterConsentsHandlerFromEndpoint is same as RegisterConsentsHandler but
@@ -2103,7 +1753,6 @@ func RegisterConsentsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterConsentsHandler(ctx, mux, conn)
 }
 
@@ -2119,14 +1768,11 @@ func RegisterConsentsHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ConsentsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ConsentsClient) error {
-
-	mux.Handle("GET", pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2137,18 +1783,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2159,18 +1800,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Consents/GetConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2181,27 +1817,20 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsentVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Consents_GetConsents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
-
-	pattern_Consents_GetConsent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
-
+	pattern_Consents_GetConsents_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
+	pattern_Consents_GetConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
 	pattern_Consents_GetConsentVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"programs", "programName", "consents", "name", "version"}, ""))
 )
 
 var (
-	forward_Consents_GetConsents_0 = runtime.ForwardResponseMessage
-
-	forward_Consents_GetConsent_0 = runtime.ForwardResponseMessage
-
+	forward_Consents_GetConsents_0       = runtime.ForwardResponseMessage
+	forward_Consents_GetConsent_0        = runtime.ForwardResponseMessage
 	forward_Consents_GetConsentVersion_0 = runtime.ForwardResponseMessage
 )
 
@@ -2226,7 +1855,6 @@ func RegisterUtilitiesHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 			}
 		}()
 	}()
-
 	return RegisterUtilitiesHandler(ctx, mux, conn)
 }
 
@@ -2242,14 +1870,11 @@ func RegisterUtilitiesHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "UtilitiesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUtilitiesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UtilitiesClient) error {
-
-	mux.Handle("POST", pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Utilities_Proxy_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Utilities/Proxy", runtime.WithHTTPPathPattern("/utilities/proxy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2260,11 +1885,8 @@ func RegisterUtilitiesHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Utilities_Proxy_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
@@ -2274,6 +1896,70 @@ var (
 
 var (
 	forward_Utilities_Proxy_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterImagesHandlerFromEndpoint is same as RegisterImagesHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterImagesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.NewClient(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+	return RegisterImagesHandler(ctx, mux, conn)
+}
+
+// RegisterImagesHandler registers the http handlers for service Images to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterImagesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterImagesHandlerClient(ctx, mux, NewImagesClient(conn))
+}
+
+// RegisterImagesHandlerClient registers the http handlers for service Images
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ImagesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ImagesClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "ImagesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ImagesClient) error {
+	mux.Handle(http.MethodGet, pattern_Images_GetImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Images_GetImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_GetImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	return nil
+}
+
+var (
+	pattern_Images_GetImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "images", "name"}, ""))
+)
+
+var (
+	forward_Images_GetImage_0 = runtime.ForwardResponseMessage
 )
 
 // RegisterChecksHandlerFromEndpoint is same as RegisterChecksHandler but
@@ -2297,7 +1983,6 @@ func RegisterChecksHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 			}
 		}()
 	}()
-
 	return RegisterChecksHandler(ctx, mux, conn)
 }
 
@@ -2313,14 +1998,11 @@ func RegisterChecksHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ChecksClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ChecksClient) error {
-
-	mux.Handle("GET", pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2331,18 +2013,13 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.static.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.static.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2353,22 +2030,17 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Checks_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "liveness"}, ""))
-
+	pattern_Checks_Liveness_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "liveness"}, ""))
 	pattern_Checks_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "readiness"}, ""))
 )
 
 var (
-	forward_Checks_Liveness_0 = runtime.ForwardResponseMessage
-
+	forward_Checks_Liveness_0  = runtime.ForwardResponseMessage
 	forward_Checks_Readiness_0 = runtime.ForwardResponseMessage
 )

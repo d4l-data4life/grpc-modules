@@ -4,6 +4,7 @@ package proto.api;
 option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars/api";
 
 import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 import "google/protobuf/struct.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "research-pillars/types.proto";
@@ -900,6 +901,50 @@ message GetStatisticsResponse {
 }
 
 /////////////////////////////////////////////////////////
+// Images
+/////////////////////////////////////////////////////////
+
+service Images {
+  rpc GetImage(GetImageRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/images/{name}",
+    };
+  }
+
+  rpc UpsertImage(UpsertImageRequest) returns (UpsertImageResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/images",
+      body : "*"
+    };
+  }
+
+  rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/images/{name}",
+    };
+  }
+}
+
+message GetImageRequest {
+  string programName = 1;
+  string name = 2;
+}
+
+message UpsertImageRequest {
+  string programName = 1;
+  string name = 2;
+  string contentType = 3;
+  bytes data = 4;
+}
+message UpsertImageResponse {}
+
+message DeleteImageRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteImageResponse {}
+
+/////////////////////////////////////////////////////////
 // Checks
 /////////////////////////////////////////////////////////
 
@@ -917,5 +962,5 @@ service Checks {
   }
 }
 
-message ChecksRequest { }
+message ChecksRequest {}
 message ChecksResponse { string response = 1; }

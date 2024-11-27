@@ -10,6 +10,7 @@ package api
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,3899 +25,3006 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_Users_GetSelf_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSelfRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSelfRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetSelf(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_GetSelf_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSelfRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetSelfRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetSelf(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_GetUsers_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetUsersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetUsersRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetUsers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_GetUsers_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetUsersRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetUsersRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetUsers(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_UpsertProgramRole_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertProgramRoleRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ProgramRole); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertProgramRoleRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ProgramRole); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpsertProgramRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_UpsertProgramRole_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertProgramRoleRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ProgramRole); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertProgramRoleRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ProgramRole); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpsertProgramRole(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_DeleteProgramRole_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteProgramRoleRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteProgramRoleRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["userEmail"]
+	val, ok := pathParams["userEmail"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userEmail")
 	}
-
 	protoReq.UserEmail, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userEmail", err)
 	}
-
 	val, ok = pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.DeleteProgramRole(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_DeleteProgramRole_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteProgramRoleRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteProgramRoleRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["userEmail"]
+	val, ok := pathParams["userEmail"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userEmail")
 	}
-
 	protoReq.UserEmail, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userEmail", err)
 	}
-
 	val, ok = pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.DeleteProgramRole(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_GetBlockedPrograms_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlockedProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetBlockedProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetBlockedPrograms(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_GetBlockedPrograms_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetBlockedProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetBlockedProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetBlockedPrograms(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_BlockProgram_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BlockProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq BlockProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.BlockProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_BlockProgram_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq BlockProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq BlockProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.BlockProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Users_UnblockProgram_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UnblockProgramRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq UnblockProgramRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.UnblockProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Users_UnblockProgram_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UnblockProgramRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq UnblockProgramRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.UnblockProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetPrograms_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetPrograms(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetPrograms_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetPrograms(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgramsList_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsListRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsListRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetProgramsList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgramsList_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramsListRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetProgramsListRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetProgramsList(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_IsNameAvailable_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq IsNameAvailableRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq IsNameAvailableRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.IsNameAvailable(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_IsNameAvailable_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq IsNameAvailableRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq IsNameAvailableRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.IsNameAvailable(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgramData_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgramData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgramData_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgramData(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_GetProgramDiffs_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDiffsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDiffsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetProgramDiffs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_GetProgramDiffs_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetProgramDiffsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetProgramDiffsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetProgramDiffs(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_UpsertProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertProgramRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertProgramRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpsertProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_UpsertProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertProgramRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertProgramRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpsertProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_DeleteProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_DeleteProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_PublishProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishProgramRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ForTesting); err != nil && err != io.EOF {
+	var (
+		protoReq PublishProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ForTesting); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_PublishProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishProgramRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ForTesting); err != nil && err != io.EOF {
+	var (
+		protoReq PublishProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.ForTesting); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Programs_LoadProgram_0(ctx context.Context, marshaler runtime.Marshaler, client ProgramsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.LoadProgram(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Programs_LoadProgram_0(ctx context.Context, marshaler runtime.Marshaler, server ProgramsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadProgramRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadProgramRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.LoadProgram(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_GetSurveys_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetSurveys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_GetSurveys_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetSurveys(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_GetSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_GetSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_UpsertSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertSurveyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.UpsertSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_UpsertSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertSurveyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.UpsertSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_DeleteSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_DeleteSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_PublishSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_PublishSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Surveys_LoadSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client SurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.LoadSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Surveys_LoadSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server SurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.LoadSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_GetQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnairesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetQuestionnaires(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_GetQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnairesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetQuestionnaires(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_GetQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_GetQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_UpsertQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.UpsertQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_UpsertQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.UpsertQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_DeleteQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_DeleteQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_PublishQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_PublishQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Questionnaires_LoadQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.LoadQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Questionnaires_LoadQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.LoadQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_GetRoutines_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutinesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutinesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetRoutines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_GetRoutines_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutinesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutinesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetRoutines(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_GetRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_GetRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_UpsertRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertRoutineRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.UpsertRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_UpsertRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertRoutineRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.UpsertRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_DeleteRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_DeleteRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_PublishRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_PublishRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Routines_LoadRoutine_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.LoadRoutine(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Routines_LoadRoutine_0(ctx context.Context, marshaler runtime.Marshaler, server RoutinesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadRoutineRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadRoutineRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.LoadRoutine(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_GetDisplays_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplaysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplaysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetDisplays(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_GetDisplays_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplaysRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplaysRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetDisplays(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_GetDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_GetDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_UpsertDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertDisplayRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.UpsertDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_UpsertDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertDisplayRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.UpsertDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_DeleteDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_DeleteDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_PublishDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_PublishDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Displays_LoadDisplay_0(ctx context.Context, marshaler runtime.Marshaler, client DisplaysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.LoadDisplay(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Displays_LoadDisplay_0(ctx context.Context, marshaler runtime.Marshaler, server DisplaysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq LoadDisplayRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq LoadDisplayRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.LoadDisplay(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ParticipantCodes_GetCodes_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCodesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetCodesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetCodes(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ParticipantCodes_GetCodes_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetCodesRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetCodesRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetCodes(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ParticipantCodes_GenerateCodes_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GenerateCodesRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Amount); err != nil && err != io.EOF {
+	var (
+		protoReq GenerateCodesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Amount); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GenerateCodes(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ParticipantCodes_GenerateCodes_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GenerateCodesRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Amount); err != nil && err != io.EOF {
+	var (
+		protoReq GenerateCodesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Amount); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GenerateCodes(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ParticipantCodes_AssignCode_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AssignCodeRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.AlpID); err != nil && err != io.EOF {
+	var (
+		protoReq AssignCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.AlpID); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := client.AssignCode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ParticipantCodes_AssignCode_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AssignCodeRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.AlpID); err != nil && err != io.EOF {
+	var (
+		protoReq AssignCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.AlpID); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := server.AssignCode(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ParticipantCodes_DeleteCode_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteCodeRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := client.DeleteCode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ParticipantCodes_DeleteCode_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteCodeRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := server.DeleteCode(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_ParticipantCodes_UnassignCode_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UnassignCodeRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq UnassignCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := client.UnassignCode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_ParticipantCodes_UnassignCode_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UnassignCodeRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq UnassignCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["code"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "code")
 	}
-
 	protoReq.Code, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "code", err)
 	}
-
 	msg, err := server.UnassignCode(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_GetConsents_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetConsents(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_GetConsents_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetConsents(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_GetConsent_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetConsent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_GetConsent_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetConsent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_UpsertConsent_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertConsentRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.UpsertConsent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_UpsertConsent_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertConsentRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.UpsertConsent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_DeleteConsent_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteConsent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_DeleteConsent_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteConsent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_DeleteConsentVersion_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteConsentVersionRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteConsentVersionRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	val, ok = pathParams["version"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
-
 	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-
 	msg, err := client.DeleteConsentVersion(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_DeleteConsentVersion_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteConsentVersionRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteConsentVersionRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	val, ok = pathParams["version"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
 	}
-
 	protoReq.Version, err = runtime.Int32(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
 	}
-
 	msg, err := server.DeleteConsentVersion(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Consents_PublishConsent_0(ctx context.Context, marshaler runtime.Marshaler, client ConsentsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.PublishConsent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Consents_PublishConsent_0(ctx context.Context, marshaler runtime.Marshaler, server ConsentsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq PublishConsentRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq PublishConsentRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.PublishConsent(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_StandaloneSurveys_GetStandaloneSurveys_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneSurveysRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetStandaloneSurveysRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.GetStandaloneSurveys(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneSurveys_GetStandaloneSurveys_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneSurveysRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetStandaloneSurveysRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.GetStandaloneSurveys(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_StandaloneSurveys_GetStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.GetStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneSurveys_GetStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.GetStandaloneSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_StandaloneSurveys_UpsertStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpsertStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneSurveys_UpsertStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpsertStandaloneSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_StandaloneSurveys_DeleteStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneSurveysClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := client.DeleteStandaloneSurvey(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneSurveys_DeleteStandaloneSurvey_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneSurveysServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteStandaloneSurveyRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteStandaloneSurveyRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	msg, err := server.DeleteStandaloneSurvey(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetStandaloneQuestionnairesRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStandaloneQuestionnaires(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneQuestionnairesRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq GetStandaloneQuestionnairesRequest
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStandaloneQuestionnaires(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStandaloneQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpsertStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpsertStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq UpsertStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpsertStandaloneQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = &utilities.DoubleArray{Encoding: map[string]int{"name": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client StandaloneQuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.DeleteStandaloneQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server StandaloneQuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteStandaloneQuestionnaireRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq DeleteStandaloneQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["name"]
+	val, ok := pathParams["name"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-
 	protoReq.Name, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.DeleteStandaloneQuestionnaire(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetSubjects_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetSubjects(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetSubjects_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetSubjects(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetSubjectData_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	msg, err := client.GetSubjectData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetSubjectData_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	msg, err := server.GetSubjectData(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetSubjectRawData_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectRawDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectRawDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	msg, err := client.GetSubjectRawData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetSubjectRawData_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectRawDataRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectRawDataRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	msg, err := server.GetSubjectRawData(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetSubjectResource_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectResourceRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectResourceRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	val, ok = pathParams["resourceID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resourceID")
 	}
-
 	protoReq.ResourceID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resourceID", err)
 	}
-
 	msg, err := client.GetSubjectResource(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetSubjectResource_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetSubjectResourceRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetSubjectResourceRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["subjectID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
 	}
-
 	protoReq.SubjectID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
 	}
-
 	val, ok = pathParams["resourceID"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "resourceID")
 	}
-
 	protoReq.ResourceID, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resourceID", err)
 	}
-
 	msg, err := server.GetSubjectResource(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetDownloadList_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDownloadListRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDownloadListRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetDownloadList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetDownloadList_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDownloadListRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetDownloadListRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetDownloadList(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Uploads_GetDownloadTicket_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDownloadTicketRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetDownloadTicketRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := client.GetDownloadTicket(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetDownloadTicket_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDownloadTicketRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq GetDownloadTicketRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	msg, err := server.GetDownloadTicket(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_Uploads_GetStatistics_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0, "type": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
-)
+var filter_Uploads_GetStatistics_0 = &utilities.DoubleArray{Encoding: map[string]int{"programName": 0, "type": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 
 func request_Uploads_GetStatistics_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStatisticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStatisticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["type"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "type")
 	}
-
 	protoReq.Type, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "type", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Uploads_GetStatistics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetStatistics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Uploads_GetStatistics_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetStatisticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq GetStatisticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["programName"]
+	val, ok := pathParams["programName"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
 	}
-
 	protoReq.ProgramName, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-
 	val, ok = pathParams["type"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "type")
 	}
-
 	protoReq.Type, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "type", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Uploads_GetStatistics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetStatistics(ctx, &protoReq)
 	return msg, metadata, err
+}
 
+func request_Images_GetImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.GetImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Images_GetImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.GetImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Images_UpsertImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpsertImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := client.UpsertImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Images_UpsertImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpsertImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := server.UpsertImage(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Images_DeleteImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.DeleteImage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Images_DeleteImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteImageRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.DeleteImage(ctx, &protoReq)
+	return msg, metadata, err
 }
 
 func request_Checks_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, client ChecksClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.Liveness(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Checks_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, server ChecksServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.Liveness(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, client ChecksClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := client.Readiness(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Marshaler, server ChecksServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChecksRequest
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ChecksRequest
+		metadata runtime.ServerMetadata
+	)
 	msg, err := server.Readiness(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterUsersHandlerServer registers the http handlers for service Users to "mux".
@@ -3925,16 +3033,13 @@ func local_request_Checks_Readiness_0(ctx context.Context, marshaler runtime.Mar
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUsersHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UsersServer) error {
-
-	mux.Handle("GET", pattern_Users_GetSelf_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetSelf_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3946,20 +3051,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetSelf_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Users_GetUsers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetUsers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3971,20 +3071,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetUsers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Users_UpsertProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Users_UpsertProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3996,20 +3091,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_UpsertProgramRole_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Users_DeleteProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Users_DeleteProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4021,20 +3111,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_DeleteProgramRole_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Users_GetBlockedPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetBlockedPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4046,20 +3131,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetBlockedPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Users_BlockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Users_BlockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4071,20 +3151,15 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_BlockProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Users_UnblockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Users_UnblockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4096,9 +3171,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_UnblockProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -4110,16 +3183,13 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProgramsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProgramsServer) error {
-
-	mux.Handle("GET", pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4131,20 +3201,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramsList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramsList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4156,20 +3221,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramsList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_IsNameAvailable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_IsNameAvailable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4181,20 +3241,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_IsNameAvailable_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4206,20 +3261,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4231,20 +3281,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramDiffs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramDiffs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4256,20 +3301,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramDiffs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_UpsertProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_UpsertProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4281,20 +3321,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_UpsertProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Programs_DeleteProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Programs_DeleteProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4306,20 +3341,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_DeleteProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_PublishProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_PublishProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4331,20 +3361,15 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_PublishProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_LoadProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_LoadProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4356,9 +3381,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_LoadProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -4370,16 +3393,13 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSurveysHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SurveysServer) error {
-
-	mux.Handle("GET", pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4391,20 +3411,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4416,20 +3431,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_UpsertSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_UpsertSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4441,20 +3451,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_UpsertSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Surveys_DeleteSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Surveys_DeleteSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4466,20 +3471,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_DeleteSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_PublishSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_PublishSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4491,20 +3491,15 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_PublishSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_LoadSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_LoadSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4516,9 +3511,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_LoadSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -4530,16 +3523,13 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterQuestionnairesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server QuestionnairesServer) error {
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4551,20 +3541,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4576,20 +3561,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_UpsertQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_UpsertQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4601,20 +3581,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_UpsertQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Questionnaires_DeleteQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Questionnaires_DeleteQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4626,20 +3601,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_DeleteQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_PublishQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_PublishQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4651,20 +3621,15 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_PublishQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_LoadQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_LoadQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4676,9 +3641,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_LoadQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -4690,16 +3653,13 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRoutinesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server RoutinesServer) error {
-
-	mux.Handle("GET", pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4711,20 +3671,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4736,20 +3691,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_UpsertRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_UpsertRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4761,20 +3711,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_UpsertRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Routines_DeleteRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Routines_DeleteRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4786,20 +3731,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_DeleteRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_PublishRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_PublishRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4811,20 +3751,15 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_PublishRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_LoadRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_LoadRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4836,9 +3771,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_LoadRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -4850,16 +3783,13 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDisplaysHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DisplaysServer) error {
-
-	mux.Handle("GET", pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4871,20 +3801,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplays_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4896,20 +3821,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_UpsertDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_UpsertDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4921,20 +3841,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_UpsertDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Displays_DeleteDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Displays_DeleteDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4946,20 +3861,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_DeleteDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_PublishDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_PublishDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4971,20 +3881,15 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_PublishDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_LoadDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_LoadDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4996,9 +3901,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_LoadDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5010,16 +3913,13 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterParticipantCodesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ParticipantCodesServer) error {
-
-	mux.Handle("GET", pattern_ParticipantCodes_GetCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ParticipantCodes_GetCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5031,20 +3931,15 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_GetCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ParticipantCodes_GenerateCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ParticipantCodes_GenerateCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5056,20 +3951,15 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_GenerateCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5081,20 +3971,15 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_AssignCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_ParticipantCodes_DeleteCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ParticipantCodes_DeleteCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5106,20 +3991,15 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_DeleteCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_ParticipantCodes_UnassignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ParticipantCodes_UnassignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5131,9 +4011,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_UnassignCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5145,16 +4023,13 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterConsentsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ConsentsServer) error {
-
-	mux.Handle("GET", pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5166,20 +4041,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5191,20 +4061,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Consents_UpsertConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Consents_UpsertConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5216,20 +4081,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_UpsertConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Consents_DeleteConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Consents_DeleteConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5241,20 +4101,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_DeleteConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Consents_DeleteConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Consents_DeleteConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5266,20 +4121,15 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_DeleteConsentVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Consents_PublishConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Consents_PublishConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5291,9 +4141,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_PublishConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5305,16 +4153,13 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStandaloneSurveysHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StandaloneSurveysServer) error {
-
-	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5326,20 +4171,15 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5351,20 +4191,15 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5376,20 +4211,15 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5401,9 +4231,7 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5415,16 +4243,13 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterStandaloneQuestionnairesHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server StandaloneQuestionnairesServer) error {
-
-	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5436,20 +4261,15 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5461,20 +4281,15 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5486,20 +4301,15 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5511,9 +4321,7 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5525,16 +4333,13 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUploadsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UploadsServer) error {
-
-	mux.Handle("GET", pattern_Uploads_GetSubjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5546,20 +4351,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjects_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5571,20 +4371,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectRawData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectRawData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectRawData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/raw"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectRawData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/raw"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5596,20 +4391,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectRawData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5621,20 +4411,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5646,20 +4431,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetDownloadList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Uploads_GetDownloadTicket_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Uploads_GetDownloadTicket_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5671,20 +4451,15 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetDownloadTicket_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetStatistics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetStatistics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5696,9 +4471,77 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetStatistics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
+	return nil
+}
+
+// RegisterImagesHandlerServer registers the http handlers for service Images to "mux".
+// UnaryRPC     :call ImagesServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterImagesHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
+func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ImagesServer) error {
+	mux.Handle(http.MethodGet, pattern_Images_GetImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Images_GetImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_GetImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Images_UpsertImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/programs/{programName}/images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Images_UpsertImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_UpsertImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_Images_DeleteImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Images_DeleteImage_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_DeleteImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -5710,16 +4553,13 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterChecksHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ChecksServer) error {
-
-	mux.Handle("GET", pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5731,20 +4571,15 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5756,9 +4591,7 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -5785,7 +4618,6 @@ func RegisterUsersHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux
 			}
 		}()
 	}()
-
 	return RegisterUsersHandler(ctx, mux, conn)
 }
 
@@ -5801,14 +4633,11 @@ func RegisterUsersHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "UsersClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UsersClient) error {
-
-	mux.Handle("GET", pattern_Users_GetSelf_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetSelf_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5819,18 +4648,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetSelf_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Users_GetUsers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetUsers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5841,18 +4665,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetUsers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Users_UpsertProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Users_UpsertProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5863,18 +4682,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_UpsertProgramRole_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Users_DeleteProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Users_DeleteProgramRole_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5885,18 +4699,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_DeleteProgramRole_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Users_GetBlockedPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Users_GetBlockedPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5907,18 +4716,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_GetBlockedPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Users_BlockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Users_BlockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5929,18 +4733,13 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_BlockProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Users_UnblockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Users_UnblockProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5951,44 +4750,29 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Users_UnblockProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Users_GetSelf_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "self"}, ""))
-
-	pattern_Users_GetUsers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"users"}, ""))
-
-	pattern_Users_UpsertProgramRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "roles"}, ""))
-
-	pattern_Users_DeleteProgramRole_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"users", "userEmail", "role", "programName"}, ""))
-
+	pattern_Users_GetSelf_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "self"}, ""))
+	pattern_Users_GetUsers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"users"}, ""))
+	pattern_Users_UpsertProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "roles"}, ""))
+	pattern_Users_DeleteProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"users", "userEmail", "role", "programName"}, ""))
 	pattern_Users_GetBlockedPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "blocked-programs"}, ""))
-
-	pattern_Users_BlockProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"users", "blocked-program", "programName"}, ""))
-
-	pattern_Users_UnblockProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "blocked-program"}, ""))
+	pattern_Users_BlockProgram_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"users", "blocked-program", "programName"}, ""))
+	pattern_Users_UnblockProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "blocked-program"}, ""))
 )
 
 var (
-	forward_Users_GetSelf_0 = runtime.ForwardResponseMessage
-
-	forward_Users_GetUsers_0 = runtime.ForwardResponseMessage
-
-	forward_Users_UpsertProgramRole_0 = runtime.ForwardResponseMessage
-
-	forward_Users_DeleteProgramRole_0 = runtime.ForwardResponseMessage
-
+	forward_Users_GetSelf_0            = runtime.ForwardResponseMessage
+	forward_Users_GetUsers_0           = runtime.ForwardResponseMessage
+	forward_Users_UpsertProgramRole_0  = runtime.ForwardResponseMessage
+	forward_Users_DeleteProgramRole_0  = runtime.ForwardResponseMessage
 	forward_Users_GetBlockedPrograms_0 = runtime.ForwardResponseMessage
-
-	forward_Users_BlockProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Users_UnblockProgram_0 = runtime.ForwardResponseMessage
+	forward_Users_BlockProgram_0       = runtime.ForwardResponseMessage
+	forward_Users_UnblockProgram_0     = runtime.ForwardResponseMessage
 )
 
 // RegisterProgramsHandlerFromEndpoint is same as RegisterProgramsHandler but
@@ -6012,7 +4796,6 @@ func RegisterProgramsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterProgramsHandler(ctx, mux, conn)
 }
 
@@ -6028,14 +4811,11 @@ func RegisterProgramsHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ProgramsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProgramsClient) error {
-
-	mux.Handle("GET", pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6046,18 +4826,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetPrograms_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramsList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramsList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6068,18 +4843,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramsList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_IsNameAvailable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_IsNameAvailable_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6090,18 +4860,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_IsNameAvailable_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6112,18 +4877,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6134,18 +4894,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Programs_GetProgramDiffs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Programs_GetProgramDiffs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6156,18 +4911,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_GetProgramDiffs_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_UpsertProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_UpsertProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6178,18 +4928,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_UpsertProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Programs_DeleteProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Programs_DeleteProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6200,18 +4945,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_DeleteProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_PublishProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_PublishProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6222,18 +4962,13 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_PublishProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Programs_LoadProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Programs_LoadProgram_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6244,56 +4979,35 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Programs_LoadProgram_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Programs_GetPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
-
+	pattern_Programs_GetPrograms_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
 	pattern_Programs_GetProgramsList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programslist"}, ""))
-
 	pattern_Programs_IsNameAvailable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programslist", "name"}, ""))
-
-	pattern_Programs_GetProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
-
-	pattern_Programs_GetProgramData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "data"}, ""))
-
+	pattern_Programs_GetProgram_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
+	pattern_Programs_GetProgramData_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "data"}, ""))
 	pattern_Programs_GetProgramDiffs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "diffs"}, ""))
-
-	pattern_Programs_UpsertProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
-
-	pattern_Programs_DeleteProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
-
-	pattern_Programs_PublishProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "publish"}, ""))
-
-	pattern_Programs_LoadProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "load"}, ""))
+	pattern_Programs_UpsertProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
+	pattern_Programs_DeleteProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
+	pattern_Programs_PublishProgram_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "publish"}, ""))
+	pattern_Programs_LoadProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "load"}, ""))
 )
 
 var (
-	forward_Programs_GetPrograms_0 = runtime.ForwardResponseMessage
-
+	forward_Programs_GetPrograms_0     = runtime.ForwardResponseMessage
 	forward_Programs_GetProgramsList_0 = runtime.ForwardResponseMessage
-
 	forward_Programs_IsNameAvailable_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_GetProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_GetProgramData_0 = runtime.ForwardResponseMessage
-
+	forward_Programs_GetProgram_0      = runtime.ForwardResponseMessage
+	forward_Programs_GetProgramData_0  = runtime.ForwardResponseMessage
 	forward_Programs_GetProgramDiffs_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_UpsertProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_DeleteProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_PublishProgram_0 = runtime.ForwardResponseMessage
-
-	forward_Programs_LoadProgram_0 = runtime.ForwardResponseMessage
+	forward_Programs_UpsertProgram_0   = runtime.ForwardResponseMessage
+	forward_Programs_DeleteProgram_0   = runtime.ForwardResponseMessage
+	forward_Programs_PublishProgram_0  = runtime.ForwardResponseMessage
+	forward_Programs_LoadProgram_0     = runtime.ForwardResponseMessage
 )
 
 // RegisterSurveysHandlerFromEndpoint is same as RegisterSurveysHandler but
@@ -6317,7 +5031,6 @@ func RegisterSurveysHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 			}
 		}()
 	}()
-
 	return RegisterSurveysHandler(ctx, mux, conn)
 }
 
@@ -6333,14 +5046,11 @@ func RegisterSurveysHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "SurveysClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SurveysClient) error {
-
-	mux.Handle("GET", pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6351,18 +5061,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Surveys_GetSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6373,18 +5078,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_GetSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_UpsertSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_UpsertSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6395,18 +5095,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_UpsertSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Surveys_DeleteSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Surveys_DeleteSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6417,18 +5112,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_DeleteSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_PublishSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_PublishSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6439,18 +5129,13 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_PublishSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Surveys_LoadSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Surveys_LoadSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6461,40 +5146,27 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Surveys_LoadSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Surveys_GetSurveys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
-
-	pattern_Surveys_GetSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
-
-	pattern_Surveys_UpsertSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
-
-	pattern_Surveys_DeleteSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
-
+	pattern_Surveys_GetSurveys_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
+	pattern_Surveys_GetSurvey_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
+	pattern_Surveys_UpsertSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
+	pattern_Surveys_DeleteSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
 	pattern_Surveys_PublishSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "surveys", "name", "publish"}, ""))
-
-	pattern_Surveys_LoadSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "surveys", "name", "load"}, ""))
+	pattern_Surveys_LoadSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "surveys", "name", "load"}, ""))
 )
 
 var (
-	forward_Surveys_GetSurveys_0 = runtime.ForwardResponseMessage
-
-	forward_Surveys_GetSurvey_0 = runtime.ForwardResponseMessage
-
-	forward_Surveys_UpsertSurvey_0 = runtime.ForwardResponseMessage
-
-	forward_Surveys_DeleteSurvey_0 = runtime.ForwardResponseMessage
-
+	forward_Surveys_GetSurveys_0    = runtime.ForwardResponseMessage
+	forward_Surveys_GetSurvey_0     = runtime.ForwardResponseMessage
+	forward_Surveys_UpsertSurvey_0  = runtime.ForwardResponseMessage
+	forward_Surveys_DeleteSurvey_0  = runtime.ForwardResponseMessage
 	forward_Surveys_PublishSurvey_0 = runtime.ForwardResponseMessage
-
-	forward_Surveys_LoadSurvey_0 = runtime.ForwardResponseMessage
+	forward_Surveys_LoadSurvey_0    = runtime.ForwardResponseMessage
 )
 
 // RegisterQuestionnairesHandlerFromEndpoint is same as RegisterQuestionnairesHandler but
@@ -6518,7 +5190,6 @@ func RegisterQuestionnairesHandlerFromEndpoint(ctx context.Context, mux *runtime
 			}
 		}()
 	}()
-
 	return RegisterQuestionnairesHandler(ctx, mux, conn)
 }
 
@@ -6534,14 +5205,11 @@ func RegisterQuestionnairesHandler(ctx context.Context, mux *runtime.ServeMux, c
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "QuestionnairesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client QuestionnairesClient) error {
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6552,18 +5220,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6574,18 +5237,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_GetQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_UpsertQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_UpsertQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6596,18 +5254,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_UpsertQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Questionnaires_DeleteQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Questionnaires_DeleteQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6618,18 +5271,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_DeleteQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_PublishQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_PublishQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6640,18 +5288,13 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_PublishQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Questionnaires_LoadQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Questionnaires_LoadQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6662,40 +5305,27 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Questionnaires_LoadQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Questionnaires_GetQuestionnaires_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
-
-	pattern_Questionnaires_GetQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
-
-	pattern_Questionnaires_UpsertQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
-
-	pattern_Questionnaires_DeleteQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
-
+	pattern_Questionnaires_GetQuestionnaires_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_GetQuestionnaire_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_UpsertQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_DeleteQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
 	pattern_Questionnaires_PublishQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "publish"}, ""))
-
-	pattern_Questionnaires_LoadQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "load"}, ""))
+	pattern_Questionnaires_LoadQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "load"}, ""))
 )
 
 var (
-	forward_Questionnaires_GetQuestionnaires_0 = runtime.ForwardResponseMessage
-
-	forward_Questionnaires_GetQuestionnaire_0 = runtime.ForwardResponseMessage
-
-	forward_Questionnaires_UpsertQuestionnaire_0 = runtime.ForwardResponseMessage
-
-	forward_Questionnaires_DeleteQuestionnaire_0 = runtime.ForwardResponseMessage
-
+	forward_Questionnaires_GetQuestionnaires_0    = runtime.ForwardResponseMessage
+	forward_Questionnaires_GetQuestionnaire_0     = runtime.ForwardResponseMessage
+	forward_Questionnaires_UpsertQuestionnaire_0  = runtime.ForwardResponseMessage
+	forward_Questionnaires_DeleteQuestionnaire_0  = runtime.ForwardResponseMessage
 	forward_Questionnaires_PublishQuestionnaire_0 = runtime.ForwardResponseMessage
-
-	forward_Questionnaires_LoadQuestionnaire_0 = runtime.ForwardResponseMessage
+	forward_Questionnaires_LoadQuestionnaire_0    = runtime.ForwardResponseMessage
 )
 
 // RegisterRoutinesHandlerFromEndpoint is same as RegisterRoutinesHandler but
@@ -6719,7 +5349,6 @@ func RegisterRoutinesHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterRoutinesHandler(ctx, mux, conn)
 }
 
@@ -6735,14 +5364,11 @@ func RegisterRoutinesHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "RoutinesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RoutinesClient) error {
-
-	mux.Handle("GET", pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6753,18 +5379,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Routines_GetRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6775,18 +5396,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_GetRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_UpsertRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_UpsertRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6797,18 +5413,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_UpsertRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Routines_DeleteRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Routines_DeleteRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6819,18 +5430,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_DeleteRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_PublishRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_PublishRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6841,18 +5447,13 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_PublishRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Routines_LoadRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Routines_LoadRoutine_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6863,40 +5464,27 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Routines_LoadRoutine_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Routines_GetRoutines_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
-
-	pattern_Routines_GetRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
-
-	pattern_Routines_UpsertRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
-
-	pattern_Routines_DeleteRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
-
+	pattern_Routines_GetRoutines_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
+	pattern_Routines_GetRoutine_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
+	pattern_Routines_UpsertRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
+	pattern_Routines_DeleteRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
 	pattern_Routines_PublishRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "routines", "name", "publish"}, ""))
-
-	pattern_Routines_LoadRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "routines", "name", "load"}, ""))
+	pattern_Routines_LoadRoutine_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "routines", "name", "load"}, ""))
 )
 
 var (
-	forward_Routines_GetRoutines_0 = runtime.ForwardResponseMessage
-
-	forward_Routines_GetRoutine_0 = runtime.ForwardResponseMessage
-
-	forward_Routines_UpsertRoutine_0 = runtime.ForwardResponseMessage
-
-	forward_Routines_DeleteRoutine_0 = runtime.ForwardResponseMessage
-
+	forward_Routines_GetRoutines_0    = runtime.ForwardResponseMessage
+	forward_Routines_GetRoutine_0     = runtime.ForwardResponseMessage
+	forward_Routines_UpsertRoutine_0  = runtime.ForwardResponseMessage
+	forward_Routines_DeleteRoutine_0  = runtime.ForwardResponseMessage
 	forward_Routines_PublishRoutine_0 = runtime.ForwardResponseMessage
-
-	forward_Routines_LoadRoutine_0 = runtime.ForwardResponseMessage
+	forward_Routines_LoadRoutine_0    = runtime.ForwardResponseMessage
 )
 
 // RegisterDisplaysHandlerFromEndpoint is same as RegisterDisplaysHandler but
@@ -6920,7 +5508,6 @@ func RegisterDisplaysHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterDisplaysHandler(ctx, mux, conn)
 }
 
@@ -6936,14 +5523,11 @@ func RegisterDisplaysHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "DisplaysClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DisplaysClient) error {
-
-	mux.Handle("GET", pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplays_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6954,18 +5538,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplays_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Displays_GetDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6976,18 +5555,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_GetDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_UpsertDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_UpsertDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6998,18 +5572,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_UpsertDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Displays_DeleteDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Displays_DeleteDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7020,18 +5589,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_DeleteDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_PublishDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_PublishDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7042,18 +5606,13 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_PublishDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Displays_LoadDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Displays_LoadDisplay_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7064,40 +5623,27 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Displays_LoadDisplay_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Displays_GetDisplays_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
-
-	pattern_Displays_GetDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
-
-	pattern_Displays_UpsertDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
-
-	pattern_Displays_DeleteDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
-
+	pattern_Displays_GetDisplays_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
+	pattern_Displays_GetDisplay_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
+	pattern_Displays_UpsertDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
+	pattern_Displays_DeleteDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
 	pattern_Displays_PublishDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "displays", "name", "publish"}, ""))
-
-	pattern_Displays_LoadDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "displays", "name", "load"}, ""))
+	pattern_Displays_LoadDisplay_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "displays", "name", "load"}, ""))
 )
 
 var (
-	forward_Displays_GetDisplays_0 = runtime.ForwardResponseMessage
-
-	forward_Displays_GetDisplay_0 = runtime.ForwardResponseMessage
-
-	forward_Displays_UpsertDisplay_0 = runtime.ForwardResponseMessage
-
-	forward_Displays_DeleteDisplay_0 = runtime.ForwardResponseMessage
-
+	forward_Displays_GetDisplays_0    = runtime.ForwardResponseMessage
+	forward_Displays_GetDisplay_0     = runtime.ForwardResponseMessage
+	forward_Displays_UpsertDisplay_0  = runtime.ForwardResponseMessage
+	forward_Displays_DeleteDisplay_0  = runtime.ForwardResponseMessage
 	forward_Displays_PublishDisplay_0 = runtime.ForwardResponseMessage
-
-	forward_Displays_LoadDisplay_0 = runtime.ForwardResponseMessage
+	forward_Displays_LoadDisplay_0    = runtime.ForwardResponseMessage
 )
 
 // RegisterParticipantCodesHandlerFromEndpoint is same as RegisterParticipantCodesHandler but
@@ -7121,7 +5667,6 @@ func RegisterParticipantCodesHandlerFromEndpoint(ctx context.Context, mux *runti
 			}
 		}()
 	}()
-
 	return RegisterParticipantCodesHandler(ctx, mux, conn)
 }
 
@@ -7137,14 +5682,11 @@ func RegisterParticipantCodesHandler(ctx context.Context, mux *runtime.ServeMux,
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ParticipantCodesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ParticipantCodesClient) error {
-
-	mux.Handle("GET", pattern_ParticipantCodes_GetCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_ParticipantCodes_GetCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7155,18 +5697,13 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_GetCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ParticipantCodes_GenerateCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ParticipantCodes_GenerateCodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7177,18 +5714,13 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_GenerateCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7199,18 +5731,13 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_AssignCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_ParticipantCodes_DeleteCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ParticipantCodes_DeleteCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7221,18 +5748,13 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_DeleteCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_ParticipantCodes_UnassignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_ParticipantCodes_UnassignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7243,36 +5765,25 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_ParticipantCodes_UnassignCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_ParticipantCodes_GetCodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
-
+	pattern_ParticipantCodes_GetCodes_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
 	pattern_ParticipantCodes_GenerateCodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
-
-	pattern_ParticipantCodes_AssignCode_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
-
-	pattern_ParticipantCodes_DeleteCode_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "codes", "code"}, ""))
-
-	pattern_ParticipantCodes_UnassignCode_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
+	pattern_ParticipantCodes_AssignCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
+	pattern_ParticipantCodes_DeleteCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "codes", "code"}, ""))
+	pattern_ParticipantCodes_UnassignCode_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
 )
 
 var (
-	forward_ParticipantCodes_GetCodes_0 = runtime.ForwardResponseMessage
-
+	forward_ParticipantCodes_GetCodes_0      = runtime.ForwardResponseMessage
 	forward_ParticipantCodes_GenerateCodes_0 = runtime.ForwardResponseMessage
-
-	forward_ParticipantCodes_AssignCode_0 = runtime.ForwardResponseMessage
-
-	forward_ParticipantCodes_DeleteCode_0 = runtime.ForwardResponseMessage
-
-	forward_ParticipantCodes_UnassignCode_0 = runtime.ForwardResponseMessage
+	forward_ParticipantCodes_AssignCode_0    = runtime.ForwardResponseMessage
+	forward_ParticipantCodes_DeleteCode_0    = runtime.ForwardResponseMessage
+	forward_ParticipantCodes_UnassignCode_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterConsentsHandlerFromEndpoint is same as RegisterConsentsHandler but
@@ -7296,7 +5807,6 @@ func RegisterConsentsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serve
 			}
 		}()
 	}()
-
 	return RegisterConsentsHandler(ctx, mux, conn)
 }
 
@@ -7312,14 +5822,11 @@ func RegisterConsentsHandler(ctx context.Context, mux *runtime.ServeMux, conn *g
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ConsentsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ConsentsClient) error {
-
-	mux.Handle("GET", pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7330,18 +5837,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Consents_GetConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7352,18 +5854,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_GetConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Consents_UpsertConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Consents_UpsertConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7374,18 +5871,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_UpsertConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Consents_DeleteConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Consents_DeleteConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7396,18 +5888,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_DeleteConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_Consents_DeleteConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_Consents_DeleteConsentVersion_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7418,18 +5905,13 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_DeleteConsentVersion_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Consents_PublishConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Consents_PublishConsent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7440,40 +5922,27 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Consents_PublishConsent_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Consents_GetConsents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
-
-	pattern_Consents_GetConsent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
-
-	pattern_Consents_UpsertConsent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
-
-	pattern_Consents_DeleteConsent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
-
+	pattern_Consents_GetConsents_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
+	pattern_Consents_GetConsent_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
+	pattern_Consents_UpsertConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
+	pattern_Consents_DeleteConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
 	pattern_Consents_DeleteConsentVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"programs", "programName", "consents", "name", "version"}, ""))
-
-	pattern_Consents_PublishConsent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "consents", "name", "publish"}, ""))
+	pattern_Consents_PublishConsent_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "consents", "name", "publish"}, ""))
 )
 
 var (
-	forward_Consents_GetConsents_0 = runtime.ForwardResponseMessage
-
-	forward_Consents_GetConsent_0 = runtime.ForwardResponseMessage
-
-	forward_Consents_UpsertConsent_0 = runtime.ForwardResponseMessage
-
-	forward_Consents_DeleteConsent_0 = runtime.ForwardResponseMessage
-
+	forward_Consents_GetConsents_0          = runtime.ForwardResponseMessage
+	forward_Consents_GetConsent_0           = runtime.ForwardResponseMessage
+	forward_Consents_UpsertConsent_0        = runtime.ForwardResponseMessage
+	forward_Consents_DeleteConsent_0        = runtime.ForwardResponseMessage
 	forward_Consents_DeleteConsentVersion_0 = runtime.ForwardResponseMessage
-
-	forward_Consents_PublishConsent_0 = runtime.ForwardResponseMessage
+	forward_Consents_PublishConsent_0       = runtime.ForwardResponseMessage
 )
 
 // RegisterStandaloneSurveysHandlerFromEndpoint is same as RegisterStandaloneSurveysHandler but
@@ -7497,7 +5966,6 @@ func RegisterStandaloneSurveysHandlerFromEndpoint(ctx context.Context, mux *runt
 			}
 		}()
 	}()
-
 	return RegisterStandaloneSurveysHandler(ctx, mux, conn)
 }
 
@@ -7513,14 +5981,11 @@ func RegisterStandaloneSurveysHandler(ctx context.Context, mux *runtime.ServeMux
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "StandaloneSurveysClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StandaloneSurveysClient) error {
-
-	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneSurveys_GetStandaloneSurveys_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7531,18 +5996,13 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_GetStandaloneSurveys_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneSurveys_GetStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7553,18 +6013,13 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_GetStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_StandaloneSurveys_UpsertStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7575,18 +6030,13 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_UpsertStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_StandaloneSurveys_DeleteStandaloneSurvey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7597,31 +6047,22 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneSurveys_DeleteStandaloneSurvey_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_StandaloneSurveys_GetStandaloneSurveys_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
-
-	pattern_StandaloneSurveys_GetStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
-
+	pattern_StandaloneSurveys_GetStandaloneSurveys_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
+	pattern_StandaloneSurveys_GetStandaloneSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
 	pattern_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
-
 	pattern_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
 )
 
 var (
-	forward_StandaloneSurveys_GetStandaloneSurveys_0 = runtime.ForwardResponseMessage
-
-	forward_StandaloneSurveys_GetStandaloneSurvey_0 = runtime.ForwardResponseMessage
-
+	forward_StandaloneSurveys_GetStandaloneSurveys_0   = runtime.ForwardResponseMessage
+	forward_StandaloneSurveys_GetStandaloneSurvey_0    = runtime.ForwardResponseMessage
 	forward_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.ForwardResponseMessage
-
 	forward_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.ForwardResponseMessage
 )
 
@@ -7646,7 +6087,6 @@ func RegisterStandaloneQuestionnairesHandlerFromEndpoint(ctx context.Context, mu
 			}
 		}()
 	}()
-
 	return RegisterStandaloneQuestionnairesHandler(ctx, mux, conn)
 }
 
@@ -7662,14 +6102,11 @@ func RegisterStandaloneQuestionnairesHandler(ctx context.Context, mux *runtime.S
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "StandaloneQuestionnairesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client StandaloneQuestionnairesClient) error {
-
-	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7680,18 +6117,13 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7702,18 +6134,13 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7724,18 +6151,13 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7746,31 +6168,22 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
-
-	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
-
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
 	pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
-
 	pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
 )
 
 var (
-	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0 = runtime.ForwardResponseMessage
-
-	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
-
+	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0   = runtime.ForwardResponseMessage
+	forward_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0    = runtime.ForwardResponseMessage
 	forward_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
-
 	forward_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.ForwardResponseMessage
 )
 
@@ -7795,7 +6208,6 @@ func RegisterUploadsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 			}
 		}()
 	}()
-
 	return RegisterUploadsHandler(ctx, mux, conn)
 }
 
@@ -7811,14 +6223,11 @@ func RegisterUploadsHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "UploadsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UploadsClient) error {
-
-	mux.Handle("GET", pattern_Uploads_GetSubjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjects_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7829,18 +6238,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjects_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7851,18 +6255,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectRawData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectRawData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectRawData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/raw"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectRawData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/raw"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7873,18 +6272,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectRawData_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetSubjectResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetSubjectResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7895,18 +6289,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetSubjectResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7917,18 +6306,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetDownloadList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Uploads_GetDownloadTicket_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Uploads_GetDownloadTicket_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7939,18 +6323,13 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetDownloadTicket_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Uploads_GetStatistics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Uploads_GetStatistics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7961,44 +6340,131 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Uploads_GetStatistics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Uploads_GetSubjects_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"uploads", "subjects", "programName"}, ""))
-
-	pattern_Uploads_GetSubjectData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"uploads", "subjects", "programName", "subjectID"}, ""))
-
-	pattern_Uploads_GetSubjectRawData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"uploads", "subjects", "programName", "subjectID", "raw"}, ""))
-
+	pattern_Uploads_GetSubjects_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"uploads", "subjects", "programName"}, ""))
+	pattern_Uploads_GetSubjectData_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"uploads", "subjects", "programName", "subjectID"}, ""))
+	pattern_Uploads_GetSubjectRawData_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"uploads", "subjects", "programName", "subjectID", "raw"}, ""))
 	pattern_Uploads_GetSubjectResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"uploads", "subjects", "programName", "subjectID", "resourceID"}, ""))
-
-	pattern_Uploads_GetDownloadList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
-
-	pattern_Uploads_GetDownloadTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
-
-	pattern_Uploads_GetStatistics_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2}, []string{"statistics", "programName", "type"}, ""))
+	pattern_Uploads_GetDownloadList_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
+	pattern_Uploads_GetDownloadTicket_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
+	pattern_Uploads_GetStatistics_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2}, []string{"statistics", "programName", "type"}, ""))
 )
 
 var (
-	forward_Uploads_GetSubjects_0 = runtime.ForwardResponseMessage
-
-	forward_Uploads_GetSubjectData_0 = runtime.ForwardResponseMessage
-
-	forward_Uploads_GetSubjectRawData_0 = runtime.ForwardResponseMessage
-
+	forward_Uploads_GetSubjects_0        = runtime.ForwardResponseMessage
+	forward_Uploads_GetSubjectData_0     = runtime.ForwardResponseMessage
+	forward_Uploads_GetSubjectRawData_0  = runtime.ForwardResponseMessage
 	forward_Uploads_GetSubjectResource_0 = runtime.ForwardResponseMessage
+	forward_Uploads_GetDownloadList_0    = runtime.ForwardResponseMessage
+	forward_Uploads_GetDownloadTicket_0  = runtime.ForwardResponseMessage
+	forward_Uploads_GetStatistics_0      = runtime.ForwardResponseMessage
+)
 
-	forward_Uploads_GetDownloadList_0 = runtime.ForwardResponseMessage
+// RegisterImagesHandlerFromEndpoint is same as RegisterImagesHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterImagesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.NewClient(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+	return RegisterImagesHandler(ctx, mux, conn)
+}
 
-	forward_Uploads_GetDownloadTicket_0 = runtime.ForwardResponseMessage
+// RegisterImagesHandler registers the http handlers for service Images to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterImagesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterImagesHandlerClient(ctx, mux, NewImagesClient(conn))
+}
 
-	forward_Uploads_GetStatistics_0 = runtime.ForwardResponseMessage
+// RegisterImagesHandlerClient registers the http handlers for service Images
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ImagesClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ImagesClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "ImagesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ImagesClient) error {
+	mux.Handle(http.MethodGet, pattern_Images_GetImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Images_GetImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_GetImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Images_UpsertImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/programs/{programName}/images"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Images_UpsertImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_UpsertImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_Images_DeleteImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Images_DeleteImage_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Images_DeleteImage_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	return nil
+}
+
+var (
+	pattern_Images_GetImage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "images", "name"}, ""))
+	pattern_Images_UpsertImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "images"}, ""))
+	pattern_Images_DeleteImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "images", "name"}, ""))
+)
+
+var (
+	forward_Images_GetImage_0    = runtime.ForwardResponseMessage
+	forward_Images_UpsertImage_0 = runtime.ForwardResponseMessage
+	forward_Images_DeleteImage_0 = runtime.ForwardResponseMessage
 )
 
 // RegisterChecksHandlerFromEndpoint is same as RegisterChecksHandler but
@@ -8022,7 +6488,6 @@ func RegisterChecksHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 			}
 		}()
 	}()
-
 	return RegisterChecksHandler(ctx, mux, conn)
 }
 
@@ -8038,14 +6503,11 @@ func RegisterChecksHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "ChecksClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ChecksClient) error {
-
-	mux.Handle("GET", pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Liveness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -8056,18 +6518,13 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Liveness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Checks_Readiness_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -8078,22 +6535,17 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Checks_Readiness_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Checks_Liveness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "liveness"}, ""))
-
+	pattern_Checks_Liveness_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "liveness"}, ""))
 	pattern_Checks_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "readiness"}, ""))
 )
 
 var (
-	forward_Checks_Liveness_0 = runtime.ForwardResponseMessage
-
+	forward_Checks_Liveness_0  = runtime.ForwardResponseMessage
 	forward_Checks_Readiness_0 = runtime.ForwardResponseMessage
 )
