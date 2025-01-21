@@ -1504,6 +1504,25 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Users
+  /users/{userEmail}:
+    delete:
+      operationId: Users_DeleteUser
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteUserResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: userEmail
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
   /users/{userEmail}/role/{programName}:
     delete:
       operationId: Users_DeleteProgramRole
@@ -1614,6 +1633,8 @@ definitions:
   apiDeleteStandaloneSurveyResponse:
     type: object
   apiDeleteSurveyResponse:
+    type: object
+  apiDeleteUserResponse:
     type: object
   apiGenerateCodesResponse:
     type: object

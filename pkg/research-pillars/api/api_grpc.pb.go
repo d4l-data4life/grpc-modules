@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Users_GetSelf_FullMethodName            = "/proto.api.Users/GetSelf"
 	Users_GetUsers_FullMethodName           = "/proto.api.Users/GetUsers"
+	Users_DeleteUser_FullMethodName         = "/proto.api.Users/DeleteUser"
 	Users_UpsertProgramRole_FullMethodName  = "/proto.api.Users/UpsertProgramRole"
 	Users_DeleteProgramRole_FullMethodName  = "/proto.api.Users/DeleteProgramRole"
 	Users_GetBlockedPrograms_FullMethodName = "/proto.api.Users/GetBlockedPrograms"
@@ -35,6 +36,7 @@ const (
 type UsersClient interface {
 	GetSelf(ctx context.Context, in *GetSelfRequest, opts ...grpc.CallOption) (*GetSelfResponse, error)
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
+	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	UpsertProgramRole(ctx context.Context, in *UpsertProgramRoleRequest, opts ...grpc.CallOption) (*UpsertProgramRoleResponse, error)
 	DeleteProgramRole(ctx context.Context, in *DeleteProgramRoleRequest, opts ...grpc.CallOption) (*DeleteProgramRoleResponse, error)
 	GetBlockedPrograms(ctx context.Context, in *GetBlockedProgramsRequest, opts ...grpc.CallOption) (*GetBlockedProgramsResponse, error)
@@ -64,6 +66,16 @@ func (c *usersClient) GetUsers(ctx context.Context, in *GetUsersRequest, opts ..
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUsersResponse)
 	err := c.cc.Invoke(ctx, Users_GetUsers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *usersClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteUserResponse)
+	err := c.cc.Invoke(ctx, Users_DeleteUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,6 +138,7 @@ func (c *usersClient) UnblockProgram(ctx context.Context, in *UnblockProgramRequ
 type UsersServer interface {
 	GetSelf(context.Context, *GetSelfRequest) (*GetSelfResponse, error)
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
+	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	UpsertProgramRole(context.Context, *UpsertProgramRoleRequest) (*UpsertProgramRoleResponse, error)
 	DeleteProgramRole(context.Context, *DeleteProgramRoleRequest) (*DeleteProgramRoleResponse, error)
 	GetBlockedPrograms(context.Context, *GetBlockedProgramsRequest) (*GetBlockedProgramsResponse, error)
@@ -146,6 +159,9 @@ func (UnimplementedUsersServer) GetSelf(context.Context, *GetSelfRequest) (*GetS
 }
 func (UnimplementedUsersServer) GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
+}
+func (UnimplementedUsersServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
 func (UnimplementedUsersServer) UpsertProgramRole(context.Context, *UpsertProgramRoleRequest) (*UpsertProgramRoleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpsertProgramRole not implemented")
@@ -215,6 +231,24 @@ func _Users_GetUsers_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsersServer).GetUsers(ctx, req.(*GetUsersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Users_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsersServer).DeleteUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Users_DeleteUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsersServer).DeleteUser(ctx, req.(*DeleteUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -323,6 +357,10 @@ var Users_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUsers",
 			Handler:    _Users_GetUsers_Handler,
+		},
+		{
+			MethodName: "DeleteUser",
+			Handler:    _Users_DeleteUser_Handler,
 		},
 		{
 			MethodName: "UpsertProgramRole",

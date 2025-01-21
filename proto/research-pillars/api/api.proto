@@ -39,6 +39,13 @@ service Users {
     };
   }
 
+  rpc DeleteUser(DeleteUserRequest)
+      returns (DeleteUserResponse) {
+    option (google.api.http) = {
+      delete : "/users/{userEmail}",
+    };
+  }
+
   rpc UpsertProgramRole(UpsertProgramRoleRequest)
       returns (UpsertProgramRoleResponse) {
     option (google.api.http) = {
@@ -79,6 +86,9 @@ message GetSelfResponse { User user = 1; }
 
 message GetUsersRequest {}
 message GetUsersResponse { repeated User users = 1; }
+
+message DeleteUserRequest { string userEmail = 1; }
+message DeleteUserResponse {}
 
 message UpsertProgramRoleRequest { ProgramRole programRole = 1; }
 message UpsertProgramRoleResponse {}
