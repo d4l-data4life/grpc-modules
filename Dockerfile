@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:experimental
 
-ARG GO_VERSION=1.22
+ARG GO_VERSION=1.24
 
 ########################
 ### Code Generation

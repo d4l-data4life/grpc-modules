@@ -246,6 +246,7 @@ service Utilities {
 message ProxyRequest {
   string target = 1;
   google.protobuf.Struct params = 2;
+  string programName = 3;
 }
 message ProxyResponse {
   google.protobuf.Struct body = 1;

@@ -3487,6 +3487,260 @@ var Images_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Clients_GetClients_FullMethodName    = "/proto.api.Clients/GetClients"
+	Clients_GetClient_FullMethodName     = "/proto.api.Clients/GetClient"
+	Clients_UpsertClient_FullMethodName  = "/proto.api.Clients/UpsertClient"
+	Clients_ExchangeToken_FullMethodName = "/proto.api.Clients/ExchangeToken"
+	Clients_DeleteClient_FullMethodName  = "/proto.api.Clients/DeleteClient"
+)
+
+// ClientsClient is the client API for Clients service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ClientsClient interface {
+	GetClients(ctx context.Context, in *GetClientsRequest, opts ...grpc.CallOption) (*GetClientsResponse, error)
+	GetClient(ctx context.Context, in *GetClientRequest, opts ...grpc.CallOption) (*GetClientResponse, error)
+	UpsertClient(ctx context.Context, in *UpsertClientRequest, opts ...grpc.CallOption) (*UpsertClientResponse, error)
+	ExchangeToken(ctx context.Context, in *ExchangeTokenRequest, opts ...grpc.CallOption) (*ExchangeTokenResponse, error)
+	DeleteClient(ctx context.Context, in *DeleteClientRequest, opts ...grpc.CallOption) (*DeleteClientResponse, error)
+}
+
+type clientsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewClientsClient(cc grpc.ClientConnInterface) ClientsClient {
+	return &clientsClient{cc}
+}
+
+func (c *clientsClient) GetClients(ctx context.Context, in *GetClientsRequest, opts ...grpc.CallOption) (*GetClientsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetClientsResponse)
+	err := c.cc.Invoke(ctx, Clients_GetClients_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clientsClient) GetClient(ctx context.Context, in *GetClientRequest, opts ...grpc.CallOption) (*GetClientResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetClientResponse)
+	err := c.cc.Invoke(ctx, Clients_GetClient_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clientsClient) UpsertClient(ctx context.Context, in *UpsertClientRequest, opts ...grpc.CallOption) (*UpsertClientResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpsertClientResponse)
+	err := c.cc.Invoke(ctx, Clients_UpsertClient_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clientsClient) ExchangeToken(ctx context.Context, in *ExchangeTokenRequest, opts ...grpc.CallOption) (*ExchangeTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ExchangeTokenResponse)
+	err := c.cc.Invoke(ctx, Clients_ExchangeToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clientsClient) DeleteClient(ctx context.Context, in *DeleteClientRequest, opts ...grpc.CallOption) (*DeleteClientResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteClientResponse)
+	err := c.cc.Invoke(ctx, Clients_DeleteClient_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ClientsServer is the server API for Clients service.
+// All implementations must embed UnimplementedClientsServer
+// for forward compatibility.
+type ClientsServer interface {
+	GetClients(context.Context, *GetClientsRequest) (*GetClientsResponse, error)
+	GetClient(context.Context, *GetClientRequest) (*GetClientResponse, error)
+	UpsertClient(context.Context, *UpsertClientRequest) (*UpsertClientResponse, error)
+	ExchangeToken(context.Context, *ExchangeTokenRequest) (*ExchangeTokenResponse, error)
+	DeleteClient(context.Context, *DeleteClientRequest) (*DeleteClientResponse, error)
+	mustEmbedUnimplementedClientsServer()
+}
+
+// UnimplementedClientsServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedClientsServer struct{}
+
+func (UnimplementedClientsServer) GetClients(context.Context, *GetClientsRequest) (*GetClientsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClients not implemented")
+}
+func (UnimplementedClientsServer) GetClient(context.Context, *GetClientRequest) (*GetClientResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClient not implemented")
+}
+func (UnimplementedClientsServer) UpsertClient(context.Context, *UpsertClientRequest) (*UpsertClientResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertClient not implemented")
+}
+func (UnimplementedClientsServer) ExchangeToken(context.Context, *ExchangeTokenRequest) (*ExchangeTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExchangeToken not implemented")
+}
+func (UnimplementedClientsServer) DeleteClient(context.Context, *DeleteClientRequest) (*DeleteClientResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteClient not implemented")
+}
+func (UnimplementedClientsServer) mustEmbedUnimplementedClientsServer() {}
+func (UnimplementedClientsServer) testEmbeddedByValue()                 {}
+
+// UnsafeClientsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ClientsServer will
+// result in compilation errors.
+type UnsafeClientsServer interface {
+	mustEmbedUnimplementedClientsServer()
+}
+
+func RegisterClientsServer(s grpc.ServiceRegistrar, srv ClientsServer) {
+	// If the following call pancis, it indicates UnimplementedClientsServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Clients_ServiceDesc, srv)
+}
+
+func _Clients_GetClients_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClientsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClientsServer).GetClients(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Clients_GetClients_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClientsServer).GetClients(ctx, req.(*GetClientsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Clients_GetClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetClientRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClientsServer).GetClient(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Clients_GetClient_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClientsServer).GetClient(ctx, req.(*GetClientRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Clients_UpsertClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertClientRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClientsServer).UpsertClient(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Clients_UpsertClient_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClientsServer).UpsertClient(ctx, req.(*UpsertClientRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Clients_ExchangeToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExchangeTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClientsServer).ExchangeToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Clients_ExchangeToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClientsServer).ExchangeToken(ctx, req.(*ExchangeTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Clients_DeleteClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteClientRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClientsServer).DeleteClient(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Clients_DeleteClient_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClientsServer).DeleteClient(ctx, req.(*DeleteClientRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Clients_ServiceDesc is the grpc.ServiceDesc for Clients service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Clients_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Clients",
+	HandlerType: (*ClientsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetClients",
+			Handler:    _Clients_GetClients_Handler,
+		},
+		{
+			MethodName: "GetClient",
+			Handler:    _Clients_GetClient_Handler,
+		},
+		{
+			MethodName: "UpsertClient",
+			Handler:    _Clients_UpsertClient_Handler,
+		},
+		{
+			MethodName: "ExchangeToken",
+			Handler:    _Clients_ExchangeToken_Handler,
+		},
+		{
+			MethodName: "DeleteClient",
+			Handler:    _Clients_DeleteClient_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
 	Checks_Liveness_FullMethodName  = "/proto.api.Checks/Liveness"
 	Checks_Readiness_FullMethodName = "/proto.api.Checks/Readiness"
 )

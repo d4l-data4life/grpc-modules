@@ -734,6 +734,8 @@ definitions:
         type: string
       params:
         type: object
+      programName:
+        type: string
   staticProxyResponse:
     type: object
     properties:

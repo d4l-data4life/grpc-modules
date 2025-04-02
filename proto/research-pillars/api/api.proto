@@ -955,6 +955,86 @@ message DeleteImageRequest {
 message DeleteImageResponse {}
 
 /////////////////////////////////////////////////////////
+// Clients
+/////////////////////////////////////////////////////////
+
+service Clients {
+  rpc GetClients(GetClientsRequest) returns (GetClientsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/client",
+    };
+  }
+
+  rpc GetClient(GetClientRequest) returns (GetClientResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/client/{name}",
+    };
+  }
+
+  rpc UpsertClient(UpsertClientRequest) returns (UpsertClientResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/client",
+      body : "*"
+    };
+  }
+
+  rpc ExchangeToken(ExchangeTokenRequest) returns (ExchangeTokenResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/client/{name}/token",
+      body : "*"
+    };
+  }
+
+  rpc DeleteClient(DeleteClientRequest) returns (DeleteClientResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/client/{name}",
+    };
+  }
+}
+
+message GetClientsRequest {
+  string programName = 1;
+}
+
+message GetClientsResponse {
+  repeated Client clients = 1;
+}
+
+message GetClientRequest {
+  string programName = 1;
+  string name = 2;
+}
+
+message GetClientResponse {
+  Client client = 1;
+}
+
+message UpsertClientRequest {
+  string programName = 1;
+  string name = 2;
+  string clientID = 3;
+  string clientSecret = 4;
+}
+message UpsertClientResponse {}
+
+message ExchangeTokenRequest {
+  string name = 1;
+  string programName = 2;
+  string clientID = 3;
+  string clientSecret = 4;
+  google.protobuf.Struct params = 5;
+}
+message ExchangeTokenResponse {
+  google.protobuf.Struct body = 1;
+}
+
+message DeleteClientRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteClientResponse {}
+
+/////////////////////////////////////////////////////////
 // Checks
 /////////////////////////////////////////////////////////
 

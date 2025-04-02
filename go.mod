@@ -1,6 +1,6 @@
 module github.com/gesundheitscloud/grpc-modules
 
-go 1.22
+go 1.24
 
 require (
 	github.com/gesundheitscloud/go-svc v1.83.0
