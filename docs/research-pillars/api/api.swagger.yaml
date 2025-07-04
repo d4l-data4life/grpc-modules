@@ -1361,6 +1361,10 @@ paths:
           in: query
           required: false
           type: string
+        - name: params
+          in: query
+          required: false
+          type: object
       tags:
         - Uploads
   /surveys:

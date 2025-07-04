@@ -905,6 +905,7 @@ message GetStatisticsRequest {
   string type = 2;
   optional string startDate = 3;
   optional string endDate = 4;
+  google.protobuf.Struct params = 5;
 }
 message GetStatisticsResponse {
   google.protobuf.Struct data = 1;
