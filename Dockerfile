@@ -2,13 +2,14 @@
 
 ARG GO_VERSION=1.24
 
-########################
+##############################
 ### Code Generation
-########################
+##############################
 
-FROM ${IMG_BASE}golang:${GO_VERSION} AS code-gen
+FROM golang:${GO_VERSION} AS code-gen
 
-RUN apt update && apt install -y protobuf-compiler
+RUN apt update && apt install -y nodejs npm protobuf-compiler
+RUN npm i -g ts-proto
 
 WORKDIR /app
 

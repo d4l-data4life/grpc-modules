@@ -1,0 +1,35 @@
+{
+  "name": "@d4l/grpc-modules",
+  "version": "1.18.0",
+  "description": "Contains protbuf clients for our services",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "https://www.d4l.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gesundheitscloud/grpc-modules.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gesundheitscloud/grpc-modules/issues"
+  },
+  "exports": {
+    "./research-pillars": {
+      "import": "./research-pillars/types.js",
+      "types": "./research-pillars/types.d.ts"
+    },
+    "./research-pillars/*": {
+      "import": "./research-pillars/*/*.js",
+      "types": "./research-pillars/*/*.d.ts"
+    }
+  },
+  "scripts": {
+    "start": "npm run build",
+    "build": "npx tsc",
+    "postbuild": "cp package.json README.md LICENSE.md ./dist"
+  },
+  "dependencies": {
+    "@improbable-eng/grpc-web": "^0.15.0",
+    "ts-proto": "^1.157.0",
+    "typescript": "^5.2.2",
+    "@bufbuild/protobuf": "^2.2.3"
+  }
+}

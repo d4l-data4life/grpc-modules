@@ -9,7 +9,11 @@ Contains protobuf definitions for servers, their generated code and related util
 - pkg
   - contains generated go code per module
   - `utils` package contains sub-packages with generic code used by services using grpc
-  - :warning: everything below package except `utils` will be deleted when running `make generate`
+  - :warning: everything below `pkg` except `utils` will be deleted when running `make generate`
+- src
+  - contains generated typescript client code per module
+  - `google/protobuf` package contains required code also generated from protobuf
+  - :warning: everything below `src`
 - docs
   - contains swagger API files per module
   - regenerated each time `make generate` is run
@@ -25,7 +29,7 @@ From the `.proto` file we generate:
 - stubs for implementing all defined services and their methods
 - a REST API gateway to also serve conventional HTTP/1.1 requests (using `google.api.annotations`)
 - a swagger file to match the REST gateway (using `protoc-gen-openapiv2`)
-- client code to use the server
+- client code to use the server (golang and typescript)
 
 The [REST gateway](https://github.com/grpc-ecosystem/grpc-gateway) is intended as a fallback and for local testing (with the example `.http` file).
 In production we should use grpc for communication wherever possible.

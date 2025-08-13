@@ -2,7 +2,7 @@
 set -e
 
 create_out_folder () {
-    mkdir -p ../pkg/$1 ../docs/$1
+    mkdir -p ../pkg/$1 ../docs/$1 ../src/$1
 }
 
 call_protoc () {
@@ -20,6 +20,13 @@ call_protoc () {
         --openapiv2_out ../docs/ \
         --openapiv2_opt logtostderr=true \
         $1
+
+    protoc \
+        --ts_proto_out ../src/ \
+        --ts_proto_opt outputClientImpl=grpc-web \
+        --ts_proto_opt useOptionals=messages \
+        --ts_proto_opt esModuleInterop=true \
+        $1
 }
 
 convert_docs () {
@@ -36,3 +43,6 @@ for file in $(find . -type f -not -path "./google*" -not -path "./protoc-*" ); d
     convert_docs $no_ext
     echo "... done"
 done
+
+# Typescrip generates files from the dependencies we dont need
+rm -rf ../src/protoc-gen-openapiv2

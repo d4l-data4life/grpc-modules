@@ -1,10 +1,12 @@
 .PHONY: generate
 generate: docker-build-code
 	-find ./pkg -not -path "*/utils/*" -delete
+	-rm -rf ./src
 	-rm -rf ./docs
 	$(eval CID := $(shell docker create "grpc-modules:code-gen"))
 	-docker cp $(CID):/app/pkg/. ./pkg/
 	-docker cp $(CID):/app/docs/. ./docs/
+	-docker cp $(CID):/app/src/. ./src/
 	docker rm $(CID)
 
 .PHONY: docker-build-code
