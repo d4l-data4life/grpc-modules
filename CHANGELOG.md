@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Update to golang 1.25
+- Update to correct TS dependencies
+- Use alpine image to update to protoc v5
+
 ### Deprecated
 
 ### Removed

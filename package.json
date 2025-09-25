@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",
-    "ts-proto": "^1.157.0",
-    "typescript": "^5.2.2",
-    "@bufbuild/protobuf": "^2.2.3"
+    "ts-proto": "^2.7.7",
+    "typescript": "^5.8.3",
+    "@bufbuild/protobuf": "2.7.0"
   }
 }

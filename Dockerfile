@@ -1,14 +1,14 @@
 # syntax = docker/dockerfile:experimental
 
-ARG GO_VERSION=1.24
+ARG GO_VERSION=1.25
 
 ##############################
 ### Code Generation
 ##############################
 
-FROM golang:${GO_VERSION} AS code-gen
+FROM golang:${GO_VERSION}-alpine AS code-gen
 
-RUN apt update && apt install -y nodejs npm protobuf-compiler
+RUN apk add --no-cache nodejs npm protobuf-dev bash
 RUN npm i -g ts-proto
 
 WORKDIR /app
