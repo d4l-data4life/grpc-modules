@@ -1,6 +1,6 @@
 {
   "name": "@d4l/grpc-modules",
-  "version": "1.20.0",
+  "version": "1.20.1",
   "description": "Contains protbuf clients for our services",
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://www.d4l.io/",
