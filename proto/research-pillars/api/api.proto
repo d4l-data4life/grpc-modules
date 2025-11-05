@@ -856,15 +856,6 @@ message GetSubjectDataRequest {
   string subjectID = 2;
 }
 message GetSubjectDataResponse {
-  repeated google.protobuf.Struct researchSubjects = 1;
-  repeated google.protobuf.Struct questionnaireResponses = 2;
-}
-
-message GetSubjectRawDataRequest {
-  string programName = 1;
-  string subjectID = 2;
-}
-message GetSubjectRawDataResponse {
   repeated google.protobuf.Struct uploads = 1;
 }
 

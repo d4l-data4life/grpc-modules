@@ -1977,11 +1977,7 @@ definitions:
   apiGetSubjectDataResponse:
     type: object
     properties:
-      researchSubjects:
-        type: array
-        items:
-          type: object
-      questionnaireResponses:
+      uploads:
         type: array
         items:
           type: object

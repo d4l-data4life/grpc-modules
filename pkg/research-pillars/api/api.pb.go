@@ -5615,11 +5615,10 @@ func (x *GetSubjectDataRequest) GetSubjectID() string {
 }
 
 type GetSubjectDataResponse struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	ResearchSubjects       []*structpb.Struct     `protobuf:"bytes,1,rep,name=researchSubjects,proto3" json:"researchSubjects,omitempty"`
-	QuestionnaireResponses []*structpb.Struct     `protobuf:"bytes,2,rep,name=questionnaireResponses,proto3" json:"questionnaireResponses,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uploads       []*structpb.Struct     `protobuf:"bytes,1,rep,name=uploads,proto3" json:"uploads,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetSubjectDataResponse) Reset() {
@@ -5652,110 +5651,7 @@ func (*GetSubjectDataResponse) Descriptor() ([]byte, []int) {
 	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{125}
 }
 
-func (x *GetSubjectDataResponse) GetResearchSubjects() []*structpb.Struct {
-	if x != nil {
-		return x.ResearchSubjects
-	}
-	return nil
-}
-
-func (x *GetSubjectDataResponse) GetQuestionnaireResponses() []*structpb.Struct {
-	if x != nil {
-		return x.QuestionnaireResponses
-	}
-	return nil
-}
-
-type GetSubjectRawDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
-	SubjectID     string                 `protobuf:"bytes,2,opt,name=subjectID,proto3" json:"subjectID,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSubjectRawDataRequest) Reset() {
-	*x = GetSubjectRawDataRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[126]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSubjectRawDataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSubjectRawDataRequest) ProtoMessage() {}
-
-func (x *GetSubjectRawDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[126]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSubjectRawDataRequest.ProtoReflect.Descriptor instead.
-func (*GetSubjectRawDataRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{126}
-}
-
-func (x *GetSubjectRawDataRequest) GetProgramName() string {
-	if x != nil {
-		return x.ProgramName
-	}
-	return ""
-}
-
-func (x *GetSubjectRawDataRequest) GetSubjectID() string {
-	if x != nil {
-		return x.SubjectID
-	}
-	return ""
-}
-
-type GetSubjectRawDataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uploads       []*structpb.Struct     `protobuf:"bytes,1,rep,name=uploads,proto3" json:"uploads,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSubjectRawDataResponse) Reset() {
-	*x = GetSubjectRawDataResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[127]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSubjectRawDataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSubjectRawDataResponse) ProtoMessage() {}
-
-func (x *GetSubjectRawDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[127]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSubjectRawDataResponse.ProtoReflect.Descriptor instead.
-func (*GetSubjectRawDataResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{127}
-}
-
-func (x *GetSubjectRawDataResponse) GetUploads() []*structpb.Struct {
+func (x *GetSubjectDataResponse) GetUploads() []*structpb.Struct {
 	if x != nil {
 		return x.Uploads
 	}
@@ -5773,7 +5669,7 @@ type GetSubjectResourceRequest struct {
 
 func (x *GetSubjectResourceRequest) Reset() {
 	*x = GetSubjectResourceRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[128]
+	mi := &file_research_pillars_api_api_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5785,7 +5681,7 @@ func (x *GetSubjectResourceRequest) String() string {
 func (*GetSubjectResourceRequest) ProtoMessage() {}
 
 func (x *GetSubjectResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[128]
+	mi := &file_research_pillars_api_api_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5798,7 +5694,7 @@ func (x *GetSubjectResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubjectResourceRequest.ProtoReflect.Descriptor instead.
 func (*GetSubjectResourceRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{128}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *GetSubjectResourceRequest) GetProgramName() string {
@@ -5831,7 +5727,7 @@ type GetSubjectResourceResponse struct {
 
 func (x *GetSubjectResourceResponse) Reset() {
 	*x = GetSubjectResourceResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[129]
+	mi := &file_research_pillars_api_api_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5843,7 +5739,7 @@ func (x *GetSubjectResourceResponse) String() string {
 func (*GetSubjectResourceResponse) ProtoMessage() {}
 
 func (x *GetSubjectResourceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[129]
+	mi := &file_research_pillars_api_api_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5856,7 +5752,7 @@ func (x *GetSubjectResourceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubjectResourceResponse.ProtoReflect.Descriptor instead.
 func (*GetSubjectResourceResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{129}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *GetSubjectResourceResponse) GetResource() *structpb.Struct {
@@ -5875,7 +5771,7 @@ type GetDownloadListRequest struct {
 
 func (x *GetDownloadListRequest) Reset() {
 	*x = GetDownloadListRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[130]
+	mi := &file_research_pillars_api_api_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5887,7 +5783,7 @@ func (x *GetDownloadListRequest) String() string {
 func (*GetDownloadListRequest) ProtoMessage() {}
 
 func (x *GetDownloadListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[130]
+	mi := &file_research_pillars_api_api_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5900,7 +5796,7 @@ func (x *GetDownloadListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDownloadListRequest.ProtoReflect.Descriptor instead.
 func (*GetDownloadListRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{130}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *GetDownloadListRequest) GetProgramName() string {
@@ -5919,7 +5815,7 @@ type GetDownloadListResponse struct {
 
 func (x *GetDownloadListResponse) Reset() {
 	*x = GetDownloadListResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[131]
+	mi := &file_research_pillars_api_api_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5931,7 +5827,7 @@ func (x *GetDownloadListResponse) String() string {
 func (*GetDownloadListResponse) ProtoMessage() {}
 
 func (x *GetDownloadListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[131]
+	mi := &file_research_pillars_api_api_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5944,7 +5840,7 @@ func (x *GetDownloadListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDownloadListResponse.ProtoReflect.Descriptor instead.
 func (*GetDownloadListResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{131}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *GetDownloadListResponse) GetSubjects() []*structpb.Struct {
@@ -5966,7 +5862,7 @@ type GetDownloadTicketRequest struct {
 
 func (x *GetDownloadTicketRequest) Reset() {
 	*x = GetDownloadTicketRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[132]
+	mi := &file_research_pillars_api_api_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5978,7 +5874,7 @@ func (x *GetDownloadTicketRequest) String() string {
 func (*GetDownloadTicketRequest) ProtoMessage() {}
 
 func (x *GetDownloadTicketRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[132]
+	mi := &file_research_pillars_api_api_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5991,7 +5887,7 @@ func (x *GetDownloadTicketRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDownloadTicketRequest.ProtoReflect.Descriptor instead.
 func (*GetDownloadTicketRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{132}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *GetDownloadTicketRequest) GetProgramName() string {
@@ -6031,7 +5927,7 @@ type GetDownloadTicketResponse struct {
 
 func (x *GetDownloadTicketResponse) Reset() {
 	*x = GetDownloadTicketResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[133]
+	mi := &file_research_pillars_api_api_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6043,7 +5939,7 @@ func (x *GetDownloadTicketResponse) String() string {
 func (*GetDownloadTicketResponse) ProtoMessage() {}
 
 func (x *GetDownloadTicketResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[133]
+	mi := &file_research_pillars_api_api_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6056,7 +5952,7 @@ func (x *GetDownloadTicketResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDownloadTicketResponse.ProtoReflect.Descriptor instead.
 func (*GetDownloadTicketResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{133}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *GetDownloadTicketResponse) GetUrl() string {
@@ -6079,7 +5975,7 @@ type GetStatisticsRequest struct {
 
 func (x *GetStatisticsRequest) Reset() {
 	*x = GetStatisticsRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[134]
+	mi := &file_research_pillars_api_api_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6091,7 +5987,7 @@ func (x *GetStatisticsRequest) String() string {
 func (*GetStatisticsRequest) ProtoMessage() {}
 
 func (x *GetStatisticsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[134]
+	mi := &file_research_pillars_api_api_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6104,7 +6000,7 @@ func (x *GetStatisticsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatisticsRequest.ProtoReflect.Descriptor instead.
 func (*GetStatisticsRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{134}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *GetStatisticsRequest) GetProgramName() string {
@@ -6151,7 +6047,7 @@ type GetStatisticsResponse struct {
 
 func (x *GetStatisticsResponse) Reset() {
 	*x = GetStatisticsResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[135]
+	mi := &file_research_pillars_api_api_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6163,7 +6059,7 @@ func (x *GetStatisticsResponse) String() string {
 func (*GetStatisticsResponse) ProtoMessage() {}
 
 func (x *GetStatisticsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[135]
+	mi := &file_research_pillars_api_api_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6176,7 +6072,7 @@ func (x *GetStatisticsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatisticsResponse.ProtoReflect.Descriptor instead.
 func (*GetStatisticsResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{135}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *GetStatisticsResponse) GetData() *structpb.Struct {
@@ -6196,7 +6092,7 @@ type GetImageRequest struct {
 
 func (x *GetImageRequest) Reset() {
 	*x = GetImageRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[136]
+	mi := &file_research_pillars_api_api_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6208,7 +6104,7 @@ func (x *GetImageRequest) String() string {
 func (*GetImageRequest) ProtoMessage() {}
 
 func (x *GetImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[136]
+	mi := &file_research_pillars_api_api_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6221,7 +6117,7 @@ func (x *GetImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetImageRequest.ProtoReflect.Descriptor instead.
 func (*GetImageRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{136}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *GetImageRequest) GetProgramName() string {
@@ -6250,7 +6146,7 @@ type UpsertImageRequest struct {
 
 func (x *UpsertImageRequest) Reset() {
 	*x = UpsertImageRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[137]
+	mi := &file_research_pillars_api_api_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6262,7 +6158,7 @@ func (x *UpsertImageRequest) String() string {
 func (*UpsertImageRequest) ProtoMessage() {}
 
 func (x *UpsertImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[137]
+	mi := &file_research_pillars_api_api_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6275,7 +6171,7 @@ func (x *UpsertImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertImageRequest.ProtoReflect.Descriptor instead.
 func (*UpsertImageRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{137}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *UpsertImageRequest) GetProgramName() string {
@@ -6314,7 +6210,7 @@ type UpsertImageResponse struct {
 
 func (x *UpsertImageResponse) Reset() {
 	*x = UpsertImageResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[138]
+	mi := &file_research_pillars_api_api_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6326,7 +6222,7 @@ func (x *UpsertImageResponse) String() string {
 func (*UpsertImageResponse) ProtoMessage() {}
 
 func (x *UpsertImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[138]
+	mi := &file_research_pillars_api_api_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6339,7 +6235,7 @@ func (x *UpsertImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertImageResponse.ProtoReflect.Descriptor instead.
 func (*UpsertImageResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{138}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{136}
 }
 
 type DeleteImageRequest struct {
@@ -6352,7 +6248,7 @@ type DeleteImageRequest struct {
 
 func (x *DeleteImageRequest) Reset() {
 	*x = DeleteImageRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[139]
+	mi := &file_research_pillars_api_api_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6364,7 +6260,7 @@ func (x *DeleteImageRequest) String() string {
 func (*DeleteImageRequest) ProtoMessage() {}
 
 func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[139]
+	mi := &file_research_pillars_api_api_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6377,7 +6273,7 @@ func (x *DeleteImageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageRequest.ProtoReflect.Descriptor instead.
 func (*DeleteImageRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{139}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *DeleteImageRequest) GetProgramName() string {
@@ -6402,7 +6298,7 @@ type DeleteImageResponse struct {
 
 func (x *DeleteImageResponse) Reset() {
 	*x = DeleteImageResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[140]
+	mi := &file_research_pillars_api_api_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6414,7 +6310,7 @@ func (x *DeleteImageResponse) String() string {
 func (*DeleteImageResponse) ProtoMessage() {}
 
 func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[140]
+	mi := &file_research_pillars_api_api_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6427,7 +6323,7 @@ func (x *DeleteImageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteImageResponse.ProtoReflect.Descriptor instead.
 func (*DeleteImageResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{140}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{138}
 }
 
 type GetClientsRequest struct {
@@ -6439,7 +6335,7 @@ type GetClientsRequest struct {
 
 func (x *GetClientsRequest) Reset() {
 	*x = GetClientsRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[141]
+	mi := &file_research_pillars_api_api_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6451,7 +6347,7 @@ func (x *GetClientsRequest) String() string {
 func (*GetClientsRequest) ProtoMessage() {}
 
 func (x *GetClientsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[141]
+	mi := &file_research_pillars_api_api_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6464,7 +6360,7 @@ func (x *GetClientsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClientsRequest.ProtoReflect.Descriptor instead.
 func (*GetClientsRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{141}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *GetClientsRequest) GetProgramName() string {
@@ -6483,7 +6379,7 @@ type GetClientsResponse struct {
 
 func (x *GetClientsResponse) Reset() {
 	*x = GetClientsResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[142]
+	mi := &file_research_pillars_api_api_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6495,7 +6391,7 @@ func (x *GetClientsResponse) String() string {
 func (*GetClientsResponse) ProtoMessage() {}
 
 func (x *GetClientsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[142]
+	mi := &file_research_pillars_api_api_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6508,7 +6404,7 @@ func (x *GetClientsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClientsResponse.ProtoReflect.Descriptor instead.
 func (*GetClientsResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{142}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *GetClientsResponse) GetClients() []*research_pillars.Client {
@@ -6528,7 +6424,7 @@ type GetClientRequest struct {
 
 func (x *GetClientRequest) Reset() {
 	*x = GetClientRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[143]
+	mi := &file_research_pillars_api_api_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6540,7 +6436,7 @@ func (x *GetClientRequest) String() string {
 func (*GetClientRequest) ProtoMessage() {}
 
 func (x *GetClientRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[143]
+	mi := &file_research_pillars_api_api_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6553,7 +6449,7 @@ func (x *GetClientRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClientRequest.ProtoReflect.Descriptor instead.
 func (*GetClientRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{143}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *GetClientRequest) GetProgramName() string {
@@ -6579,7 +6475,7 @@ type GetClientResponse struct {
 
 func (x *GetClientResponse) Reset() {
 	*x = GetClientResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[144]
+	mi := &file_research_pillars_api_api_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6591,7 +6487,7 @@ func (x *GetClientResponse) String() string {
 func (*GetClientResponse) ProtoMessage() {}
 
 func (x *GetClientResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[144]
+	mi := &file_research_pillars_api_api_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6604,7 +6500,7 @@ func (x *GetClientResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClientResponse.ProtoReflect.Descriptor instead.
 func (*GetClientResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{144}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{142}
 }
 
 func (x *GetClientResponse) GetClient() *research_pillars.Client {
@@ -6626,7 +6522,7 @@ type UpsertClientRequest struct {
 
 func (x *UpsertClientRequest) Reset() {
 	*x = UpsertClientRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[145]
+	mi := &file_research_pillars_api_api_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6638,7 +6534,7 @@ func (x *UpsertClientRequest) String() string {
 func (*UpsertClientRequest) ProtoMessage() {}
 
 func (x *UpsertClientRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[145]
+	mi := &file_research_pillars_api_api_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6651,7 +6547,7 @@ func (x *UpsertClientRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertClientRequest.ProtoReflect.Descriptor instead.
 func (*UpsertClientRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{145}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *UpsertClientRequest) GetProgramName() string {
@@ -6690,7 +6586,7 @@ type UpsertClientResponse struct {
 
 func (x *UpsertClientResponse) Reset() {
 	*x = UpsertClientResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[146]
+	mi := &file_research_pillars_api_api_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6702,7 +6598,7 @@ func (x *UpsertClientResponse) String() string {
 func (*UpsertClientResponse) ProtoMessage() {}
 
 func (x *UpsertClientResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[146]
+	mi := &file_research_pillars_api_api_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6715,7 +6611,7 @@ func (x *UpsertClientResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertClientResponse.ProtoReflect.Descriptor instead.
 func (*UpsertClientResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{146}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{144}
 }
 
 type ExchangeTokenRequest struct {
@@ -6731,7 +6627,7 @@ type ExchangeTokenRequest struct {
 
 func (x *ExchangeTokenRequest) Reset() {
 	*x = ExchangeTokenRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[147]
+	mi := &file_research_pillars_api_api_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6743,7 +6639,7 @@ func (x *ExchangeTokenRequest) String() string {
 func (*ExchangeTokenRequest) ProtoMessage() {}
 
 func (x *ExchangeTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[147]
+	mi := &file_research_pillars_api_api_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6756,7 +6652,7 @@ func (x *ExchangeTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeTokenRequest.ProtoReflect.Descriptor instead.
 func (*ExchangeTokenRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{147}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *ExchangeTokenRequest) GetName() string {
@@ -6803,7 +6699,7 @@ type ExchangeTokenResponse struct {
 
 func (x *ExchangeTokenResponse) Reset() {
 	*x = ExchangeTokenResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[148]
+	mi := &file_research_pillars_api_api_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6815,7 +6711,7 @@ func (x *ExchangeTokenResponse) String() string {
 func (*ExchangeTokenResponse) ProtoMessage() {}
 
 func (x *ExchangeTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[148]
+	mi := &file_research_pillars_api_api_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6828,7 +6724,7 @@ func (x *ExchangeTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeTokenResponse.ProtoReflect.Descriptor instead.
 func (*ExchangeTokenResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{148}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *ExchangeTokenResponse) GetBody() *structpb.Struct {
@@ -6848,7 +6744,7 @@ type DeleteClientRequest struct {
 
 func (x *DeleteClientRequest) Reset() {
 	*x = DeleteClientRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[149]
+	mi := &file_research_pillars_api_api_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6860,7 +6756,7 @@ func (x *DeleteClientRequest) String() string {
 func (*DeleteClientRequest) ProtoMessage() {}
 
 func (x *DeleteClientRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[149]
+	mi := &file_research_pillars_api_api_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6873,7 +6769,7 @@ func (x *DeleteClientRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteClientRequest.ProtoReflect.Descriptor instead.
 func (*DeleteClientRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{149}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *DeleteClientRequest) GetProgramName() string {
@@ -6898,7 +6794,7 @@ type DeleteClientResponse struct {
 
 func (x *DeleteClientResponse) Reset() {
 	*x = DeleteClientResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[150]
+	mi := &file_research_pillars_api_api_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6910,7 +6806,7 @@ func (x *DeleteClientResponse) String() string {
 func (*DeleteClientResponse) ProtoMessage() {}
 
 func (x *DeleteClientResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[150]
+	mi := &file_research_pillars_api_api_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6923,7 +6819,7 @@ func (x *DeleteClientResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteClientResponse.ProtoReflect.Descriptor instead.
 func (*DeleteClientResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{150}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{148}
 }
 
 type ChecksRequest struct {
@@ -6934,7 +6830,7 @@ type ChecksRequest struct {
 
 func (x *ChecksRequest) Reset() {
 	*x = ChecksRequest{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[151]
+	mi := &file_research_pillars_api_api_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6946,7 +6842,7 @@ func (x *ChecksRequest) String() string {
 func (*ChecksRequest) ProtoMessage() {}
 
 func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[151]
+	mi := &file_research_pillars_api_api_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6959,7 +6855,7 @@ func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksRequest.ProtoReflect.Descriptor instead.
 func (*ChecksRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{151}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{149}
 }
 
 type ChecksResponse struct {
@@ -6971,7 +6867,7 @@ type ChecksResponse struct {
 
 func (x *ChecksResponse) Reset() {
 	*x = ChecksResponse{}
-	mi := &file_research_pillars_api_api_proto_msgTypes[152]
+	mi := &file_research_pillars_api_api_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6983,7 +6879,7 @@ func (x *ChecksResponse) String() string {
 func (*ChecksResponse) ProtoMessage() {}
 
 func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_api_api_proto_msgTypes[152]
+	mi := &file_research_pillars_api_api_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6996,7 +6892,7 @@ func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksResponse.ProtoReflect.Descriptor instead.
 func (*ChecksResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{152}
+	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *ChecksResponse) GetResponse() string {
@@ -7274,14 +7170,8 @@ const file_research_pillars_api_api_proto_rawDesc = "" +
 	"\bsubjects\x18\x01 \x03(\v2\x17.google.protobuf.StructR\bsubjects\"W\n" +
 	"\x15GetSubjectDataRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x1c\n" +
-	"\tsubjectID\x18\x02 \x01(\tR\tsubjectID\"\xae\x01\n" +
-	"\x16GetSubjectDataResponse\x12C\n" +
-	"\x10researchSubjects\x18\x01 \x03(\v2\x17.google.protobuf.StructR\x10researchSubjects\x12O\n" +
-	"\x16questionnaireResponses\x18\x02 \x03(\v2\x17.google.protobuf.StructR\x16questionnaireResponses\"Z\n" +
-	"\x18GetSubjectRawDataRequest\x12 \n" +
-	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x1c\n" +
-	"\tsubjectID\x18\x02 \x01(\tR\tsubjectID\"N\n" +
-	"\x19GetSubjectRawDataResponse\x121\n" +
+	"\tsubjectID\x18\x02 \x01(\tR\tsubjectID\"K\n" +
+	"\x16GetSubjectDataResponse\x121\n" +
 	"\auploads\x18\x01 \x03(\v2\x17.google.protobuf.StructR\auploads\"{\n" +
 	"\x19GetSubjectResourceRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x1c\n" +
@@ -7477,7 +7367,7 @@ func file_research_pillars_api_api_proto_rawDescGZIP() []byte {
 	return file_research_pillars_api_api_proto_rawDescData
 }
 
-var file_research_pillars_api_api_proto_msgTypes = make([]protoimpl.MessageInfo, 153)
+var file_research_pillars_api_api_proto_msgTypes = make([]protoimpl.MessageInfo, 151)
 var file_research_pillars_api_api_proto_goTypes = []any{
 	(*GetSelfRequest)(nil),                        // 0: proto.api.GetSelfRequest
 	(*GetSelfResponse)(nil),                       // 1: proto.api.GetSelfResponse
@@ -7605,265 +7495,261 @@ var file_research_pillars_api_api_proto_goTypes = []any{
 	(*GetSubjectsResponse)(nil),                   // 123: proto.api.GetSubjectsResponse
 	(*GetSubjectDataRequest)(nil),                 // 124: proto.api.GetSubjectDataRequest
 	(*GetSubjectDataResponse)(nil),                // 125: proto.api.GetSubjectDataResponse
-	(*GetSubjectRawDataRequest)(nil),              // 126: proto.api.GetSubjectRawDataRequest
-	(*GetSubjectRawDataResponse)(nil),             // 127: proto.api.GetSubjectRawDataResponse
-	(*GetSubjectResourceRequest)(nil),             // 128: proto.api.GetSubjectResourceRequest
-	(*GetSubjectResourceResponse)(nil),            // 129: proto.api.GetSubjectResourceResponse
-	(*GetDownloadListRequest)(nil),                // 130: proto.api.GetDownloadListRequest
-	(*GetDownloadListResponse)(nil),               // 131: proto.api.GetDownloadListResponse
-	(*GetDownloadTicketRequest)(nil),              // 132: proto.api.GetDownloadTicketRequest
-	(*GetDownloadTicketResponse)(nil),             // 133: proto.api.GetDownloadTicketResponse
-	(*GetStatisticsRequest)(nil),                  // 134: proto.api.GetStatisticsRequest
-	(*GetStatisticsResponse)(nil),                 // 135: proto.api.GetStatisticsResponse
-	(*GetImageRequest)(nil),                       // 136: proto.api.GetImageRequest
-	(*UpsertImageRequest)(nil),                    // 137: proto.api.UpsertImageRequest
-	(*UpsertImageResponse)(nil),                   // 138: proto.api.UpsertImageResponse
-	(*DeleteImageRequest)(nil),                    // 139: proto.api.DeleteImageRequest
-	(*DeleteImageResponse)(nil),                   // 140: proto.api.DeleteImageResponse
-	(*GetClientsRequest)(nil),                     // 141: proto.api.GetClientsRequest
-	(*GetClientsResponse)(nil),                    // 142: proto.api.GetClientsResponse
-	(*GetClientRequest)(nil),                      // 143: proto.api.GetClientRequest
-	(*GetClientResponse)(nil),                     // 144: proto.api.GetClientResponse
-	(*UpsertClientRequest)(nil),                   // 145: proto.api.UpsertClientRequest
-	(*UpsertClientResponse)(nil),                  // 146: proto.api.UpsertClientResponse
-	(*ExchangeTokenRequest)(nil),                  // 147: proto.api.ExchangeTokenRequest
-	(*ExchangeTokenResponse)(nil),                 // 148: proto.api.ExchangeTokenResponse
-	(*DeleteClientRequest)(nil),                   // 149: proto.api.DeleteClientRequest
-	(*DeleteClientResponse)(nil),                  // 150: proto.api.DeleteClientResponse
-	(*ChecksRequest)(nil),                         // 151: proto.api.ChecksRequest
-	(*ChecksResponse)(nil),                        // 152: proto.api.ChecksResponse
-	(*research_pillars.User)(nil),                 // 153: proto.User
-	(*research_pillars.ProgramRole)(nil),          // 154: proto.ProgramRole
-	(*research_pillars.BlockedProgram)(nil),       // 155: proto.BlockedProgram
-	(*structpb.Struct)(nil),                       // 156: google.protobuf.Struct
-	(*research_pillars.Diff)(nil),                 // 157: proto.Diff
-	(*research_pillars.Questionnaire)(nil),        // 158: proto.Questionnaire
-	(*research_pillars.ParticipantCode)(nil),      // 159: proto.ParticipantCode
-	(*research_pillars.Client)(nil),               // 160: proto.Client
-	(*httpbody.HttpBody)(nil),                     // 161: google.api.HttpBody
+	(*GetSubjectResourceRequest)(nil),             // 126: proto.api.GetSubjectResourceRequest
+	(*GetSubjectResourceResponse)(nil),            // 127: proto.api.GetSubjectResourceResponse
+	(*GetDownloadListRequest)(nil),                // 128: proto.api.GetDownloadListRequest
+	(*GetDownloadListResponse)(nil),               // 129: proto.api.GetDownloadListResponse
+	(*GetDownloadTicketRequest)(nil),              // 130: proto.api.GetDownloadTicketRequest
+	(*GetDownloadTicketResponse)(nil),             // 131: proto.api.GetDownloadTicketResponse
+	(*GetStatisticsRequest)(nil),                  // 132: proto.api.GetStatisticsRequest
+	(*GetStatisticsResponse)(nil),                 // 133: proto.api.GetStatisticsResponse
+	(*GetImageRequest)(nil),                       // 134: proto.api.GetImageRequest
+	(*UpsertImageRequest)(nil),                    // 135: proto.api.UpsertImageRequest
+	(*UpsertImageResponse)(nil),                   // 136: proto.api.UpsertImageResponse
+	(*DeleteImageRequest)(nil),                    // 137: proto.api.DeleteImageRequest
+	(*DeleteImageResponse)(nil),                   // 138: proto.api.DeleteImageResponse
+	(*GetClientsRequest)(nil),                     // 139: proto.api.GetClientsRequest
+	(*GetClientsResponse)(nil),                    // 140: proto.api.GetClientsResponse
+	(*GetClientRequest)(nil),                      // 141: proto.api.GetClientRequest
+	(*GetClientResponse)(nil),                     // 142: proto.api.GetClientResponse
+	(*UpsertClientRequest)(nil),                   // 143: proto.api.UpsertClientRequest
+	(*UpsertClientResponse)(nil),                  // 144: proto.api.UpsertClientResponse
+	(*ExchangeTokenRequest)(nil),                  // 145: proto.api.ExchangeTokenRequest
+	(*ExchangeTokenResponse)(nil),                 // 146: proto.api.ExchangeTokenResponse
+	(*DeleteClientRequest)(nil),                   // 147: proto.api.DeleteClientRequest
+	(*DeleteClientResponse)(nil),                  // 148: proto.api.DeleteClientResponse
+	(*ChecksRequest)(nil),                         // 149: proto.api.ChecksRequest
+	(*ChecksResponse)(nil),                        // 150: proto.api.ChecksResponse
+	(*research_pillars.User)(nil),                 // 151: proto.User
+	(*research_pillars.ProgramRole)(nil),          // 152: proto.ProgramRole
+	(*research_pillars.BlockedProgram)(nil),       // 153: proto.BlockedProgram
+	(*structpb.Struct)(nil),                       // 154: google.protobuf.Struct
+	(*research_pillars.Diff)(nil),                 // 155: proto.Diff
+	(*research_pillars.Questionnaire)(nil),        // 156: proto.Questionnaire
+	(*research_pillars.ParticipantCode)(nil),      // 157: proto.ParticipantCode
+	(*research_pillars.Client)(nil),               // 158: proto.Client
+	(*httpbody.HttpBody)(nil),                     // 159: google.api.HttpBody
 }
 var file_research_pillars_api_api_proto_depIdxs = []int32{
-	153, // 0: proto.api.GetSelfResponse.user:type_name -> proto.User
-	153, // 1: proto.api.GetUsersResponse.users:type_name -> proto.User
-	154, // 2: proto.api.UpsertProgramRoleRequest.programRole:type_name -> proto.ProgramRole
-	155, // 3: proto.api.GetBlockedProgramsResponse.blockedPrograms:type_name -> proto.BlockedProgram
-	156, // 4: proto.api.GetProgramsResponse.programs:type_name -> google.protobuf.Struct
-	156, // 5: proto.api.GetProgramResponse.program:type_name -> google.protobuf.Struct
-	157, // 6: proto.api.GetProgramResponse.diffs:type_name -> proto.Diff
-	156, // 7: proto.api.GetProgramDataResponse.program:type_name -> google.protobuf.Struct
-	156, // 8: proto.api.GetProgramDataResponse.surveys:type_name -> google.protobuf.Struct
-	158, // 9: proto.api.GetProgramDataResponse.questionnaires:type_name -> proto.Questionnaire
-	156, // 10: proto.api.GetProgramDataResponse.consents:type_name -> google.protobuf.Struct
-	156, // 11: proto.api.GetProgramDataResponse.routines:type_name -> google.protobuf.Struct
-	156, // 12: proto.api.GetProgramDataResponse.displays:type_name -> google.protobuf.Struct
-	156, // 13: proto.api.GetProgramDiffsResponse.program:type_name -> google.protobuf.Struct
-	156, // 14: proto.api.GetProgramDiffsResponse.surveys:type_name -> google.protobuf.Struct
-	156, // 15: proto.api.GetProgramDiffsResponse.questionnaires:type_name -> google.protobuf.Struct
-	156, // 16: proto.api.GetProgramDiffsResponse.routines:type_name -> google.protobuf.Struct
-	156, // 17: proto.api.GetProgramDiffsResponse.displays:type_name -> google.protobuf.Struct
-	156, // 18: proto.api.UpsertProgramRequest.program:type_name -> google.protobuf.Struct
-	156, // 19: proto.api.UpsertProgramRequest.change:type_name -> google.protobuf.Struct
-	156, // 20: proto.api.GetSurveysResponse.surveys:type_name -> google.protobuf.Struct
-	156, // 21: proto.api.GetSurveyResponse.survey:type_name -> google.protobuf.Struct
-	157, // 22: proto.api.GetSurveyResponse.diffs:type_name -> proto.Diff
-	156, // 23: proto.api.UpsertSurveyRequest.survey:type_name -> google.protobuf.Struct
-	156, // 24: proto.api.UpsertSurveyRequest.change:type_name -> google.protobuf.Struct
-	158, // 25: proto.api.GetQuestionnairesResponse.questionnaires:type_name -> proto.Questionnaire
-	158, // 26: proto.api.GetQuestionnaireResponse.questionnaire:type_name -> proto.Questionnaire
-	157, // 27: proto.api.GetQuestionnaireResponse.diffs:type_name -> proto.Diff
-	158, // 28: proto.api.UpsertQuestionnaireRequest.questionnaire:type_name -> proto.Questionnaire
-	156, // 29: proto.api.UpsertQuestionnaireRequest.change:type_name -> google.protobuf.Struct
-	156, // 30: proto.api.GetRoutinesResponse.routines:type_name -> google.protobuf.Struct
-	156, // 31: proto.api.GetRoutineResponse.routine:type_name -> google.protobuf.Struct
-	157, // 32: proto.api.GetRoutineResponse.diffs:type_name -> proto.Diff
-	156, // 33: proto.api.UpsertRoutineRequest.routine:type_name -> google.protobuf.Struct
-	156, // 34: proto.api.UpsertRoutineRequest.change:type_name -> google.protobuf.Struct
-	156, // 35: proto.api.GetDisplaysResponse.displays:type_name -> google.protobuf.Struct
-	156, // 36: proto.api.GetDisplayResponse.display:type_name -> google.protobuf.Struct
-	157, // 37: proto.api.GetDisplayResponse.diffs:type_name -> proto.Diff
-	156, // 38: proto.api.UpsertDisplayRequest.display:type_name -> google.protobuf.Struct
-	156, // 39: proto.api.UpsertDisplayRequest.change:type_name -> google.protobuf.Struct
-	159, // 40: proto.api.GetCodesResponse.codes:type_name -> proto.ParticipantCode
-	156, // 41: proto.api.GetConsentsResponse.consents:type_name -> google.protobuf.Struct
-	156, // 42: proto.api.GetConsentResponse.consents:type_name -> google.protobuf.Struct
-	156, // 43: proto.api.UpsertConsentRequest.consent:type_name -> google.protobuf.Struct
-	156, // 44: proto.api.GetStandaloneSurveysResponse.surveys:type_name -> google.protobuf.Struct
-	156, // 45: proto.api.GetStandaloneSurveyResponse.survey:type_name -> google.protobuf.Struct
-	156, // 46: proto.api.UpsertStandaloneSurveyRequest.survey:type_name -> google.protobuf.Struct
-	156, // 47: proto.api.GetStandaloneQuestionnairesResponse.questionnaires:type_name -> google.protobuf.Struct
-	156, // 48: proto.api.GetStandaloneQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
-	156, // 49: proto.api.UpsertStandaloneQuestionnaireRequest.questionnaire:type_name -> google.protobuf.Struct
-	156, // 50: proto.api.GetSubjectsResponse.subjects:type_name -> google.protobuf.Struct
-	156, // 51: proto.api.GetSubjectDataResponse.researchSubjects:type_name -> google.protobuf.Struct
-	156, // 52: proto.api.GetSubjectDataResponse.questionnaireResponses:type_name -> google.protobuf.Struct
-	156, // 53: proto.api.GetSubjectRawDataResponse.uploads:type_name -> google.protobuf.Struct
-	156, // 54: proto.api.GetSubjectResourceResponse.resource:type_name -> google.protobuf.Struct
-	156, // 55: proto.api.GetDownloadListResponse.subjects:type_name -> google.protobuf.Struct
-	156, // 56: proto.api.GetStatisticsRequest.params:type_name -> google.protobuf.Struct
-	156, // 57: proto.api.GetStatisticsResponse.data:type_name -> google.protobuf.Struct
-	160, // 58: proto.api.GetClientsResponse.clients:type_name -> proto.Client
-	160, // 59: proto.api.GetClientResponse.client:type_name -> proto.Client
-	156, // 60: proto.api.ExchangeTokenRequest.params:type_name -> google.protobuf.Struct
-	156, // 61: proto.api.ExchangeTokenResponse.body:type_name -> google.protobuf.Struct
-	0,   // 62: proto.api.Users.GetSelf:input_type -> proto.api.GetSelfRequest
-	2,   // 63: proto.api.Users.GetUsers:input_type -> proto.api.GetUsersRequest
-	4,   // 64: proto.api.Users.DeleteUser:input_type -> proto.api.DeleteUserRequest
-	6,   // 65: proto.api.Users.UpsertProgramRole:input_type -> proto.api.UpsertProgramRoleRequest
-	8,   // 66: proto.api.Users.DeleteProgramRole:input_type -> proto.api.DeleteProgramRoleRequest
-	10,  // 67: proto.api.Users.GetBlockedPrograms:input_type -> proto.api.GetBlockedProgramsRequest
-	12,  // 68: proto.api.Users.BlockProgram:input_type -> proto.api.BlockProgramRequest
-	14,  // 69: proto.api.Users.UnblockProgram:input_type -> proto.api.UnblockProgramRequest
-	16,  // 70: proto.api.Programs.GetPrograms:input_type -> proto.api.GetProgramsRequest
-	18,  // 71: proto.api.Programs.GetProgramsList:input_type -> proto.api.GetProgramsListRequest
-	20,  // 72: proto.api.Programs.IsNameAvailable:input_type -> proto.api.IsNameAvailableRequest
-	22,  // 73: proto.api.Programs.GetProgram:input_type -> proto.api.GetProgramRequest
-	24,  // 74: proto.api.Programs.GetProgramData:input_type -> proto.api.GetProgramDataRequest
-	26,  // 75: proto.api.Programs.GetProgramDiffs:input_type -> proto.api.GetProgramDiffsRequest
-	28,  // 76: proto.api.Programs.UpsertProgram:input_type -> proto.api.UpsertProgramRequest
-	30,  // 77: proto.api.Programs.DeleteProgram:input_type -> proto.api.DeleteProgramRequest
-	32,  // 78: proto.api.Programs.PublishProgram:input_type -> proto.api.PublishProgramRequest
-	34,  // 79: proto.api.Programs.LoadProgram:input_type -> proto.api.LoadProgramRequest
-	36,  // 80: proto.api.Surveys.GetSurveys:input_type -> proto.api.GetSurveysRequest
-	38,  // 81: proto.api.Surveys.GetSurvey:input_type -> proto.api.GetSurveyRequest
-	40,  // 82: proto.api.Surveys.UpsertSurvey:input_type -> proto.api.UpsertSurveyRequest
-	42,  // 83: proto.api.Surveys.DeleteSurvey:input_type -> proto.api.DeleteSurveyRequest
-	44,  // 84: proto.api.Surveys.PublishSurvey:input_type -> proto.api.PublishSurveyRequest
-	46,  // 85: proto.api.Surveys.LoadSurvey:input_type -> proto.api.LoadSurveyRequest
-	48,  // 86: proto.api.Questionnaires.GetQuestionnaires:input_type -> proto.api.GetQuestionnairesRequest
-	50,  // 87: proto.api.Questionnaires.GetQuestionnaire:input_type -> proto.api.GetQuestionnaireRequest
-	52,  // 88: proto.api.Questionnaires.UpsertQuestionnaire:input_type -> proto.api.UpsertQuestionnaireRequest
-	54,  // 89: proto.api.Questionnaires.DeleteQuestionnaire:input_type -> proto.api.DeleteQuestionnaireRequest
-	56,  // 90: proto.api.Questionnaires.PublishQuestionnaire:input_type -> proto.api.PublishQuestionnaireRequest
-	58,  // 91: proto.api.Questionnaires.LoadQuestionnaire:input_type -> proto.api.LoadQuestionnaireRequest
-	60,  // 92: proto.api.Routines.GetRoutines:input_type -> proto.api.GetRoutinesRequest
-	62,  // 93: proto.api.Routines.GetRoutine:input_type -> proto.api.GetRoutineRequest
-	64,  // 94: proto.api.Routines.UpsertRoutine:input_type -> proto.api.UpsertRoutineRequest
-	66,  // 95: proto.api.Routines.DeleteRoutine:input_type -> proto.api.DeleteRoutineRequest
-	68,  // 96: proto.api.Routines.PublishRoutine:input_type -> proto.api.PublishRoutineRequest
-	70,  // 97: proto.api.Routines.LoadRoutine:input_type -> proto.api.LoadRoutineRequest
-	72,  // 98: proto.api.Displays.GetDisplays:input_type -> proto.api.GetDisplaysRequest
-	74,  // 99: proto.api.Displays.GetDisplay:input_type -> proto.api.GetDisplayRequest
-	76,  // 100: proto.api.Displays.UpsertDisplay:input_type -> proto.api.UpsertDisplayRequest
-	78,  // 101: proto.api.Displays.DeleteDisplay:input_type -> proto.api.DeleteDisplayRequest
-	80,  // 102: proto.api.Displays.PublishDisplay:input_type -> proto.api.PublishDisplayRequest
-	82,  // 103: proto.api.Displays.LoadDisplay:input_type -> proto.api.LoadDisplayRequest
-	84,  // 104: proto.api.ParticipantCodes.GetCodes:input_type -> proto.api.GetCodesRequest
-	86,  // 105: proto.api.ParticipantCodes.GenerateCodes:input_type -> proto.api.GenerateCodesRequest
-	88,  // 106: proto.api.ParticipantCodes.AssignCode:input_type -> proto.api.AssignCodeRequest
-	90,  // 107: proto.api.ParticipantCodes.DeleteCode:input_type -> proto.api.DeleteCodeRequest
-	92,  // 108: proto.api.ParticipantCodes.UnassignCode:input_type -> proto.api.UnassignCodeRequest
-	94,  // 109: proto.api.Consents.GetConsents:input_type -> proto.api.GetConsentsRequest
-	96,  // 110: proto.api.Consents.GetConsent:input_type -> proto.api.GetConsentRequest
-	98,  // 111: proto.api.Consents.UpsertConsent:input_type -> proto.api.UpsertConsentRequest
-	100, // 112: proto.api.Consents.DeleteConsent:input_type -> proto.api.DeleteConsentRequest
-	102, // 113: proto.api.Consents.DeleteConsentVersion:input_type -> proto.api.DeleteConsentVersionRequest
-	104, // 114: proto.api.Consents.PublishConsent:input_type -> proto.api.PublishConsentRequest
-	106, // 115: proto.api.StandaloneSurveys.GetStandaloneSurveys:input_type -> proto.api.GetStandaloneSurveysRequest
-	108, // 116: proto.api.StandaloneSurveys.GetStandaloneSurvey:input_type -> proto.api.GetStandaloneSurveyRequest
-	110, // 117: proto.api.StandaloneSurveys.UpsertStandaloneSurvey:input_type -> proto.api.UpsertStandaloneSurveyRequest
-	112, // 118: proto.api.StandaloneSurveys.DeleteStandaloneSurvey:input_type -> proto.api.DeleteStandaloneSurveyRequest
-	114, // 119: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaires:input_type -> proto.api.GetStandaloneQuestionnairesRequest
-	116, // 120: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaire:input_type -> proto.api.GetStandaloneQuestionnaireRequest
-	118, // 121: proto.api.StandaloneQuestionnaires.UpsertStandaloneQuestionnaire:input_type -> proto.api.UpsertStandaloneQuestionnaireRequest
-	120, // 122: proto.api.StandaloneQuestionnaires.DeleteStandaloneQuestionnaire:input_type -> proto.api.DeleteStandaloneQuestionnaireRequest
-	122, // 123: proto.api.Uploads.GetSubjects:input_type -> proto.api.GetSubjectsRequest
-	124, // 124: proto.api.Uploads.GetSubjectData:input_type -> proto.api.GetSubjectDataRequest
-	128, // 125: proto.api.Uploads.GetSubjectResource:input_type -> proto.api.GetSubjectResourceRequest
-	130, // 126: proto.api.Uploads.GetDownloadList:input_type -> proto.api.GetDownloadListRequest
-	132, // 127: proto.api.Uploads.GetDownloadTicket:input_type -> proto.api.GetDownloadTicketRequest
-	134, // 128: proto.api.Uploads.GetStatistics:input_type -> proto.api.GetStatisticsRequest
-	136, // 129: proto.api.Images.GetImage:input_type -> proto.api.GetImageRequest
-	137, // 130: proto.api.Images.UpsertImage:input_type -> proto.api.UpsertImageRequest
-	139, // 131: proto.api.Images.DeleteImage:input_type -> proto.api.DeleteImageRequest
-	141, // 132: proto.api.Clients.GetClients:input_type -> proto.api.GetClientsRequest
-	143, // 133: proto.api.Clients.GetClient:input_type -> proto.api.GetClientRequest
-	145, // 134: proto.api.Clients.UpsertClient:input_type -> proto.api.UpsertClientRequest
-	147, // 135: proto.api.Clients.ExchangeToken:input_type -> proto.api.ExchangeTokenRequest
-	149, // 136: proto.api.Clients.DeleteClient:input_type -> proto.api.DeleteClientRequest
-	151, // 137: proto.api.Checks.Liveness:input_type -> proto.api.ChecksRequest
-	151, // 138: proto.api.Checks.Readiness:input_type -> proto.api.ChecksRequest
-	1,   // 139: proto.api.Users.GetSelf:output_type -> proto.api.GetSelfResponse
-	3,   // 140: proto.api.Users.GetUsers:output_type -> proto.api.GetUsersResponse
-	5,   // 141: proto.api.Users.DeleteUser:output_type -> proto.api.DeleteUserResponse
-	7,   // 142: proto.api.Users.UpsertProgramRole:output_type -> proto.api.UpsertProgramRoleResponse
-	9,   // 143: proto.api.Users.DeleteProgramRole:output_type -> proto.api.DeleteProgramRoleResponse
-	11,  // 144: proto.api.Users.GetBlockedPrograms:output_type -> proto.api.GetBlockedProgramsResponse
-	13,  // 145: proto.api.Users.BlockProgram:output_type -> proto.api.BlockProgramResponse
-	15,  // 146: proto.api.Users.UnblockProgram:output_type -> proto.api.UnblockProgramResponse
-	17,  // 147: proto.api.Programs.GetPrograms:output_type -> proto.api.GetProgramsResponse
-	19,  // 148: proto.api.Programs.GetProgramsList:output_type -> proto.api.GetProgramsListResponse
-	21,  // 149: proto.api.Programs.IsNameAvailable:output_type -> proto.api.IsNameAvailableResponse
-	23,  // 150: proto.api.Programs.GetProgram:output_type -> proto.api.GetProgramResponse
-	25,  // 151: proto.api.Programs.GetProgramData:output_type -> proto.api.GetProgramDataResponse
-	27,  // 152: proto.api.Programs.GetProgramDiffs:output_type -> proto.api.GetProgramDiffsResponse
-	29,  // 153: proto.api.Programs.UpsertProgram:output_type -> proto.api.UpsertProgramResponse
-	31,  // 154: proto.api.Programs.DeleteProgram:output_type -> proto.api.DeleteProgramResponse
-	33,  // 155: proto.api.Programs.PublishProgram:output_type -> proto.api.PublishProgramResponse
-	35,  // 156: proto.api.Programs.LoadProgram:output_type -> proto.api.LoadProgramResponse
-	37,  // 157: proto.api.Surveys.GetSurveys:output_type -> proto.api.GetSurveysResponse
-	39,  // 158: proto.api.Surveys.GetSurvey:output_type -> proto.api.GetSurveyResponse
-	41,  // 159: proto.api.Surveys.UpsertSurvey:output_type -> proto.api.UpsertSurveyResponse
-	43,  // 160: proto.api.Surveys.DeleteSurvey:output_type -> proto.api.DeleteSurveyResponse
-	45,  // 161: proto.api.Surveys.PublishSurvey:output_type -> proto.api.PublishSurveyResponse
-	47,  // 162: proto.api.Surveys.LoadSurvey:output_type -> proto.api.LoadSurveyResponse
-	49,  // 163: proto.api.Questionnaires.GetQuestionnaires:output_type -> proto.api.GetQuestionnairesResponse
-	51,  // 164: proto.api.Questionnaires.GetQuestionnaire:output_type -> proto.api.GetQuestionnaireResponse
-	53,  // 165: proto.api.Questionnaires.UpsertQuestionnaire:output_type -> proto.api.UpsertQuestionnaireResponse
-	55,  // 166: proto.api.Questionnaires.DeleteQuestionnaire:output_type -> proto.api.DeleteQuestionnaireResponse
-	57,  // 167: proto.api.Questionnaires.PublishQuestionnaire:output_type -> proto.api.PublishQuestionnaireResponse
-	59,  // 168: proto.api.Questionnaires.LoadQuestionnaire:output_type -> proto.api.LoadQuestionnaireResponse
-	61,  // 169: proto.api.Routines.GetRoutines:output_type -> proto.api.GetRoutinesResponse
-	63,  // 170: proto.api.Routines.GetRoutine:output_type -> proto.api.GetRoutineResponse
-	65,  // 171: proto.api.Routines.UpsertRoutine:output_type -> proto.api.UpsertRoutineResponse
-	67,  // 172: proto.api.Routines.DeleteRoutine:output_type -> proto.api.DeleteRoutineResponse
-	69,  // 173: proto.api.Routines.PublishRoutine:output_type -> proto.api.PublishRoutineResponse
-	71,  // 174: proto.api.Routines.LoadRoutine:output_type -> proto.api.LoadRoutineResponse
-	73,  // 175: proto.api.Displays.GetDisplays:output_type -> proto.api.GetDisplaysResponse
-	75,  // 176: proto.api.Displays.GetDisplay:output_type -> proto.api.GetDisplayResponse
-	77,  // 177: proto.api.Displays.UpsertDisplay:output_type -> proto.api.UpsertDisplayResponse
-	79,  // 178: proto.api.Displays.DeleteDisplay:output_type -> proto.api.DeleteDisplayResponse
-	81,  // 179: proto.api.Displays.PublishDisplay:output_type -> proto.api.PublishDisplayResponse
-	83,  // 180: proto.api.Displays.LoadDisplay:output_type -> proto.api.LoadDisplayResponse
-	85,  // 181: proto.api.ParticipantCodes.GetCodes:output_type -> proto.api.GetCodesResponse
-	87,  // 182: proto.api.ParticipantCodes.GenerateCodes:output_type -> proto.api.GenerateCodesResponse
-	89,  // 183: proto.api.ParticipantCodes.AssignCode:output_type -> proto.api.AssignCodeResponse
-	91,  // 184: proto.api.ParticipantCodes.DeleteCode:output_type -> proto.api.DeleteCodeResponse
-	93,  // 185: proto.api.ParticipantCodes.UnassignCode:output_type -> proto.api.UnassignCodeResponse
-	95,  // 186: proto.api.Consents.GetConsents:output_type -> proto.api.GetConsentsResponse
-	97,  // 187: proto.api.Consents.GetConsent:output_type -> proto.api.GetConsentResponse
-	99,  // 188: proto.api.Consents.UpsertConsent:output_type -> proto.api.UpsertConsentResponse
-	101, // 189: proto.api.Consents.DeleteConsent:output_type -> proto.api.DeleteConsentResponse
-	103, // 190: proto.api.Consents.DeleteConsentVersion:output_type -> proto.api.DeleteConsentVersionResponse
-	105, // 191: proto.api.Consents.PublishConsent:output_type -> proto.api.PublishConsentResponse
-	107, // 192: proto.api.StandaloneSurveys.GetStandaloneSurveys:output_type -> proto.api.GetStandaloneSurveysResponse
-	109, // 193: proto.api.StandaloneSurveys.GetStandaloneSurvey:output_type -> proto.api.GetStandaloneSurveyResponse
-	111, // 194: proto.api.StandaloneSurveys.UpsertStandaloneSurvey:output_type -> proto.api.UpsertStandaloneSurveyResponse
-	113, // 195: proto.api.StandaloneSurveys.DeleteStandaloneSurvey:output_type -> proto.api.DeleteStandaloneSurveyResponse
-	115, // 196: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaires:output_type -> proto.api.GetStandaloneQuestionnairesResponse
-	117, // 197: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaire:output_type -> proto.api.GetStandaloneQuestionnaireResponse
-	119, // 198: proto.api.StandaloneQuestionnaires.UpsertStandaloneQuestionnaire:output_type -> proto.api.UpsertStandaloneQuestionnaireResponse
-	121, // 199: proto.api.StandaloneQuestionnaires.DeleteStandaloneQuestionnaire:output_type -> proto.api.DeleteStandaloneQuestionnaireResponse
-	123, // 200: proto.api.Uploads.GetSubjects:output_type -> proto.api.GetSubjectsResponse
-	125, // 201: proto.api.Uploads.GetSubjectData:output_type -> proto.api.GetSubjectDataResponse
-	129, // 202: proto.api.Uploads.GetSubjectResource:output_type -> proto.api.GetSubjectResourceResponse
-	131, // 203: proto.api.Uploads.GetDownloadList:output_type -> proto.api.GetDownloadListResponse
-	133, // 204: proto.api.Uploads.GetDownloadTicket:output_type -> proto.api.GetDownloadTicketResponse
-	135, // 205: proto.api.Uploads.GetStatistics:output_type -> proto.api.GetStatisticsResponse
-	161, // 206: proto.api.Images.GetImage:output_type -> google.api.HttpBody
-	138, // 207: proto.api.Images.UpsertImage:output_type -> proto.api.UpsertImageResponse
-	140, // 208: proto.api.Images.DeleteImage:output_type -> proto.api.DeleteImageResponse
-	142, // 209: proto.api.Clients.GetClients:output_type -> proto.api.GetClientsResponse
-	144, // 210: proto.api.Clients.GetClient:output_type -> proto.api.GetClientResponse
-	146, // 211: proto.api.Clients.UpsertClient:output_type -> proto.api.UpsertClientResponse
-	148, // 212: proto.api.Clients.ExchangeToken:output_type -> proto.api.ExchangeTokenResponse
-	150, // 213: proto.api.Clients.DeleteClient:output_type -> proto.api.DeleteClientResponse
-	152, // 214: proto.api.Checks.Liveness:output_type -> proto.api.ChecksResponse
-	152, // 215: proto.api.Checks.Readiness:output_type -> proto.api.ChecksResponse
-	139, // [139:216] is the sub-list for method output_type
-	62,  // [62:139] is the sub-list for method input_type
-	62,  // [62:62] is the sub-list for extension type_name
-	62,  // [62:62] is the sub-list for extension extendee
-	0,   // [0:62] is the sub-list for field type_name
+	151, // 0: proto.api.GetSelfResponse.user:type_name -> proto.User
+	151, // 1: proto.api.GetUsersResponse.users:type_name -> proto.User
+	152, // 2: proto.api.UpsertProgramRoleRequest.programRole:type_name -> proto.ProgramRole
+	153, // 3: proto.api.GetBlockedProgramsResponse.blockedPrograms:type_name -> proto.BlockedProgram
+	154, // 4: proto.api.GetProgramsResponse.programs:type_name -> google.protobuf.Struct
+	154, // 5: proto.api.GetProgramResponse.program:type_name -> google.protobuf.Struct
+	155, // 6: proto.api.GetProgramResponse.diffs:type_name -> proto.Diff
+	154, // 7: proto.api.GetProgramDataResponse.program:type_name -> google.protobuf.Struct
+	154, // 8: proto.api.GetProgramDataResponse.surveys:type_name -> google.protobuf.Struct
+	156, // 9: proto.api.GetProgramDataResponse.questionnaires:type_name -> proto.Questionnaire
+	154, // 10: proto.api.GetProgramDataResponse.consents:type_name -> google.protobuf.Struct
+	154, // 11: proto.api.GetProgramDataResponse.routines:type_name -> google.protobuf.Struct
+	154, // 12: proto.api.GetProgramDataResponse.displays:type_name -> google.protobuf.Struct
+	154, // 13: proto.api.GetProgramDiffsResponse.program:type_name -> google.protobuf.Struct
+	154, // 14: proto.api.GetProgramDiffsResponse.surveys:type_name -> google.protobuf.Struct
+	154, // 15: proto.api.GetProgramDiffsResponse.questionnaires:type_name -> google.protobuf.Struct
+	154, // 16: proto.api.GetProgramDiffsResponse.routines:type_name -> google.protobuf.Struct
+	154, // 17: proto.api.GetProgramDiffsResponse.displays:type_name -> google.protobuf.Struct
+	154, // 18: proto.api.UpsertProgramRequest.program:type_name -> google.protobuf.Struct
+	154, // 19: proto.api.UpsertProgramRequest.change:type_name -> google.protobuf.Struct
+	154, // 20: proto.api.GetSurveysResponse.surveys:type_name -> google.protobuf.Struct
+	154, // 21: proto.api.GetSurveyResponse.survey:type_name -> google.protobuf.Struct
+	155, // 22: proto.api.GetSurveyResponse.diffs:type_name -> proto.Diff
+	154, // 23: proto.api.UpsertSurveyRequest.survey:type_name -> google.protobuf.Struct
+	154, // 24: proto.api.UpsertSurveyRequest.change:type_name -> google.protobuf.Struct
+	156, // 25: proto.api.GetQuestionnairesResponse.questionnaires:type_name -> proto.Questionnaire
+	156, // 26: proto.api.GetQuestionnaireResponse.questionnaire:type_name -> proto.Questionnaire
+	155, // 27: proto.api.GetQuestionnaireResponse.diffs:type_name -> proto.Diff
+	156, // 28: proto.api.UpsertQuestionnaireRequest.questionnaire:type_name -> proto.Questionnaire
+	154, // 29: proto.api.UpsertQuestionnaireRequest.change:type_name -> google.protobuf.Struct
+	154, // 30: proto.api.GetRoutinesResponse.routines:type_name -> google.protobuf.Struct
+	154, // 31: proto.api.GetRoutineResponse.routine:type_name -> google.protobuf.Struct
+	155, // 32: proto.api.GetRoutineResponse.diffs:type_name -> proto.Diff
+	154, // 33: proto.api.UpsertRoutineRequest.routine:type_name -> google.protobuf.Struct
+	154, // 34: proto.api.UpsertRoutineRequest.change:type_name -> google.protobuf.Struct
+	154, // 35: proto.api.GetDisplaysResponse.displays:type_name -> google.protobuf.Struct
+	154, // 36: proto.api.GetDisplayResponse.display:type_name -> google.protobuf.Struct
+	155, // 37: proto.api.GetDisplayResponse.diffs:type_name -> proto.Diff
+	154, // 38: proto.api.UpsertDisplayRequest.display:type_name -> google.protobuf.Struct
+	154, // 39: proto.api.UpsertDisplayRequest.change:type_name -> google.protobuf.Struct
+	157, // 40: proto.api.GetCodesResponse.codes:type_name -> proto.ParticipantCode
+	154, // 41: proto.api.GetConsentsResponse.consents:type_name -> google.protobuf.Struct
+	154, // 42: proto.api.GetConsentResponse.consents:type_name -> google.protobuf.Struct
+	154, // 43: proto.api.UpsertConsentRequest.consent:type_name -> google.protobuf.Struct
+	154, // 44: proto.api.GetStandaloneSurveysResponse.surveys:type_name -> google.protobuf.Struct
+	154, // 45: proto.api.GetStandaloneSurveyResponse.survey:type_name -> google.protobuf.Struct
+	154, // 46: proto.api.UpsertStandaloneSurveyRequest.survey:type_name -> google.protobuf.Struct
+	154, // 47: proto.api.GetStandaloneQuestionnairesResponse.questionnaires:type_name -> google.protobuf.Struct
+	154, // 48: proto.api.GetStandaloneQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
+	154, // 49: proto.api.UpsertStandaloneQuestionnaireRequest.questionnaire:type_name -> google.protobuf.Struct
+	154, // 50: proto.api.GetSubjectsResponse.subjects:type_name -> google.protobuf.Struct
+	154, // 51: proto.api.GetSubjectDataResponse.uploads:type_name -> google.protobuf.Struct
+	154, // 52: proto.api.GetSubjectResourceResponse.resource:type_name -> google.protobuf.Struct
+	154, // 53: proto.api.GetDownloadListResponse.subjects:type_name -> google.protobuf.Struct
+	154, // 54: proto.api.GetStatisticsRequest.params:type_name -> google.protobuf.Struct
+	154, // 55: proto.api.GetStatisticsResponse.data:type_name -> google.protobuf.Struct
+	158, // 56: proto.api.GetClientsResponse.clients:type_name -> proto.Client
+	158, // 57: proto.api.GetClientResponse.client:type_name -> proto.Client
+	154, // 58: proto.api.ExchangeTokenRequest.params:type_name -> google.protobuf.Struct
+	154, // 59: proto.api.ExchangeTokenResponse.body:type_name -> google.protobuf.Struct
+	0,   // 60: proto.api.Users.GetSelf:input_type -> proto.api.GetSelfRequest
+	2,   // 61: proto.api.Users.GetUsers:input_type -> proto.api.GetUsersRequest
+	4,   // 62: proto.api.Users.DeleteUser:input_type -> proto.api.DeleteUserRequest
+	6,   // 63: proto.api.Users.UpsertProgramRole:input_type -> proto.api.UpsertProgramRoleRequest
+	8,   // 64: proto.api.Users.DeleteProgramRole:input_type -> proto.api.DeleteProgramRoleRequest
+	10,  // 65: proto.api.Users.GetBlockedPrograms:input_type -> proto.api.GetBlockedProgramsRequest
+	12,  // 66: proto.api.Users.BlockProgram:input_type -> proto.api.BlockProgramRequest
+	14,  // 67: proto.api.Users.UnblockProgram:input_type -> proto.api.UnblockProgramRequest
+	16,  // 68: proto.api.Programs.GetPrograms:input_type -> proto.api.GetProgramsRequest
+	18,  // 69: proto.api.Programs.GetProgramsList:input_type -> proto.api.GetProgramsListRequest
+	20,  // 70: proto.api.Programs.IsNameAvailable:input_type -> proto.api.IsNameAvailableRequest
+	22,  // 71: proto.api.Programs.GetProgram:input_type -> proto.api.GetProgramRequest
+	24,  // 72: proto.api.Programs.GetProgramData:input_type -> proto.api.GetProgramDataRequest
+	26,  // 73: proto.api.Programs.GetProgramDiffs:input_type -> proto.api.GetProgramDiffsRequest
+	28,  // 74: proto.api.Programs.UpsertProgram:input_type -> proto.api.UpsertProgramRequest
+	30,  // 75: proto.api.Programs.DeleteProgram:input_type -> proto.api.DeleteProgramRequest
+	32,  // 76: proto.api.Programs.PublishProgram:input_type -> proto.api.PublishProgramRequest
+	34,  // 77: proto.api.Programs.LoadProgram:input_type -> proto.api.LoadProgramRequest
+	36,  // 78: proto.api.Surveys.GetSurveys:input_type -> proto.api.GetSurveysRequest
+	38,  // 79: proto.api.Surveys.GetSurvey:input_type -> proto.api.GetSurveyRequest
+	40,  // 80: proto.api.Surveys.UpsertSurvey:input_type -> proto.api.UpsertSurveyRequest
+	42,  // 81: proto.api.Surveys.DeleteSurvey:input_type -> proto.api.DeleteSurveyRequest
+	44,  // 82: proto.api.Surveys.PublishSurvey:input_type -> proto.api.PublishSurveyRequest
+	46,  // 83: proto.api.Surveys.LoadSurvey:input_type -> proto.api.LoadSurveyRequest
+	48,  // 84: proto.api.Questionnaires.GetQuestionnaires:input_type -> proto.api.GetQuestionnairesRequest
+	50,  // 85: proto.api.Questionnaires.GetQuestionnaire:input_type -> proto.api.GetQuestionnaireRequest
+	52,  // 86: proto.api.Questionnaires.UpsertQuestionnaire:input_type -> proto.api.UpsertQuestionnaireRequest
+	54,  // 87: proto.api.Questionnaires.DeleteQuestionnaire:input_type -> proto.api.DeleteQuestionnaireRequest
+	56,  // 88: proto.api.Questionnaires.PublishQuestionnaire:input_type -> proto.api.PublishQuestionnaireRequest
+	58,  // 89: proto.api.Questionnaires.LoadQuestionnaire:input_type -> proto.api.LoadQuestionnaireRequest
+	60,  // 90: proto.api.Routines.GetRoutines:input_type -> proto.api.GetRoutinesRequest
+	62,  // 91: proto.api.Routines.GetRoutine:input_type -> proto.api.GetRoutineRequest
+	64,  // 92: proto.api.Routines.UpsertRoutine:input_type -> proto.api.UpsertRoutineRequest
+	66,  // 93: proto.api.Routines.DeleteRoutine:input_type -> proto.api.DeleteRoutineRequest
+	68,  // 94: proto.api.Routines.PublishRoutine:input_type -> proto.api.PublishRoutineRequest
+	70,  // 95: proto.api.Routines.LoadRoutine:input_type -> proto.api.LoadRoutineRequest
+	72,  // 96: proto.api.Displays.GetDisplays:input_type -> proto.api.GetDisplaysRequest
+	74,  // 97: proto.api.Displays.GetDisplay:input_type -> proto.api.GetDisplayRequest
+	76,  // 98: proto.api.Displays.UpsertDisplay:input_type -> proto.api.UpsertDisplayRequest
+	78,  // 99: proto.api.Displays.DeleteDisplay:input_type -> proto.api.DeleteDisplayRequest
+	80,  // 100: proto.api.Displays.PublishDisplay:input_type -> proto.api.PublishDisplayRequest
+	82,  // 101: proto.api.Displays.LoadDisplay:input_type -> proto.api.LoadDisplayRequest
+	84,  // 102: proto.api.ParticipantCodes.GetCodes:input_type -> proto.api.GetCodesRequest
+	86,  // 103: proto.api.ParticipantCodes.GenerateCodes:input_type -> proto.api.GenerateCodesRequest
+	88,  // 104: proto.api.ParticipantCodes.AssignCode:input_type -> proto.api.AssignCodeRequest
+	90,  // 105: proto.api.ParticipantCodes.DeleteCode:input_type -> proto.api.DeleteCodeRequest
+	92,  // 106: proto.api.ParticipantCodes.UnassignCode:input_type -> proto.api.UnassignCodeRequest
+	94,  // 107: proto.api.Consents.GetConsents:input_type -> proto.api.GetConsentsRequest
+	96,  // 108: proto.api.Consents.GetConsent:input_type -> proto.api.GetConsentRequest
+	98,  // 109: proto.api.Consents.UpsertConsent:input_type -> proto.api.UpsertConsentRequest
+	100, // 110: proto.api.Consents.DeleteConsent:input_type -> proto.api.DeleteConsentRequest
+	102, // 111: proto.api.Consents.DeleteConsentVersion:input_type -> proto.api.DeleteConsentVersionRequest
+	104, // 112: proto.api.Consents.PublishConsent:input_type -> proto.api.PublishConsentRequest
+	106, // 113: proto.api.StandaloneSurveys.GetStandaloneSurveys:input_type -> proto.api.GetStandaloneSurveysRequest
+	108, // 114: proto.api.StandaloneSurveys.GetStandaloneSurvey:input_type -> proto.api.GetStandaloneSurveyRequest
+	110, // 115: proto.api.StandaloneSurveys.UpsertStandaloneSurvey:input_type -> proto.api.UpsertStandaloneSurveyRequest
+	112, // 116: proto.api.StandaloneSurveys.DeleteStandaloneSurvey:input_type -> proto.api.DeleteStandaloneSurveyRequest
+	114, // 117: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaires:input_type -> proto.api.GetStandaloneQuestionnairesRequest
+	116, // 118: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaire:input_type -> proto.api.GetStandaloneQuestionnaireRequest
+	118, // 119: proto.api.StandaloneQuestionnaires.UpsertStandaloneQuestionnaire:input_type -> proto.api.UpsertStandaloneQuestionnaireRequest
+	120, // 120: proto.api.StandaloneQuestionnaires.DeleteStandaloneQuestionnaire:input_type -> proto.api.DeleteStandaloneQuestionnaireRequest
+	122, // 121: proto.api.Uploads.GetSubjects:input_type -> proto.api.GetSubjectsRequest
+	124, // 122: proto.api.Uploads.GetSubjectData:input_type -> proto.api.GetSubjectDataRequest
+	126, // 123: proto.api.Uploads.GetSubjectResource:input_type -> proto.api.GetSubjectResourceRequest
+	128, // 124: proto.api.Uploads.GetDownloadList:input_type -> proto.api.GetDownloadListRequest
+	130, // 125: proto.api.Uploads.GetDownloadTicket:input_type -> proto.api.GetDownloadTicketRequest
+	132, // 126: proto.api.Uploads.GetStatistics:input_type -> proto.api.GetStatisticsRequest
+	134, // 127: proto.api.Images.GetImage:input_type -> proto.api.GetImageRequest
+	135, // 128: proto.api.Images.UpsertImage:input_type -> proto.api.UpsertImageRequest
+	137, // 129: proto.api.Images.DeleteImage:input_type -> proto.api.DeleteImageRequest
+	139, // 130: proto.api.Clients.GetClients:input_type -> proto.api.GetClientsRequest
+	141, // 131: proto.api.Clients.GetClient:input_type -> proto.api.GetClientRequest
+	143, // 132: proto.api.Clients.UpsertClient:input_type -> proto.api.UpsertClientRequest
+	145, // 133: proto.api.Clients.ExchangeToken:input_type -> proto.api.ExchangeTokenRequest
+	147, // 134: proto.api.Clients.DeleteClient:input_type -> proto.api.DeleteClientRequest
+	149, // 135: proto.api.Checks.Liveness:input_type -> proto.api.ChecksRequest
+	149, // 136: proto.api.Checks.Readiness:input_type -> proto.api.ChecksRequest
+	1,   // 137: proto.api.Users.GetSelf:output_type -> proto.api.GetSelfResponse
+	3,   // 138: proto.api.Users.GetUsers:output_type -> proto.api.GetUsersResponse
+	5,   // 139: proto.api.Users.DeleteUser:output_type -> proto.api.DeleteUserResponse
+	7,   // 140: proto.api.Users.UpsertProgramRole:output_type -> proto.api.UpsertProgramRoleResponse
+	9,   // 141: proto.api.Users.DeleteProgramRole:output_type -> proto.api.DeleteProgramRoleResponse
+	11,  // 142: proto.api.Users.GetBlockedPrograms:output_type -> proto.api.GetBlockedProgramsResponse
+	13,  // 143: proto.api.Users.BlockProgram:output_type -> proto.api.BlockProgramResponse
+	15,  // 144: proto.api.Users.UnblockProgram:output_type -> proto.api.UnblockProgramResponse
+	17,  // 145: proto.api.Programs.GetPrograms:output_type -> proto.api.GetProgramsResponse
+	19,  // 146: proto.api.Programs.GetProgramsList:output_type -> proto.api.GetProgramsListResponse
+	21,  // 147: proto.api.Programs.IsNameAvailable:output_type -> proto.api.IsNameAvailableResponse
+	23,  // 148: proto.api.Programs.GetProgram:output_type -> proto.api.GetProgramResponse
+	25,  // 149: proto.api.Programs.GetProgramData:output_type -> proto.api.GetProgramDataResponse
+	27,  // 150: proto.api.Programs.GetProgramDiffs:output_type -> proto.api.GetProgramDiffsResponse
+	29,  // 151: proto.api.Programs.UpsertProgram:output_type -> proto.api.UpsertProgramResponse
+	31,  // 152: proto.api.Programs.DeleteProgram:output_type -> proto.api.DeleteProgramResponse
+	33,  // 153: proto.api.Programs.PublishProgram:output_type -> proto.api.PublishProgramResponse
+	35,  // 154: proto.api.Programs.LoadProgram:output_type -> proto.api.LoadProgramResponse
+	37,  // 155: proto.api.Surveys.GetSurveys:output_type -> proto.api.GetSurveysResponse
+	39,  // 156: proto.api.Surveys.GetSurvey:output_type -> proto.api.GetSurveyResponse
+	41,  // 157: proto.api.Surveys.UpsertSurvey:output_type -> proto.api.UpsertSurveyResponse
+	43,  // 158: proto.api.Surveys.DeleteSurvey:output_type -> proto.api.DeleteSurveyResponse
+	45,  // 159: proto.api.Surveys.PublishSurvey:output_type -> proto.api.PublishSurveyResponse
+	47,  // 160: proto.api.Surveys.LoadSurvey:output_type -> proto.api.LoadSurveyResponse
+	49,  // 161: proto.api.Questionnaires.GetQuestionnaires:output_type -> proto.api.GetQuestionnairesResponse
+	51,  // 162: proto.api.Questionnaires.GetQuestionnaire:output_type -> proto.api.GetQuestionnaireResponse
+	53,  // 163: proto.api.Questionnaires.UpsertQuestionnaire:output_type -> proto.api.UpsertQuestionnaireResponse
+	55,  // 164: proto.api.Questionnaires.DeleteQuestionnaire:output_type -> proto.api.DeleteQuestionnaireResponse
+	57,  // 165: proto.api.Questionnaires.PublishQuestionnaire:output_type -> proto.api.PublishQuestionnaireResponse
+	59,  // 166: proto.api.Questionnaires.LoadQuestionnaire:output_type -> proto.api.LoadQuestionnaireResponse
+	61,  // 167: proto.api.Routines.GetRoutines:output_type -> proto.api.GetRoutinesResponse
+	63,  // 168: proto.api.Routines.GetRoutine:output_type -> proto.api.GetRoutineResponse
+	65,  // 169: proto.api.Routines.UpsertRoutine:output_type -> proto.api.UpsertRoutineResponse
+	67,  // 170: proto.api.Routines.DeleteRoutine:output_type -> proto.api.DeleteRoutineResponse
+	69,  // 171: proto.api.Routines.PublishRoutine:output_type -> proto.api.PublishRoutineResponse
+	71,  // 172: proto.api.Routines.LoadRoutine:output_type -> proto.api.LoadRoutineResponse
+	73,  // 173: proto.api.Displays.GetDisplays:output_type -> proto.api.GetDisplaysResponse
+	75,  // 174: proto.api.Displays.GetDisplay:output_type -> proto.api.GetDisplayResponse
+	77,  // 175: proto.api.Displays.UpsertDisplay:output_type -> proto.api.UpsertDisplayResponse
+	79,  // 176: proto.api.Displays.DeleteDisplay:output_type -> proto.api.DeleteDisplayResponse
+	81,  // 177: proto.api.Displays.PublishDisplay:output_type -> proto.api.PublishDisplayResponse
+	83,  // 178: proto.api.Displays.LoadDisplay:output_type -> proto.api.LoadDisplayResponse
+	85,  // 179: proto.api.ParticipantCodes.GetCodes:output_type -> proto.api.GetCodesResponse
+	87,  // 180: proto.api.ParticipantCodes.GenerateCodes:output_type -> proto.api.GenerateCodesResponse
+	89,  // 181: proto.api.ParticipantCodes.AssignCode:output_type -> proto.api.AssignCodeResponse
+	91,  // 182: proto.api.ParticipantCodes.DeleteCode:output_type -> proto.api.DeleteCodeResponse
+	93,  // 183: proto.api.ParticipantCodes.UnassignCode:output_type -> proto.api.UnassignCodeResponse
+	95,  // 184: proto.api.Consents.GetConsents:output_type -> proto.api.GetConsentsResponse
+	97,  // 185: proto.api.Consents.GetConsent:output_type -> proto.api.GetConsentResponse
+	99,  // 186: proto.api.Consents.UpsertConsent:output_type -> proto.api.UpsertConsentResponse
+	101, // 187: proto.api.Consents.DeleteConsent:output_type -> proto.api.DeleteConsentResponse
+	103, // 188: proto.api.Consents.DeleteConsentVersion:output_type -> proto.api.DeleteConsentVersionResponse
+	105, // 189: proto.api.Consents.PublishConsent:output_type -> proto.api.PublishConsentResponse
+	107, // 190: proto.api.StandaloneSurveys.GetStandaloneSurveys:output_type -> proto.api.GetStandaloneSurveysResponse
+	109, // 191: proto.api.StandaloneSurveys.GetStandaloneSurvey:output_type -> proto.api.GetStandaloneSurveyResponse
+	111, // 192: proto.api.StandaloneSurveys.UpsertStandaloneSurvey:output_type -> proto.api.UpsertStandaloneSurveyResponse
+	113, // 193: proto.api.StandaloneSurveys.DeleteStandaloneSurvey:output_type -> proto.api.DeleteStandaloneSurveyResponse
+	115, // 194: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaires:output_type -> proto.api.GetStandaloneQuestionnairesResponse
+	117, // 195: proto.api.StandaloneQuestionnaires.GetStandaloneQuestionnaire:output_type -> proto.api.GetStandaloneQuestionnaireResponse
+	119, // 196: proto.api.StandaloneQuestionnaires.UpsertStandaloneQuestionnaire:output_type -> proto.api.UpsertStandaloneQuestionnaireResponse
+	121, // 197: proto.api.StandaloneQuestionnaires.DeleteStandaloneQuestionnaire:output_type -> proto.api.DeleteStandaloneQuestionnaireResponse
+	123, // 198: proto.api.Uploads.GetSubjects:output_type -> proto.api.GetSubjectsResponse
+	125, // 199: proto.api.Uploads.GetSubjectData:output_type -> proto.api.GetSubjectDataResponse
+	127, // 200: proto.api.Uploads.GetSubjectResource:output_type -> proto.api.GetSubjectResourceResponse
+	129, // 201: proto.api.Uploads.GetDownloadList:output_type -> proto.api.GetDownloadListResponse
+	131, // 202: proto.api.Uploads.GetDownloadTicket:output_type -> proto.api.GetDownloadTicketResponse
+	133, // 203: proto.api.Uploads.GetStatistics:output_type -> proto.api.GetStatisticsResponse
+	159, // 204: proto.api.Images.GetImage:output_type -> google.api.HttpBody
+	136, // 205: proto.api.Images.UpsertImage:output_type -> proto.api.UpsertImageResponse
+	138, // 206: proto.api.Images.DeleteImage:output_type -> proto.api.DeleteImageResponse
+	140, // 207: proto.api.Clients.GetClients:output_type -> proto.api.GetClientsResponse
+	142, // 208: proto.api.Clients.GetClient:output_type -> proto.api.GetClientResponse
+	144, // 209: proto.api.Clients.UpsertClient:output_type -> proto.api.UpsertClientResponse
+	146, // 210: proto.api.Clients.ExchangeToken:output_type -> proto.api.ExchangeTokenResponse
+	148, // 211: proto.api.Clients.DeleteClient:output_type -> proto.api.DeleteClientResponse
+	150, // 212: proto.api.Checks.Liveness:output_type -> proto.api.ChecksResponse
+	150, // 213: proto.api.Checks.Readiness:output_type -> proto.api.ChecksResponse
+	137, // [137:214] is the sub-list for method output_type
+	60,  // [60:137] is the sub-list for method input_type
+	60,  // [60:60] is the sub-list for extension type_name
+	60,  // [60:60] is the sub-list for extension extendee
+	0,   // [0:60] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_api_api_proto_init() }
@@ -7872,14 +7758,14 @@ func file_research_pillars_api_api_proto_init() {
 		return
 	}
 	file_research_pillars_api_api_proto_msgTypes[120].OneofWrappers = []any{}
-	file_research_pillars_api_api_proto_msgTypes[134].OneofWrappers = []any{}
+	file_research_pillars_api_api_proto_msgTypes[132].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_research_pillars_api_api_proto_rawDesc), len(file_research_pillars_api_api_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   153,
+			NumMessages:   151,
 			NumExtensions: 0,
 			NumServices:   14,
 		},

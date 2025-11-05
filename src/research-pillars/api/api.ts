@@ -526,16 +526,6 @@ export interface GetSubjectDataRequest {
 }
 
 export interface GetSubjectDataResponse {
-  researchSubjects: { [key: string]: any }[];
-  questionnaireResponses: { [key: string]: any }[];
-}
-
-export interface GetSubjectRawDataRequest {
-  programName: string;
-  subjectID: string;
-}
-
-export interface GetSubjectRawDataResponse {
   uploads: { [key: string]: any }[];
 }
 
@@ -8270,16 +8260,13 @@ export const GetSubjectDataRequest: MessageFns<GetSubjectDataRequest> = {
 };
 
 function createBaseGetSubjectDataResponse(): GetSubjectDataResponse {
-  return { researchSubjects: [], questionnaireResponses: [] };
+  return { uploads: [] };
 }
 
 export const GetSubjectDataResponse: MessageFns<GetSubjectDataResponse> = {
   encode(message: GetSubjectDataResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.researchSubjects) {
+    for (const v of message.uploads) {
       Struct.encode(Struct.wrap(v!), writer.uint32(10).fork()).join();
-    }
-    for (const v of message.questionnaireResponses) {
-      Struct.encode(Struct.wrap(v!), writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -8288,157 +8275,6 @@ export const GetSubjectDataResponse: MessageFns<GetSubjectDataResponse> = {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetSubjectDataResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.researchSubjects.push(Struct.unwrap(Struct.decode(reader, reader.uint32())));
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.questionnaireResponses.push(Struct.unwrap(Struct.decode(reader, reader.uint32())));
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetSubjectDataResponse {
-    return {
-      researchSubjects: globalThis.Array.isArray(object?.researchSubjects) ? [...object.researchSubjects] : [],
-      questionnaireResponses: globalThis.Array.isArray(object?.questionnaireResponses)
-        ? [...object.questionnaireResponses]
-        : [],
-    };
-  },
-
-  toJSON(message: GetSubjectDataResponse): unknown {
-    const obj: any = {};
-    if (message.researchSubjects?.length) {
-      obj.researchSubjects = message.researchSubjects;
-    }
-    if (message.questionnaireResponses?.length) {
-      obj.questionnaireResponses = message.questionnaireResponses;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetSubjectDataResponse>, I>>(base?: I): GetSubjectDataResponse {
-    return GetSubjectDataResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetSubjectDataResponse>, I>>(object: I): GetSubjectDataResponse {
-    const message = createBaseGetSubjectDataResponse();
-    message.researchSubjects = object.researchSubjects?.map((e) => e) || [];
-    message.questionnaireResponses = object.questionnaireResponses?.map((e) => e) || [];
-    return message;
-  },
-};
-
-function createBaseGetSubjectRawDataRequest(): GetSubjectRawDataRequest {
-  return { programName: "", subjectID: "" };
-}
-
-export const GetSubjectRawDataRequest: MessageFns<GetSubjectRawDataRequest> = {
-  encode(message: GetSubjectRawDataRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.programName !== "") {
-      writer.uint32(10).string(message.programName);
-    }
-    if (message.subjectID !== "") {
-      writer.uint32(18).string(message.subjectID);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GetSubjectRawDataRequest {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetSubjectRawDataRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.programName = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.subjectID = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): GetSubjectRawDataRequest {
-    return {
-      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
-      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
-    };
-  },
-
-  toJSON(message: GetSubjectRawDataRequest): unknown {
-    const obj: any = {};
-    if (message.programName !== "") {
-      obj.programName = message.programName;
-    }
-    if (message.subjectID !== "") {
-      obj.subjectID = message.subjectID;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetSubjectRawDataRequest>, I>>(base?: I): GetSubjectRawDataRequest {
-    return GetSubjectRawDataRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetSubjectRawDataRequest>, I>>(object: I): GetSubjectRawDataRequest {
-    const message = createBaseGetSubjectRawDataRequest();
-    message.programName = object.programName ?? "";
-    message.subjectID = object.subjectID ?? "";
-    return message;
-  },
-};
-
-function createBaseGetSubjectRawDataResponse(): GetSubjectRawDataResponse {
-  return { uploads: [] };
-}
-
-export const GetSubjectRawDataResponse: MessageFns<GetSubjectRawDataResponse> = {
-  encode(message: GetSubjectRawDataResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.uploads) {
-      Struct.encode(Struct.wrap(v!), writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GetSubjectRawDataResponse {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseGetSubjectRawDataResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -8459,11 +8295,11 @@ export const GetSubjectRawDataResponse: MessageFns<GetSubjectRawDataResponse> = 
     return message;
   },
 
-  fromJSON(object: any): GetSubjectRawDataResponse {
+  fromJSON(object: any): GetSubjectDataResponse {
     return { uploads: globalThis.Array.isArray(object?.uploads) ? [...object.uploads] : [] };
   },
 
-  toJSON(message: GetSubjectRawDataResponse): unknown {
+  toJSON(message: GetSubjectDataResponse): unknown {
     const obj: any = {};
     if (message.uploads?.length) {
       obj.uploads = message.uploads;
@@ -8471,11 +8307,11 @@ export const GetSubjectRawDataResponse: MessageFns<GetSubjectRawDataResponse> = 
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetSubjectRawDataResponse>, I>>(base?: I): GetSubjectRawDataResponse {
-    return GetSubjectRawDataResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<GetSubjectDataResponse>, I>>(base?: I): GetSubjectDataResponse {
+    return GetSubjectDataResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<GetSubjectRawDataResponse>, I>>(object: I): GetSubjectRawDataResponse {
-    const message = createBaseGetSubjectRawDataResponse();
+  fromPartial<I extends Exact<DeepPartial<GetSubjectDataResponse>, I>>(object: I): GetSubjectDataResponse {
+    const message = createBaseGetSubjectDataResponse();
     message.uploads = object.uploads?.map((e) => e) || [];
     return message;
   },
