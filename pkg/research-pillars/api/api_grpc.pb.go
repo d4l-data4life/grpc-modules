@@ -2981,7 +2981,6 @@ var StandaloneQuestionnaires_ServiceDesc = grpc.ServiceDesc{
 const (
 	Uploads_GetSubjects_FullMethodName        = "/proto.api.Uploads/GetSubjects"
 	Uploads_GetSubjectData_FullMethodName     = "/proto.api.Uploads/GetSubjectData"
-	Uploads_GetSubjectRawData_FullMethodName  = "/proto.api.Uploads/GetSubjectRawData"
 	Uploads_GetSubjectResource_FullMethodName = "/proto.api.Uploads/GetSubjectResource"
 	Uploads_GetDownloadList_FullMethodName    = "/proto.api.Uploads/GetDownloadList"
 	Uploads_GetDownloadTicket_FullMethodName  = "/proto.api.Uploads/GetDownloadTicket"
@@ -2994,7 +2993,6 @@ const (
 type UploadsClient interface {
 	GetSubjects(ctx context.Context, in *GetSubjectsRequest, opts ...grpc.CallOption) (*GetSubjectsResponse, error)
 	GetSubjectData(ctx context.Context, in *GetSubjectDataRequest, opts ...grpc.CallOption) (*GetSubjectDataResponse, error)
-	GetSubjectRawData(ctx context.Context, in *GetSubjectRawDataRequest, opts ...grpc.CallOption) (*GetSubjectRawDataResponse, error)
 	GetSubjectResource(ctx context.Context, in *GetSubjectResourceRequest, opts ...grpc.CallOption) (*GetSubjectResourceResponse, error)
 	GetDownloadList(ctx context.Context, in *GetDownloadListRequest, opts ...grpc.CallOption) (*GetDownloadListResponse, error)
 	GetDownloadTicket(ctx context.Context, in *GetDownloadTicketRequest, opts ...grpc.CallOption) (*GetDownloadTicketResponse, error)
@@ -3023,16 +3021,6 @@ func (c *uploadsClient) GetSubjectData(ctx context.Context, in *GetSubjectDataRe
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubjectDataResponse)
 	err := c.cc.Invoke(ctx, Uploads_GetSubjectData_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *uploadsClient) GetSubjectRawData(ctx context.Context, in *GetSubjectRawDataRequest, opts ...grpc.CallOption) (*GetSubjectRawDataResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSubjectRawDataResponse)
-	err := c.cc.Invoke(ctx, Uploads_GetSubjectRawData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3085,7 +3073,6 @@ func (c *uploadsClient) GetStatistics(ctx context.Context, in *GetStatisticsRequ
 type UploadsServer interface {
 	GetSubjects(context.Context, *GetSubjectsRequest) (*GetSubjectsResponse, error)
 	GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error)
-	GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error)
 	GetSubjectResource(context.Context, *GetSubjectResourceRequest) (*GetSubjectResourceResponse, error)
 	GetDownloadList(context.Context, *GetDownloadListRequest) (*GetDownloadListResponse, error)
 	GetDownloadTicket(context.Context, *GetDownloadTicketRequest) (*GetDownloadTicketResponse, error)
@@ -3105,9 +3092,6 @@ func (UnimplementedUploadsServer) GetSubjects(context.Context, *GetSubjectsReque
 }
 func (UnimplementedUploadsServer) GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectData not implemented")
-}
-func (UnimplementedUploadsServer) GetSubjectRawData(context.Context, *GetSubjectRawDataRequest) (*GetSubjectRawDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectRawData not implemented")
 }
 func (UnimplementedUploadsServer) GetSubjectResource(context.Context, *GetSubjectResourceRequest) (*GetSubjectResourceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubjectResource not implemented")
@@ -3174,24 +3158,6 @@ func _Uploads_GetSubjectData_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UploadsServer).GetSubjectData(ctx, req.(*GetSubjectDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Uploads_GetSubjectRawData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSubjectRawDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UploadsServer).GetSubjectRawData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Uploads_GetSubjectRawData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UploadsServer).GetSubjectRawData(ctx, req.(*GetSubjectRawDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3282,10 +3248,6 @@ var Uploads_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSubjectData",
 			Handler:    _Uploads_GetSubjectData_Handler,
-		},
-		{
-			MethodName: "GetSubjectRawData",
-			Handler:    _Uploads_GetSubjectRawData_Handler,
 		},
 		{
 			MethodName: "GetSubjectResource",

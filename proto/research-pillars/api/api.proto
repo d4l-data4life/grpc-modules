@@ -822,12 +822,6 @@ service Uploads {
     };
   }
 
-  rpc GetSubjectRawData(GetSubjectRawDataRequest) returns (GetSubjectRawDataResponse) {
-    option (google.api.http) = {
-      get : "/uploads/subjects/{programName}/{subjectID}/raw"
-    };
-  }
-
   rpc GetSubjectResource(GetSubjectResourceRequest) returns (GetSubjectResourceResponse) {
     option (google.api.http) = {
       get : "/uploads/subjects/{programName}/{subjectID}/{resourceID}"

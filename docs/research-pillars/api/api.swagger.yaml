@@ -1479,29 +1479,6 @@ paths:
           type: string
       tags:
         - Uploads
-  /uploads/subjects/{programName}/{subjectID}/raw:
-    get:
-      operationId: Uploads_GetSubjectRawData
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/apiGetSubjectRawDataResponse'
-        default:
-          description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/rpcStatus'
-      parameters:
-        - name: programName
-          in: path
-          required: true
-          type: string
-        - name: subjectID
-          in: path
-          required: true
-          type: string
-      tags:
-        - Uploads
   /uploads/subjects/{programName}/{subjectID}/{resourceID}:
     get:
       operationId: Uploads_GetSubjectResource
@@ -2005,13 +1982,6 @@ definitions:
         items:
           type: object
       questionnaireResponses:
-        type: array
-        items:
-          type: object
-  apiGetSubjectRawDataResponse:
-    type: object
-    properties:
-      uploads:
         type: array
         items:
           type: object
