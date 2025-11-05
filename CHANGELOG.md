@@ -11,16 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [research-pillars] Moved GetSubjectDataRaw to GetSubjectData
-
 ### Deprecated
 
 ### Removed
 
-
 ### Fixed
 
 ### Security
+
+## [v1.20.0] - 2025-11-05
+
+### Changed
+
+- [research-pillars] Moved GetSubjectDataRaw to GetSubjectData
 
 ## [v1.19.0] - 2025-09-25
 
@@ -175,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.19.0...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.20.0...HEAD
+[v1.20.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.19.0...v1.20.0
 [v1.19.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.18.0...v1.19.0
 [v1.18.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.17.0...v1.18.0
 [v1.17.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.16.0...v1.17.0
