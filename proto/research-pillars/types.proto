@@ -46,6 +46,7 @@ enum InputType {
 message Answerset {
   string order = 1;
   repeated Answer answers = 2;
+  optional string system = 3;
 }
 
 message Answer {

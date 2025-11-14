@@ -269,6 +269,7 @@ export interface Question_TextEntry {
 export interface Answerset {
   order: string;
   answers: Answer[];
+  system?: string | undefined;
 }
 
 export interface Answer {
@@ -812,7 +813,7 @@ export const Question_TextEntry: MessageFns<Question_TextEntry> = {
 };
 
 function createBaseAnswerset(): Answerset {
-  return { order: "", answers: [] };
+  return { order: "", answers: [], system: undefined };
 }
 
 export const Answerset: MessageFns<Answerset> = {
@@ -822,6 +823,9 @@ export const Answerset: MessageFns<Answerset> = {
     }
     for (const v of message.answers) {
       Answer.encode(v!, writer.uint32(18).fork()).join();
+    }
+    if (message.system !== undefined) {
+      writer.uint32(26).string(message.system);
     }
     return writer;
   },
@@ -849,6 +853,14 @@ export const Answerset: MessageFns<Answerset> = {
           message.answers.push(Answer.decode(reader, reader.uint32()));
           continue;
         }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.system = reader.string();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -862,6 +874,7 @@ export const Answerset: MessageFns<Answerset> = {
     return {
       order: isSet(object.order) ? globalThis.String(object.order) : "",
       answers: globalThis.Array.isArray(object?.answers) ? object.answers.map((e: any) => Answer.fromJSON(e)) : [],
+      system: isSet(object.system) ? globalThis.String(object.system) : undefined,
     };
   },
 
@@ -873,6 +886,9 @@ export const Answerset: MessageFns<Answerset> = {
     if (message.answers?.length) {
       obj.answers = message.answers.map((e) => Answer.toJSON(e));
     }
+    if (message.system !== undefined) {
+      obj.system = message.system;
+    }
     return obj;
   },
 
@@ -883,6 +899,7 @@ export const Answerset: MessageFns<Answerset> = {
     const message = createBaseAnswerset();
     message.order = object.order ?? "";
     message.answers = object.answers?.map((e) => Answer.fromPartial(e)) || [];
+    message.system = object.system ?? undefined;
     return message;
   },
 };

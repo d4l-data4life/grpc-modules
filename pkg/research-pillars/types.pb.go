@@ -425,6 +425,7 @@ type Answerset struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Order         string                 `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
 	Answers       []*Answer              `protobuf:"bytes,2,rep,name=answers,proto3" json:"answers,omitempty"`
+	System        *string                `protobuf:"bytes,3,opt,name=system,proto3,oneof" json:"system,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -471,6 +472,13 @@ func (x *Answerset) GetAnswers() []*Answer {
 		return x.Answers
 	}
 	return nil
+}
+
+func (x *Answerset) GetSystem() string {
+	if x != nil && x.System != nil {
+		return *x.System
+	}
+	return ""
 }
 
 type Answer struct {
@@ -999,10 +1007,12 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"_answersetB\t\n" +
 	"\a_configB\x12\n" +
-	"\x10_enable_behavior\"J\n" +
+	"\x10_enable_behavior\"r\n" +
 	"\tAnswerset\x12\x14\n" +
 	"\x05order\x18\x01 \x01(\tR\x05order\x12'\n" +
-	"\aanswers\x18\x02 \x03(\v2\r.proto.AnswerR\aanswers\"\x96\x01\n" +
+	"\aanswers\x18\x02 \x03(\v2\r.proto.AnswerR\aanswers\x12\x1b\n" +
+	"\x06system\x18\x03 \x01(\tH\x00R\x06system\x88\x01\x01B\t\n" +
+	"\a_system\"\x96\x01\n" +
 	"\x06Answer\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12:\n" +
 	"\tlanguages\x18\x02 \x03(\v2\x1c.proto.Answer.LanguagesEntryR\tlanguages\x1a<\n" +
@@ -1144,6 +1154,7 @@ func file_research_pillars_types_proto_init() {
 		return
 	}
 	file_research_pillars_types_proto_msgTypes[1].OneofWrappers = []any{}
+	file_research_pillars_types_proto_msgTypes[2].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

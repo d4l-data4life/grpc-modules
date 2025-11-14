@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [research-pillars] Added optional system to answerset of questionnaire for scoring purposes
+
 ### Changed
 
 ### Deprecated
