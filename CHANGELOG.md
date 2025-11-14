@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars] Added optional system to answerset of questionnaire for scoring purposes
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.21.0] - 2025-11-14
+
+### Added
+
+- [research-pillars] Added optional system to answerset of questionnaire for scoring purposes
 
 ## [v1.20.1] - 2025-11-05
 
@@ -186,7 +190,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.20.1...HEAD
+[Unreleased]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.21.0...HEAD
+[v1.21.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.20.1...v1.21.0
 [v1.20.1]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.20.0...v1.20.1
 [v1.20.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.19.0...v1.20.0
 [v1.19.0]: https://github.com/gesundheitscloud/grpc-modules/compare/v1.18.0...v1.19.0
