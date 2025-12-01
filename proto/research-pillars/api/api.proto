@@ -1021,6 +1021,107 @@ message DeleteClientRequest {
 message DeleteClientResponse {}
 
 /////////////////////////////////////////////////////////
+// Messages
+/////////////////////////////////////////////////////////
+
+service Messages {
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/messages"
+    };
+  }
+
+  rpc GetMessage(GetMessageRequest) returns (GetMessageResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/messages/{id}"
+    };
+  }
+
+  rpc UpsertMessage(UpsertMessageRequest) returns (UpsertMessageResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/messages",
+      body : "*"
+    };
+  }
+
+  rpc DeleteMessage(DeleteMessageRequest) returns (DeleteMessageResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/messages/{id}"
+    };
+  }
+
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/messages/{id}/send",
+    };
+  }
+
+}
+
+message GetMessagesRequest { string programName = 1; }
+message GetMessagesResponse { repeated google.protobuf.Struct messages = 1; }
+
+message GetMessageRequest {
+  string programName = 1;
+  string id = 2;
+}
+message GetMessageResponse {
+  google.protobuf.Struct message = 1;
+}
+
+message UpsertMessageRequest {
+  string programName = 1;
+  google.protobuf.Struct message = 2;
+}
+message UpsertMessageResponse {}
+
+message DeleteMessageRequest {
+  string programName = 1;
+  string id = 2;
+}
+message DeleteMessageResponse {}
+
+message SendMessageRequest {
+  string programName = 1;
+  string id = 2;
+}
+message SendMessageResponse {}
+
+/////////////////////////////////////////////////////////
+// Device Token
+/////////////////////////////////////////////////////////
+
+service DeviceTokens {
+  rpc GetTokens(GetTokensRequest) returns (GetTokensResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/devicetokens"
+    };
+  }
+
+  rpc UpsertToken(UpsertTokenRequest) returns (UpsertTokenResponse) {
+    option (google.api.http) = {
+      put : "/programs/{programName}/devicetokens",
+      body : "*"
+    };
+  }
+
+  rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/devicetokens/{subjectID}",
+    };
+  }
+}
+
+message GetTokensRequest { string programName = 1; }
+message GetTokensResponse { repeated DeviceToken tokens = 1; }
+
+message UpsertTokenRequest { string programName = 1; string subjectID = 2; string token = 3; }
+message UpsertTokenResponse {}
+
+message DeleteTokenRequest { string programName = 1; string subjectID = 2; }
+message DeleteTokenResponse {}
+
+/////////////////////////////////////////////////////////
 // Checks
 /////////////////////////////////////////////////////////
 

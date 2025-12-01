@@ -119,3 +119,10 @@ message Client {
   string clientID = 3;
   string clientSecret = 4;
 }
+
+message DeviceToken {
+  string programName = 1;
+  string subjectID = 2;
+  string token = 3;
+  optional string participantCode = 4;
+}

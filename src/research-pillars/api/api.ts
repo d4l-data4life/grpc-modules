@@ -10,7 +10,7 @@ import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import { HttpBody } from "../../google/api/httpbody";
 import { Struct } from "../../google/protobuf/struct";
-import { BlockedProgram, Client, Diff, ParticipantCode, ProgramRole, Questionnaire, User } from "../types";
+import { BlockedProgram, Client, DeviceToken, Diff, ParticipantCode, ProgramRole, Questionnaire, User } from "../types";
 
 export const protobufPackage = "proto.api";
 
@@ -638,6 +638,72 @@ export interface DeleteClientRequest {
 }
 
 export interface DeleteClientResponse {
+}
+
+export interface GetMessagesRequest {
+  programName: string;
+}
+
+export interface GetMessagesResponse {
+  messages: { [key: string]: any }[];
+}
+
+export interface GetMessageRequest {
+  programName: string;
+  id: string;
+}
+
+export interface GetMessageResponse {
+  message?: { [key: string]: any } | undefined;
+}
+
+export interface UpsertMessageRequest {
+  programName: string;
+  message?: { [key: string]: any } | undefined;
+}
+
+export interface UpsertMessageResponse {
+}
+
+export interface DeleteMessageRequest {
+  programName: string;
+  id: string;
+}
+
+export interface DeleteMessageResponse {
+}
+
+export interface SendMessageRequest {
+  programName: string;
+  id: string;
+}
+
+export interface SendMessageResponse {
+}
+
+export interface GetTokensRequest {
+  programName: string;
+}
+
+export interface GetTokensResponse {
+  tokens: DeviceToken[];
+}
+
+export interface UpsertTokenRequest {
+  programName: string;
+  subjectID: string;
+  token: string;
+}
+
+export interface UpsertTokenResponse {
+}
+
+export interface DeleteTokenRequest {
+  programName: string;
+  subjectID: string;
+}
+
+export interface DeleteTokenResponse {
 }
 
 export interface ChecksRequest {
@@ -9985,6 +10051,985 @@ export const DeleteClientResponse: MessageFns<DeleteClientResponse> = {
   },
 };
 
+function createBaseGetMessagesRequest(): GetMessagesRequest {
+  return { programName: "" };
+}
+
+export const GetMessagesRequest: MessageFns<GetMessagesRequest> = {
+  encode(message: GetMessagesRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetMessagesRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMessagesRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMessagesRequest {
+    return { programName: isSet(object.programName) ? globalThis.String(object.programName) : "" };
+  },
+
+  toJSON(message: GetMessagesRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetMessagesRequest>, I>>(base?: I): GetMessagesRequest {
+    return GetMessagesRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMessagesRequest>, I>>(object: I): GetMessagesRequest {
+    const message = createBaseGetMessagesRequest();
+    message.programName = object.programName ?? "";
+    return message;
+  },
+};
+
+function createBaseGetMessagesResponse(): GetMessagesResponse {
+  return { messages: [] };
+}
+
+export const GetMessagesResponse: MessageFns<GetMessagesResponse> = {
+  encode(message: GetMessagesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.messages) {
+      Struct.encode(Struct.wrap(v!), writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetMessagesResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMessagesResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.messages.push(Struct.unwrap(Struct.decode(reader, reader.uint32())));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMessagesResponse {
+    return { messages: globalThis.Array.isArray(object?.messages) ? [...object.messages] : [] };
+  },
+
+  toJSON(message: GetMessagesResponse): unknown {
+    const obj: any = {};
+    if (message.messages?.length) {
+      obj.messages = message.messages;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetMessagesResponse>, I>>(base?: I): GetMessagesResponse {
+    return GetMessagesResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMessagesResponse>, I>>(object: I): GetMessagesResponse {
+    const message = createBaseGetMessagesResponse();
+    message.messages = object.messages?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseGetMessageRequest(): GetMessageRequest {
+  return { programName: "", id: "" };
+}
+
+export const GetMessageRequest: MessageFns<GetMessageRequest> = {
+  encode(message: GetMessageRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.id !== "") {
+      writer.uint32(18).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetMessageRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMessageRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMessageRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+    };
+  },
+
+  toJSON(message: GetMessageRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetMessageRequest>, I>>(base?: I): GetMessageRequest {
+    return GetMessageRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMessageRequest>, I>>(object: I): GetMessageRequest {
+    const message = createBaseGetMessageRequest();
+    message.programName = object.programName ?? "";
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseGetMessageResponse(): GetMessageResponse {
+  return { message: undefined };
+}
+
+export const GetMessageResponse: MessageFns<GetMessageResponse> = {
+  encode(message: GetMessageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.message !== undefined) {
+      Struct.encode(Struct.wrap(message.message), writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetMessageResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetMessageResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.message = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetMessageResponse {
+    return { message: isObject(object.message) ? object.message : undefined };
+  },
+
+  toJSON(message: GetMessageResponse): unknown {
+    const obj: any = {};
+    if (message.message !== undefined) {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetMessageResponse>, I>>(base?: I): GetMessageResponse {
+    return GetMessageResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMessageResponse>, I>>(object: I): GetMessageResponse {
+    const message = createBaseGetMessageResponse();
+    message.message = object.message ?? undefined;
+    return message;
+  },
+};
+
+function createBaseUpsertMessageRequest(): UpsertMessageRequest {
+  return { programName: "", message: undefined };
+}
+
+export const UpsertMessageRequest: MessageFns<UpsertMessageRequest> = {
+  encode(message: UpsertMessageRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.message !== undefined) {
+      Struct.encode(Struct.wrap(message.message), writer.uint32(18).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UpsertMessageRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUpsertMessageRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.message = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UpsertMessageRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      message: isObject(object.message) ? object.message : undefined,
+    };
+  },
+
+  toJSON(message: UpsertMessageRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.message !== undefined) {
+      obj.message = message.message;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UpsertMessageRequest>, I>>(base?: I): UpsertMessageRequest {
+    return UpsertMessageRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UpsertMessageRequest>, I>>(object: I): UpsertMessageRequest {
+    const message = createBaseUpsertMessageRequest();
+    message.programName = object.programName ?? "";
+    message.message = object.message ?? undefined;
+    return message;
+  },
+};
+
+function createBaseUpsertMessageResponse(): UpsertMessageResponse {
+  return {};
+}
+
+export const UpsertMessageResponse: MessageFns<UpsertMessageResponse> = {
+  encode(_: UpsertMessageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UpsertMessageResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUpsertMessageResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): UpsertMessageResponse {
+    return {};
+  },
+
+  toJSON(_: UpsertMessageResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UpsertMessageResponse>, I>>(base?: I): UpsertMessageResponse {
+    return UpsertMessageResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UpsertMessageResponse>, I>>(_: I): UpsertMessageResponse {
+    const message = createBaseUpsertMessageResponse();
+    return message;
+  },
+};
+
+function createBaseDeleteMessageRequest(): DeleteMessageRequest {
+  return { programName: "", id: "" };
+}
+
+export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
+  encode(message: DeleteMessageRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.id !== "") {
+      writer.uint32(18).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeleteMessageRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteMessageRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeleteMessageRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+    };
+  },
+
+  toJSON(message: DeleteMessageRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteMessageRequest>, I>>(base?: I): DeleteMessageRequest {
+    return DeleteMessageRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteMessageRequest>, I>>(object: I): DeleteMessageRequest {
+    const message = createBaseDeleteMessageRequest();
+    message.programName = object.programName ?? "";
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseDeleteMessageResponse(): DeleteMessageResponse {
+  return {};
+}
+
+export const DeleteMessageResponse: MessageFns<DeleteMessageResponse> = {
+  encode(_: DeleteMessageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeleteMessageResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteMessageResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeleteMessageResponse {
+    return {};
+  },
+
+  toJSON(_: DeleteMessageResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteMessageResponse>, I>>(base?: I): DeleteMessageResponse {
+    return DeleteMessageResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteMessageResponse>, I>>(_: I): DeleteMessageResponse {
+    const message = createBaseDeleteMessageResponse();
+    return message;
+  },
+};
+
+function createBaseSendMessageRequest(): SendMessageRequest {
+  return { programName: "", id: "" };
+}
+
+export const SendMessageRequest: MessageFns<SendMessageRequest> = {
+  encode(message: SendMessageRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.id !== "") {
+      writer.uint32(18).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): SendMessageRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSendMessageRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SendMessageRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+    };
+  },
+
+  toJSON(message: SendMessageRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SendMessageRequest>, I>>(base?: I): SendMessageRequest {
+    return SendMessageRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SendMessageRequest>, I>>(object: I): SendMessageRequest {
+    const message = createBaseSendMessageRequest();
+    message.programName = object.programName ?? "";
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseSendMessageResponse(): SendMessageResponse {
+  return {};
+}
+
+export const SendMessageResponse: MessageFns<SendMessageResponse> = {
+  encode(_: SendMessageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): SendMessageResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSendMessageResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): SendMessageResponse {
+    return {};
+  },
+
+  toJSON(_: SendMessageResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<SendMessageResponse>, I>>(base?: I): SendMessageResponse {
+    return SendMessageResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<SendMessageResponse>, I>>(_: I): SendMessageResponse {
+    const message = createBaseSendMessageResponse();
+    return message;
+  },
+};
+
+function createBaseGetTokensRequest(): GetTokensRequest {
+  return { programName: "" };
+}
+
+export const GetTokensRequest: MessageFns<GetTokensRequest> = {
+  encode(message: GetTokensRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetTokensRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetTokensRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetTokensRequest {
+    return { programName: isSet(object.programName) ? globalThis.String(object.programName) : "" };
+  },
+
+  toJSON(message: GetTokensRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetTokensRequest>, I>>(base?: I): GetTokensRequest {
+    return GetTokensRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetTokensRequest>, I>>(object: I): GetTokensRequest {
+    const message = createBaseGetTokensRequest();
+    message.programName = object.programName ?? "";
+    return message;
+  },
+};
+
+function createBaseGetTokensResponse(): GetTokensResponse {
+  return { tokens: [] };
+}
+
+export const GetTokensResponse: MessageFns<GetTokensResponse> = {
+  encode(message: GetTokensResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.tokens) {
+      DeviceToken.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetTokensResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetTokensResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.tokens.push(DeviceToken.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetTokensResponse {
+    return {
+      tokens: globalThis.Array.isArray(object?.tokens) ? object.tokens.map((e: any) => DeviceToken.fromJSON(e)) : [],
+    };
+  },
+
+  toJSON(message: GetTokensResponse): unknown {
+    const obj: any = {};
+    if (message.tokens?.length) {
+      obj.tokens = message.tokens.map((e) => DeviceToken.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetTokensResponse>, I>>(base?: I): GetTokensResponse {
+    return GetTokensResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetTokensResponse>, I>>(object: I): GetTokensResponse {
+    const message = createBaseGetTokensResponse();
+    message.tokens = object.tokens?.map((e) => DeviceToken.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseUpsertTokenRequest(): UpsertTokenRequest {
+  return { programName: "", subjectID: "", token: "" };
+}
+
+export const UpsertTokenRequest: MessageFns<UpsertTokenRequest> = {
+  encode(message: UpsertTokenRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.subjectID !== "") {
+      writer.uint32(18).string(message.subjectID);
+    }
+    if (message.token !== "") {
+      writer.uint32(26).string(message.token);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UpsertTokenRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUpsertTokenRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.subjectID = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.token = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UpsertTokenRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
+      token: isSet(object.token) ? globalThis.String(object.token) : "",
+    };
+  },
+
+  toJSON(message: UpsertTokenRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.subjectID !== "") {
+      obj.subjectID = message.subjectID;
+    }
+    if (message.token !== "") {
+      obj.token = message.token;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UpsertTokenRequest>, I>>(base?: I): UpsertTokenRequest {
+    return UpsertTokenRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UpsertTokenRequest>, I>>(object: I): UpsertTokenRequest {
+    const message = createBaseUpsertTokenRequest();
+    message.programName = object.programName ?? "";
+    message.subjectID = object.subjectID ?? "";
+    message.token = object.token ?? "";
+    return message;
+  },
+};
+
+function createBaseUpsertTokenResponse(): UpsertTokenResponse {
+  return {};
+}
+
+export const UpsertTokenResponse: MessageFns<UpsertTokenResponse> = {
+  encode(_: UpsertTokenResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UpsertTokenResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUpsertTokenResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): UpsertTokenResponse {
+    return {};
+  },
+
+  toJSON(_: UpsertTokenResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<UpsertTokenResponse>, I>>(base?: I): UpsertTokenResponse {
+    return UpsertTokenResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<UpsertTokenResponse>, I>>(_: I): UpsertTokenResponse {
+    const message = createBaseUpsertTokenResponse();
+    return message;
+  },
+};
+
+function createBaseDeleteTokenRequest(): DeleteTokenRequest {
+  return { programName: "", subjectID: "" };
+}
+
+export const DeleteTokenRequest: MessageFns<DeleteTokenRequest> = {
+  encode(message: DeleteTokenRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.subjectID !== "") {
+      writer.uint32(18).string(message.subjectID);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeleteTokenRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteTokenRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.subjectID = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeleteTokenRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
+    };
+  },
+
+  toJSON(message: DeleteTokenRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.subjectID !== "") {
+      obj.subjectID = message.subjectID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteTokenRequest>, I>>(base?: I): DeleteTokenRequest {
+    return DeleteTokenRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteTokenRequest>, I>>(object: I): DeleteTokenRequest {
+    const message = createBaseDeleteTokenRequest();
+    message.programName = object.programName ?? "";
+    message.subjectID = object.subjectID ?? "";
+    return message;
+  },
+};
+
+function createBaseDeleteTokenResponse(): DeleteTokenResponse {
+  return {};
+}
+
+export const DeleteTokenResponse: MessageFns<DeleteTokenResponse> = {
+  encode(_: DeleteTokenResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeleteTokenResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeleteTokenResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): DeleteTokenResponse {
+    return {};
+  },
+
+  toJSON(_: DeleteTokenResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeleteTokenResponse>, I>>(base?: I): DeleteTokenResponse {
+    return DeleteTokenResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteTokenResponse>, I>>(_: I): DeleteTokenResponse {
+    const message = createBaseDeleteTokenResponse();
+    return message;
+  },
+};
+
 function createBaseChecksRequest(): ChecksRequest {
   return {};
 }
@@ -12650,6 +13695,264 @@ export const ClientsDeleteClientDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = DeleteClientResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export interface Messages {
+  GetMessages(request: DeepPartial<GetMessagesRequest>, metadata?: grpc.Metadata): Promise<GetMessagesResponse>;
+  GetMessage(request: DeepPartial<GetMessageRequest>, metadata?: grpc.Metadata): Promise<GetMessageResponse>;
+  UpsertMessage(request: DeepPartial<UpsertMessageRequest>, metadata?: grpc.Metadata): Promise<UpsertMessageResponse>;
+  DeleteMessage(request: DeepPartial<DeleteMessageRequest>, metadata?: grpc.Metadata): Promise<DeleteMessageResponse>;
+  SendMessage(request: DeepPartial<SendMessageRequest>, metadata?: grpc.Metadata): Promise<SendMessageResponse>;
+}
+
+export class MessagesClientImpl implements Messages {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.GetMessages = this.GetMessages.bind(this);
+    this.GetMessage = this.GetMessage.bind(this);
+    this.UpsertMessage = this.UpsertMessage.bind(this);
+    this.DeleteMessage = this.DeleteMessage.bind(this);
+    this.SendMessage = this.SendMessage.bind(this);
+  }
+
+  GetMessages(request: DeepPartial<GetMessagesRequest>, metadata?: grpc.Metadata): Promise<GetMessagesResponse> {
+    return this.rpc.unary(MessagesGetMessagesDesc, GetMessagesRequest.fromPartial(request), metadata);
+  }
+
+  GetMessage(request: DeepPartial<GetMessageRequest>, metadata?: grpc.Metadata): Promise<GetMessageResponse> {
+    return this.rpc.unary(MessagesGetMessageDesc, GetMessageRequest.fromPartial(request), metadata);
+  }
+
+  UpsertMessage(request: DeepPartial<UpsertMessageRequest>, metadata?: grpc.Metadata): Promise<UpsertMessageResponse> {
+    return this.rpc.unary(MessagesUpsertMessageDesc, UpsertMessageRequest.fromPartial(request), metadata);
+  }
+
+  DeleteMessage(request: DeepPartial<DeleteMessageRequest>, metadata?: grpc.Metadata): Promise<DeleteMessageResponse> {
+    return this.rpc.unary(MessagesDeleteMessageDesc, DeleteMessageRequest.fromPartial(request), metadata);
+  }
+
+  SendMessage(request: DeepPartial<SendMessageRequest>, metadata?: grpc.Metadata): Promise<SendMessageResponse> {
+    return this.rpc.unary(MessagesSendMessageDesc, SendMessageRequest.fromPartial(request), metadata);
+  }
+}
+
+export const MessagesDesc = { serviceName: "proto.api.Messages" };
+
+export const MessagesGetMessagesDesc: UnaryMethodDefinitionish = {
+  methodName: "GetMessages",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetMessagesRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetMessagesResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MessagesGetMessageDesc: UnaryMethodDefinitionish = {
+  methodName: "GetMessage",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetMessageRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetMessageResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MessagesUpsertMessageDesc: UnaryMethodDefinitionish = {
+  methodName: "UpsertMessage",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return UpsertMessageRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = UpsertMessageResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MessagesDeleteMessageDesc: UnaryMethodDefinitionish = {
+  methodName: "DeleteMessage",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeleteMessageRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeleteMessageResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MessagesSendMessageDesc: UnaryMethodDefinitionish = {
+  methodName: "SendMessage",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return SendMessageRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = SendMessageResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export interface DeviceTokens {
+  GetTokens(request: DeepPartial<GetTokensRequest>, metadata?: grpc.Metadata): Promise<GetTokensResponse>;
+  UpsertToken(request: DeepPartial<UpsertTokenRequest>, metadata?: grpc.Metadata): Promise<UpsertTokenResponse>;
+  DeleteToken(request: DeepPartial<DeleteTokenRequest>, metadata?: grpc.Metadata): Promise<DeleteTokenResponse>;
+}
+
+export class DeviceTokensClientImpl implements DeviceTokens {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.GetTokens = this.GetTokens.bind(this);
+    this.UpsertToken = this.UpsertToken.bind(this);
+    this.DeleteToken = this.DeleteToken.bind(this);
+  }
+
+  GetTokens(request: DeepPartial<GetTokensRequest>, metadata?: grpc.Metadata): Promise<GetTokensResponse> {
+    return this.rpc.unary(DeviceTokensGetTokensDesc, GetTokensRequest.fromPartial(request), metadata);
+  }
+
+  UpsertToken(request: DeepPartial<UpsertTokenRequest>, metadata?: grpc.Metadata): Promise<UpsertTokenResponse> {
+    return this.rpc.unary(DeviceTokensUpsertTokenDesc, UpsertTokenRequest.fromPartial(request), metadata);
+  }
+
+  DeleteToken(request: DeepPartial<DeleteTokenRequest>, metadata?: grpc.Metadata): Promise<DeleteTokenResponse> {
+    return this.rpc.unary(DeviceTokensDeleteTokenDesc, DeleteTokenRequest.fromPartial(request), metadata);
+  }
+}
+
+export const DeviceTokensDesc = { serviceName: "proto.api.DeviceTokens" };
+
+export const DeviceTokensGetTokensDesc: UnaryMethodDefinitionish = {
+  methodName: "GetTokens",
+  service: DeviceTokensDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetTokensRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetTokensResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const DeviceTokensUpsertTokenDesc: UnaryMethodDefinitionish = {
+  methodName: "UpsertToken",
+  service: DeviceTokensDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return UpsertTokenRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = UpsertTokenResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const DeviceTokensDeleteTokenDesc: UnaryMethodDefinitionish = {
+  methodName: "DeleteToken",
+  service: DeviceTokensDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return DeleteTokenRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = DeleteTokenResponse.decode(data);
       return {
         ...value,
         toObject() {

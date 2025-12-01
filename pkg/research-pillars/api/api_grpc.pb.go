@@ -3703,6 +3703,438 @@ var Clients_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	Messages_GetMessages_FullMethodName   = "/proto.api.Messages/GetMessages"
+	Messages_GetMessage_FullMethodName    = "/proto.api.Messages/GetMessage"
+	Messages_UpsertMessage_FullMethodName = "/proto.api.Messages/UpsertMessage"
+	Messages_DeleteMessage_FullMethodName = "/proto.api.Messages/DeleteMessage"
+	Messages_SendMessage_FullMethodName   = "/proto.api.Messages/SendMessage"
+)
+
+// MessagesClient is the client API for Messages service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type MessagesClient interface {
+	GetMessages(ctx context.Context, in *GetMessagesRequest, opts ...grpc.CallOption) (*GetMessagesResponse, error)
+	GetMessage(ctx context.Context, in *GetMessageRequest, opts ...grpc.CallOption) (*GetMessageResponse, error)
+	UpsertMessage(ctx context.Context, in *UpsertMessageRequest, opts ...grpc.CallOption) (*UpsertMessageResponse, error)
+	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
+	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
+}
+
+type messagesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMessagesClient(cc grpc.ClientConnInterface) MessagesClient {
+	return &messagesClient{cc}
+}
+
+func (c *messagesClient) GetMessages(ctx context.Context, in *GetMessagesRequest, opts ...grpc.CallOption) (*GetMessagesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMessagesResponse)
+	err := c.cc.Invoke(ctx, Messages_GetMessages_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messagesClient) GetMessage(ctx context.Context, in *GetMessageRequest, opts ...grpc.CallOption) (*GetMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMessageResponse)
+	err := c.cc.Invoke(ctx, Messages_GetMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messagesClient) UpsertMessage(ctx context.Context, in *UpsertMessageRequest, opts ...grpc.CallOption) (*UpsertMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpsertMessageResponse)
+	err := c.cc.Invoke(ctx, Messages_UpsertMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messagesClient) DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteMessageResponse)
+	err := c.cc.Invoke(ctx, Messages_DeleteMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messagesClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SendMessageResponse)
+	err := c.cc.Invoke(ctx, Messages_SendMessage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MessagesServer is the server API for Messages service.
+// All implementations must embed UnimplementedMessagesServer
+// for forward compatibility.
+type MessagesServer interface {
+	GetMessages(context.Context, *GetMessagesRequest) (*GetMessagesResponse, error)
+	GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error)
+	UpsertMessage(context.Context, *UpsertMessageRequest) (*UpsertMessageResponse, error)
+	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
+	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
+	mustEmbedUnimplementedMessagesServer()
+}
+
+// UnimplementedMessagesServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedMessagesServer struct{}
+
+func (UnimplementedMessagesServer) GetMessages(context.Context, *GetMessagesRequest) (*GetMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMessages not implemented")
+}
+func (UnimplementedMessagesServer) GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMessage not implemented")
+}
+func (UnimplementedMessagesServer) UpsertMessage(context.Context, *UpsertMessageRequest) (*UpsertMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertMessage not implemented")
+}
+func (UnimplementedMessagesServer) DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessage not implemented")
+}
+func (UnimplementedMessagesServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessage not implemented")
+}
+func (UnimplementedMessagesServer) mustEmbedUnimplementedMessagesServer() {}
+func (UnimplementedMessagesServer) testEmbeddedByValue()                  {}
+
+// UnsafeMessagesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MessagesServer will
+// result in compilation errors.
+type UnsafeMessagesServer interface {
+	mustEmbedUnimplementedMessagesServer()
+}
+
+func RegisterMessagesServer(s grpc.ServiceRegistrar, srv MessagesServer) {
+	// If the following call pancis, it indicates UnimplementedMessagesServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Messages_ServiceDesc, srv)
+}
+
+func _Messages_GetMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).GetMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_GetMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).GetMessages(ctx, req.(*GetMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Messages_GetMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).GetMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_GetMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).GetMessage(ctx, req.(*GetMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Messages_UpsertMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).UpsertMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_UpsertMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).UpsertMessage(ctx, req.(*UpsertMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Messages_DeleteMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).DeleteMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_DeleteMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).DeleteMessage(ctx, req.(*DeleteMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Messages_SendMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).SendMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_SendMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).SendMessage(ctx, req.(*SendMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Messages_ServiceDesc is the grpc.ServiceDesc for Messages service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Messages_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.Messages",
+	HandlerType: (*MessagesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetMessages",
+			Handler:    _Messages_GetMessages_Handler,
+		},
+		{
+			MethodName: "GetMessage",
+			Handler:    _Messages_GetMessage_Handler,
+		},
+		{
+			MethodName: "UpsertMessage",
+			Handler:    _Messages_UpsertMessage_Handler,
+		},
+		{
+			MethodName: "DeleteMessage",
+			Handler:    _Messages_DeleteMessage_Handler,
+		},
+		{
+			MethodName: "SendMessage",
+			Handler:    _Messages_SendMessage_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
+	DeviceTokens_GetTokens_FullMethodName   = "/proto.api.DeviceTokens/GetTokens"
+	DeviceTokens_UpsertToken_FullMethodName = "/proto.api.DeviceTokens/UpsertToken"
+	DeviceTokens_DeleteToken_FullMethodName = "/proto.api.DeviceTokens/DeleteToken"
+)
+
+// DeviceTokensClient is the client API for DeviceTokens service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type DeviceTokensClient interface {
+	GetTokens(ctx context.Context, in *GetTokensRequest, opts ...grpc.CallOption) (*GetTokensResponse, error)
+	UpsertToken(ctx context.Context, in *UpsertTokenRequest, opts ...grpc.CallOption) (*UpsertTokenResponse, error)
+	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
+}
+
+type deviceTokensClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewDeviceTokensClient(cc grpc.ClientConnInterface) DeviceTokensClient {
+	return &deviceTokensClient{cc}
+}
+
+func (c *deviceTokensClient) GetTokens(ctx context.Context, in *GetTokensRequest, opts ...grpc.CallOption) (*GetTokensResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTokensResponse)
+	err := c.cc.Invoke(ctx, DeviceTokens_GetTokens_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceTokensClient) UpsertToken(ctx context.Context, in *UpsertTokenRequest, opts ...grpc.CallOption) (*UpsertTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpsertTokenResponse)
+	err := c.cc.Invoke(ctx, DeviceTokens_UpsertToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceTokensClient) DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTokenResponse)
+	err := c.cc.Invoke(ctx, DeviceTokens_DeleteToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DeviceTokensServer is the server API for DeviceTokens service.
+// All implementations must embed UnimplementedDeviceTokensServer
+// for forward compatibility.
+type DeviceTokensServer interface {
+	GetTokens(context.Context, *GetTokensRequest) (*GetTokensResponse, error)
+	UpsertToken(context.Context, *UpsertTokenRequest) (*UpsertTokenResponse, error)
+	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
+	mustEmbedUnimplementedDeviceTokensServer()
+}
+
+// UnimplementedDeviceTokensServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedDeviceTokensServer struct{}
+
+func (UnimplementedDeviceTokensServer) GetTokens(context.Context, *GetTokensRequest) (*GetTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTokens not implemented")
+}
+func (UnimplementedDeviceTokensServer) UpsertToken(context.Context, *UpsertTokenRequest) (*UpsertTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertToken not implemented")
+}
+func (UnimplementedDeviceTokensServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
+}
+func (UnimplementedDeviceTokensServer) mustEmbedUnimplementedDeviceTokensServer() {}
+func (UnimplementedDeviceTokensServer) testEmbeddedByValue()                      {}
+
+// UnsafeDeviceTokensServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DeviceTokensServer will
+// result in compilation errors.
+type UnsafeDeviceTokensServer interface {
+	mustEmbedUnimplementedDeviceTokensServer()
+}
+
+func RegisterDeviceTokensServer(s grpc.ServiceRegistrar, srv DeviceTokensServer) {
+	// If the following call pancis, it indicates UnimplementedDeviceTokensServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&DeviceTokens_ServiceDesc, srv)
+}
+
+func _DeviceTokens_GetTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceTokensServer).GetTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceTokens_GetTokens_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceTokensServer).GetTokens(ctx, req.(*GetTokensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceTokens_UpsertToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceTokensServer).UpsertToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceTokens_UpsertToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceTokensServer).UpsertToken(ctx, req.(*UpsertTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceTokens_DeleteToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceTokensServer).DeleteToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceTokens_DeleteToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceTokensServer).DeleteToken(ctx, req.(*DeleteTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DeviceTokens_ServiceDesc is the grpc.ServiceDesc for DeviceTokens service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DeviceTokens_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.api.DeviceTokens",
+	HandlerType: (*DeviceTokensServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetTokens",
+			Handler:    _DeviceTokens_GetTokens_Handler,
+		},
+		{
+			MethodName: "UpsertToken",
+			Handler:    _DeviceTokens_UpsertToken_Handler,
+		},
+		{
+			MethodName: "DeleteToken",
+			Handler:    _DeviceTokens_DeleteToken_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/api/api.proto",
+}
+
+const (
 	Checks_Liveness_FullMethodName  = "/proto.api.Checks/Liveness"
 	Checks_Readiness_FullMethodName = "/proto.api.Checks/Readiness"
 )

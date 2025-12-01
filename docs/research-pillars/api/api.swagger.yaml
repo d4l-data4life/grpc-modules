@@ -19,6 +19,8 @@ tags:
   - name: Uploads
   - name: Images
   - name: Clients
+  - name: Messages
+  - name: DeviceTokens
   - name: Checks
 consumes:
   - application/json
@@ -615,6 +617,71 @@ paths:
           format: int32
       tags:
         - Consents
+  /programs/{programName}/devicetokens:
+    get:
+      operationId: DeviceTokens_GetTokens
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetTokensResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - DeviceTokens
+    put:
+      operationId: DeviceTokens_UpsertToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/DeviceTokensUpsertTokenBody'
+      tags:
+        - DeviceTokens
+  /programs/{programName}/devicetokens/{subjectID}:
+    delete:
+      operationId: DeviceTokens_DeleteToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - DeviceTokens
   /programs/{programName}/displays:
     get:
       operationId: Displays_GetDisplays
@@ -817,6 +884,116 @@ paths:
           type: string
       tags:
         - Images
+  /programs/{programName}/messages:
+    get:
+      operationId: Messages_GetMessages
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetMessagesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
+    post:
+      operationId: Messages_UpsertMessage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertMessageResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/MessagesUpsertMessageBody'
+      tags:
+        - Messages
+  /programs/{programName}/messages/{id}:
+    get:
+      operationId: Messages_GetMessage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetMessageResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
+    delete:
+      operationId: Messages_DeleteMessage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteMessageResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
+  /programs/{programName}/messages/{id}/send:
+    post:
+      operationId: Messages_SendMessage
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiSendMessageResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -1667,6 +1844,13 @@ definitions:
     properties:
       consent:
         type: object
+  DeviceTokensUpsertTokenBody:
+    type: object
+    properties:
+      subjectID:
+        type: string
+      token:
+        type: string
   DisplaysUpsertDisplayBody:
     type: object
     properties:
@@ -1684,6 +1868,11 @@ definitions:
       data:
         type: string
         format: byte
+  MessagesUpsertMessageBody:
+    type: object
+    properties:
+      message:
+        type: object
   QuestionnairesUpsertQuestionnaireBody:
     type: object
     properties:
@@ -1737,6 +1926,8 @@ definitions:
     type: object
   apiDeleteImageResponse:
     type: object
+  apiDeleteMessageResponse:
+    type: object
   apiDeleteProgramResponse:
     type: object
   apiDeleteProgramRoleResponse:
@@ -1750,6 +1941,8 @@ definitions:
   apiDeleteStandaloneSurveyResponse:
     type: object
   apiDeleteSurveyResponse:
+    type: object
+  apiDeleteTokenResponse:
     type: object
   apiDeleteUserResponse:
     type: object
@@ -1832,6 +2025,18 @@ definitions:
     properties:
       url:
         type: string
+  apiGetMessageResponse:
+    type: object
+    properties:
+      message:
+        type: object
+  apiGetMessagesResponse:
+    type: object
+    properties:
+      messages:
+        type: array
+        items:
+          type: object
   apiGetProgramDataResponse:
     type: object
     properties:
@@ -2010,6 +2215,14 @@ definitions:
         type: array
         items:
           type: object
+  apiGetTokensResponse:
+    type: object
+    properties:
+      tokens:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoDeviceToken'
   apiGetUsersResponse:
     type: object
     properties:
@@ -2107,6 +2320,8 @@ definitions:
     type: object
   apiPublishSurveyResponse:
     type: object
+  apiSendMessageResponse:
+    type: object
   apiUnassignCodeResponse:
     type: object
   apiUnblockProgramResponse:
@@ -2118,6 +2333,8 @@ definitions:
   apiUpsertDisplayResponse:
     type: object
   apiUpsertImageResponse:
+    type: object
+  apiUpsertMessageResponse:
     type: object
   apiUpsertProgramRequest:
     type: object
@@ -2149,6 +2366,8 @@ definitions:
   apiUpsertStandaloneSurveyResponse:
     type: object
   apiUpsertSurveyResponse:
+    type: object
+  apiUpsertTokenResponse:
     type: object
   protoAnswer:
     type: object
@@ -2197,6 +2416,17 @@ definitions:
       - unused
       - used
     default: unused
+  protoDeviceToken:
+    type: object
+    properties:
+      programName:
+        type: string
+      subjectID:
+        type: string
+      token:
+        type: string
+      participantCode:
+        type: string
   protoDiff:
     type: object
     properties:

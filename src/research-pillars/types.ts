@@ -327,6 +327,13 @@ export interface Client {
   clientSecret: string;
 }
 
+export interface DeviceToken {
+  programName: string;
+  subjectID: string;
+  token: string;
+  participantCode?: string | undefined;
+}
+
 function createBaseQuestionnaire(): Questionnaire {
   return { name: "", version: "", title: {}, questions: [] };
 }
@@ -1768,6 +1775,114 @@ export const Client: MessageFns<Client> = {
     message.programName = object.programName ?? "";
     message.clientID = object.clientID ?? "";
     message.clientSecret = object.clientSecret ?? "";
+    return message;
+  },
+};
+
+function createBaseDeviceToken(): DeviceToken {
+  return { programName: "", subjectID: "", token: "", participantCode: undefined };
+}
+
+export const DeviceToken: MessageFns<DeviceToken> = {
+  encode(message: DeviceToken, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.subjectID !== "") {
+      writer.uint32(18).string(message.subjectID);
+    }
+    if (message.token !== "") {
+      writer.uint32(26).string(message.token);
+    }
+    if (message.participantCode !== undefined) {
+      writer.uint32(34).string(message.participantCode);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): DeviceToken {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDeviceToken();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.subjectID = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.token = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.participantCode = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DeviceToken {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
+      token: isSet(object.token) ? globalThis.String(object.token) : "",
+      participantCode: isSet(object.participantCode) ? globalThis.String(object.participantCode) : undefined,
+    };
+  },
+
+  toJSON(message: DeviceToken): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.subjectID !== "") {
+      obj.subjectID = message.subjectID;
+    }
+    if (message.token !== "") {
+      obj.token = message.token;
+    }
+    if (message.participantCode !== undefined) {
+      obj.participantCode = message.participantCode;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<DeviceToken>, I>>(base?: I): DeviceToken {
+    return DeviceToken.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeviceToken>, I>>(object: I): DeviceToken {
+    const message = createBaseDeviceToken();
+    message.programName = object.programName ?? "";
+    message.subjectID = object.subjectID ?? "";
+    message.token = object.token ?? "";
+    message.participantCode = object.participantCode ?? undefined;
     return message;
   },
 };
