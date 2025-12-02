@@ -650,7 +650,7 @@ export interface GetMessagesResponse {
 
 export interface GetMessageRequest {
   programName: string;
-  id: string;
+  name: string;
 }
 
 export interface GetMessageResponse {
@@ -667,7 +667,7 @@ export interface UpsertMessageResponse {
 
 export interface DeleteMessageRequest {
   programName: string;
-  id: string;
+  name: string;
 }
 
 export interface DeleteMessageResponse {
@@ -675,7 +675,7 @@ export interface DeleteMessageResponse {
 
 export interface SendMessageRequest {
   programName: string;
-  id: string;
+  name: string;
 }
 
 export interface SendMessageResponse {
@@ -10168,7 +10168,7 @@ export const GetMessagesResponse: MessageFns<GetMessagesResponse> = {
 };
 
 function createBaseGetMessageRequest(): GetMessageRequest {
-  return { programName: "", id: "" };
+  return { programName: "", name: "" };
 }
 
 export const GetMessageRequest: MessageFns<GetMessageRequest> = {
@@ -10176,8 +10176,8 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
     if (message.programName !== "") {
       writer.uint32(10).string(message.programName);
     }
-    if (message.id !== "") {
-      writer.uint32(18).string(message.id);
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
     }
     return writer;
   },
@@ -10202,7 +10202,7 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
             break;
           }
 
-          message.id = reader.string();
+          message.name = reader.string();
           continue;
         }
       }
@@ -10217,7 +10217,7 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
   fromJSON(object: any): GetMessageRequest {
     return {
       programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
-      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
     };
   },
 
@@ -10226,8 +10226,8 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
     if (message.programName !== "") {
       obj.programName = message.programName;
     }
-    if (message.id !== "") {
-      obj.id = message.id;
+    if (message.name !== "") {
+      obj.name = message.name;
     }
     return obj;
   },
@@ -10238,7 +10238,7 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
   fromPartial<I extends Exact<DeepPartial<GetMessageRequest>, I>>(object: I): GetMessageRequest {
     const message = createBaseGetMessageRequest();
     message.programName = object.programName ?? "";
-    message.id = object.id ?? "";
+    message.name = object.name ?? "";
     return message;
   },
 };
@@ -10421,7 +10421,7 @@ export const UpsertMessageResponse: MessageFns<UpsertMessageResponse> = {
 };
 
 function createBaseDeleteMessageRequest(): DeleteMessageRequest {
-  return { programName: "", id: "" };
+  return { programName: "", name: "" };
 }
 
 export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
@@ -10429,8 +10429,8 @@ export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
     if (message.programName !== "") {
       writer.uint32(10).string(message.programName);
     }
-    if (message.id !== "") {
-      writer.uint32(18).string(message.id);
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
     }
     return writer;
   },
@@ -10455,7 +10455,7 @@ export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
             break;
           }
 
-          message.id = reader.string();
+          message.name = reader.string();
           continue;
         }
       }
@@ -10470,7 +10470,7 @@ export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
   fromJSON(object: any): DeleteMessageRequest {
     return {
       programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
-      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
     };
   },
 
@@ -10479,8 +10479,8 @@ export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
     if (message.programName !== "") {
       obj.programName = message.programName;
     }
-    if (message.id !== "") {
-      obj.id = message.id;
+    if (message.name !== "") {
+      obj.name = message.name;
     }
     return obj;
   },
@@ -10491,7 +10491,7 @@ export const DeleteMessageRequest: MessageFns<DeleteMessageRequest> = {
   fromPartial<I extends Exact<DeepPartial<DeleteMessageRequest>, I>>(object: I): DeleteMessageRequest {
     const message = createBaseDeleteMessageRequest();
     message.programName = object.programName ?? "";
-    message.id = object.id ?? "";
+    message.name = object.name ?? "";
     return message;
   },
 };
@@ -10540,7 +10540,7 @@ export const DeleteMessageResponse: MessageFns<DeleteMessageResponse> = {
 };
 
 function createBaseSendMessageRequest(): SendMessageRequest {
-  return { programName: "", id: "" };
+  return { programName: "", name: "" };
 }
 
 export const SendMessageRequest: MessageFns<SendMessageRequest> = {
@@ -10548,8 +10548,8 @@ export const SendMessageRequest: MessageFns<SendMessageRequest> = {
     if (message.programName !== "") {
       writer.uint32(10).string(message.programName);
     }
-    if (message.id !== "") {
-      writer.uint32(18).string(message.id);
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
     }
     return writer;
   },
@@ -10574,7 +10574,7 @@ export const SendMessageRequest: MessageFns<SendMessageRequest> = {
             break;
           }
 
-          message.id = reader.string();
+          message.name = reader.string();
           continue;
         }
       }
@@ -10589,7 +10589,7 @@ export const SendMessageRequest: MessageFns<SendMessageRequest> = {
   fromJSON(object: any): SendMessageRequest {
     return {
       programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
-      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
     };
   },
 
@@ -10598,8 +10598,8 @@ export const SendMessageRequest: MessageFns<SendMessageRequest> = {
     if (message.programName !== "") {
       obj.programName = message.programName;
     }
-    if (message.id !== "") {
-      obj.id = message.id;
+    if (message.name !== "") {
+      obj.name = message.name;
     }
     return obj;
   },
@@ -10610,7 +10610,7 @@ export const SendMessageRequest: MessageFns<SendMessageRequest> = {
   fromPartial<I extends Exact<DeepPartial<SendMessageRequest>, I>>(object: I): SendMessageRequest {
     const message = createBaseSendMessageRequest();
     message.programName = object.programName ?? "";
-    message.id = object.id ?? "";
+    message.name = object.name ?? "";
     return message;
   },
 };

@@ -3496,13 +3496,13 @@ func request_Messages_GetMessage_0(ctx context.Context, marshaler runtime.Marsha
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.GetMessage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -3522,13 +3522,13 @@ func local_request_Messages_GetMessage_0(ctx context.Context, marshaler runtime.
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := server.GetMessage(ctx, &protoReq)
 	return msg, metadata, err
@@ -3596,13 +3596,13 @@ func request_Messages_DeleteMessage_0(ctx context.Context, marshaler runtime.Mar
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.DeleteMessage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -3622,13 +3622,13 @@ func local_request_Messages_DeleteMessage_0(ctx context.Context, marshaler runti
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := server.DeleteMessage(ctx, &protoReq)
 	return msg, metadata, err
@@ -3651,13 +3651,13 @@ func request_Messages_SendMessage_0(ctx context.Context, marshaler runtime.Marsh
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := client.SendMessage(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -3677,13 +3677,13 @@ func local_request_Messages_SendMessage_0(ctx context.Context, marshaler runtime
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
 	}
-	val, ok = pathParams["id"]
+	val, ok = pathParams["name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
 	}
-	protoReq.Id, err = runtime.String(val)
+	protoReq.Name, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
 	}
 	msg, err := server.SendMessage(ctx, &protoReq)
 	return msg, metadata, err
@@ -5532,7 +5532,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5572,7 +5572,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5592,7 +5592,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}/send"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7797,7 +7797,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7831,7 +7831,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7848,7 +7848,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{id}/send"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7866,10 +7866,10 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 
 var (
 	pattern_Messages_GetMessages_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "messages"}, ""))
-	pattern_Messages_GetMessage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "id"}, ""))
+	pattern_Messages_GetMessage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "name"}, ""))
 	pattern_Messages_UpsertMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "messages"}, ""))
-	pattern_Messages_DeleteMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "id"}, ""))
-	pattern_Messages_SendMessage_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "messages", "id", "send"}, ""))
+	pattern_Messages_DeleteMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "name"}, ""))
+	pattern_Messages_SendMessage_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "messages", "name", "send"}, ""))
 )
 
 var (

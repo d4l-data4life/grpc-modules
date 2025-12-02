@@ -1033,7 +1033,7 @@ service Messages {
 
   rpc GetMessage(GetMessageRequest) returns (GetMessageResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/messages/{id}"
+      get : "/programs/{programName}/messages/{name}"
     };
   }
 
@@ -1046,13 +1046,13 @@ service Messages {
 
   rpc DeleteMessage(DeleteMessageRequest) returns (DeleteMessageResponse) {
     option (google.api.http) = {
-      delete : "/programs/{programName}/messages/{id}"
+      delete : "/programs/{programName}/messages/{name}"
     };
   }
 
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {
     option (google.api.http) = {
-      post : "/programs/{programName}/messages/{id}/send",
+      post : "/programs/{programName}/messages/{name}/send",
     };
   }
 
@@ -1063,7 +1063,7 @@ message GetMessagesResponse { repeated google.protobuf.Struct messages = 1; }
 
 message GetMessageRequest {
   string programName = 1;
-  string id = 2;
+  string name = 2;
 }
 message GetMessageResponse {
   google.protobuf.Struct message = 1;
@@ -1077,13 +1077,13 @@ message UpsertMessageResponse {}
 
 message DeleteMessageRequest {
   string programName = 1;
-  string id = 2;
+  string name = 2;
 }
 message DeleteMessageResponse {}
 
 message SendMessageRequest {
   string programName = 1;
-  string id = 2;
+  string name = 2;
 }
 message SendMessageResponse {}
 

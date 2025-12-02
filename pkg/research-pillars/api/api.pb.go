@@ -6913,7 +6913,7 @@ func (x *GetMessagesResponse) GetMessages() []*structpb.Struct {
 type GetMessageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
-	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6955,9 +6955,9 @@ func (x *GetMessageRequest) GetProgramName() string {
 	return ""
 }
 
-func (x *GetMessageRequest) GetId() string {
+func (x *GetMessageRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -7097,7 +7097,7 @@ func (*UpsertMessageResponse) Descriptor() ([]byte, []int) {
 type DeleteMessageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
-	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7139,9 +7139,9 @@ func (x *DeleteMessageRequest) GetProgramName() string {
 	return ""
 }
 
-func (x *DeleteMessageRequest) GetId() string {
+func (x *DeleteMessageRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -7185,7 +7185,7 @@ func (*DeleteMessageResponse) Descriptor() ([]byte, []int) {
 type SendMessageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
-	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7227,9 +7227,9 @@ func (x *SendMessageRequest) GetProgramName() string {
 	return ""
 }
 
-func (x *SendMessageRequest) GetId() string {
+func (x *SendMessageRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -7969,23 +7969,23 @@ const file_research_pillars_api_api_proto_rawDesc = "" +
 	"\x12GetMessagesRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\"J\n" +
 	"\x13GetMessagesResponse\x123\n" +
-	"\bmessages\x18\x01 \x03(\v2\x17.google.protobuf.StructR\bmessages\"E\n" +
+	"\bmessages\x18\x01 \x03(\v2\x17.google.protobuf.StructR\bmessages\"I\n" +
 	"\x11GetMessageRequest\x12 \n" +
-	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"G\n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"G\n" +
 	"\x12GetMessageResponse\x121\n" +
 	"\amessage\x18\x01 \x01(\v2\x17.google.protobuf.StructR\amessage\"k\n" +
 	"\x14UpsertMessageRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x121\n" +
 	"\amessage\x18\x02 \x01(\v2\x17.google.protobuf.StructR\amessage\"\x17\n" +
-	"\x15UpsertMessageResponse\"H\n" +
+	"\x15UpsertMessageResponse\"L\n" +
 	"\x14DeleteMessageRequest\x12 \n" +
-	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"\x17\n" +
-	"\x15DeleteMessageResponse\"F\n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x17\n" +
+	"\x15DeleteMessageResponse\"J\n" +
 	"\x12SendMessageRequest\x12 \n" +
-	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"\x15\n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x15\n" +
 	"\x13SendMessageResponse\"4\n" +
 	"\x10GetTokensRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\"?\n" +
@@ -8102,14 +8102,14 @@ const file_research_pillars_api_api_proto_rawDesc = "" +
 	"\tGetClient\x12\x1b.proto.api.GetClientRequest\x1a\x1c.proto.api.GetClientResponse\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/client/{name}\x12z\n" +
 	"\fUpsertClient\x12\x1e.proto.api.UpsertClientRequest\x1a\x1f.proto.api.UpsertClientResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/programs/{programName}/client\x12\x8a\x01\n" +
 	"\rExchangeToken\x12\x1f.proto.api.ExchangeTokenRequest\x1a .proto.api.ExchangeTokenResponse\"6\x82\xd3\xe4\x93\x020:\x01*\"+/programs/{programName}/client/{name}/token\x12~\n" +
-	"\fDeleteClient\x12\x1e.proto.api.DeleteClientRequest\x1a\x1f.proto.api.DeleteClientResponse\"-\x82\xd3\xe4\x93\x02'*%/programs/{programName}/client/{name}2\x84\x05\n" +
+	"\fDeleteClient\x12\x1e.proto.api.DeleteClientRequest\x1a\x1f.proto.api.DeleteClientResponse\"-\x82\xd3\xe4\x93\x02'*%/programs/{programName}/client/{name}2\x8a\x05\n" +
 	"\bMessages\x12v\n" +
-	"\vGetMessages\x12\x1d.proto.api.GetMessagesRequest\x1a\x1e.proto.api.GetMessagesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /programs/{programName}/messages\x12x\n" +
+	"\vGetMessages\x12\x1d.proto.api.GetMessagesRequest\x1a\x1e.proto.api.GetMessagesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /programs/{programName}/messages\x12z\n" +
 	"\n" +
-	"GetMessage\x12\x1c.proto.api.GetMessageRequest\x1a\x1d.proto.api.GetMessageResponse\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/messages/{id}\x12\x7f\n" +
-	"\rUpsertMessage\x12\x1f.proto.api.UpsertMessageRequest\x1a .proto.api.UpsertMessageResponse\"+\x82\xd3\xe4\x93\x02%:\x01*\" /programs/{programName}/messages\x12\x81\x01\n" +
-	"\rDeleteMessage\x12\x1f.proto.api.DeleteMessageRequest\x1a .proto.api.DeleteMessageResponse\"-\x82\xd3\xe4\x93\x02'*%/programs/{programName}/messages/{id}\x12\x80\x01\n" +
-	"\vSendMessage\x12\x1d.proto.api.SendMessageRequest\x1a\x1e.proto.api.SendMessageResponse\"2\x82\xd3\xe4\x93\x02,\"*/programs/{programName}/messages/{id}/send2\x8c\x03\n" +
+	"GetMessage\x12\x1c.proto.api.GetMessageRequest\x1a\x1d.proto.api.GetMessageResponse\"/\x82\xd3\xe4\x93\x02)\x12'/programs/{programName}/messages/{name}\x12\x7f\n" +
+	"\rUpsertMessage\x12\x1f.proto.api.UpsertMessageRequest\x1a .proto.api.UpsertMessageResponse\"+\x82\xd3\xe4\x93\x02%:\x01*\" /programs/{programName}/messages\x12\x83\x01\n" +
+	"\rDeleteMessage\x12\x1f.proto.api.DeleteMessageRequest\x1a .proto.api.DeleteMessageResponse\"/\x82\xd3\xe4\x93\x02)*'/programs/{programName}/messages/{name}\x12\x82\x01\n" +
+	"\vSendMessage\x12\x1d.proto.api.SendMessageRequest\x1a\x1e.proto.api.SendMessageResponse\"4\x82\xd3\xe4\x93\x02.\",/programs/{programName}/messages/{name}/send2\x8c\x03\n" +
 	"\fDeviceTokens\x12t\n" +
 	"\tGetTokens\x12\x1b.proto.api.GetTokensRequest\x1a\x1c.proto.api.GetTokensResponse\",\x82\xd3\xe4\x93\x02&\x12$/programs/{programName}/devicetokens\x12}\n" +
 	"\vUpsertToken\x12\x1d.proto.api.UpsertTokenRequest\x1a\x1e.proto.api.UpsertTokenResponse\"/\x82\xd3\xe4\x93\x02):\x01*\x1a$/programs/{programName}/devicetokens\x12\x86\x01\n" +

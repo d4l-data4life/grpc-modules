@@ -926,7 +926,7 @@ paths:
             $ref: '#/definitions/MessagesUpsertMessageBody'
       tags:
         - Messages
-  /programs/{programName}/messages/{id}:
+  /programs/{programName}/messages/{name}:
     get:
       operationId: Messages_GetMessage
       responses:
@@ -943,7 +943,7 @@ paths:
           in: path
           required: true
           type: string
-        - name: id
+        - name: name
           in: path
           required: true
           type: string
@@ -965,13 +965,13 @@ paths:
           in: path
           required: true
           type: string
-        - name: id
+        - name: name
           in: path
           required: true
           type: string
       tags:
         - Messages
-  /programs/{programName}/messages/{id}/send:
+  /programs/{programName}/messages/{name}/send:
     post:
       operationId: Messages_SendMessage
       responses:
@@ -988,7 +988,7 @@ paths:
           in: path
           required: true
           type: string
-        - name: id
+        - name: name
           in: path
           required: true
           type: string
