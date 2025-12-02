@@ -6,10 +6,10 @@
   "homepage": "https://www.d4l.io/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gesundheitscloud/grpc-modules.git"
+    "url": "git+https://github.com/d4l-data4life/grpc-modules.git"
   },
   "bugs": {
-    "url": "https://github.com/gesundheitscloud/grpc-modules/issues"
+    "url": "https://github.com/d4l-data4life/grpc-modules/issues"
   },
   "exports": {
     "./research-pillars": {

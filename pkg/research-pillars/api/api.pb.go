@@ -7,7 +7,7 @@
 package api
 
 import (
-	research_pillars "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars"
+	research_pillars "github.com/d4l-data4life/grpc-modules/pkg/research-pillars"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
@@ -7351,9 +7351,9 @@ const file_research_pillars_api_api_proto_rawDesc = "" +
 	"\fDeleteClient\x12\x1e.proto.api.DeleteClientRequest\x1a\x1f.proto.api.DeleteClientResponse\"-\x82\xd3\xe4\x93\x02'*%/programs/{programName}/client/{name}2\xc0\x01\n" +
 	"\x06Checks\x12Y\n" +
 	"\bLiveness\x12\x18.proto.api.ChecksRequest\x1a\x19.proto.api.ChecksResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/checks/liveness\x12[\n" +
-	"\tReadiness\x12\x18.proto.api.ChecksRequest\x1a\x19.proto.api.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x97\x01\x92AQ\x12O\n" +
+	"\tReadiness\x12\x18.proto.api.ChecksRequest\x1a\x19.proto.api.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x94\x01\x92AQ\x12O\n" +
 	"\x14Research Pillars API\"2\n" +
-	"\x18Research Enablement Team\x12\x16https://data4life.care2\x031.0ZAgithub.com/gesundheitscloud/grpc-modules/pkg/research-pillars/apib\x06proto3"
+	"\x18Research Enablement Team\x12\x16https://data4life.care2\x031.0Z>github.com/d4l-data4life/grpc-modules/pkg/research-pillars/apib\x06proto3"
 
 var (
 	file_research_pillars_api_api_proto_rawDescOnce sync.Once

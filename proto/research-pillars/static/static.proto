@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package proto.static;
-option go_package = "github.com/gesundheitscloud/grpc-modules/pkg/research-pillars/static";
+option go_package = "github.com/d4l-data4life/grpc-modules/pkg/research-pillars/static";
 
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";

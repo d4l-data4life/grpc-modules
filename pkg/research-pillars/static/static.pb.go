@@ -1807,9 +1807,9 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\bGetImage\x12\x1d.proto.static.GetImageRequest\x1a\x14.google.api.HttpBody\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/images/{name}2\xcc\x01\n" +
 	"\x06Checks\x12_\n" +
 	"\bLiveness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/checks/liveness\x12a\n" +
-	"\tReadiness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x9a\x01\x92AQ\x12O\n" +
+	"\tReadiness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x97\x01\x92AQ\x12O\n" +
 	"\x14Research Pillars API\"2\n" +
-	"\x18Research Enablement Team\x12\x16https://data4life.care2\x031.0ZDgithub.com/gesundheitscloud/grpc-modules/pkg/research-pillars/staticb\x06proto3"
+	"\x18Research Enablement Team\x12\x16https://data4life.care2\x031.0ZAgithub.com/d4l-data4life/grpc-modules/pkg/research-pillars/staticb\x06proto3"
 
 var (
 	file_research_pillars_static_static_proto_rawDescOnce sync.Once

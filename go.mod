@@ -1,9 +1,9 @@
-module github.com/gesundheitscloud/grpc-modules
+module github.com/d4l-data4life/grpc-modules
 
 go 1.25
 
 require (
-	github.com/gesundheitscloud/go-svc v1.83.0
+	github.com/d4l-data4life/go-svc v1.83.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240521202816-d264139d666e
 	google.golang.org/grpc v1.64.0

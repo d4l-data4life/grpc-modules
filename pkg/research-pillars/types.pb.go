@@ -1088,7 +1088,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"CodeStatus\x12\n" +
 	"\n" +
 	"\x06unused\x10\x00\x12\b\n" +
-	"\x04used\x10\x01B?Z=github.com/gesundheitscloud/grpc-modules/pkg/research-pillarsb\x06proto3"
+	"\x04used\x10\x01B<Z:github.com/d4l-data4life/grpc-modules/pkg/research-pillarsb\x06proto3"
 
 var (
 	file_research_pillars_types_proto_rawDescOnce sync.Once
