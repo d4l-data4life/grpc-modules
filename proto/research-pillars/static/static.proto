@@ -28,25 +28,25 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 service Programs {
   rpc GetPrograms(GetProgramsRequest) returns (GetProgramsResponse) {
     option (google.api.http) = {
-      get : "/programs"
+      get : "/api/programs"
     };
   }
 
   rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}"
+      get : "/api/programs/{name}"
     };
   }
 
   rpc GetProgramData(GetProgramDataRequest) returns (GetProgramDataResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}/data"
+      get : "/api/programs/{name}/data"
     };
   }
 
   rpc GetProgramUpdatedAt(GetProgramUpdatedAtRequest) returns (GetProgramUpdatedAtResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}/updatedAt"
+      get : "/api/programs/{name}/updatedAt"
     };
   }
 }
@@ -77,13 +77,13 @@ message GetProgramUpdatedAtResponse { string updatedAt = 1; }
 service Surveys {
   rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/surveys"
+      get : "/api/programs/{programName}/surveys"
     };
   }
 
   rpc GetSurvey(GetSurveyRequest) returns (GetSurveyResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/surveys/{name}"
+      get : "/api/programs/{programName}/surveys/{name}"
     };
   }
 }
@@ -105,14 +105,14 @@ service Questionnaires {
   rpc GetQuestionnaires(GetQuestionnairesRequest)
       returns (GetQuestionnairesResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/questionnaires"
+      get : "/api/programs/{programName}/questionnaires"
     };
   }
 
   rpc GetQuestionnaire(GetQuestionnaireRequest)
       returns (GetQuestionnaireResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/questionnaires/{name}"
+      get : "/api/programs/{programName}/questionnaires/{name}"
     };
   }
 }
@@ -139,13 +139,13 @@ message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }
 service Routines {
   rpc GetRoutines(GetRoutinesRequest) returns (GetRoutinesResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/routines"
+      get : "/api/programs/{programName}/routines"
     };
   }
 
   rpc GetRoutine(GetRoutineRequest) returns (GetRoutineResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/routines/{name}"
+      get : "/api/programs/{programName}/routines/{name}"
     };
   }
 }
@@ -166,13 +166,13 @@ message GetRoutineResponse { google.protobuf.Struct routine = 1; }
 service Displays {
   rpc GetDisplays(GetDisplaysRequest) returns (GetDisplaysResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/displays"
+      get : "/api/programs/{programName}/displays"
     };
   }
 
   rpc GetDisplay(GetDisplayRequest) returns (GetDisplayResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/displays/{name}"
+      get : "/api/programs/{programName}/displays/{name}"
     };
   }
 }
@@ -193,19 +193,19 @@ message GetDisplayResponse { google.protobuf.Struct display = 1; }
 service Consents {
   rpc GetConsents(GetConsentsRequest) returns (GetConsentsResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents"
+      get : "/api/programs/{programName}/consents"
     };
   }
 
   rpc GetConsent(GetConsentRequest) returns (GetConsentResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents/{name}"
+      get : "/api/programs/{programName}/consents/{name}"
     };
   }
 
   rpc GetConsentVersion(GetConsentVersionRequest) returns (GetConsentVersionResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents/{name}/{version}"
+      get : "/api/programs/{programName}/consents/{name}/{version}"
     };
   }
 }
@@ -237,7 +237,7 @@ message GetConsentVersionResponse {
 service Utilities {
   rpc Proxy(ProxyRequest) returns (ProxyResponse) {
     option (google.api.http) = {
-      post : "/utilities/proxy",
+      post : "/api/utilities/proxy",
       body : "*"
     };
   }
@@ -259,7 +259,7 @@ message ProxyResponse {
 service Images {
   rpc GetImage(GetImageRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
-      get : "/programs/{programName}/images/{name}"
+      get : "/api/programs/{programName}/images/{name}"
     };
   }
 }
@@ -276,13 +276,13 @@ message GetImageRequest {
 service Checks {
   rpc Liveness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/checks/liveness"
+      get : "/api/checks/liveness"
     };
   }
 
   rpc Readiness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/checks/readiness"
+      get : "/api/checks/readiness"
     };
   }
 }
