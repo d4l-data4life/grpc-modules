@@ -3882,7 +3882,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/api/users/self"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3902,7 +3902,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/api/users"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3922,7 +3922,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteUser", runtime.WithHTTPPathPattern("/api/users/{userEmail}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteUser", runtime.WithHTTPPathPattern("/users/{userEmail}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3942,7 +3942,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/api/users/roles"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3962,7 +3962,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/api/users/{userEmail}/role/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -3982,7 +3982,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/api/users/blocked-programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4002,7 +4002,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/api/users/blocked-program/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4022,7 +4022,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/api/users/blocked-program"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4052,7 +4052,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/api/programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4072,7 +4072,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/api/programslist"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4092,7 +4092,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/api/programslist/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4112,7 +4112,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/api/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4132,7 +4132,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/api/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4152,7 +4152,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/api/programs/{name}/diffs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4172,7 +4172,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/api/programs"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4192,7 +4192,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/api/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4212,7 +4212,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/api/programs/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4232,7 +4232,7 @@ func RegisterProgramsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/api/programs/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4262,7 +4262,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4282,7 +4282,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4302,7 +4302,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4322,7 +4322,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4342,7 +4342,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4362,7 +4362,7 @@ func RegisterSurveysHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4392,7 +4392,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4412,7 +4412,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4432,7 +4432,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4452,7 +4452,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4472,7 +4472,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4492,7 +4492,7 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4522,7 +4522,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4542,7 +4542,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4562,7 +4562,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4582,7 +4582,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4602,7 +4602,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4622,7 +4622,7 @@ func RegisterRoutinesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4652,7 +4652,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4672,7 +4672,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4692,7 +4692,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4712,7 +4712,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4732,7 +4732,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4752,7 +4752,7 @@ func RegisterDisplaysHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}/load"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4782,7 +4782,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4802,7 +4802,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4822,7 +4822,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/internal/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4842,7 +4842,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes/{code}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4862,7 +4862,7 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4892,7 +4892,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4912,7 +4912,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4932,7 +4932,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4952,7 +4952,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4972,7 +4972,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -4992,7 +4992,7 @@ func RegisterConsentsHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5022,7 +5022,7 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/api/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5042,7 +5042,7 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5062,7 +5062,7 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5082,7 +5082,7 @@ func RegisterStandaloneSurveysHandlerServer(ctx context.Context, mux *runtime.Se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5112,7 +5112,7 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/api/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5132,7 +5132,7 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5152,7 +5152,7 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5172,7 +5172,7 @@ func RegisterStandaloneQuestionnairesHandlerServer(ctx context.Context, mux *run
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5202,7 +5202,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5222,7 +5222,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5242,7 +5242,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5262,7 +5262,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/api/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5282,7 +5282,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/api/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5302,7 +5302,7 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/api/statistics/{programName}/{type}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5332,7 +5332,7 @@ func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5352,7 +5352,7 @@ func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/programs/{programName}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5372,7 +5372,7 @@ func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5402,7 +5402,7 @@ func RegisterClientsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/GetClients", runtime.WithHTTPPathPattern("/api/programs/{programName}/client"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/GetClients", runtime.WithHTTPPathPattern("/programs/{programName}/client"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5422,7 +5422,7 @@ func RegisterClientsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/GetClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/GetClient", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5442,7 +5442,7 @@ func RegisterClientsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/UpsertClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/UpsertClient", runtime.WithHTTPPathPattern("/programs/{programName}/client"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5462,7 +5462,7 @@ func RegisterClientsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/ExchangeToken", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}/token"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/ExchangeToken", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}/token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5482,7 +5482,7 @@ func RegisterClientsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/DeleteClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Clients/DeleteClient", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5512,7 +5512,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessages", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessages", runtime.WithHTTPPathPattern("/programs/{programName}/messages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5532,7 +5532,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5552,7 +5552,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/UpsertMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/UpsertMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5572,7 +5572,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5592,7 +5592,7 @@ func RegisterMessagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}/send"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5622,7 +5622,7 @@ func RegisterDeviceTokensHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/GetTokens", runtime.WithHTTPPathPattern("/api/programs/{programName}/devicetokens"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/GetTokens", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5642,7 +5642,7 @@ func RegisterDeviceTokensHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/UpsertToken", runtime.WithHTTPPathPattern("/internal/programs/{programName}/devicetokens"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/UpsertToken", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5662,7 +5662,7 @@ func RegisterDeviceTokensHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/DeleteToken", runtime.WithHTTPPathPattern("/internal/programs/{programName}/devicetokens/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.DeviceTokens/DeleteToken", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5692,7 +5692,7 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/api/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5712,7 +5712,7 @@ func RegisterChecksHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/api/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5770,7 +5770,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/api/users/self"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetSelf", runtime.WithHTTPPathPattern("/users/self"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5787,7 +5787,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/api/users"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetUsers", runtime.WithHTTPPathPattern("/users"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5804,7 +5804,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteUser", runtime.WithHTTPPathPattern("/api/users/{userEmail}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteUser", runtime.WithHTTPPathPattern("/users/{userEmail}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5821,7 +5821,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/api/users/roles"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UpsertProgramRole", runtime.WithHTTPPathPattern("/users/roles"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5838,7 +5838,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/api/users/{userEmail}/role/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/DeleteProgramRole", runtime.WithHTTPPathPattern("/users/{userEmail}/role/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5855,7 +5855,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/api/users/blocked-programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/GetBlockedPrograms", runtime.WithHTTPPathPattern("/users/blocked-programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5872,7 +5872,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/api/users/blocked-program/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/BlockProgram", runtime.WithHTTPPathPattern("/users/blocked-program/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5889,7 +5889,7 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/api/users/blocked-program"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Users/UnblockProgram", runtime.WithHTTPPathPattern("/users/blocked-program"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5906,14 +5906,14 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Users_GetSelf_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "users", "self"}, ""))
-	pattern_Users_GetUsers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "users"}, ""))
-	pattern_Users_DeleteUser_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "users", "userEmail"}, ""))
-	pattern_Users_UpsertProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "users", "roles"}, ""))
-	pattern_Users_DeleteProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "users", "userEmail", "role", "programName"}, ""))
-	pattern_Users_GetBlockedPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "users", "blocked-programs"}, ""))
-	pattern_Users_BlockProgram_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "users", "blocked-program", "programName"}, ""))
-	pattern_Users_UnblockProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "users", "blocked-program"}, ""))
+	pattern_Users_GetSelf_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "self"}, ""))
+	pattern_Users_GetUsers_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"users"}, ""))
+	pattern_Users_DeleteUser_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"users", "userEmail"}, ""))
+	pattern_Users_UpsertProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "roles"}, ""))
+	pattern_Users_DeleteProgramRole_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"users", "userEmail", "role", "programName"}, ""))
+	pattern_Users_GetBlockedPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "blocked-programs"}, ""))
+	pattern_Users_BlockProgram_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"users", "blocked-program", "programName"}, ""))
+	pattern_Users_UnblockProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"users", "blocked-program"}, ""))
 )
 
 var (
@@ -5967,7 +5967,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/api/programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetPrograms", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5984,7 +5984,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/api/programslist"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramsList", runtime.WithHTTPPathPattern("/programslist"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6001,7 +6001,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/api/programslist/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/IsNameAvailable", runtime.WithHTTPPathPattern("/programslist/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6018,7 +6018,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/api/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6035,7 +6035,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/api/programs/{name}/data"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramData", runtime.WithHTTPPathPattern("/programs/{name}/data"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6052,7 +6052,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/api/programs/{name}/diffs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/GetProgramDiffs", runtime.WithHTTPPathPattern("/programs/{name}/diffs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6069,7 +6069,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/api/programs"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/UpsertProgram", runtime.WithHTTPPathPattern("/programs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6086,7 +6086,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/api/programs/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/DeleteProgram", runtime.WithHTTPPathPattern("/programs/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6103,7 +6103,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/api/programs/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/PublishProgram", runtime.WithHTTPPathPattern("/programs/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6120,7 +6120,7 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/api/programs/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Programs/LoadProgram", runtime.WithHTTPPathPattern("/programs/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6137,16 +6137,16 @@ func RegisterProgramsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Programs_GetPrograms_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "programs"}, ""))
-	pattern_Programs_GetProgramsList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "programslist"}, ""))
-	pattern_Programs_IsNameAvailable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "programslist", "name"}, ""))
-	pattern_Programs_GetProgram_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "programs", "name"}, ""))
-	pattern_Programs_GetProgramData_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "name", "data"}, ""))
-	pattern_Programs_GetProgramDiffs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "name", "diffs"}, ""))
-	pattern_Programs_UpsertProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "programs"}, ""))
-	pattern_Programs_DeleteProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "programs", "name"}, ""))
-	pattern_Programs_PublishProgram_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "name", "publish"}, ""))
-	pattern_Programs_LoadProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "name", "load"}, ""))
+	pattern_Programs_GetPrograms_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
+	pattern_Programs_GetProgramsList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programslist"}, ""))
+	pattern_Programs_IsNameAvailable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programslist", "name"}, ""))
+	pattern_Programs_GetProgram_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
+	pattern_Programs_GetProgramData_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "data"}, ""))
+	pattern_Programs_GetProgramDiffs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "diffs"}, ""))
+	pattern_Programs_UpsertProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"programs"}, ""))
+	pattern_Programs_DeleteProgram_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"programs", "name"}, ""))
+	pattern_Programs_PublishProgram_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "publish"}, ""))
+	pattern_Programs_LoadProgram_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "name", "load"}, ""))
 )
 
 var (
@@ -6202,7 +6202,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurveys", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6219,7 +6219,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/GetSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6236,7 +6236,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/UpsertSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6253,7 +6253,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/DeleteSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6270,7 +6270,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/PublishSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6287,7 +6287,7 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/api/programs/{programName}/surveys/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Surveys/LoadSurvey", runtime.WithHTTPPathPattern("/programs/{programName}/surveys/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6304,12 +6304,12 @@ func RegisterSurveysHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Surveys_GetSurveys_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "surveys"}, ""))
-	pattern_Surveys_GetSurvey_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "surveys", "name"}, ""))
-	pattern_Surveys_UpsertSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "surveys"}, ""))
-	pattern_Surveys_DeleteSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "surveys", "name"}, ""))
-	pattern_Surveys_PublishSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "surveys", "name", "publish"}, ""))
-	pattern_Surveys_LoadSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "surveys", "name", "load"}, ""))
+	pattern_Surveys_GetSurveys_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
+	pattern_Surveys_GetSurvey_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
+	pattern_Surveys_UpsertSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "surveys"}, ""))
+	pattern_Surveys_DeleteSurvey_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "surveys", "name"}, ""))
+	pattern_Surveys_PublishSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "surveys", "name", "publish"}, ""))
+	pattern_Surveys_LoadSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "surveys", "name", "load"}, ""))
 )
 
 var (
@@ -6361,7 +6361,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaires", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6378,7 +6378,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6395,7 +6395,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/UpsertQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6412,7 +6412,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/DeleteQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6429,7 +6429,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/PublishQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6446,7 +6446,7 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/api/programs/{programName}/questionnaires/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/LoadQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6463,12 +6463,12 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_Questionnaires_GetQuestionnaires_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "questionnaires"}, ""))
-	pattern_Questionnaires_GetQuestionnaire_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "questionnaires", "name"}, ""))
-	pattern_Questionnaires_UpsertQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "questionnaires"}, ""))
-	pattern_Questionnaires_DeleteQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "questionnaires", "name"}, ""))
-	pattern_Questionnaires_PublishQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "questionnaires", "name", "publish"}, ""))
-	pattern_Questionnaires_LoadQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "questionnaires", "name", "load"}, ""))
+	pattern_Questionnaires_GetQuestionnaires_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_GetQuestionnaire_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_UpsertQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_DeleteQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_PublishQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "publish"}, ""))
+	pattern_Questionnaires_LoadQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "load"}, ""))
 )
 
 var (
@@ -6520,7 +6520,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutines", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6537,7 +6537,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/GetRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6554,7 +6554,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/UpsertRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6571,7 +6571,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/DeleteRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6588,7 +6588,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/PublishRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6605,7 +6605,7 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/api/programs/{programName}/routines/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Routines/LoadRoutine", runtime.WithHTTPPathPattern("/programs/{programName}/routines/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6622,12 +6622,12 @@ func RegisterRoutinesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Routines_GetRoutines_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "routines"}, ""))
-	pattern_Routines_GetRoutine_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "routines", "name"}, ""))
-	pattern_Routines_UpsertRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "routines"}, ""))
-	pattern_Routines_DeleteRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "routines", "name"}, ""))
-	pattern_Routines_PublishRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "routines", "name", "publish"}, ""))
-	pattern_Routines_LoadRoutine_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "routines", "name", "load"}, ""))
+	pattern_Routines_GetRoutines_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
+	pattern_Routines_GetRoutine_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
+	pattern_Routines_UpsertRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "routines"}, ""))
+	pattern_Routines_DeleteRoutine_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "routines", "name"}, ""))
+	pattern_Routines_PublishRoutine_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "routines", "name", "publish"}, ""))
+	pattern_Routines_LoadRoutine_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "routines", "name", "load"}, ""))
 )
 
 var (
@@ -6679,7 +6679,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplays", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6696,7 +6696,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/GetDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6713,7 +6713,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/UpsertDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6730,7 +6730,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/DeleteDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6747,7 +6747,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/PublishDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6764,7 +6764,7 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/api/programs/{programName}/displays/{name}/load"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Displays/LoadDisplay", runtime.WithHTTPPathPattern("/programs/{programName}/displays/{name}/load"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6781,12 +6781,12 @@ func RegisterDisplaysHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Displays_GetDisplays_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "displays"}, ""))
-	pattern_Displays_GetDisplay_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "displays", "name"}, ""))
-	pattern_Displays_UpsertDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "displays"}, ""))
-	pattern_Displays_DeleteDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "displays", "name"}, ""))
-	pattern_Displays_PublishDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "displays", "name", "publish"}, ""))
-	pattern_Displays_LoadDisplay_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "displays", "name", "load"}, ""))
+	pattern_Displays_GetDisplays_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
+	pattern_Displays_GetDisplay_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
+	pattern_Displays_UpsertDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "displays"}, ""))
+	pattern_Displays_DeleteDisplay_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "displays", "name"}, ""))
+	pattern_Displays_PublishDisplay_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "displays", "name", "publish"}, ""))
+	pattern_Displays_LoadDisplay_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "displays", "name", "load"}, ""))
 )
 
 var (
@@ -6838,7 +6838,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GetCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6855,7 +6855,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCodes", runtime.WithHTTPPathPattern("/programs/{programName}/codes"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6872,7 +6872,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/internal/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/AssignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6889,7 +6889,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes/{code}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/DeleteCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6906,7 +6906,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/api/programs/{programName}/codes/{code}/assign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/UnassignCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/{code}/assign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6923,11 +6923,11 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_ParticipantCodes_GetCodes_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "codes"}, ""))
-	pattern_ParticipantCodes_GenerateCodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "codes"}, ""))
-	pattern_ParticipantCodes_AssignCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"internal", "programs", "programName", "codes", "code", "assign"}, ""))
-	pattern_ParticipantCodes_DeleteCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "codes", "code"}, ""))
-	pattern_ParticipantCodes_UnassignCode_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "codes", "code", "assign"}, ""))
+	pattern_ParticipantCodes_GetCodes_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
+	pattern_ParticipantCodes_GenerateCodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
+	pattern_ParticipantCodes_AssignCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
+	pattern_ParticipantCodes_DeleteCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "codes", "code"}, ""))
+	pattern_ParticipantCodes_UnassignCode_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
 )
 
 var (
@@ -6978,7 +6978,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsents", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -6995,7 +6995,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/GetConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7012,7 +7012,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/UpsertConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7029,7 +7029,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7046,7 +7046,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}/{version}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/DeleteConsentVersion", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/{version}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7063,7 +7063,7 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/api/programs/{programName}/consents/{name}/publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Consents/PublishConsent", runtime.WithHTTPPathPattern("/programs/{programName}/consents/{name}/publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7080,12 +7080,12 @@ func RegisterConsentsHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Consents_GetConsents_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "consents"}, ""))
-	pattern_Consents_GetConsent_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "consents", "name"}, ""))
-	pattern_Consents_UpsertConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "consents"}, ""))
-	pattern_Consents_DeleteConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "consents", "name"}, ""))
-	pattern_Consents_DeleteConsentVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "programs", "programName", "consents", "name", "version"}, ""))
-	pattern_Consents_PublishConsent_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "consents", "name", "publish"}, ""))
+	pattern_Consents_GetConsents_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
+	pattern_Consents_GetConsent_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
+	pattern_Consents_UpsertConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "consents"}, ""))
+	pattern_Consents_DeleteConsent_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "consents", "name"}, ""))
+	pattern_Consents_DeleteConsentVersion_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"programs", "programName", "consents", "name", "version"}, ""))
+	pattern_Consents_PublishConsent_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "consents", "name", "publish"}, ""))
 )
 
 var (
@@ -7137,7 +7137,7 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/api/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurveys", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7154,7 +7154,7 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/GetStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7171,7 +7171,7 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/UpsertStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7188,7 +7188,7 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/api/surveys/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneSurveys/DeleteStandaloneSurvey", runtime.WithHTTPPathPattern("/surveys/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7205,10 +7205,10 @@ func RegisterStandaloneSurveysHandlerClient(ctx context.Context, mux *runtime.Se
 }
 
 var (
-	pattern_StandaloneSurveys_GetStandaloneSurveys_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "surveys"}, ""))
-	pattern_StandaloneSurveys_GetStandaloneSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "surveys", "name"}, ""))
-	pattern_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "surveys"}, ""))
-	pattern_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "surveys", "name"}, ""))
+	pattern_StandaloneSurveys_GetStandaloneSurveys_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
+	pattern_StandaloneSurveys_GetStandaloneSurvey_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
+	pattern_StandaloneSurveys_UpsertStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"surveys"}, ""))
+	pattern_StandaloneSurveys_DeleteStandaloneSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"surveys", "name"}, ""))
 )
 
 var (
@@ -7258,7 +7258,7 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/api/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaires", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7275,7 +7275,7 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/GetStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7292,7 +7292,7 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/UpsertStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7309,7 +7309,7 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/api/questionnaires/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.StandaloneQuestionnaires/DeleteStandaloneQuestionnaire", runtime.WithHTTPPathPattern("/questionnaires/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7326,10 +7326,10 @@ func RegisterStandaloneQuestionnairesHandlerClient(ctx context.Context, mux *run
 }
 
 var (
-	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "questionnaires"}, ""))
-	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "questionnaires", "name"}, ""))
-	pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "questionnaires"}, ""))
-	pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "questionnaires", "name"}, ""))
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaires_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
+	pattern_StandaloneQuestionnaires_GetStandaloneQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
+	pattern_StandaloneQuestionnaires_UpsertStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"questionnaires"}, ""))
+	pattern_StandaloneQuestionnaires_DeleteStandaloneQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"questionnaires", "name"}, ""))
 )
 
 var (
@@ -7379,7 +7379,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjects", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7396,7 +7396,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectData", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7413,7 +7413,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/api/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetSubjectResource", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/{resourceID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7430,7 +7430,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/api/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadList", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7447,7 +7447,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/api/download/{programName}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetDownloadTicket", runtime.WithHTTPPathPattern("/download/{programName}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7464,7 +7464,7 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/api/statistics/{programName}/{type}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetStatistics", runtime.WithHTTPPathPattern("/statistics/{programName}/{type}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7481,12 +7481,12 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Uploads_GetSubjects_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "uploads", "subjects", "programName"}, ""))
-	pattern_Uploads_GetSubjectData_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "uploads", "subjects", "programName", "subjectID"}, ""))
-	pattern_Uploads_GetSubjectResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "uploads", "subjects", "programName", "subjectID", "resourceID"}, ""))
-	pattern_Uploads_GetDownloadList_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "download", "programName"}, ""))
-	pattern_Uploads_GetDownloadTicket_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "download", "programName"}, ""))
-	pattern_Uploads_GetStatistics_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "statistics", "programName", "type"}, ""))
+	pattern_Uploads_GetSubjects_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"uploads", "subjects", "programName"}, ""))
+	pattern_Uploads_GetSubjectData_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"uploads", "subjects", "programName", "subjectID"}, ""))
+	pattern_Uploads_GetSubjectResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"uploads", "subjects", "programName", "subjectID", "resourceID"}, ""))
+	pattern_Uploads_GetDownloadList_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
+	pattern_Uploads_GetDownloadTicket_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
+	pattern_Uploads_GetStatistics_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2}, []string{"statistics", "programName", "type"}, ""))
 )
 
 var (
@@ -7538,7 +7538,7 @@ func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/GetImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7555,7 +7555,7 @@ func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/UpsertImage", runtime.WithHTTPPathPattern("/programs/{programName}/images"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7572,7 +7572,7 @@ func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/api/programs/{programName}/images/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Images/DeleteImage", runtime.WithHTTPPathPattern("/programs/{programName}/images/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7589,9 +7589,9 @@ func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 }
 
 var (
-	pattern_Images_GetImage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "images", "name"}, ""))
-	pattern_Images_UpsertImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "images"}, ""))
-	pattern_Images_DeleteImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "images", "name"}, ""))
+	pattern_Images_GetImage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "images", "name"}, ""))
+	pattern_Images_UpsertImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "images"}, ""))
+	pattern_Images_DeleteImage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "images", "name"}, ""))
 )
 
 var (
@@ -7640,7 +7640,7 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/GetClients", runtime.WithHTTPPathPattern("/api/programs/{programName}/client"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/GetClients", runtime.WithHTTPPathPattern("/programs/{programName}/client"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7657,7 +7657,7 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/GetClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/GetClient", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7674,7 +7674,7 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/UpsertClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/UpsertClient", runtime.WithHTTPPathPattern("/programs/{programName}/client"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7691,7 +7691,7 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/ExchangeToken", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}/token"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/ExchangeToken", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}/token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7708,7 +7708,7 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/DeleteClient", runtime.WithHTTPPathPattern("/api/programs/{programName}/client/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Clients/DeleteClient", runtime.WithHTTPPathPattern("/programs/{programName}/client/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7725,11 +7725,11 @@ func RegisterClientsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Clients_GetClients_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "client"}, ""))
-	pattern_Clients_GetClient_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "client", "name"}, ""))
-	pattern_Clients_UpsertClient_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "client"}, ""))
-	pattern_Clients_ExchangeToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "client", "name", "token"}, ""))
-	pattern_Clients_DeleteClient_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "client", "name"}, ""))
+	pattern_Clients_GetClients_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "client"}, ""))
+	pattern_Clients_GetClient_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "client", "name"}, ""))
+	pattern_Clients_UpsertClient_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "client"}, ""))
+	pattern_Clients_ExchangeToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "client", "name", "token"}, ""))
+	pattern_Clients_DeleteClient_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "client", "name"}, ""))
 )
 
 var (
@@ -7780,7 +7780,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessages", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessages", runtime.WithHTTPPathPattern("/programs/{programName}/messages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7797,7 +7797,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/GetMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7814,7 +7814,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/UpsertMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/UpsertMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7831,7 +7831,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/DeleteMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7848,7 +7848,7 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/api/programs/{programName}/messages/{name}/send"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Messages/SendMessage", runtime.WithHTTPPathPattern("/programs/{programName}/messages/{name}/send"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7865,11 +7865,11 @@ func RegisterMessagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 }
 
 var (
-	pattern_Messages_GetMessages_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "messages"}, ""))
-	pattern_Messages_GetMessage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "messages", "name"}, ""))
-	pattern_Messages_UpsertMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "messages"}, ""))
-	pattern_Messages_DeleteMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "programs", "programName", "messages", "name"}, ""))
-	pattern_Messages_SendMessage_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "programs", "programName", "messages", "name", "send"}, ""))
+	pattern_Messages_GetMessages_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "messages"}, ""))
+	pattern_Messages_GetMessage_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "name"}, ""))
+	pattern_Messages_UpsertMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "messages"}, ""))
+	pattern_Messages_DeleteMessage_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "messages", "name"}, ""))
+	pattern_Messages_SendMessage_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "messages", "name", "send"}, ""))
 )
 
 var (
@@ -7920,7 +7920,7 @@ func RegisterDeviceTokensHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/GetTokens", runtime.WithHTTPPathPattern("/api/programs/{programName}/devicetokens"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/GetTokens", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7937,7 +7937,7 @@ func RegisterDeviceTokensHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/UpsertToken", runtime.WithHTTPPathPattern("/internal/programs/{programName}/devicetokens"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/UpsertToken", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7954,7 +7954,7 @@ func RegisterDeviceTokensHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/DeleteToken", runtime.WithHTTPPathPattern("/internal/programs/{programName}/devicetokens/{subjectID}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.DeviceTokens/DeleteToken", runtime.WithHTTPPathPattern("/programs/{programName}/devicetokens/{subjectID}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -7971,9 +7971,9 @@ func RegisterDeviceTokensHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_DeviceTokens_GetTokens_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "programs", "programName", "devicetokens"}, ""))
-	pattern_DeviceTokens_UpsertToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"internal", "programs", "programName", "devicetokens"}, ""))
-	pattern_DeviceTokens_DeleteToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"internal", "programs", "programName", "devicetokens", "subjectID"}, ""))
+	pattern_DeviceTokens_GetTokens_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "devicetokens"}, ""))
+	pattern_DeviceTokens_UpsertToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "devicetokens"}, ""))
+	pattern_DeviceTokens_DeleteToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "devicetokens", "subjectID"}, ""))
 )
 
 var (
@@ -8022,7 +8022,7 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/api/checks/liveness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Liveness", runtime.WithHTTPPathPattern("/checks/liveness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -8039,7 +8039,7 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/api/checks/readiness"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Checks/Readiness", runtime.WithHTTPPathPattern("/checks/readiness"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -8056,8 +8056,8 @@ func RegisterChecksHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 }
 
 var (
-	pattern_Checks_Liveness_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "checks", "liveness"}, ""))
-	pattern_Checks_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "checks", "readiness"}, ""))
+	pattern_Checks_Liveness_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "liveness"}, ""))
+	pattern_Checks_Readiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"checks", "readiness"}, ""))
 )
 
 var (

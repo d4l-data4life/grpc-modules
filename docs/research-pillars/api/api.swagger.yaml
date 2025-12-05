@@ -27,7 +27,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /api/checks/liveness:
+  /checks/liveness:
     get:
       operationId: Checks_Liveness
       responses:
@@ -41,7 +41,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Checks
-  /api/checks/readiness:
+  /checks/readiness:
     get:
       operationId: Checks_Readiness
       responses:
@@ -55,7 +55,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Checks
-  /api/download/{programName}:
+  /download/{programName}:
     get:
       operationId: Uploads_GetDownloadList
       responses:
@@ -97,7 +97,7 @@ paths:
             $ref: '#/definitions/UploadsGetDownloadTicketBody'
       tags:
         - Uploads
-  /api/programs:
+  /programs:
     get:
       operationId: Programs_GetPrograms
       responses:
@@ -130,7 +130,7 @@ paths:
             $ref: '#/definitions/apiUpsertProgramRequest'
       tags:
         - Programs
-  /api/programs/{name}:
+  /programs/{name}:
     get:
       operationId: Programs_GetProgram
       responses:
@@ -167,7 +167,7 @@ paths:
           type: string
       tags:
         - Programs
-  /api/programs/{name}/data:
+  /programs/{name}/data:
     get:
       operationId: Programs_GetProgramData
       responses:
@@ -186,7 +186,7 @@ paths:
           type: string
       tags:
         - Programs
-  /api/programs/{name}/diffs:
+  /programs/{name}/diffs:
     get:
       operationId: Programs_GetProgramDiffs
       responses:
@@ -205,7 +205,7 @@ paths:
           type: string
       tags:
         - Programs
-  /api/programs/{name}/load:
+  /programs/{name}/load:
     post:
       operationId: Programs_LoadProgram
       responses:
@@ -224,7 +224,7 @@ paths:
           type: string
       tags:
         - Programs
-  /api/programs/{name}/publish:
+  /programs/{name}/publish:
     post:
       operationId: Programs_PublishProgram
       responses:
@@ -248,7 +248,7 @@ paths:
             type: boolean
       tags:
         - Programs
-  /api/programs/{programName}/client:
+  /programs/{programName}/client:
     get:
       operationId: Clients_GetClients
       responses:
@@ -290,7 +290,7 @@ paths:
             $ref: '#/definitions/ClientsUpsertClientBody'
       tags:
         - Clients
-  /api/programs/{programName}/client/{name}:
+  /programs/{programName}/client/{name}:
     get:
       operationId: Clients_GetClient
       responses:
@@ -335,7 +335,7 @@ paths:
           type: string
       tags:
         - Clients
-  /api/programs/{programName}/client/{name}/token:
+  /programs/{programName}/client/{name}/token:
     post:
       operationId: Clients_ExchangeToken
       responses:
@@ -363,7 +363,7 @@ paths:
             $ref: '#/definitions/ClientsExchangeTokenBody'
       tags:
         - Clients
-  /api/programs/{programName}/codes:
+  /programs/{programName}/codes:
     get:
       operationId: ParticipantCodes_GetCodes
       responses:
@@ -406,7 +406,7 @@ paths:
             format: int32
       tags:
         - ParticipantCodes
-  /api/programs/{programName}/codes/{code}:
+  /programs/{programName}/codes/{code}:
     delete:
       operationId: ParticipantCodes_DeleteCode
       responses:
@@ -429,7 +429,7 @@ paths:
           type: string
       tags:
         - ParticipantCodes
-  /api/programs/{programName}/codes/{code}/assign:
+  /programs/{programName}/codes/{code}/assign:
     delete:
       operationId: ParticipantCodes_UnassignCode
       responses:
@@ -452,7 +452,34 @@ paths:
           type: string
       tags:
         - ParticipantCodes
-  /api/programs/{programName}/consents:
+    post:
+      operationId: ParticipantCodes_AssignCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiAssignCodeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: code
+          in: path
+          required: true
+          type: string
+        - name: alpID
+          in: body
+          required: true
+          schema:
+            type: string
+      tags:
+        - ParticipantCodes
+  /programs/{programName}/consents:
     get:
       operationId: Consents_GetConsents
       responses:
@@ -494,7 +521,7 @@ paths:
             $ref: '#/definitions/ConsentsUpsertConsentBody'
       tags:
         - Consents
-  /api/programs/{programName}/consents/{name}:
+  /programs/{programName}/consents/{name}:
     get:
       operationId: Consents_GetConsent
       responses:
@@ -539,7 +566,7 @@ paths:
           type: string
       tags:
         - Consents
-  /api/programs/{programName}/consents/{name}/publish:
+  /programs/{programName}/consents/{name}/publish:
     post:
       operationId: Consents_PublishConsent
       responses:
@@ -562,7 +589,7 @@ paths:
           type: string
       tags:
         - Consents
-  /api/programs/{programName}/consents/{name}/{version}:
+  /programs/{programName}/consents/{name}/{version}:
     delete:
       operationId: Consents_DeleteConsentVersion
       responses:
@@ -590,7 +617,7 @@ paths:
           format: int32
       tags:
         - Consents
-  /api/programs/{programName}/devicetokens:
+  /programs/{programName}/devicetokens:
     get:
       operationId: DeviceTokens_GetTokens
       responses:
@@ -609,7 +636,53 @@ paths:
           type: string
       tags:
         - DeviceTokens
-  /api/programs/{programName}/displays:
+    put:
+      operationId: DeviceTokens_UpsertToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/DeviceTokensUpsertTokenBody'
+      tags:
+        - DeviceTokens
+  /programs/{programName}/devicetokens/{subjectID}:
+    delete:
+      operationId: DeviceTokens_DeleteToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - DeviceTokens
+  /programs/{programName}/displays:
     get:
       operationId: Displays_GetDisplays
       responses:
@@ -651,7 +724,7 @@ paths:
             $ref: '#/definitions/DisplaysUpsertDisplayBody'
       tags:
         - Displays
-  /api/programs/{programName}/displays/{name}:
+  /programs/{programName}/displays/{name}:
     get:
       operationId: Displays_GetDisplay
       responses:
@@ -696,7 +769,7 @@ paths:
           type: string
       tags:
         - Displays
-  /api/programs/{programName}/displays/{name}/load:
+  /programs/{programName}/displays/{name}/load:
     post:
       operationId: Displays_LoadDisplay
       responses:
@@ -719,7 +792,7 @@ paths:
           type: string
       tags:
         - Displays
-  /api/programs/{programName}/displays/{name}/publish:
+  /programs/{programName}/displays/{name}/publish:
     post:
       operationId: Displays_PublishDisplay
       responses:
@@ -742,7 +815,7 @@ paths:
           type: string
       tags:
         - Displays
-  /api/programs/{programName}/images:
+  /programs/{programName}/images:
     post:
       operationId: Images_UpsertImage
       responses:
@@ -766,7 +839,7 @@ paths:
             $ref: '#/definitions/ImagesUpsertImageBody'
       tags:
         - Images
-  /api/programs/{programName}/images/{name}:
+  /programs/{programName}/images/{name}:
     get:
       operationId: Images_GetImage
       responses:
@@ -811,7 +884,7 @@ paths:
           type: string
       tags:
         - Images
-  /api/programs/{programName}/messages:
+  /programs/{programName}/messages:
     get:
       operationId: Messages_GetMessages
       responses:
@@ -853,7 +926,7 @@ paths:
             $ref: '#/definitions/MessagesUpsertMessageBody'
       tags:
         - Messages
-  /api/programs/{programName}/messages/{name}:
+  /programs/{programName}/messages/{name}:
     get:
       operationId: Messages_GetMessage
       responses:
@@ -898,7 +971,7 @@ paths:
           type: string
       tags:
         - Messages
-  /api/programs/{programName}/messages/{name}/send:
+  /programs/{programName}/messages/{name}/send:
     post:
       operationId: Messages_SendMessage
       responses:
@@ -921,7 +994,7 @@ paths:
           type: string
       tags:
         - Messages
-  /api/programs/{programName}/questionnaires:
+  /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
       responses:
@@ -963,7 +1036,7 @@ paths:
             $ref: '#/definitions/QuestionnairesUpsertQuestionnaireBody'
       tags:
         - Questionnaires
-  /api/programs/{programName}/questionnaires/{name}:
+  /programs/{programName}/questionnaires/{name}:
     get:
       operationId: Questionnaires_GetQuestionnaire
       responses:
@@ -1008,7 +1081,7 @@ paths:
           type: string
       tags:
         - Questionnaires
-  /api/programs/{programName}/questionnaires/{name}/load:
+  /programs/{programName}/questionnaires/{name}/load:
     post:
       operationId: Questionnaires_LoadQuestionnaire
       responses:
@@ -1031,7 +1104,7 @@ paths:
           type: string
       tags:
         - Questionnaires
-  /api/programs/{programName}/questionnaires/{name}/publish:
+  /programs/{programName}/questionnaires/{name}/publish:
     post:
       operationId: Questionnaires_PublishQuestionnaire
       responses:
@@ -1054,7 +1127,7 @@ paths:
           type: string
       tags:
         - Questionnaires
-  /api/programs/{programName}/routines:
+  /programs/{programName}/routines:
     get:
       operationId: Routines_GetRoutines
       responses:
@@ -1096,7 +1169,7 @@ paths:
             $ref: '#/definitions/RoutinesUpsertRoutineBody'
       tags:
         - Routines
-  /api/programs/{programName}/routines/{name}:
+  /programs/{programName}/routines/{name}:
     get:
       operationId: Routines_GetRoutine
       responses:
@@ -1141,7 +1214,7 @@ paths:
           type: string
       tags:
         - Routines
-  /api/programs/{programName}/routines/{name}/load:
+  /programs/{programName}/routines/{name}/load:
     post:
       operationId: Routines_LoadRoutine
       responses:
@@ -1164,7 +1237,7 @@ paths:
           type: string
       tags:
         - Routines
-  /api/programs/{programName}/routines/{name}/publish:
+  /programs/{programName}/routines/{name}/publish:
     post:
       operationId: Routines_PublishRoutine
       responses:
@@ -1187,7 +1260,7 @@ paths:
           type: string
       tags:
         - Routines
-  /api/programs/{programName}/surveys:
+  /programs/{programName}/surveys:
     get:
       operationId: Surveys_GetSurveys
       responses:
@@ -1229,7 +1302,7 @@ paths:
             $ref: '#/definitions/SurveysUpsertSurveyBody'
       tags:
         - Surveys
-  /api/programs/{programName}/surveys/{name}:
+  /programs/{programName}/surveys/{name}:
     get:
       operationId: Surveys_GetSurvey
       responses:
@@ -1274,7 +1347,7 @@ paths:
           type: string
       tags:
         - Surveys
-  /api/programs/{programName}/surveys/{name}/load:
+  /programs/{programName}/surveys/{name}/load:
     post:
       operationId: Surveys_LoadSurvey
       responses:
@@ -1297,7 +1370,7 @@ paths:
           type: string
       tags:
         - Surveys
-  /api/programs/{programName}/surveys/{name}/publish:
+  /programs/{programName}/surveys/{name}/publish:
     post:
       operationId: Surveys_PublishSurvey
       responses:
@@ -1320,7 +1393,7 @@ paths:
           type: string
       tags:
         - Surveys
-  /api/programslist:
+  /programslist:
     get:
       operationId: Programs_GetProgramsList
       responses:
@@ -1334,7 +1407,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Programs
-  /api/programslist/{name}:
+  /programslist/{name}:
     get:
       operationId: Programs_IsNameAvailable
       responses:
@@ -1353,7 +1426,7 @@ paths:
           type: string
       tags:
         - Programs
-  /api/questionnaires:
+  /questionnaires:
     get:
       operationId: StandaloneQuestionnaires_GetStandaloneQuestionnaires
       responses:
@@ -1391,7 +1464,7 @@ paths:
             $ref: '#/definitions/apiUpsertStandaloneQuestionnaireRequest'
       tags:
         - StandaloneQuestionnaires
-  /api/questionnaires/{name}:
+  /questionnaires/{name}:
     get:
       operationId: StandaloneQuestionnaires_GetStandaloneQuestionnaire
       responses:
@@ -1436,7 +1509,7 @@ paths:
           type: string
       tags:
         - StandaloneQuestionnaires
-  /api/statistics/{programName}/{type}:
+  /statistics/{programName}/{type}:
     get:
       operationId: Uploads_GetStatistics
       responses:
@@ -1471,7 +1544,7 @@ paths:
           type: object
       tags:
         - Uploads
-  /api/surveys:
+  /surveys:
     get:
       operationId: StandaloneSurveys_GetStandaloneSurveys
       responses:
@@ -1504,7 +1577,7 @@ paths:
             $ref: '#/definitions/apiUpsertStandaloneSurveyRequest'
       tags:
         - StandaloneSurveys
-  /api/surveys/{name}:
+  /surveys/{name}:
     get:
       operationId: StandaloneSurveys_GetStandaloneSurvey
       responses:
@@ -1541,7 +1614,7 @@ paths:
           type: string
       tags:
         - StandaloneSurveys
-  /api/uploads/subjects/{programName}:
+  /uploads/subjects/{programName}:
     get:
       operationId: Uploads_GetSubjects
       responses:
@@ -1560,7 +1633,7 @@ paths:
           type: string
       tags:
         - Uploads
-  /api/uploads/subjects/{programName}/{subjectID}:
+  /uploads/subjects/{programName}/{subjectID}:
     get:
       operationId: Uploads_GetSubjectData
       responses:
@@ -1583,7 +1656,7 @@ paths:
           type: string
       tags:
         - Uploads
-  /api/uploads/subjects/{programName}/{subjectID}/{resourceID}:
+  /uploads/subjects/{programName}/{subjectID}/{resourceID}:
     get:
       operationId: Uploads_GetSubjectResource
       responses:
@@ -1610,7 +1683,7 @@ paths:
           type: string
       tags:
         - Uploads
-  /api/users:
+  /users:
     get:
       operationId: Users_GetUsers
       responses:
@@ -1624,7 +1697,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Users
-  /api/users/blocked-program:
+  /users/blocked-program:
     delete:
       operationId: Users_UnblockProgram
       responses:
@@ -1638,7 +1711,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Users
-  /api/users/blocked-program/{programName}:
+  /users/blocked-program/{programName}:
     post:
       operationId: Users_BlockProgram
       responses:
@@ -1657,7 +1730,7 @@ paths:
           type: string
       tags:
         - Users
-  /api/users/blocked-programs:
+  /users/blocked-programs:
     get:
       operationId: Users_GetBlockedPrograms
       responses:
@@ -1671,7 +1744,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Users
-  /api/users/roles:
+  /users/roles:
     post:
       operationId: Users_UpsertProgramRole
       responses:
@@ -1691,7 +1764,7 @@ paths:
             $ref: '#/definitions/protoProgramRole'
       tags:
         - Users
-  /api/users/self:
+  /users/self:
     get:
       operationId: Users_GetSelf
       responses:
@@ -1705,7 +1778,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Users
-  /api/users/{userEmail}:
+  /users/{userEmail}:
     delete:
       operationId: Users_DeleteUser
       responses:
@@ -1724,7 +1797,7 @@ paths:
           type: string
       tags:
         - Users
-  /api/users/{userEmail}/role/{programName}:
+  /users/{userEmail}/role/{programName}:
     delete:
       operationId: Users_DeleteProgramRole
       responses:
@@ -1747,81 +1820,6 @@ paths:
           type: string
       tags:
         - Users
-  /internal/programs/{programName}/codes/{code}/assign:
-    post:
-      operationId: ParticipantCodes_AssignCode
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/apiAssignCodeResponse'
-        default:
-          description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/rpcStatus'
-      parameters:
-        - name: programName
-          in: path
-          required: true
-          type: string
-        - name: code
-          in: path
-          required: true
-          type: string
-        - name: alpID
-          in: body
-          required: true
-          schema:
-            type: string
-      tags:
-        - ParticipantCodes
-  /internal/programs/{programName}/devicetokens:
-    put:
-      operationId: DeviceTokens_UpsertToken
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/apiUpsertTokenResponse'
-        default:
-          description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/rpcStatus'
-      parameters:
-        - name: programName
-          in: path
-          required: true
-          type: string
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/DeviceTokensUpsertTokenBody'
-      tags:
-        - DeviceTokens
-  /internal/programs/{programName}/devicetokens/{subjectID}:
-    delete:
-      operationId: DeviceTokens_DeleteToken
-      responses:
-        "200":
-          description: A successful response.
-          schema:
-            $ref: '#/definitions/apiDeleteTokenResponse'
-        default:
-          description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/rpcStatus'
-      parameters:
-        - name: programName
-          in: path
-          required: true
-          type: string
-        - name: subjectID
-          in: path
-          required: true
-          type: string
-      tags:
-        - DeviceTokens
 definitions:
   ClientsExchangeTokenBody:
     type: object

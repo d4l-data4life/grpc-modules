@@ -1774,40 +1774,40 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"\x0f\n" +
 	"\rChecksRequest\",\n" +
 	"\x0eChecksResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\tR\bresponse2\xf9\x03\n" +
-	"\bPrograms\x12i\n" +
-	"\vGetPrograms\x12 .proto.static.GetProgramsRequest\x1a!.proto.static.GetProgramsResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/programs\x12m\n" +
+	"\bresponse\x18\x01 \x01(\tR\bresponse2\xe9\x03\n" +
+	"\bPrograms\x12e\n" +
+	"\vGetPrograms\x12 .proto.static.GetProgramsRequest\x1a!.proto.static.GetProgramsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/programs\x12i\n" +
 	"\n" +
-	"GetProgram\x12\x1f.proto.static.GetProgramRequest\x1a .proto.static.GetProgramResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/programs/{name}\x12~\n" +
-	"\x0eGetProgramData\x12#.proto.static.GetProgramDataRequest\x1a$.proto.static.GetProgramDataResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/api/programs/{name}/data\x12\x92\x01\n" +
-	"\x13GetProgramUpdatedAt\x12(.proto.static.GetProgramUpdatedAtRequest\x1a).proto.static.GetProgramUpdatedAtResponse\"&\x82\xd3\xe4\x93\x02 \x12\x1e/api/programs/{name}/updatedAt2\x8a\x02\n" +
-	"\aSurveys\x12|\n" +
+	"GetProgram\x12\x1f.proto.static.GetProgramRequest\x1a .proto.static.GetProgramResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/programs/{name}\x12z\n" +
+	"\x0eGetProgramData\x12#.proto.static.GetProgramDataRequest\x1a$.proto.static.GetProgramDataResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/programs/{name}/data\x12\x8e\x01\n" +
+	"\x13GetProgramUpdatedAt\x12(.proto.static.GetProgramUpdatedAtRequest\x1a).proto.static.GetProgramUpdatedAtResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/programs/{name}/updatedAt2\x81\x02\n" +
+	"\aSurveys\x12x\n" +
 	"\n" +
-	"GetSurveys\x12\x1f.proto.static.GetSurveysRequest\x1a .proto.static.GetSurveysResponse\"+\x82\xd3\xe4\x93\x02%\x12#/api/programs/{programName}/surveys\x12\x80\x01\n" +
-	"\tGetSurvey\x12\x1e.proto.static.GetSurveyRequest\x1a\x1f.proto.static.GetSurveyResponse\"2\x82\xd3\xe4\x93\x02,\x12*/api/programs/{programName}/surveys/{name}2\xca\x02\n" +
-	"\x0eQuestionnaires\x12\x98\x01\n" +
-	"\x11GetQuestionnaires\x12&.proto.static.GetQuestionnairesRequest\x1a'.proto.static.GetQuestionnairesResponse\"2\x82\xd3\xe4\x93\x02,\x12*/api/programs/{programName}/questionnaires\x12\x9c\x01\n" +
-	"\x10GetQuestionnaire\x12%.proto.static.GetQuestionnaireRequest\x1a&.proto.static.GetQuestionnaireResponse\"9\x82\xd3\xe4\x93\x023\x121/api/programs/{programName}/questionnaires/{name}2\x94\x02\n" +
-	"\bRoutines\x12\x80\x01\n" +
-	"\vGetRoutines\x12 .proto.static.GetRoutinesRequest\x1a!.proto.static.GetRoutinesResponse\",\x82\xd3\xe4\x93\x02&\x12$/api/programs/{programName}/routines\x12\x84\x01\n" +
+	"GetSurveys\x12\x1f.proto.static.GetSurveysRequest\x1a .proto.static.GetSurveysResponse\"'\x82\xd3\xe4\x93\x02!\x12\x1f/programs/{programName}/surveys\x12|\n" +
+	"\tGetSurvey\x12\x1e.proto.static.GetSurveyRequest\x1a\x1f.proto.static.GetSurveyResponse\".\x82\xd3\xe4\x93\x02(\x12&/programs/{programName}/surveys/{name}2\xc2\x02\n" +
+	"\x0eQuestionnaires\x12\x94\x01\n" +
+	"\x11GetQuestionnaires\x12&.proto.static.GetQuestionnairesRequest\x1a'.proto.static.GetQuestionnairesResponse\".\x82\xd3\xe4\x93\x02(\x12&/programs/{programName}/questionnaires\x12\x98\x01\n" +
+	"\x10GetQuestionnaire\x12%.proto.static.GetQuestionnaireRequest\x1a&.proto.static.GetQuestionnaireResponse\"5\x82\xd3\xe4\x93\x02/\x12-/programs/{programName}/questionnaires/{name}2\x8b\x02\n" +
+	"\bRoutines\x12|\n" +
+	"\vGetRoutines\x12 .proto.static.GetRoutinesRequest\x1a!.proto.static.GetRoutinesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /programs/{programName}/routines\x12\x80\x01\n" +
 	"\n" +
-	"GetRoutine\x12\x1f.proto.static.GetRoutineRequest\x1a .proto.static.GetRoutineResponse\"3\x82\xd3\xe4\x93\x02-\x12+/api/programs/{programName}/routines/{name}2\x94\x02\n" +
-	"\bDisplays\x12\x80\x01\n" +
-	"\vGetDisplays\x12 .proto.static.GetDisplaysRequest\x1a!.proto.static.GetDisplaysResponse\",\x82\xd3\xe4\x93\x02&\x12$/api/programs/{programName}/displays\x12\x84\x01\n" +
+	"GetRoutine\x12\x1f.proto.static.GetRoutineRequest\x1a .proto.static.GetRoutineResponse\"/\x82\xd3\xe4\x93\x02)\x12'/programs/{programName}/routines/{name}2\x8b\x02\n" +
+	"\bDisplays\x12|\n" +
+	"\vGetDisplays\x12 .proto.static.GetDisplaysRequest\x1a!.proto.static.GetDisplaysResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /programs/{programName}/displays\x12\x80\x01\n" +
 	"\n" +
-	"GetDisplay\x12\x1f.proto.static.GetDisplayRequest\x1a .proto.static.GetDisplayResponse\"3\x82\xd3\xe4\x93\x02-\x12+/api/programs/{programName}/displays/{name}2\xba\x03\n" +
-	"\bConsents\x12\x80\x01\n" +
-	"\vGetConsents\x12 .proto.static.GetConsentsRequest\x1a!.proto.static.GetConsentsResponse\",\x82\xd3\xe4\x93\x02&\x12$/api/programs/{programName}/consents\x12\x84\x01\n" +
+	"GetDisplay\x12\x1f.proto.static.GetDisplayRequest\x1a .proto.static.GetDisplayResponse\"/\x82\xd3\xe4\x93\x02)\x12'/programs/{programName}/displays/{name}2\xad\x03\n" +
+	"\bConsents\x12|\n" +
+	"\vGetConsents\x12 .proto.static.GetConsentsRequest\x1a!.proto.static.GetConsentsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /programs/{programName}/consents\x12\x80\x01\n" +
 	"\n" +
-	"GetConsent\x12\x1f.proto.static.GetConsentRequest\x1a .proto.static.GetConsentResponse\"3\x82\xd3\xe4\x93\x02-\x12+/api/programs/{programName}/consents/{name}\x12\xa3\x01\n" +
-	"\x11GetConsentVersion\x12&.proto.static.GetConsentVersionRequest\x1a'.proto.static.GetConsentVersionResponse\"=\x82\xd3\xe4\x93\x027\x125/api/programs/{programName}/consents/{name}/{version}2n\n" +
-	"\tUtilities\x12a\n" +
-	"\x05Proxy\x12\x1a.proto.static.ProxyRequest\x1a\x1b.proto.static.ProxyResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/utilities/proxy2|\n" +
-	"\x06Images\x12r\n" +
-	"\bGetImage\x12\x1d.proto.static.GetImageRequest\x1a\x14.google.api.HttpBody\"1\x82\xd3\xe4\x93\x02+\x12)/api/programs/{programName}/images/{name}2\xd4\x01\n" +
-	"\x06Checks\x12c\n" +
-	"\bLiveness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/api/checks/liveness\x12e\n" +
-	"\tReadiness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/api/checks/readinessB\x97\x01\x92AQ\x12O\n" +
+	"GetConsent\x12\x1f.proto.static.GetConsentRequest\x1a .proto.static.GetConsentResponse\"/\x82\xd3\xe4\x93\x02)\x12'/programs/{programName}/consents/{name}\x12\x9f\x01\n" +
+	"\x11GetConsentVersion\x12&.proto.static.GetConsentVersionRequest\x1a'.proto.static.GetConsentVersionResponse\"9\x82\xd3\xe4\x93\x023\x121/programs/{programName}/consents/{name}/{version}2j\n" +
+	"\tUtilities\x12]\n" +
+	"\x05Proxy\x12\x1a.proto.static.ProxyRequest\x1a\x1b.proto.static.ProxyResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/utilities/proxy2x\n" +
+	"\x06Images\x12n\n" +
+	"\bGetImage\x12\x1d.proto.static.GetImageRequest\x1a\x14.google.api.HttpBody\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/images/{name}2\xcc\x01\n" +
+	"\x06Checks\x12_\n" +
+	"\bLiveness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/checks/liveness\x12a\n" +
+	"\tReadiness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x97\x01\x92AQ\x12O\n" +
 	"\x14Research Pillars API\"2\n" +
 	"\x18Research Enablement Team\x12\x16https://data4life.care2\x031.0ZAgithub.com/d4l-data4life/grpc-modules/pkg/research-pillars/staticb\x06proto3"
 

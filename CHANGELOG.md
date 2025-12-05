@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- [research-pillars] Add `/api` or `/internal` prefix for REST paths (rollback)
+
 ### Fixed
 
 ### Security

@@ -29,27 +29,27 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 service Users {
   rpc GetSelf(GetSelfRequest) returns (GetSelfResponse) {
     option (google.api.http) = {
-      get : "/api/users/self"
+      get : "/users/self"
     };
   }
 
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
     option (google.api.http) = {
-      get : "/api/users"
+      get : "/users"
     };
   }
 
   rpc DeleteUser(DeleteUserRequest)
       returns (DeleteUserResponse) {
     option (google.api.http) = {
-      delete : "/api/users/{userEmail}",
+      delete : "/users/{userEmail}",
     };
   }
 
   rpc UpsertProgramRole(UpsertProgramRoleRequest)
       returns (UpsertProgramRoleResponse) {
     option (google.api.http) = {
-      post : "/api/users/roles",
+      post : "/users/roles",
       body : "programRole"
     };
   }
@@ -57,26 +57,26 @@ service Users {
   rpc DeleteProgramRole(DeleteProgramRoleRequest)
       returns (DeleteProgramRoleResponse) {
     option (google.api.http) = {
-      delete : "/api/users/{userEmail}/role/{programName}",
+      delete : "/users/{userEmail}/role/{programName}",
     };
   }
 
   rpc GetBlockedPrograms(GetBlockedProgramsRequest)
       returns (GetBlockedProgramsResponse) {
     option (google.api.http) = {
-      get : "/api/users/blocked-programs"
+      get : "/users/blocked-programs"
     };
   }
 
   rpc BlockProgram(BlockProgramRequest) returns (BlockProgramResponse) {
     option (google.api.http) = {
-      post : "/api/users/blocked-program/{programName}",
+      post : "/users/blocked-program/{programName}",
     };
   }
 
   rpc UnblockProgram(UnblockProgramRequest) returns (UnblockProgramResponse) {
     option (google.api.http) = {
-      delete : "/api/users/blocked-program",
+      delete : "/users/blocked-program",
     };
   }
 }
@@ -117,64 +117,64 @@ message UnblockProgramResponse {}
 service Programs {
   rpc GetPrograms(GetProgramsRequest) returns (GetProgramsResponse) {
     option (google.api.http) = {
-      get : "/api/programs"
+      get : "/programs"
     };
   }
 
   rpc GetProgramsList(GetProgramsListRequest)
       returns (GetProgramsListResponse) {
     option (google.api.http) = {
-      get : "/api/programslist"
+      get : "/programslist"
     };
   }
 
   rpc IsNameAvailable(IsNameAvailableRequest) returns (IsNameAvailableResponse) {
     option (google.api.http) = {
-      get : "/api/programslist/{name}"
+      get : "/programslist/{name}"
     };
   }
 
   rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{name}"
+      get : "/programs/{name}"
     };
   }
 
   rpc GetProgramData(GetProgramDataRequest) returns (GetProgramDataResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{name}/data"
+      get : "/programs/{name}/data"
     };
   }
 
   rpc GetProgramDiffs(GetProgramDiffsRequest) returns (GetProgramDiffsResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{name}/diffs"
+      get : "/programs/{name}/diffs"
     };
   }
 
   rpc UpsertProgram(UpsertProgramRequest) returns (UpsertProgramResponse) {
     option (google.api.http) = {
-      post : "/api/programs",
+      post : "/programs",
       body : "*"
     };
   }
 
   rpc DeleteProgram(DeleteProgramRequest) returns (DeleteProgramResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{name}"
+      delete : "/programs/{name}"
     };
   }
 
   rpc PublishProgram(PublishProgramRequest) returns (PublishProgramResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{name}/publish",
+      post : "/programs/{name}/publish",
       body : "forTesting"
     };
   }
 
   rpc LoadProgram(LoadProgramRequest) returns (LoadProgramResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{name}/load",
+      post : "/programs/{name}/load",
     };
   }
 }
@@ -242,38 +242,38 @@ message LoadProgramResponse {}
 service Surveys {
   rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/surveys"
+      get : "/programs/{programName}/surveys"
     };
   }
 
   rpc GetSurvey(GetSurveyRequest) returns (GetSurveyResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/surveys/{name}"
+      get : "/programs/{programName}/surveys/{name}"
     };
   }
 
   rpc UpsertSurvey(UpsertSurveyRequest) returns (UpsertSurveyResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/surveys",
+      post : "/programs/{programName}/surveys",
       body : "*"
     };
   }
 
   rpc DeleteSurvey(DeleteSurveyRequest) returns (DeleteSurveyResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/surveys/{name}"
+      delete : "/programs/{programName}/surveys/{name}"
     };
   }
 
   rpc PublishSurvey(PublishSurveyRequest) returns (PublishSurveyResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/surveys/{name}/publish",
+      post : "/programs/{programName}/surveys/{name}/publish",
     };
   }
 
   rpc LoadSurvey(LoadSurveyRequest) returns (LoadSurveyResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/surveys/{name}/load",
+      post : "/programs/{programName}/surveys/{name}/load",
     };
   }
 }
@@ -323,21 +323,21 @@ service Questionnaires {
   rpc GetQuestionnaires(GetQuestionnairesRequest)
       returns (GetQuestionnairesResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/questionnaires"
+      get : "/programs/{programName}/questionnaires"
     };
   }
 
   rpc GetQuestionnaire(GetQuestionnaireRequest)
       returns (GetQuestionnaireResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/questionnaires/{name}"
+      get : "/programs/{programName}/questionnaires/{name}"
     };
   }
 
   rpc UpsertQuestionnaire(UpsertQuestionnaireRequest)
       returns (UpsertQuestionnaireResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/questionnaires",
+      post : "/programs/{programName}/questionnaires",
       body : "*"
     };
   }
@@ -345,21 +345,21 @@ service Questionnaires {
   rpc DeleteQuestionnaire(DeleteQuestionnaireRequest)
       returns (DeleteQuestionnaireResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/questionnaires/{name}"
+      delete : "/programs/{programName}/questionnaires/{name}"
     };
   }
 
   rpc PublishQuestionnaire(PublishQuestionnaireRequest)
       returns (PublishQuestionnaireResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/questionnaires/{name}/publish",
+      post : "/programs/{programName}/questionnaires/{name}/publish",
     };
   }
 
   rpc LoadQuestionnaire(LoadQuestionnaireRequest)
       returns (LoadQuestionnaireResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/questionnaires/{name}/load",
+      post : "/programs/{programName}/questionnaires/{name}/load",
     };
   }
 }
@@ -408,38 +408,38 @@ message LoadQuestionnaireResponse {}
 service Routines {
   rpc GetRoutines(GetRoutinesRequest) returns (GetRoutinesResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/routines"
+      get : "/programs/{programName}/routines"
     };
   }
 
   rpc GetRoutine(GetRoutineRequest) returns (GetRoutineResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/routines/{name}"
+      get : "/programs/{programName}/routines/{name}"
     };
   }
 
   rpc UpsertRoutine(UpsertRoutineRequest) returns (UpsertRoutineResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/routines",
+      post : "/programs/{programName}/routines",
       body : "*"
     };
   }
 
   rpc DeleteRoutine(DeleteRoutineRequest) returns (DeleteRoutineResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/routines/{name}"
+      delete : "/programs/{programName}/routines/{name}"
     };
   }
 
   rpc PublishRoutine(PublishRoutineRequest) returns (PublishRoutineResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/routines/{name}/publish",
+      post : "/programs/{programName}/routines/{name}/publish",
     };
   }
 
   rpc LoadRoutine(LoadRoutineRequest) returns (LoadRoutineResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/routines/{name}/load",
+      post : "/programs/{programName}/routines/{name}/load",
     };
   }
 }
@@ -488,38 +488,38 @@ message LoadRoutineResponse {}
 service Displays {
   rpc GetDisplays(GetDisplaysRequest) returns (GetDisplaysResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/displays"
+      get : "/programs/{programName}/displays"
     };
   }
 
   rpc GetDisplay(GetDisplayRequest) returns (GetDisplayResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/displays/{name}"
+      get : "/programs/{programName}/displays/{name}"
     };
   }
 
   rpc UpsertDisplay(UpsertDisplayRequest) returns (UpsertDisplayResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/displays",
+      post : "/programs/{programName}/displays",
       body : "*"
     };
   }
 
   rpc DeleteDisplay(DeleteDisplayRequest) returns (DeleteDisplayResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/displays/{name}"
+      delete : "/programs/{programName}/displays/{name}"
     };
   }
 
   rpc PublishDisplay(PublishDisplayRequest) returns (PublishDisplayResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/displays/{name}/publish",
+      post : "/programs/{programName}/displays/{name}/publish",
     };
   }
 
   rpc LoadDisplay(LoadDisplayRequest) returns (LoadDisplayResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/displays/{name}/load",
+      post : "/programs/{programName}/displays/{name}/load",
     };
   }
 }
@@ -568,33 +568,33 @@ message LoadDisplayResponse {}
 service ParticipantCodes {
   rpc GetCodes(GetCodesRequest) returns (GetCodesResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/codes"
+      get : "/programs/{programName}/codes"
     };
   }
 
   rpc GenerateCodes(GenerateCodesRequest) returns (GenerateCodesResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/codes",
+      post : "/programs/{programName}/codes",
       body : "amount"
     };
   }
 
   rpc AssignCode(AssignCodeRequest) returns (AssignCodeResponse) {
     option (google.api.http) = {
-      post : "/internal/programs/{programName}/codes/{code}/assign",
+      post : "/programs/{programName}/codes/{code}/assign",
       body : "alpID"
     };
   }
 
   rpc DeleteCode(DeleteCodeRequest) returns (DeleteCodeResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/codes/{code}",
+      delete : "/programs/{programName}/codes/{code}",
     };
   }
 
   rpc UnassignCode(UnassignCodeRequest) returns (UnassignCodeResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/codes/{code}/assign",
+      delete : "/programs/{programName}/codes/{code}/assign",
     };
   }
 }
@@ -621,38 +621,38 @@ message UnassignCodeResponse {}
 service Consents {
   rpc GetConsents(GetConsentsRequest) returns (GetConsentsResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/consents"
+      get : "/programs/{programName}/consents"
     };
   }
 
   rpc GetConsent(GetConsentRequest) returns (GetConsentResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/consents/{name}"
+      get : "/programs/{programName}/consents/{name}"
     };
   }
 
   rpc UpsertConsent(UpsertConsentRequest) returns (UpsertConsentResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/consents",
+      post : "/programs/{programName}/consents",
       body : "*"
     };
   }
 
   rpc DeleteConsent(DeleteConsentRequest) returns (DeleteConsentResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/consents/{name}",
+      delete : "/programs/{programName}/consents/{name}",
     };
   }
 
   rpc DeleteConsentVersion(DeleteConsentVersionRequest) returns (DeleteConsentVersionResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/consents/{name}/{version}",
+      delete : "/programs/{programName}/consents/{name}/{version}",
     };
   }
 
   rpc PublishConsent(PublishConsentRequest) returns (PublishConsentResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/consents/{name}/publish",
+      post : "/programs/{programName}/consents/{name}/publish",
     };
   }
 }
@@ -700,26 +700,26 @@ message PublishConsentResponse {}
 service StandaloneSurveys {
   rpc GetStandaloneSurveys(GetStandaloneSurveysRequest) returns (GetStandaloneSurveysResponse) {
     option (google.api.http) = {
-      get : "/api/surveys"
+      get : "/surveys"
     };
   }
 
   rpc GetStandaloneSurvey(GetStandaloneSurveyRequest) returns (GetStandaloneSurveyResponse) {
     option (google.api.http) = {
-      get : "/api/surveys/{name}"
+      get : "/surveys/{name}"
     };
   }
 
   rpc UpsertStandaloneSurvey(UpsertStandaloneSurveyRequest) returns (UpsertStandaloneSurveyResponse) {
     option (google.api.http) = {
-      post : "/api/surveys",
+      post : "/surveys",
       body : "*"
     };
   }
 
   rpc DeleteStandaloneSurvey(DeleteStandaloneSurveyRequest) returns (DeleteStandaloneSurveyResponse) {
     option (google.api.http) = {
-      delete : "/api/surveys/{name}"
+      delete : "/surveys/{name}"
     };
   }
 }
@@ -752,21 +752,21 @@ service StandaloneQuestionnaires {
   rpc GetStandaloneQuestionnaires(GetStandaloneQuestionnairesRequest)
       returns (GetStandaloneQuestionnairesResponse) {
     option (google.api.http) = {
-      get : "/api/questionnaires"
+      get : "/questionnaires"
     };
   }
 
   rpc GetStandaloneQuestionnaire(GetStandaloneQuestionnaireRequest)
       returns (GetStandaloneQuestionnaireResponse) {
     option (google.api.http) = {
-      get : "/api/questionnaires/{name}"
+      get : "/questionnaires/{name}"
     };
   }
 
   rpc UpsertStandaloneQuestionnaire(UpsertStandaloneQuestionnaireRequest)
       returns (UpsertStandaloneQuestionnaireResponse) {
     option (google.api.http) = {
-      post : "/api/questionnaires",
+      post : "/questionnaires",
       body : "*"
     };
   }
@@ -774,7 +774,7 @@ service StandaloneQuestionnaires {
   rpc DeleteStandaloneQuestionnaire(DeleteStandaloneQuestionnaireRequest)
       returns (DeleteStandaloneQuestionnaireResponse) {
     option (google.api.http) = {
-      delete : "/api/questionnaires/{name}"
+      delete : "/questionnaires/{name}"
     };
   }
 }
@@ -812,38 +812,38 @@ message DeleteStandaloneQuestionnaireResponse {}
 service Uploads {
   rpc GetSubjects(GetSubjectsRequest) returns (GetSubjectsResponse) {
     option (google.api.http) = {
-      get : "/api/uploads/subjects/{programName}"
+      get : "/uploads/subjects/{programName}"
     };
   }
 
   rpc GetSubjectData(GetSubjectDataRequest) returns (GetSubjectDataResponse) {
     option (google.api.http) = {
-      get : "/api/uploads/subjects/{programName}/{subjectID}"
+      get : "/uploads/subjects/{programName}/{subjectID}"
     };
   }
 
   rpc GetSubjectResource(GetSubjectResourceRequest) returns (GetSubjectResourceResponse) {
     option (google.api.http) = {
-      get : "/api/uploads/subjects/{programName}/{subjectID}/{resourceID}"
+      get : "/uploads/subjects/{programName}/{subjectID}/{resourceID}"
     };
   }
 
   rpc GetDownloadList(GetDownloadListRequest) returns (GetDownloadListResponse) {
     option (google.api.http) = {
-      get : "/api/download/{programName}",
+      get : "/download/{programName}",
     };
   }
 
   rpc GetDownloadTicket(GetDownloadTicketRequest) returns (GetDownloadTicketResponse) {
     option (google.api.http) = {
-      post : "/api/download/{programName}",
+      post : "/download/{programName}",
       body : "*"
     };
   }
 
   rpc GetStatistics(GetStatisticsRequest) returns (GetStatisticsResponse) {
     option (google.api.http) = {
-      get : "/api/statistics/{programName}/{type}"
+      get : "/statistics/{programName}/{type}"
     };
   }
 }
@@ -903,20 +903,20 @@ message GetStatisticsResponse {
 service Images {
   rpc GetImage(GetImageRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/images/{name}",
+      get : "/programs/{programName}/images/{name}",
     };
   }
 
   rpc UpsertImage(UpsertImageRequest) returns (UpsertImageResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/images",
+      post : "/programs/{programName}/images",
       body : "*"
     };
   }
 
   rpc DeleteImage(DeleteImageRequest) returns (DeleteImageResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/images/{name}",
+      delete : "/programs/{programName}/images/{name}",
     };
   }
 }
@@ -947,33 +947,33 @@ message DeleteImageResponse {}
 service Clients {
   rpc GetClients(GetClientsRequest) returns (GetClientsResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/client",
+      get : "/programs/{programName}/client",
     };
   }
 
   rpc GetClient(GetClientRequest) returns (GetClientResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/client/{name}",
+      get : "/programs/{programName}/client/{name}",
     };
   }
 
   rpc UpsertClient(UpsertClientRequest) returns (UpsertClientResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/client",
+      post : "/programs/{programName}/client",
       body : "*"
     };
   }
 
   rpc ExchangeToken(ExchangeTokenRequest) returns (ExchangeTokenResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/client/{name}/token",
+      post : "/programs/{programName}/client/{name}/token",
       body : "*"
     };
   }
 
   rpc DeleteClient(DeleteClientRequest) returns (DeleteClientResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/client/{name}",
+      delete : "/programs/{programName}/client/{name}",
     };
   }
 }
@@ -1027,32 +1027,32 @@ message DeleteClientResponse {}
 service Messages {
   rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/messages"
+      get : "/programs/{programName}/messages"
     };
   }
 
   rpc GetMessage(GetMessageRequest) returns (GetMessageResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/messages/{name}"
+      get : "/programs/{programName}/messages/{name}"
     };
   }
 
   rpc UpsertMessage(UpsertMessageRequest) returns (UpsertMessageResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/messages",
+      post : "/programs/{programName}/messages",
       body : "*"
     };
   }
 
   rpc DeleteMessage(DeleteMessageRequest) returns (DeleteMessageResponse) {
     option (google.api.http) = {
-      delete : "/api/programs/{programName}/messages/{name}"
+      delete : "/programs/{programName}/messages/{name}"
     };
   }
 
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {
     option (google.api.http) = {
-      post : "/api/programs/{programName}/messages/{name}/send",
+      post : "/programs/{programName}/messages/{name}/send",
     };
   }
 
@@ -1094,20 +1094,20 @@ message SendMessageResponse {}
 service DeviceTokens {
   rpc GetTokens(GetTokensRequest) returns (GetTokensResponse) {
     option (google.api.http) = {
-      get : "/api/programs/{programName}/devicetokens"
+      get : "/programs/{programName}/devicetokens"
     };
   }
 
   rpc UpsertToken(UpsertTokenRequest) returns (UpsertTokenResponse) {
     option (google.api.http) = {
-      put : "/internal/programs/{programName}/devicetokens",
+      put : "/programs/{programName}/devicetokens",
       body : "*"
     };
   }
 
   rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {
     option (google.api.http) = {
-      delete : "/internal/programs/{programName}/devicetokens/{subjectID}",
+      delete : "/programs/{programName}/devicetokens/{subjectID}",
     };
   }
 }
@@ -1128,13 +1128,13 @@ message DeleteTokenResponse {}
 service Checks {
   rpc Liveness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/api/checks/liveness"
+      get : "/checks/liveness"
     };
   }
 
   rpc Readiness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/api/checks/readiness"
+      get : "/checks/readiness"
     };
   }
 }
