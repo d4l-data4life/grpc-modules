@@ -6,8 +6,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/gesundheitscloud/go-svc/pkg/logging"
-	"github.com/gesundheitscloud/grpc-modules/pkg/utils/auth"
+	"github.com/d4l-data4life/go-svc/pkg/logging"
+	"github.com/d4l-data4life/grpc-modules/pkg/utils/auth"
 )
 
 func OpenWithSecretAuth(runCtx context.Context, url, secret string) (*grpc.ClientConn, error) {

@@ -20,7 +20,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /checks/liveness:
+  /api/checks/liveness:
     get:
       operationId: Checks_Liveness
       responses:
@@ -34,7 +34,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Checks
-  /checks/readiness:
+  /api/checks/readiness:
     get:
       operationId: Checks_Readiness
       responses:
@@ -48,7 +48,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Checks
-  /programs:
+  /api/programs:
     get:
       operationId: Programs_GetPrograms
       responses:
@@ -62,7 +62,7 @@ paths:
             $ref: '#/definitions/rpcStatus'
       tags:
         - Programs
-  /programs/{name}:
+  /api/programs/{name}:
     get:
       operationId: Programs_GetProgram
       responses:
@@ -81,7 +81,7 @@ paths:
           type: string
       tags:
         - Programs
-  /programs/{name}/data:
+  /api/programs/{name}/data:
     get:
       operationId: Programs_GetProgramData
       responses:
@@ -100,7 +100,7 @@ paths:
           type: string
       tags:
         - Programs
-  /programs/{name}/updatedAt:
+  /api/programs/{name}/updatedAt:
     get:
       operationId: Programs_GetProgramUpdatedAt
       responses:
@@ -119,7 +119,7 @@ paths:
           type: string
       tags:
         - Programs
-  /programs/{programName}/consents:
+  /api/programs/{programName}/consents:
     get:
       operationId: Consents_GetConsents
       responses:
@@ -138,7 +138,7 @@ paths:
           type: string
       tags:
         - Consents
-  /programs/{programName}/consents/{name}:
+  /api/programs/{programName}/consents/{name}:
     get:
       operationId: Consents_GetConsent
       responses:
@@ -161,7 +161,7 @@ paths:
           type: string
       tags:
         - Consents
-  /programs/{programName}/consents/{name}/{version}:
+  /api/programs/{programName}/consents/{name}/{version}:
     get:
       operationId: Consents_GetConsentVersion
       responses:
@@ -189,7 +189,7 @@ paths:
           format: int32
       tags:
         - Consents
-  /programs/{programName}/displays:
+  /api/programs/{programName}/displays:
     get:
       operationId: Displays_GetDisplays
       responses:
@@ -208,7 +208,7 @@ paths:
           type: string
       tags:
         - Displays
-  /programs/{programName}/displays/{name}:
+  /api/programs/{programName}/displays/{name}:
     get:
       operationId: Displays_GetDisplay
       responses:
@@ -231,7 +231,7 @@ paths:
           type: string
       tags:
         - Displays
-  /programs/{programName}/images/{name}:
+  /api/programs/{programName}/images/{name}:
     get:
       operationId: Images_GetImage
       responses:
@@ -254,7 +254,7 @@ paths:
           type: string
       tags:
         - Images
-  /programs/{programName}/questionnaires:
+  /api/programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
       responses:
@@ -277,7 +277,7 @@ paths:
           type: string
       tags:
         - Questionnaires
-  /programs/{programName}/questionnaires/{name}:
+  /api/programs/{programName}/questionnaires/{name}:
     get:
       operationId: Questionnaires_GetQuestionnaire
       responses:
@@ -304,7 +304,7 @@ paths:
           type: string
       tags:
         - Questionnaires
-  /programs/{programName}/routines:
+  /api/programs/{programName}/routines:
     get:
       operationId: Routines_GetRoutines
       responses:
@@ -323,7 +323,7 @@ paths:
           type: string
       tags:
         - Routines
-  /programs/{programName}/routines/{name}:
+  /api/programs/{programName}/routines/{name}:
     get:
       operationId: Routines_GetRoutine
       responses:
@@ -346,7 +346,7 @@ paths:
           type: string
       tags:
         - Routines
-  /programs/{programName}/surveys:
+  /api/programs/{programName}/surveys:
     get:
       operationId: Surveys_GetSurveys
       responses:
@@ -365,7 +365,7 @@ paths:
           type: string
       tags:
         - Surveys
-  /programs/{programName}/surveys/{name}:
+  /api/programs/{programName}/surveys/{name}:
     get:
       operationId: Surveys_GetSurvey
       responses:
@@ -388,7 +388,7 @@ paths:
           type: string
       tags:
         - Surveys
-  /utilities/proxy:
+  /api/utilities/proxy:
     post:
       operationId: Utilities_Proxy
       responses:
