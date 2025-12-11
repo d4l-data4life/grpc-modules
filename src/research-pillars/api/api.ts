@@ -655,6 +655,7 @@ export interface GetMessageRequest {
 
 export interface GetMessageResponse {
   message?: { [key: string]: any } | undefined;
+  recipients: { [key: string]: any }[];
 }
 
 export interface UpsertMessageRequest {
@@ -10244,13 +10245,16 @@ export const GetMessageRequest: MessageFns<GetMessageRequest> = {
 };
 
 function createBaseGetMessageResponse(): GetMessageResponse {
-  return { message: undefined };
+  return { message: undefined, recipients: [] };
 }
 
 export const GetMessageResponse: MessageFns<GetMessageResponse> = {
   encode(message: GetMessageResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== undefined) {
       Struct.encode(Struct.wrap(message.message), writer.uint32(10).fork()).join();
+    }
+    for (const v of message.recipients) {
+      Struct.encode(Struct.wrap(v!), writer.uint32(18).fork()).join();
     }
     return writer;
   },
@@ -10270,6 +10274,14 @@ export const GetMessageResponse: MessageFns<GetMessageResponse> = {
           message.message = Struct.unwrap(Struct.decode(reader, reader.uint32()));
           continue;
         }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.recipients.push(Struct.unwrap(Struct.decode(reader, reader.uint32())));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -10280,13 +10292,19 @@ export const GetMessageResponse: MessageFns<GetMessageResponse> = {
   },
 
   fromJSON(object: any): GetMessageResponse {
-    return { message: isObject(object.message) ? object.message : undefined };
+    return {
+      message: isObject(object.message) ? object.message : undefined,
+      recipients: globalThis.Array.isArray(object?.recipients) ? [...object.recipients] : [],
+    };
   },
 
   toJSON(message: GetMessageResponse): unknown {
     const obj: any = {};
     if (message.message !== undefined) {
       obj.message = message.message;
+    }
+    if (message.recipients?.length) {
+      obj.recipients = message.recipients;
     }
     return obj;
   },
@@ -10297,6 +10315,7 @@ export const GetMessageResponse: MessageFns<GetMessageResponse> = {
   fromPartial<I extends Exact<DeepPartial<GetMessageResponse>, I>>(object: I): GetMessageResponse {
     const message = createBaseGetMessageResponse();
     message.message = object.message ?? undefined;
+    message.recipients = object.recipients?.map((e) => e) || [];
     return message;
   },
 };

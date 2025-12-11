@@ -2030,6 +2030,10 @@ definitions:
     properties:
       message:
         type: object
+      recipients:
+        type: array
+        items:
+          type: object
   apiGetMessagesResponse:
     type: object
     properties:
