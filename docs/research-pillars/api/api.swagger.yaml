@@ -971,6 +971,37 @@ paths:
           type: string
       tags:
         - Messages
+  /programs/{programName}/messages/{name}/received:
+    post:
+      operationId: Messages_MessageReceived
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiMessageReceivedResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: query
+          required: false
+          type: string
+        - name: seenAt
+          in: query
+          required: false
+          type: string
+      tags:
+        - Messages
   /programs/{programName}/messages/{name}/send:
     post:
       operationId: Messages_SendMessage
@@ -2311,6 +2342,8 @@ definitions:
   apiLoadRoutineResponse:
     type: object
   apiLoadSurveyResponse:
+    type: object
+  apiMessageReceivedResponse:
     type: object
   apiPublishConsentResponse:
     type: object

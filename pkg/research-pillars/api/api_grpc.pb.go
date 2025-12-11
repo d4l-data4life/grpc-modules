@@ -3703,11 +3703,12 @@ var Clients_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Messages_GetMessages_FullMethodName   = "/proto.api.Messages/GetMessages"
-	Messages_GetMessage_FullMethodName    = "/proto.api.Messages/GetMessage"
-	Messages_UpsertMessage_FullMethodName = "/proto.api.Messages/UpsertMessage"
-	Messages_DeleteMessage_FullMethodName = "/proto.api.Messages/DeleteMessage"
-	Messages_SendMessage_FullMethodName   = "/proto.api.Messages/SendMessage"
+	Messages_GetMessages_FullMethodName     = "/proto.api.Messages/GetMessages"
+	Messages_GetMessage_FullMethodName      = "/proto.api.Messages/GetMessage"
+	Messages_UpsertMessage_FullMethodName   = "/proto.api.Messages/UpsertMessage"
+	Messages_DeleteMessage_FullMethodName   = "/proto.api.Messages/DeleteMessage"
+	Messages_SendMessage_FullMethodName     = "/proto.api.Messages/SendMessage"
+	Messages_MessageReceived_FullMethodName = "/proto.api.Messages/MessageReceived"
 )
 
 // MessagesClient is the client API for Messages service.
@@ -3719,6 +3720,7 @@ type MessagesClient interface {
 	UpsertMessage(ctx context.Context, in *UpsertMessageRequest, opts ...grpc.CallOption) (*UpsertMessageResponse, error)
 	DeleteMessage(ctx context.Context, in *DeleteMessageRequest, opts ...grpc.CallOption) (*DeleteMessageResponse, error)
 	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
+	MessageReceived(ctx context.Context, in *MessageReceivedRequest, opts ...grpc.CallOption) (*MessageReceivedResponse, error)
 }
 
 type messagesClient struct {
@@ -3779,6 +3781,16 @@ func (c *messagesClient) SendMessage(ctx context.Context, in *SendMessageRequest
 	return out, nil
 }
 
+func (c *messagesClient) MessageReceived(ctx context.Context, in *MessageReceivedRequest, opts ...grpc.CallOption) (*MessageReceivedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MessageReceivedResponse)
+	err := c.cc.Invoke(ctx, Messages_MessageReceived_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MessagesServer is the server API for Messages service.
 // All implementations must embed UnimplementedMessagesServer
 // for forward compatibility.
@@ -3788,6 +3800,7 @@ type MessagesServer interface {
 	UpsertMessage(context.Context, *UpsertMessageRequest) (*UpsertMessageResponse, error)
 	DeleteMessage(context.Context, *DeleteMessageRequest) (*DeleteMessageResponse, error)
 	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
+	MessageReceived(context.Context, *MessageReceivedRequest) (*MessageReceivedResponse, error)
 	mustEmbedUnimplementedMessagesServer()
 }
 
@@ -3812,6 +3825,9 @@ func (UnimplementedMessagesServer) DeleteMessage(context.Context, *DeleteMessage
 }
 func (UnimplementedMessagesServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendMessage not implemented")
+}
+func (UnimplementedMessagesServer) MessageReceived(context.Context, *MessageReceivedRequest) (*MessageReceivedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MessageReceived not implemented")
 }
 func (UnimplementedMessagesServer) mustEmbedUnimplementedMessagesServer() {}
 func (UnimplementedMessagesServer) testEmbeddedByValue()                  {}
@@ -3924,6 +3940,24 @@ func _Messages_SendMessage_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Messages_MessageReceived_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MessageReceivedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessagesServer).MessageReceived(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Messages_MessageReceived_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessagesServer).MessageReceived(ctx, req.(*MessageReceivedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Messages_ServiceDesc is the grpc.ServiceDesc for Messages service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3950,6 +3984,10 @@ var Messages_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendMessage",
 			Handler:    _Messages_SendMessage_Handler,
+		},
+		{
+			MethodName: "MessageReceived",
+			Handler:    _Messages_MessageReceived_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

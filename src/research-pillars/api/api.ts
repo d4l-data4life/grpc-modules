@@ -682,6 +682,16 @@ export interface SendMessageRequest {
 export interface SendMessageResponse {
 }
 
+export interface MessageReceivedRequest {
+  programName: string;
+  name: string;
+  subjectID: string;
+  seenAt: string;
+}
+
+export interface MessageReceivedResponse {
+}
+
 export interface GetTokensRequest {
   programName: string;
 }
@@ -10677,6 +10687,157 @@ export const SendMessageResponse: MessageFns<SendMessageResponse> = {
   },
 };
 
+function createBaseMessageReceivedRequest(): MessageReceivedRequest {
+  return { programName: "", name: "", subjectID: "", seenAt: "" };
+}
+
+export const MessageReceivedRequest: MessageFns<MessageReceivedRequest> = {
+  encode(message: MessageReceivedRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.subjectID !== "") {
+      writer.uint32(26).string(message.subjectID);
+    }
+    if (message.seenAt !== "") {
+      writer.uint32(34).string(message.seenAt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MessageReceivedRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMessageReceivedRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.subjectID = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.seenAt = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MessageReceivedRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
+      seenAt: isSet(object.seenAt) ? globalThis.String(object.seenAt) : "",
+    };
+  },
+
+  toJSON(message: MessageReceivedRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.subjectID !== "") {
+      obj.subjectID = message.subjectID;
+    }
+    if (message.seenAt !== "") {
+      obj.seenAt = message.seenAt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MessageReceivedRequest>, I>>(base?: I): MessageReceivedRequest {
+    return MessageReceivedRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MessageReceivedRequest>, I>>(object: I): MessageReceivedRequest {
+    const message = createBaseMessageReceivedRequest();
+    message.programName = object.programName ?? "";
+    message.name = object.name ?? "";
+    message.subjectID = object.subjectID ?? "";
+    message.seenAt = object.seenAt ?? "";
+    return message;
+  },
+};
+
+function createBaseMessageReceivedResponse(): MessageReceivedResponse {
+  return {};
+}
+
+export const MessageReceivedResponse: MessageFns<MessageReceivedResponse> = {
+  encode(_: MessageReceivedResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MessageReceivedResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMessageReceivedResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MessageReceivedResponse {
+    return {};
+  },
+
+  toJSON(_: MessageReceivedResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MessageReceivedResponse>, I>>(base?: I): MessageReceivedResponse {
+    return MessageReceivedResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MessageReceivedResponse>, I>>(_: I): MessageReceivedResponse {
+    const message = createBaseMessageReceivedResponse();
+    return message;
+  },
+};
+
 function createBaseGetTokensRequest(): GetTokensRequest {
   return { programName: "" };
 }
@@ -13730,6 +13891,10 @@ export interface Messages {
   UpsertMessage(request: DeepPartial<UpsertMessageRequest>, metadata?: grpc.Metadata): Promise<UpsertMessageResponse>;
   DeleteMessage(request: DeepPartial<DeleteMessageRequest>, metadata?: grpc.Metadata): Promise<DeleteMessageResponse>;
   SendMessage(request: DeepPartial<SendMessageRequest>, metadata?: grpc.Metadata): Promise<SendMessageResponse>;
+  MessageReceived(
+    request: DeepPartial<MessageReceivedRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<MessageReceivedResponse>;
 }
 
 export class MessagesClientImpl implements Messages {
@@ -13742,6 +13907,7 @@ export class MessagesClientImpl implements Messages {
     this.UpsertMessage = this.UpsertMessage.bind(this);
     this.DeleteMessage = this.DeleteMessage.bind(this);
     this.SendMessage = this.SendMessage.bind(this);
+    this.MessageReceived = this.MessageReceived.bind(this);
   }
 
   GetMessages(request: DeepPartial<GetMessagesRequest>, metadata?: grpc.Metadata): Promise<GetMessagesResponse> {
@@ -13762,6 +13928,13 @@ export class MessagesClientImpl implements Messages {
 
   SendMessage(request: DeepPartial<SendMessageRequest>, metadata?: grpc.Metadata): Promise<SendMessageResponse> {
     return this.rpc.unary(MessagesSendMessageDesc, SendMessageRequest.fromPartial(request), metadata);
+  }
+
+  MessageReceived(
+    request: DeepPartial<MessageReceivedRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<MessageReceivedResponse> {
+    return this.rpc.unary(MessagesMessageReceivedDesc, MessageReceivedRequest.fromPartial(request), metadata);
   }
 }
 
@@ -13872,6 +14045,29 @@ export const MessagesSendMessageDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = SendMessageResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const MessagesMessageReceivedDesc: UnaryMethodDefinitionish = {
+  methodName: "MessageReceived",
+  service: MessagesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return MessageReceivedRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = MessageReceivedResponse.decode(data);
       return {
         ...value,
         toObject() {
