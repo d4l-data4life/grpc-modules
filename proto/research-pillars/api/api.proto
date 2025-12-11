@@ -1067,6 +1067,7 @@ message GetMessageRequest {
 }
 message GetMessageResponse {
   google.protobuf.Struct message = 1;
+  repeated google.protobuf.Struct recipients = 2;
 }
 
 message UpsertMessageRequest {

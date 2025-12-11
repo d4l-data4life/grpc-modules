@@ -9,13 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [research-pillars] recipients to getMessage response
+
 ### Changed
 
 ### Deprecated
 
 ### Removed
-
-- [research-pillars] Add `/api` or `/internal` prefix for REST paths (rollback)
 
 ### Fixed
 
