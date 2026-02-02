@@ -20,6 +20,7 @@ tags:
   - name: Images
   - name: Clients
   - name: Messages
+  - name: Notifications
   - name: DeviceTokens
   - name: Checks
 consumes:
@@ -1025,6 +1026,116 @@ paths:
           type: string
       tags:
         - Messages
+  /programs/{programName}/notifications:
+    get:
+      operationId: Notifications_GetNotifications
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetNotificationsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Notifications
+    post:
+      operationId: Notifications_UpsertNotification
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiUpsertNotificationResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/NotificationsUpsertNotificationBody'
+      tags:
+        - Notifications
+  /programs/{programName}/notifications/{name}:
+    get:
+      operationId: Notifications_GetNotification
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetNotificationResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Notifications
+    delete:
+      operationId: Notifications_DeleteNotification
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteNotificationResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Notifications
+  /programs/{programName}/notifications/{name}/send:
+    post:
+      operationId: Notifications_SendNotification
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiSendNotificationResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Notifications
   /programs/{programName}/questionnaires:
     get:
       operationId: Questionnaires_GetQuestionnaires
@@ -1904,6 +2015,11 @@ definitions:
     properties:
       message:
         type: object
+  NotificationsUpsertNotificationBody:
+    type: object
+    properties:
+      notification:
+        type: object
   QuestionnairesUpsertQuestionnaireBody:
     type: object
     properties:
@@ -1958,6 +2074,8 @@ definitions:
   apiDeleteImageResponse:
     type: object
   apiDeleteMessageResponse:
+    type: object
+  apiDeleteNotificationResponse:
     type: object
   apiDeleteProgramResponse:
     type: object
@@ -2069,6 +2187,22 @@ definitions:
     type: object
     properties:
       messages:
+        type: array
+        items:
+          type: object
+  apiGetNotificationResponse:
+    type: object
+    properties:
+      notification:
+        type: object
+      recipients:
+        type: array
+        items:
+          type: object
+  apiGetNotificationsResponse:
+    type: object
+    properties:
+      notifications:
         type: array
         items:
           type: object
@@ -2359,6 +2493,8 @@ definitions:
     type: object
   apiSendMessageResponse:
     type: object
+  apiSendNotificationResponse:
+    type: object
   apiUnassignCodeResponse:
     type: object
   apiUnblockProgramResponse:
@@ -2372,6 +2508,8 @@ definitions:
   apiUpsertImageResponse:
     type: object
   apiUpsertMessageResponse:
+    type: object
+  apiUpsertNotificationResponse:
     type: object
   apiUpsertProgramRequest:
     type: object

@@ -1103,6 +1103,73 @@ message MessageReceivedRequest {
 message MessageReceivedResponse {}
 
 /////////////////////////////////////////////////////////
+// Notification
+/////////////////////////////////////////////////////////
+
+service Notifications {
+  rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/notifications"
+    };
+  }
+
+  rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/notifications/{name}"
+    };
+  }
+
+  rpc UpsertNotification(UpsertNotificationRequest) returns (UpsertNotificationResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/notifications",
+      body : "*"
+    };
+  }
+
+  rpc DeleteNotification(DeleteNotificationRequest) returns (DeleteNotificationResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/notifications/{name}"
+    };
+  }
+
+  rpc SendNotification(SendNotificationRequest) returns (SendNotificationResponse) {
+    option (google.api.http) = {
+      post : "/programs/{programName}/notifications/{name}/send",
+    };
+  }
+}
+
+message GetNotificationsRequest { string programName = 1; }
+message GetNotificationsResponse { repeated google.protobuf.Struct notifications = 1; }
+
+message GetNotificationRequest {
+  string programName = 1;
+  string name = 2;
+}
+message GetNotificationResponse {
+  google.protobuf.Struct notification = 1;
+  repeated google.protobuf.Struct recipients = 2;
+}
+
+message UpsertNotificationRequest {
+  string programName = 1;
+  google.protobuf.Struct notification = 2;
+}
+message UpsertNotificationResponse {}
+
+message DeleteNotificationRequest {
+  string programName = 1;
+  string name = 2;
+}
+message DeleteNotificationResponse {}
+
+message SendNotificationRequest {
+  string programName = 1;
+  string name = 2;
+}
+message SendNotificationResponse {}
+
+/////////////////////////////////////////////////////////
 // Device Token
 /////////////////////////////////////////////////////////
 
