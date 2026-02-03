@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars] Notifications
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.23.0] - 2026-02-03
+
+### Added
+
+- [research-pillars] Notifications
 
 ## [v1.22.3] - 2025-12-11
 
@@ -220,7 +224,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.22.3...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.23.0...HEAD
+[v1.23.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.22.3...v1.23.0
 [v1.22.3]: https://github.com/d4l-data4life/grpc-modules/compare/v1.22.2...v1.22.3
 [v1.22.2]: https://github.com/d4l-data4life/grpc-modules/compare/v1.22.1...v1.22.2
 [v1.22.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.22.0...v1.22.1
