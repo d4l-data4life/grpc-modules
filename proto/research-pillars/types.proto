@@ -36,10 +36,10 @@ enum InputType {
   decimal = 4;
   date = 5;
   // Mapped Types
-  single_select = 6;  // coding
-  multi_select = 7;   // coding
-  year = 8;           // date
-  scale_numeric = 9;  // decimal
+  single_select = 6; // coding
+  multi_select = 7; // coding
+  year = 8; // date
+  scale_numeric = 9; // decimal
   scale_ordinal = 10; // integer
 }
 
@@ -125,4 +125,11 @@ message DeviceToken {
   string subjectID = 2;
   string token = 3;
   optional string participantCode = 4;
+}
+
+message AccessToken {
+  string programName = 1;
+  string name = 2;
+  string createdAt = 3;
+  string lastUsedAt = 4;
 }

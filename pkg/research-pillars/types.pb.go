@@ -1045,6 +1045,74 @@ func (x *DeviceToken) GetParticipantCode() string {
 	return ""
 }
 
+type AccessToken struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	LastUsedAt    string                 `protobuf:"bytes,4,opt,name=lastUsedAt,proto3" json:"lastUsedAt,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccessToken) Reset() {
+	*x = AccessToken{}
+	mi := &file_research_pillars_types_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccessToken) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccessToken) ProtoMessage() {}
+
+func (x *AccessToken) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_types_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccessToken.ProtoReflect.Descriptor instead.
+func (*AccessToken) Descriptor() ([]byte, []int) {
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *AccessToken) GetProgramName() string {
+	if x != nil {
+		return x.ProgramName
+	}
+	return ""
+}
+
+func (x *AccessToken) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AccessToken) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *AccessToken) GetLastUsedAt() string {
+	if x != nil {
+		return x.LastUsedAt
+	}
+	return ""
+}
+
 var File_research_pillars_types_proto protoreflect.FileDescriptor
 
 const file_research_pillars_types_proto_rawDesc = "" +
@@ -1128,7 +1196,14 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tsubjectID\x18\x02 \x01(\tR\tsubjectID\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\x12-\n" +
 	"\x0fparticipantCode\x18\x04 \x01(\tH\x00R\x0fparticipantCode\x88\x01\x01B\x12\n" +
-	"\x10_participantCode*\xa7\x01\n" +
+	"\x10_participantCode\"\x81\x01\n" +
+	"\vAccessToken\x12 \n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1c\n" +
+	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
+	"\n" +
+	"lastUsedAt\x18\x04 \x01(\tR\n" +
+	"lastUsedAt*\xa7\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1177,7 +1252,7 @@ func file_research_pillars_types_proto_rawDescGZIP() []byte {
 }
 
 var file_research_pillars_types_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_research_pillars_types_proto_goTypes = []any{
 	(InputType)(0),          // 0: proto.InputType
 	(Operator)(0),           // 1: proto.Operator
@@ -1195,23 +1270,24 @@ var file_research_pillars_types_proto_goTypes = []any{
 	(*ParticipantCode)(nil), // 13: proto.ParticipantCode
 	(*Client)(nil),          // 14: proto.Client
 	(*DeviceToken)(nil),     // 15: proto.DeviceToken
-	nil,                     // 16: proto.Questionnaire.TitleEntry
-	nil,                     // 17: proto.Question.TextEntry
-	nil,                     // 18: proto.Answer.LanguagesEntry
-	(*structpb.Struct)(nil), // 19: google.protobuf.Struct
+	(*AccessToken)(nil),     // 16: proto.AccessToken
+	nil,                     // 17: proto.Questionnaire.TitleEntry
+	nil,                     // 18: proto.Question.TextEntry
+	nil,                     // 19: proto.Answer.LanguagesEntry
+	(*structpb.Struct)(nil), // 20: google.protobuf.Struct
 }
 var file_research_pillars_types_proto_depIdxs = []int32{
-	16, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
+	17, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
 	5,  // 1: proto.Questionnaire.questions:type_name -> proto.Question
 	0,  // 2: proto.Question.inputType:type_name -> proto.InputType
-	17, // 3: proto.Question.text:type_name -> proto.Question.TextEntry
+	18, // 3: proto.Question.text:type_name -> proto.Question.TextEntry
 	6,  // 4: proto.Question.answerset:type_name -> proto.Answerset
-	19, // 5: proto.Question.config:type_name -> google.protobuf.Struct
+	20, // 5: proto.Question.config:type_name -> google.protobuf.Struct
 	8,  // 6: proto.Question.enable_when:type_name -> proto.EnableWhen
 	7,  // 7: proto.Answerset.answers:type_name -> proto.Answer
-	18, // 8: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
+	19, // 8: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
 	1,  // 9: proto.EnableWhen.operator:type_name -> proto.Operator
-	19, // 10: proto.Diff.change:type_name -> google.protobuf.Struct
+	20, // 10: proto.Diff.change:type_name -> google.protobuf.Struct
 	10, // 11: proto.Diff.user:type_name -> proto.User
 	11, // 12: proto.User.programRoles:type_name -> proto.ProgramRole
 	2,  // 13: proto.ProgramRole.role:type_name -> proto.Role
@@ -1238,7 +1314,7 @@ func file_research_pillars_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_research_pillars_types_proto_rawDesc), len(file_research_pillars_types_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -1927,6 +1927,45 @@ func local_request_ParticipantCodes_GenerateCodes_0(ctx context.Context, marshal
 	return msg, metadata, err
 }
 
+func request_ParticipantCodes_GenerateCode_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GenerateCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := client.GenerateCode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ParticipantCodes_GenerateCode_0(ctx context.Context, marshaler runtime.Marshaler, server ParticipantCodesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GenerateCodeRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := server.GenerateCode(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_ParticipantCodes_AssignCode_0(ctx context.Context, marshaler runtime.Marshaler, client ParticipantCodesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq AssignCodeRequest
@@ -4146,6 +4185,145 @@ func local_request_DeviceTokens_DeleteToken_0(ctx context.Context, marshaler run
 	return msg, metadata, err
 }
 
+func request_AccessTokens_GetAccessTokens_0(ctx context.Context, marshaler runtime.Marshaler, client AccessTokensClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAccessTokensRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := client.GetAccessTokens(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AccessTokens_GetAccessTokens_0(ctx context.Context, marshaler runtime.Marshaler, server AccessTokensServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAccessTokensRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := server.GetAccessTokens(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AccessTokens_GenerateAccessToken_0(ctx context.Context, marshaler runtime.Marshaler, client AccessTokensClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GenerateAccessTokenRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := client.GenerateAccessToken(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AccessTokens_GenerateAccessToken_0(ctx context.Context, marshaler runtime.Marshaler, server AccessTokensServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GenerateAccessTokenRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	msg, err := server.GenerateAccessToken(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_AccessTokens_DeleteAccessToken_0(ctx context.Context, marshaler runtime.Marshaler, client AccessTokensClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteAccessTokenRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.DeleteAccessToken(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_AccessTokens_DeleteAccessToken_0(ctx context.Context, marshaler runtime.Marshaler, server AccessTokensServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq DeleteAccessTokenRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.DeleteAccessToken(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_Checks_Liveness_0(ctx context.Context, marshaler runtime.Marshaler, client ChecksClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ChecksRequest
@@ -5133,6 +5311,26 @@ func RegisterParticipantCodesHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 		forward_ParticipantCodes_GenerateCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ParticipantCodes_GenerateCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/generate"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ParticipantCodes_GenerateCode_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ParticipantCodes_GenerateCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -6123,6 +6321,76 @@ func RegisterDeviceTokensHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 		forward_DeviceTokens_DeleteToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+
+	return nil
+}
+
+// RegisterAccessTokensHandlerServer registers the http handlers for service AccessTokens to "mux".
+// UnaryRPC     :call AccessTokensServer directly.
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAccessTokensHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
+func RegisterAccessTokensHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AccessTokensServer) error {
+	mux.Handle(http.MethodGet, pattern_AccessTokens_GetAccessTokens_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.AccessTokens/GetAccessTokens", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AccessTokens_GetAccessTokens_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_GetAccessTokens_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_AccessTokens_GenerateAccessToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.AccessTokens/GenerateAccessToken", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AccessTokens_GenerateAccessToken_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_GenerateAccessToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_AccessTokens_DeleteAccessToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.AccessTokens/DeleteAccessToken", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_AccessTokens_DeleteAccessToken_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_DeleteAccessToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -7316,6 +7584,23 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 		}
 		forward_ParticipantCodes_GenerateCodes_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ParticipantCodes_GenerateCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.ParticipantCodes/GenerateCode", runtime.WithHTTPPathPattern("/programs/{programName}/codes/generate"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ParticipantCodes_GenerateCode_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ParticipantCodes_GenerateCode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_ParticipantCodes_AssignCode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -7373,6 +7658,7 @@ func RegisterParticipantCodesHandlerClient(ctx context.Context, mux *runtime.Ser
 var (
 	pattern_ParticipantCodes_GetCodes_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
 	pattern_ParticipantCodes_GenerateCodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "codes"}, ""))
+	pattern_ParticipantCodes_GenerateCode_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 2, 3}, []string{"programs", "programName", "codes", "generate"}, ""))
 	pattern_ParticipantCodes_AssignCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
 	pattern_ParticipantCodes_DeleteCode_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "codes", "code"}, ""))
 	pattern_ParticipantCodes_UnassignCode_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "codes", "code", "assign"}, ""))
@@ -7381,6 +7667,7 @@ var (
 var (
 	forward_ParticipantCodes_GetCodes_0      = runtime.ForwardResponseMessage
 	forward_ParticipantCodes_GenerateCodes_0 = runtime.ForwardResponseMessage
+	forward_ParticipantCodes_GenerateCode_0  = runtime.ForwardResponseMessage
 	forward_ParticipantCodes_AssignCode_0    = runtime.ForwardResponseMessage
 	forward_ParticipantCodes_DeleteCode_0    = runtime.ForwardResponseMessage
 	forward_ParticipantCodes_UnassignCode_0  = runtime.ForwardResponseMessage
@@ -8587,6 +8874,108 @@ var (
 	forward_DeviceTokens_GetTokens_0   = runtime.ForwardResponseMessage
 	forward_DeviceTokens_UpsertToken_0 = runtime.ForwardResponseMessage
 	forward_DeviceTokens_DeleteToken_0 = runtime.ForwardResponseMessage
+)
+
+// RegisterAccessTokensHandlerFromEndpoint is same as RegisterAccessTokensHandler but
+// automatically dials to "endpoint" and closes the connection when "ctx" gets done.
+func RegisterAccessTokensHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+	conn, err := grpc.NewClient(endpoint, opts...)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err != nil {
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+			return
+		}
+		go func() {
+			<-ctx.Done()
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+	return RegisterAccessTokensHandler(ctx, mux, conn)
+}
+
+// RegisterAccessTokensHandler registers the http handlers for service AccessTokens to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterAccessTokensHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterAccessTokensHandlerClient(ctx, mux, NewAccessTokensClient(conn))
+}
+
+// RegisterAccessTokensHandlerClient registers the http handlers for service AccessTokens
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AccessTokensClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AccessTokensClient"
+// doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
+// "AccessTokensClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterAccessTokensHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AccessTokensClient) error {
+	mux.Handle(http.MethodGet, pattern_AccessTokens_GetAccessTokens_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.AccessTokens/GetAccessTokens", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AccessTokens_GetAccessTokens_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_GetAccessTokens_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_AccessTokens_GenerateAccessToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.AccessTokens/GenerateAccessToken", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AccessTokens_GenerateAccessToken_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_GenerateAccessToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_AccessTokens_DeleteAccessToken_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.AccessTokens/DeleteAccessToken", runtime.WithHTTPPathPattern("/programs/{programName}/accesstokens/{name}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_AccessTokens_DeleteAccessToken_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_AccessTokens_DeleteAccessToken_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	return nil
+}
+
+var (
+	pattern_AccessTokens_GetAccessTokens_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "accesstokens"}, ""))
+	pattern_AccessTokens_GenerateAccessToken_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "accesstokens"}, ""))
+	pattern_AccessTokens_DeleteAccessToken_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "accesstokens", "name"}, ""))
+)
+
+var (
+	forward_AccessTokens_GetAccessTokens_0     = runtime.ForwardResponseMessage
+	forward_AccessTokens_GenerateAccessToken_0 = runtime.ForwardResponseMessage
+	forward_AccessTokens_DeleteAccessToken_0   = runtime.ForwardResponseMessage
 )
 
 // RegisterChecksHandlerFromEndpoint is same as RegisterChecksHandler but

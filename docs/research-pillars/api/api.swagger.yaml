@@ -22,6 +22,7 @@ tags:
   - name: Messages
   - name: Notifications
   - name: DeviceTokens
+  - name: AccessTokens
   - name: Checks
 consumes:
   - application/json
@@ -249,6 +250,71 @@ paths:
             type: boolean
       tags:
         - Programs
+  /programs/{programName}/accesstokens:
+    get:
+      operationId: AccessTokens_GetAccessTokens
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetAccessTokensResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - AccessTokens
+    put:
+      operationId: AccessTokens_GenerateAccessToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGenerateAccessTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AccessTokensGenerateAccessTokenBody'
+      tags:
+        - AccessTokens
+  /programs/{programName}/accesstokens/{name}:
+    delete:
+      operationId: AccessTokens_DeleteAccessToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiDeleteAccessTokenResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - AccessTokens
   /programs/{programName}/client:
     get:
       operationId: Clients_GetClients
@@ -405,6 +471,25 @@ paths:
           schema:
             type: integer
             format: int32
+      tags:
+        - ParticipantCodes
+  /programs/{programName}/codes/generate:
+    get:
+      operationId: ParticipantCodes_GenerateCode
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGenerateCodeResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
       tags:
         - ParticipantCodes
   /programs/{programName}/codes/{code}:
@@ -1963,6 +2048,11 @@ paths:
       tags:
         - Users
 definitions:
+  AccessTokensGenerateAccessTokenBody:
+    type: object
+    properties:
+      name:
+        type: string
   ClientsExchangeTokenBody:
     type: object
     properties:
@@ -2061,6 +2151,8 @@ definitions:
     properties:
       response:
         type: string
+  apiDeleteAccessTokenResponse:
+    type: object
   apiDeleteClientResponse:
     type: object
   apiDeleteCodeResponse:
@@ -2100,8 +2192,28 @@ definitions:
     properties:
       body:
         type: object
+  apiGenerateAccessTokenResponse:
+    type: object
+    properties:
+      token:
+        $ref: '#/definitions/protoAccessToken'
+      secret:
+        type: string
+  apiGenerateCodeResponse:
+    type: object
   apiGenerateCodesResponse:
     type: object
+    properties:
+      response:
+        type: object
+  apiGetAccessTokensResponse:
+    type: object
+    properties:
+      tokens:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoAccessToken'
   apiGetBlockedProgramsResponse:
     type: object
     properties:
@@ -2544,6 +2656,17 @@ definitions:
     type: object
   apiUpsertTokenResponse:
     type: object
+  protoAccessToken:
+    type: object
+    properties:
+      programName:
+        type: string
+      name:
+        type: string
+      createdAt:
+        type: string
+      lastUsedAt:
+        type: string
   protoAnswer:
     type: object
     properties:
