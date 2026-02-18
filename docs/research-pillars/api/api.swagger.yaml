@@ -2201,11 +2201,11 @@ definitions:
         type: string
   apiGenerateCodeResponse:
     type: object
-  apiGenerateCodesResponse:
-    type: object
     properties:
       response:
         type: object
+  apiGenerateCodesResponse:
+    type: object
   apiGetAccessTokensResponse:
     type: object
     properties:

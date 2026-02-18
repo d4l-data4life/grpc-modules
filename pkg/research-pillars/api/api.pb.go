@@ -3944,7 +3944,6 @@ func (x *GenerateCodesRequest) GetAmount() int32 {
 
 type GenerateCodesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Response      *structpb.Struct       `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3977,13 +3976,6 @@ func (x *GenerateCodesResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GenerateCodesResponse.ProtoReflect.Descriptor instead.
 func (*GenerateCodesResponse) Descriptor() ([]byte, []int) {
 	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{87}
-}
-
-func (x *GenerateCodesResponse) GetResponse() *structpb.Struct {
-	if x != nil {
-		return x.Response
-	}
-	return nil
 }
 
 type GenerateCodeRequest struct {
@@ -4032,6 +4024,7 @@ func (x *GenerateCodeRequest) GetProgramName() string {
 
 type GenerateCodeResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Response      *structpb.Struct       `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4064,6 +4057,13 @@ func (x *GenerateCodeResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GenerateCodeResponse.ProtoReflect.Descriptor instead.
 func (*GenerateCodeResponse) Descriptor() ([]byte, []int) {
 	return file_research_pillars_api_api_proto_rawDescGZIP(), []int{89}
+}
+
+func (x *GenerateCodeResponse) GetResponse() *structpb.Struct {
+	if x != nil {
+		return x.Response
+	}
+	return nil
 }
 
 type AssignCodeRequest struct {
@@ -8749,12 +8749,12 @@ const file_research_pillars_api_api_proto_rawDesc = "" +
 	"\x05codes\x18\x01 \x03(\v2\x16.proto.ParticipantCodeR\x05codes\"P\n" +
 	"\x14GenerateCodesRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x05R\x06amount\"L\n" +
-	"\x15GenerateCodesResponse\x123\n" +
-	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructR\bresponse\"7\n" +
+	"\x06amount\x18\x02 \x01(\x05R\x06amount\"\x17\n" +
+	"\x15GenerateCodesResponse\"7\n" +
 	"\x13GenerateCodeRequest\x12 \n" +
-	"\vprogramName\x18\x01 \x01(\tR\vprogramName\"\x16\n" +
-	"\x14GenerateCodeResponse\"_\n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\"K\n" +
+	"\x14GenerateCodeResponse\x123\n" +
+	"\bresponse\x18\x01 \x01(\v2\x17.google.protobuf.StructR\bresponse\"_\n" +
 	"\x11AssignCodeRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x14\n" +
@@ -9374,7 +9374,7 @@ var file_research_pillars_api_api_proto_depIdxs = []int32{
 	190, // 38: proto.api.UpsertDisplayRequest.display:type_name -> google.protobuf.Struct
 	190, // 39: proto.api.UpsertDisplayRequest.change:type_name -> google.protobuf.Struct
 	193, // 40: proto.api.GetCodesResponse.codes:type_name -> proto.ParticipantCode
-	190, // 41: proto.api.GenerateCodesResponse.response:type_name -> google.protobuf.Struct
+	190, // 41: proto.api.GenerateCodeResponse.response:type_name -> google.protobuf.Struct
 	190, // 42: proto.api.GetConsentsResponse.consents:type_name -> google.protobuf.Struct
 	190, // 43: proto.api.GetConsentResponse.consents:type_name -> google.protobuf.Struct
 	190, // 44: proto.api.UpsertConsentRequest.consent:type_name -> google.protobuf.Struct

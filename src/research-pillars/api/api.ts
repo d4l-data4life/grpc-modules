@@ -384,7 +384,6 @@ export interface GenerateCodesRequest {
 }
 
 export interface GenerateCodesResponse {
-  response?: { [key: string]: any } | undefined;
 }
 
 export interface GenerateCodeRequest {
@@ -392,6 +391,7 @@ export interface GenerateCodeRequest {
 }
 
 export interface GenerateCodeResponse {
+  response?: { [key: string]: any } | undefined;
 }
 
 export interface AssignCodeRequest {
@@ -6148,14 +6148,11 @@ export const GenerateCodesRequest: MessageFns<GenerateCodesRequest> = {
 };
 
 function createBaseGenerateCodesResponse(): GenerateCodesResponse {
-  return { response: undefined };
+  return {};
 }
 
 export const GenerateCodesResponse: MessageFns<GenerateCodesResponse> = {
-  encode(message: GenerateCodesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.response !== undefined) {
-      Struct.encode(Struct.wrap(message.response), writer.uint32(10).fork()).join();
-    }
+  encode(_: GenerateCodesResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     return writer;
   },
 
@@ -6166,14 +6163,6 @@ export const GenerateCodesResponse: MessageFns<GenerateCodesResponse> = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.response = Struct.unwrap(Struct.decode(reader, reader.uint32()));
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -6183,24 +6172,20 @@ export const GenerateCodesResponse: MessageFns<GenerateCodesResponse> = {
     return message;
   },
 
-  fromJSON(object: any): GenerateCodesResponse {
-    return { response: isObject(object.response) ? object.response : undefined };
+  fromJSON(_: any): GenerateCodesResponse {
+    return {};
   },
 
-  toJSON(message: GenerateCodesResponse): unknown {
+  toJSON(_: GenerateCodesResponse): unknown {
     const obj: any = {};
-    if (message.response !== undefined) {
-      obj.response = message.response;
-    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<GenerateCodesResponse>, I>>(base?: I): GenerateCodesResponse {
     return GenerateCodesResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<GenerateCodesResponse>, I>>(object: I): GenerateCodesResponse {
+  fromPartial<I extends Exact<DeepPartial<GenerateCodesResponse>, I>>(_: I): GenerateCodesResponse {
     const message = createBaseGenerateCodesResponse();
-    message.response = object.response ?? undefined;
     return message;
   },
 };
@@ -6264,11 +6249,14 @@ export const GenerateCodeRequest: MessageFns<GenerateCodeRequest> = {
 };
 
 function createBaseGenerateCodeResponse(): GenerateCodeResponse {
-  return {};
+  return { response: undefined };
 }
 
 export const GenerateCodeResponse: MessageFns<GenerateCodeResponse> = {
-  encode(_: GenerateCodeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+  encode(message: GenerateCodeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.response !== undefined) {
+      Struct.encode(Struct.wrap(message.response), writer.uint32(10).fork()).join();
+    }
     return writer;
   },
 
@@ -6279,6 +6267,14 @@ export const GenerateCodeResponse: MessageFns<GenerateCodeResponse> = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.response = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -6288,20 +6284,24 @@ export const GenerateCodeResponse: MessageFns<GenerateCodeResponse> = {
     return message;
   },
 
-  fromJSON(_: any): GenerateCodeResponse {
-    return {};
+  fromJSON(object: any): GenerateCodeResponse {
+    return { response: isObject(object.response) ? object.response : undefined };
   },
 
-  toJSON(_: GenerateCodeResponse): unknown {
+  toJSON(message: GenerateCodeResponse): unknown {
     const obj: any = {};
+    if (message.response !== undefined) {
+      obj.response = message.response;
+    }
     return obj;
   },
 
   create<I extends Exact<DeepPartial<GenerateCodeResponse>, I>>(base?: I): GenerateCodeResponse {
     return GenerateCodeResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<GenerateCodeResponse>, I>>(_: I): GenerateCodeResponse {
+  fromPartial<I extends Exact<DeepPartial<GenerateCodeResponse>, I>>(object: I): GenerateCodeResponse {
     const message = createBaseGenerateCodeResponse();
+    message.response = object.response ?? undefined;
     return message;
   },
 };

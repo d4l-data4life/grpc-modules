@@ -609,10 +609,10 @@ message GetCodesRequest { string programName = 1; }
 message GetCodesResponse { repeated ParticipantCode codes = 1; }
 
 message GenerateCodesRequest { string programName = 1; int32 amount = 2; }
-message GenerateCodesResponse { google.protobuf.Struct response = 1; }
+message GenerateCodesResponse { }
 
 message GenerateCodeRequest { string programName = 1; }
-message GenerateCodeResponse {}
+message GenerateCodeResponse { google.protobuf.Struct response = 1; }
 
 message AssignCodeRequest { string programName = 1; string code = 2; string alpID = 3; }
 message AssignCodeResponse {}
