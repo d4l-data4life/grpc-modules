@@ -579,6 +579,12 @@ service ParticipantCodes {
     };
   }
 
+  rpc GenerateCode(GenerateCodeRequest) returns (GenerateCodeResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/codes/generate",
+    };
+  }
+
   rpc AssignCode(AssignCodeRequest) returns (AssignCodeResponse) {
     option (google.api.http) = {
       post : "/programs/{programName}/codes/{code}/assign",
@@ -603,7 +609,10 @@ message GetCodesRequest { string programName = 1; }
 message GetCodesResponse { repeated ParticipantCode codes = 1; }
 
 message GenerateCodesRequest { string programName = 1; int32 amount = 2; }
-message GenerateCodesResponse {}
+message GenerateCodesResponse { }
+
+message GenerateCodeRequest { string programName = 1; }
+message GenerateCodeResponse { google.protobuf.Struct response = 1; }
 
 message AssignCodeRequest { string programName = 1; string code = 2; string alpID = 3; }
 message AssignCodeResponse {}
@@ -1202,6 +1211,40 @@ message UpsertTokenResponse {}
 
 message DeleteTokenRequest { string programName = 1; string subjectID = 2; }
 message DeleteTokenResponse {}
+
+/////////////////////////////////////////////////////////
+// Access Token
+/////////////////////////////////////////////////////////
+
+service AccessTokens {
+  rpc GetAccessTokens(GetAccessTokensRequest) returns (GetAccessTokensResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/accesstokens"
+    };
+  }
+
+  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse) {
+    option (google.api.http) = {
+      put : "/programs/{programName}/accesstokens",
+      body : "*"
+    };
+  }
+
+  rpc DeleteAccessToken(DeleteAccessTokenRequest) returns (DeleteAccessTokenResponse) {
+    option (google.api.http) = {
+      delete : "/programs/{programName}/accesstokens/{name}",
+    };
+  }
+}
+
+message GetAccessTokensRequest { string programName = 1; }
+message GetAccessTokensResponse { repeated AccessToken tokens = 1; }
+
+message GenerateAccessTokenRequest { string programName = 1; string name = 2;}
+message GenerateAccessTokenResponse { AccessToken token = 1; string secret = 2; }
+
+message DeleteAccessTokenRequest { string programName = 1; string name = 2; }
+message DeleteAccessTokenResponse {}
 
 /////////////////////////////////////////////////////////
 // Checks
