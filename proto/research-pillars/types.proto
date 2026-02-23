@@ -41,6 +41,7 @@ enum InputType {
   year = 8; // date
   scale_numeric = 9; // decimal
   scale_ordinal = 10; // integer
+  geo_location = 11; // string
 }
 
 message Answerset {
