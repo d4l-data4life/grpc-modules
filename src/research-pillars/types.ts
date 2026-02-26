@@ -28,6 +28,8 @@ export enum InputType {
   scale_numeric = 9,
   /** scale_ordinal - integer */
   scale_ordinal = 10,
+  /** geo_location - string */
+  geo_location = 11,
   UNRECOGNIZED = -1,
 }
 
@@ -66,6 +68,9 @@ export function inputTypeFromJSON(object: any): InputType {
     case 10:
     case "scale_ordinal":
       return InputType.scale_ordinal;
+    case 11:
+    case "geo_location":
+      return InputType.geo_location;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -97,6 +102,8 @@ export function inputTypeToJSON(object: InputType): string {
       return "scale_numeric";
     case InputType.scale_ordinal:
       return "scale_ordinal";
+    case InputType.geo_location:
+      return "geo_location";
     case InputType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
