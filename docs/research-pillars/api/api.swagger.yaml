@@ -2763,6 +2763,7 @@ definitions:
       - scale_numeric
       - scale_ordinal
       - geo_location
+      - list
     default: display
     description: |-
       coding
@@ -2771,6 +2772,7 @@ definitions:
        - scale_numeric: decimal
        - scale_ordinal: integer
        - geo_location: string
+       - list: string
     title: |-
       - display: Default Types
        - single_select: Mapped Types

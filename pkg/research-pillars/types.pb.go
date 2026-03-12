@@ -39,6 +39,7 @@ const (
 	InputType_scale_numeric InputType = 9  // decimal
 	InputType_scale_ordinal InputType = 10 // integer
 	InputType_geo_location  InputType = 11 // string
+	InputType_list          InputType = 12 // string
 )
 
 // Enum value maps for InputType.
@@ -56,6 +57,7 @@ var (
 		9:  "scale_numeric",
 		10: "scale_ordinal",
 		11: "geo_location",
+		12: "list",
 	}
 	InputType_value = map[string]int32{
 		"display":       0,
@@ -70,6 +72,7 @@ var (
 		"scale_numeric": 9,
 		"scale_ordinal": 10,
 		"geo_location":  11,
+		"list":          12,
 	}
 )
 
@@ -1206,7 +1209,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\xb9\x01\n" +
+	"lastUsedAt*\xc3\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1221,7 +1224,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\rscale_numeric\x10\t\x12\x11\n" +
 	"\rscale_ordinal\x10\n" +
 	"\x12\x10\n" +
-	"\fgeo_location\x10\v*K\n" +
+	"\fgeo_location\x10\v\x12\b\n" +
+	"\x04list\x10\f*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
 	"\x06exists\x10\x00\x12\x06\n" +
