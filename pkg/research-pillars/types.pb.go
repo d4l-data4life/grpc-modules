@@ -337,6 +337,7 @@ type Question struct {
 	Config         *structpb.Struct       `protobuf:"bytes,6,opt,name=config,proto3,oneof" json:"config,omitempty"`
 	EnableWhen     []*EnableWhen          `protobuf:"bytes,7,rep,name=enable_when,json=enableWhen,proto3" json:"enable_when,omitempty"`
 	EnableBehavior *string                `protobuf:"bytes,8,opt,name=enable_behavior,json=enableBehavior,proto3,oneof" json:"enable_behavior,omitempty"`
+	Prepopulate    []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -425,6 +426,13 @@ func (x *Question) GetEnableBehavior() string {
 		return *x.EnableBehavior
 	}
 	return ""
+}
+
+func (x *Question) GetPrepopulate() []string {
+	if x != nil {
+		return x.Prepopulate
+	}
+	return nil
 }
 
 type Answerset struct {
@@ -1132,7 +1140,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"TitleEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xd0\x03\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xf2\x03\n" +
 	"\bQuestion\x12\x16\n" +
 	"\x06linkId\x18\x01 \x01(\tR\x06linkId\x12.\n" +
 	"\tinputType\x18\x02 \x01(\x0e2\x10.proto.InputTypeR\tinputType\x12\x1a\n" +
@@ -1142,7 +1150,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x06config\x18\x06 \x01(\v2\x17.google.protobuf.StructH\x01R\x06config\x88\x01\x01\x122\n" +
 	"\venable_when\x18\a \x03(\v2\x11.proto.EnableWhenR\n" +
 	"enableWhen\x12,\n" +
-	"\x0fenable_behavior\x18\b \x01(\tH\x02R\x0eenableBehavior\x88\x01\x01\x1a7\n" +
+	"\x0fenable_behavior\x18\b \x01(\tH\x02R\x0eenableBehavior\x88\x01\x01\x12 \n" +
+	"\vprepopulate\x18\t \x03(\tR\vprepopulate\x1a7\n" +
 	"\tTextEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\f\n" +

@@ -2827,6 +2827,10 @@ definitions:
           $ref: '#/definitions/protoEnableWhen'
       enableBehavior:
         type: string
+      prepopulate:
+        type: array
+        items:
+          type: string
   protoQuestionnaire:
     type: object
     properties:
