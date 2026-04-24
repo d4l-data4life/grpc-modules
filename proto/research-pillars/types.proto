@@ -27,6 +27,7 @@ message Question {
   optional string enable_behavior = 8;
   repeated string prepopulate = 9;
   repeated Question items = 10;
+  optional QuestionImage image = 11;
 }
 
 enum InputType {
@@ -65,6 +66,12 @@ message EnableWhen {
   optional string answer_coding = 3;
   optional double answer_decimal = 4;
   optional string answer_date = 5;
+}
+
+message QuestionImage {
+  string data = 1;
+  string contentType = 2;
+  string alt = 3;
 }
 
 enum Operator {

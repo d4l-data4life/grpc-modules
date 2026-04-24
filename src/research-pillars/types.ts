@@ -281,6 +281,7 @@ export interface Question {
   enableBehavior?: string | undefined;
   prepopulate: string[];
   items: Question[];
+  image?: QuestionImage | undefined;
 }
 
 export interface Question_TextEntry {
@@ -310,6 +311,12 @@ export interface EnableWhen {
   answerCoding?: string | undefined;
   answerDecimal?: number | undefined;
   answerDate?: string | undefined;
+}
+
+export interface QuestionImage {
+  data: string;
+  contentType: string;
+  alt: string;
 }
 
 export interface Diff {
@@ -586,6 +593,7 @@ function createBaseQuestion(): Question {
     enableBehavior: undefined,
     prepopulate: [],
     items: [],
+    image: undefined,
   };
 }
 
@@ -620,6 +628,9 @@ export const Question: MessageFns<Question> = {
     }
     for (const v of message.items) {
       Question.encode(v!, writer.uint32(82).fork()).join();
+    }
+    if (message.image !== undefined) {
+      QuestionImage.encode(message.image, writer.uint32(90).fork()).join();
     }
     return writer;
   },
@@ -714,6 +725,14 @@ export const Question: MessageFns<Question> = {
           message.items.push(Question.decode(reader, reader.uint32()));
           continue;
         }
+        case 11: {
+          if (tag !== 90) {
+            break;
+          }
+
+          message.image = QuestionImage.decode(reader, reader.uint32());
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -753,6 +772,7 @@ export const Question: MessageFns<Question> = {
         ? object.prepopulate.map((e: any) => globalThis.String(e))
         : [],
       items: globalThis.Array.isArray(object?.items) ? object.items.map((e: any) => Question.fromJSON(e)) : [],
+      image: isSet(object.image) ? QuestionImage.fromJSON(object.image) : undefined,
     };
   },
 
@@ -794,6 +814,9 @@ export const Question: MessageFns<Question> = {
     if (message.items?.length) {
       obj.items = message.items.map((e) => Question.toJSON(e));
     }
+    if (message.image !== undefined) {
+      obj.image = QuestionImage.toJSON(message.image);
+    }
     return obj;
   },
 
@@ -822,6 +845,9 @@ export const Question: MessageFns<Question> = {
     message.enableBehavior = object.enableBehavior ?? undefined;
     message.prepopulate = object.prepopulate?.map((e) => e) || [];
     message.items = object.items?.map((e) => Question.fromPartial(e)) || [];
+    message.image = (object.image !== undefined && object.image !== null)
+      ? QuestionImage.fromPartial(object.image)
+      : undefined;
     return message;
   },
 };
@@ -1303,6 +1329,98 @@ export const EnableWhen: MessageFns<EnableWhen> = {
     message.answerCoding = object.answerCoding ?? undefined;
     message.answerDecimal = object.answerDecimal ?? undefined;
     message.answerDate = object.answerDate ?? undefined;
+    return message;
+  },
+};
+
+function createBaseQuestionImage(): QuestionImage {
+  return { data: "", contentType: "", alt: "" };
+}
+
+export const QuestionImage: MessageFns<QuestionImage> = {
+  encode(message: QuestionImage, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.data !== "") {
+      writer.uint32(10).string(message.data);
+    }
+    if (message.contentType !== "") {
+      writer.uint32(18).string(message.contentType);
+    }
+    if (message.alt !== "") {
+      writer.uint32(26).string(message.alt);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): QuestionImage {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQuestionImage();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.data = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.contentType = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.alt = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QuestionImage {
+    return {
+      data: isSet(object.data) ? globalThis.String(object.data) : "",
+      contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : "",
+      alt: isSet(object.alt) ? globalThis.String(object.alt) : "",
+    };
+  },
+
+  toJSON(message: QuestionImage): unknown {
+    const obj: any = {};
+    if (message.data !== "") {
+      obj.data = message.data;
+    }
+    if (message.contentType !== "") {
+      obj.contentType = message.contentType;
+    }
+    if (message.alt !== "") {
+      obj.alt = message.alt;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QuestionImage>, I>>(base?: I): QuestionImage {
+    return QuestionImage.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QuestionImage>, I>>(object: I): QuestionImage {
+    const message = createBaseQuestionImage();
+    message.data = object.data ?? "";
+    message.contentType = object.contentType ?? "";
+    message.alt = object.alt ?? "";
     return message;
   },
 };

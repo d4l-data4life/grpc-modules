@@ -2837,6 +2837,17 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoQuestion'
+      image:
+        $ref: '#/definitions/protoQuestionImage'
+  protoQuestionImage:
+    type: object
+    properties:
+      data:
+        type: string
+      contentType:
+        type: string
+      alt:
+        type: string
   protoQuestionnaire:
     type: object
     properties:
