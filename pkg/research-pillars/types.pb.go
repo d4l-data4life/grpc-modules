@@ -40,6 +40,7 @@ const (
 	InputType_scale_ordinal InputType = 10 // integer
 	InputType_geo_location  InputType = 11 // string
 	InputType_list          InputType = 12 // string
+	InputType_group         InputType = 13
 )
 
 // Enum value maps for InputType.
@@ -58,6 +59,7 @@ var (
 		10: "scale_ordinal",
 		11: "geo_location",
 		12: "list",
+		13: "group",
 	}
 	InputType_value = map[string]int32{
 		"display":       0,
@@ -73,6 +75,7 @@ var (
 		"scale_ordinal": 10,
 		"geo_location":  11,
 		"list":          12,
+		"group":         13,
 	}
 )
 
@@ -338,6 +341,7 @@ type Question struct {
 	EnableWhen     []*EnableWhen          `protobuf:"bytes,7,rep,name=enable_when,json=enableWhen,proto3" json:"enable_when,omitempty"`
 	EnableBehavior *string                `protobuf:"bytes,8,opt,name=enable_behavior,json=enableBehavior,proto3,oneof" json:"enable_behavior,omitempty"`
 	Prepopulate    []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"`
+	Items          []*Question            `protobuf:"bytes,10,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -431,6 +435,13 @@ func (x *Question) GetEnableBehavior() string {
 func (x *Question) GetPrepopulate() []string {
 	if x != nil {
 		return x.Prepopulate
+	}
+	return nil
+}
+
+func (x *Question) GetItems() []*Question {
+	if x != nil {
+		return x.Items
 	}
 	return nil
 }
@@ -1140,7 +1151,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"TitleEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xf2\x03\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x99\x04\n" +
 	"\bQuestion\x12\x16\n" +
 	"\x06linkId\x18\x01 \x01(\tR\x06linkId\x12.\n" +
 	"\tinputType\x18\x02 \x01(\x0e2\x10.proto.InputTypeR\tinputType\x12\x1a\n" +
@@ -1151,7 +1162,9 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\venable_when\x18\a \x03(\v2\x11.proto.EnableWhenR\n" +
 	"enableWhen\x12,\n" +
 	"\x0fenable_behavior\x18\b \x01(\tH\x02R\x0eenableBehavior\x88\x01\x01\x12 \n" +
-	"\vprepopulate\x18\t \x03(\tR\vprepopulate\x1a7\n" +
+	"\vprepopulate\x18\t \x03(\tR\vprepopulate\x12%\n" +
+	"\x05items\x18\n" +
+	" \x03(\v2\x0f.proto.QuestionR\x05items\x1a7\n" +
 	"\tTextEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\f\n" +
@@ -1218,7 +1231,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\xc3\x01\n" +
+	"lastUsedAt*\xce\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1234,7 +1247,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\rscale_ordinal\x10\n" +
 	"\x12\x10\n" +
 	"\fgeo_location\x10\v\x12\b\n" +
-	"\x04list\x10\f*K\n" +
+	"\x04list\x10\f\x12\t\n" +
+	"\x05group\x10\r*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
 	"\x06exists\x10\x00\x12\x06\n" +
@@ -1301,19 +1315,20 @@ var file_research_pillars_types_proto_depIdxs = []int32{
 	6,  // 4: proto.Question.answerset:type_name -> proto.Answerset
 	20, // 5: proto.Question.config:type_name -> google.protobuf.Struct
 	8,  // 6: proto.Question.enable_when:type_name -> proto.EnableWhen
-	7,  // 7: proto.Answerset.answers:type_name -> proto.Answer
-	19, // 8: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
-	1,  // 9: proto.EnableWhen.operator:type_name -> proto.Operator
-	20, // 10: proto.Diff.change:type_name -> google.protobuf.Struct
-	10, // 11: proto.Diff.user:type_name -> proto.User
-	11, // 12: proto.User.programRoles:type_name -> proto.ProgramRole
-	2,  // 13: proto.ProgramRole.role:type_name -> proto.Role
-	3,  // 14: proto.ParticipantCode.status:type_name -> proto.CodeStatus
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	5,  // 7: proto.Question.items:type_name -> proto.Question
+	7,  // 8: proto.Answerset.answers:type_name -> proto.Answer
+	19, // 9: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
+	1,  // 10: proto.EnableWhen.operator:type_name -> proto.Operator
+	20, // 11: proto.Diff.change:type_name -> google.protobuf.Struct
+	10, // 12: proto.Diff.user:type_name -> proto.User
+	11, // 13: proto.User.programRoles:type_name -> proto.ProgramRole
+	2,  // 14: proto.ProgramRole.role:type_name -> proto.Role
+	3,  // 15: proto.ParticipantCode.status:type_name -> proto.CodeStatus
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_types_proto_init() }

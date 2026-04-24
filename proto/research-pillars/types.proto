@@ -26,6 +26,7 @@ message Question {
   repeated EnableWhen enable_when = 7;
   optional string enable_behavior = 8;
   repeated string prepopulate = 9;
+  repeated Question items = 10;
 }
 
 enum InputType {
@@ -44,6 +45,7 @@ enum InputType {
   scale_ordinal = 10; // integer
   geo_location = 11; // string
   list = 12; // string
+  group = 13;
 }
 
 message Answerset {

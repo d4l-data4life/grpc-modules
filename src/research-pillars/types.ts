@@ -32,6 +32,7 @@ export enum InputType {
   geo_location = 11,
   /** list - string */
   list = 12,
+  group = 13,
   UNRECOGNIZED = -1,
 }
 
@@ -76,6 +77,9 @@ export function inputTypeFromJSON(object: any): InputType {
     case 12:
     case "list":
       return InputType.list;
+    case 13:
+    case "group":
+      return InputType.group;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -111,6 +115,8 @@ export function inputTypeToJSON(object: InputType): string {
       return "geo_location";
     case InputType.list:
       return "list";
+    case InputType.group:
+      return "group";
     case InputType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -274,6 +280,7 @@ export interface Question {
   enableWhen: EnableWhen[];
   enableBehavior?: string | undefined;
   prepopulate: string[];
+  items: Question[];
 }
 
 export interface Question_TextEntry {
@@ -578,6 +585,7 @@ function createBaseQuestion(): Question {
     enableWhen: [],
     enableBehavior: undefined,
     prepopulate: [],
+    items: [],
   };
 }
 
@@ -609,6 +617,9 @@ export const Question: MessageFns<Question> = {
     }
     for (const v of message.prepopulate) {
       writer.uint32(74).string(v!);
+    }
+    for (const v of message.items) {
+      Question.encode(v!, writer.uint32(82).fork()).join();
     }
     return writer;
   },
@@ -695,6 +706,14 @@ export const Question: MessageFns<Question> = {
           message.prepopulate.push(reader.string());
           continue;
         }
+        case 10: {
+          if (tag !== 82) {
+            break;
+          }
+
+          message.items.push(Question.decode(reader, reader.uint32()));
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -733,6 +752,7 @@ export const Question: MessageFns<Question> = {
       prepopulate: globalThis.Array.isArray(object?.prepopulate)
         ? object.prepopulate.map((e: any) => globalThis.String(e))
         : [],
+      items: globalThis.Array.isArray(object?.items) ? object.items.map((e: any) => Question.fromJSON(e)) : [],
     };
   },
 
@@ -771,6 +791,9 @@ export const Question: MessageFns<Question> = {
     if (message.prepopulate?.length) {
       obj.prepopulate = message.prepopulate;
     }
+    if (message.items?.length) {
+      obj.items = message.items.map((e) => Question.toJSON(e));
+    }
     return obj;
   },
 
@@ -798,6 +821,7 @@ export const Question: MessageFns<Question> = {
     message.enableWhen = object.enableWhen?.map((e) => EnableWhen.fromPartial(e)) || [];
     message.enableBehavior = object.enableBehavior ?? undefined;
     message.prepopulate = object.prepopulate?.map((e) => e) || [];
+    message.items = object.items?.map((e) => Question.fromPartial(e)) || [];
     return message;
   },
 };

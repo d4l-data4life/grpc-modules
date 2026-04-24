@@ -2764,6 +2764,7 @@ definitions:
       - scale_ordinal
       - geo_location
       - list
+      - group
     default: display
     description: |-
       coding
@@ -2831,6 +2832,11 @@ definitions:
         type: array
         items:
           type: string
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestion'
   protoQuestionnaire:
     type: object
     properties:
