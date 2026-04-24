@@ -71,7 +71,7 @@ message EnableWhen {
 message QuestionImage {
   string data = 1;
   string contentType = 2;
-  string alt = 3;
+  map<string, string> alt = 3;
 }
 
 enum Operator {

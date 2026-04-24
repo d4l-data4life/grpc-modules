@@ -646,7 +646,7 @@ type QuestionImage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	ContentType   string                 `protobuf:"bytes,2,opt,name=contentType,proto3" json:"contentType,omitempty"`
-	Alt           string                 `protobuf:"bytes,3,opt,name=alt,proto3" json:"alt,omitempty"`
+	Alt           map[string]string      `protobuf:"bytes,3,rep,name=alt,proto3" json:"alt,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -695,11 +695,11 @@ func (x *QuestionImage) GetContentType() string {
 	return ""
 }
 
-func (x *QuestionImage) GetAlt() string {
+func (x *QuestionImage) GetAlt() map[string]string {
 	if x != nil {
 		return x.Alt
 	}
-	return ""
+	return nil
 }
 
 type Diff struct {
@@ -1263,11 +1263,14 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"answerDate\x88\x01\x01B\x10\n" +
 	"\x0e_answer_codingB\x11\n" +
 	"\x0f_answer_decimalB\x0e\n" +
-	"\f_answer_date\"W\n" +
+	"\f_answer_date\"\xae\x01\n" +
 	"\rQuestionImage\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\tR\x04data\x12 \n" +
-	"\vcontentType\x18\x02 \x01(\tR\vcontentType\x12\x10\n" +
-	"\x03alt\x18\x03 \x01(\tR\x03alt\"v\n" +
+	"\vcontentType\x18\x02 \x01(\tR\vcontentType\x12/\n" +
+	"\x03alt\x18\x03 \x03(\v2\x1d.proto.QuestionImage.AltEntryR\x03alt\x1a6\n" +
+	"\bAltEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"v\n" +
 	"\x04Diff\x12/\n" +
 	"\x06change\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x06change\x12\x1c\n" +
 	"\ttimestamp\x18\x02 \x01(\tR\ttimestamp\x12\x1f\n" +
@@ -1357,7 +1360,7 @@ func file_research_pillars_types_proto_rawDescGZIP() []byte {
 }
 
 var file_research_pillars_types_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_research_pillars_types_proto_goTypes = []any{
 	(InputType)(0),          // 0: proto.InputType
 	(Operator)(0),           // 1: proto.Operator
@@ -1380,7 +1383,8 @@ var file_research_pillars_types_proto_goTypes = []any{
 	nil,                     // 18: proto.Questionnaire.TitleEntry
 	nil,                     // 19: proto.Question.TextEntry
 	nil,                     // 20: proto.Answer.LanguagesEntry
-	(*structpb.Struct)(nil), // 21: google.protobuf.Struct
+	nil,                     // 21: proto.QuestionImage.AltEntry
+	(*structpb.Struct)(nil), // 22: google.protobuf.Struct
 }
 var file_research_pillars_types_proto_depIdxs = []int32{
 	18, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
@@ -1388,23 +1392,24 @@ var file_research_pillars_types_proto_depIdxs = []int32{
 	0,  // 2: proto.Question.inputType:type_name -> proto.InputType
 	19, // 3: proto.Question.text:type_name -> proto.Question.TextEntry
 	6,  // 4: proto.Question.answerset:type_name -> proto.Answerset
-	21, // 5: proto.Question.config:type_name -> google.protobuf.Struct
+	22, // 5: proto.Question.config:type_name -> google.protobuf.Struct
 	8,  // 6: proto.Question.enable_when:type_name -> proto.EnableWhen
 	5,  // 7: proto.Question.items:type_name -> proto.Question
 	9,  // 8: proto.Question.image:type_name -> proto.QuestionImage
 	7,  // 9: proto.Answerset.answers:type_name -> proto.Answer
 	20, // 10: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
 	1,  // 11: proto.EnableWhen.operator:type_name -> proto.Operator
-	21, // 12: proto.Diff.change:type_name -> google.protobuf.Struct
-	11, // 13: proto.Diff.user:type_name -> proto.User
-	12, // 14: proto.User.programRoles:type_name -> proto.ProgramRole
-	2,  // 15: proto.ProgramRole.role:type_name -> proto.Role
-	3,  // 16: proto.ParticipantCode.status:type_name -> proto.CodeStatus
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	21, // 12: proto.QuestionImage.alt:type_name -> proto.QuestionImage.AltEntry
+	22, // 13: proto.Diff.change:type_name -> google.protobuf.Struct
+	11, // 14: proto.Diff.user:type_name -> proto.User
+	12, // 15: proto.User.programRoles:type_name -> proto.ProgramRole
+	2,  // 16: proto.ProgramRole.role:type_name -> proto.Role
+	3,  // 17: proto.ParticipantCode.status:type_name -> proto.CodeStatus
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_types_proto_init() }
@@ -1422,7 +1427,7 @@ func file_research_pillars_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_research_pillars_types_proto_rawDesc), len(file_research_pillars_types_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   17,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

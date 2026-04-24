@@ -2847,7 +2847,9 @@ definitions:
       contentType:
         type: string
       alt:
-        type: string
+        type: object
+        additionalProperties:
+          type: string
   protoQuestionnaire:
     type: object
     properties:
