@@ -2764,6 +2764,7 @@ definitions:
       - scale_ordinal
       - geo_location
       - list
+      - group
     default: display
     description: |-
       coding
@@ -2830,6 +2831,24 @@ definitions:
       prepopulate:
         type: array
         items:
+          type: string
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoQuestion'
+      image:
+        $ref: '#/definitions/protoQuestionImage'
+  protoQuestionImage:
+    type: object
+    properties:
+      data:
+        type: string
+      contentType:
+        type: string
+      alt:
+        type: object
+        additionalProperties:
           type: string
   protoQuestionnaire:
     type: object
