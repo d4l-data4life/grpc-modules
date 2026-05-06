@@ -2765,6 +2765,8 @@ definitions:
       - geo_location
       - list
       - group
+      - matrix
+      - matrix_item
     default: display
     description: |-
       coding
@@ -2774,6 +2776,8 @@ definitions:
        - scale_ordinal: integer
        - geo_location: string
        - list: string
+       - matrix: group
+       - matrix_item: coding
     title: |-
       - display: Default Types
        - single_select: Mapped Types
