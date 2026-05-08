@@ -1354,6 +1354,56 @@ paths:
           type: string
       tags:
         - Questionnaires
+  /programs/{programName}/questionnaires/{name}/versions:
+    get:
+      operationId: Questionnaires_ListQuestionnaireVersions
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiListQuestionnaireVersionsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
+  /programs/{programName}/questionnaires/{name}/versions/{version}:
+    get:
+      operationId: Questionnaires_GetReleasedQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetReleasedQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: version
+          in: path
+          required: true
+          type: string
+      tags:
+        - Questionnaires
   /programs/{programName}/routines:
     get:
       operationId: Routines_GetRoutines
@@ -2409,6 +2459,11 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoQuestionnaire'
+  apiGetReleasedQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        $ref: '#/definitions/protoQuestionnaire'
   apiGetRoutineResponse:
     type: object
     properties:
@@ -2579,6 +2634,14 @@ definitions:
     properties:
       available:
         type: boolean
+  apiListQuestionnaireVersionsResponse:
+    type: object
+    properties:
+      versions:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/apiQuestionnaireVersionInfo'
   apiLoadDisplayResponse:
     type: object
   apiLoadProgramResponse:
@@ -2603,6 +2666,18 @@ definitions:
     type: object
   apiPublishSurveyResponse:
     type: object
+  apiQuestionnaireVersionInfo:
+    type: object
+    properties:
+      version:
+        type: string
+      languages:
+        type: array
+        items:
+          type: string
+      publishedAt:
+        type: string
+        format: date-time
   apiSendMessageResponse:
     type: object
   apiSendNotificationResponse:

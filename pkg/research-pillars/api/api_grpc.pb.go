@@ -1124,12 +1124,14 @@ var Surveys_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	Questionnaires_GetQuestionnaires_FullMethodName    = "/proto.api.Questionnaires/GetQuestionnaires"
-	Questionnaires_GetQuestionnaire_FullMethodName     = "/proto.api.Questionnaires/GetQuestionnaire"
-	Questionnaires_UpsertQuestionnaire_FullMethodName  = "/proto.api.Questionnaires/UpsertQuestionnaire"
-	Questionnaires_DeleteQuestionnaire_FullMethodName  = "/proto.api.Questionnaires/DeleteQuestionnaire"
-	Questionnaires_PublishQuestionnaire_FullMethodName = "/proto.api.Questionnaires/PublishQuestionnaire"
-	Questionnaires_LoadQuestionnaire_FullMethodName    = "/proto.api.Questionnaires/LoadQuestionnaire"
+	Questionnaires_GetQuestionnaires_FullMethodName         = "/proto.api.Questionnaires/GetQuestionnaires"
+	Questionnaires_GetQuestionnaire_FullMethodName          = "/proto.api.Questionnaires/GetQuestionnaire"
+	Questionnaires_UpsertQuestionnaire_FullMethodName       = "/proto.api.Questionnaires/UpsertQuestionnaire"
+	Questionnaires_DeleteQuestionnaire_FullMethodName       = "/proto.api.Questionnaires/DeleteQuestionnaire"
+	Questionnaires_PublishQuestionnaire_FullMethodName      = "/proto.api.Questionnaires/PublishQuestionnaire"
+	Questionnaires_LoadQuestionnaire_FullMethodName         = "/proto.api.Questionnaires/LoadQuestionnaire"
+	Questionnaires_ListQuestionnaireVersions_FullMethodName = "/proto.api.Questionnaires/ListQuestionnaireVersions"
+	Questionnaires_GetReleasedQuestionnaire_FullMethodName  = "/proto.api.Questionnaires/GetReleasedQuestionnaire"
 )
 
 // QuestionnairesClient is the client API for Questionnaires service.
@@ -1142,6 +1144,8 @@ type QuestionnairesClient interface {
 	DeleteQuestionnaire(ctx context.Context, in *DeleteQuestionnaireRequest, opts ...grpc.CallOption) (*DeleteQuestionnaireResponse, error)
 	PublishQuestionnaire(ctx context.Context, in *PublishQuestionnaireRequest, opts ...grpc.CallOption) (*PublishQuestionnaireResponse, error)
 	LoadQuestionnaire(ctx context.Context, in *LoadQuestionnaireRequest, opts ...grpc.CallOption) (*LoadQuestionnaireResponse, error)
+	ListQuestionnaireVersions(ctx context.Context, in *ListQuestionnaireVersionsRequest, opts ...grpc.CallOption) (*ListQuestionnaireVersionsResponse, error)
+	GetReleasedQuestionnaire(ctx context.Context, in *GetReleasedQuestionnaireRequest, opts ...grpc.CallOption) (*GetReleasedQuestionnaireResponse, error)
 }
 
 type questionnairesClient struct {
@@ -1212,6 +1216,26 @@ func (c *questionnairesClient) LoadQuestionnaire(ctx context.Context, in *LoadQu
 	return out, nil
 }
 
+func (c *questionnairesClient) ListQuestionnaireVersions(ctx context.Context, in *ListQuestionnaireVersionsRequest, opts ...grpc.CallOption) (*ListQuestionnaireVersionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListQuestionnaireVersionsResponse)
+	err := c.cc.Invoke(ctx, Questionnaires_ListQuestionnaireVersions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *questionnairesClient) GetReleasedQuestionnaire(ctx context.Context, in *GetReleasedQuestionnaireRequest, opts ...grpc.CallOption) (*GetReleasedQuestionnaireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetReleasedQuestionnaireResponse)
+	err := c.cc.Invoke(ctx, Questionnaires_GetReleasedQuestionnaire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QuestionnairesServer is the server API for Questionnaires service.
 // All implementations must embed UnimplementedQuestionnairesServer
 // for forward compatibility.
@@ -1222,6 +1246,8 @@ type QuestionnairesServer interface {
 	DeleteQuestionnaire(context.Context, *DeleteQuestionnaireRequest) (*DeleteQuestionnaireResponse, error)
 	PublishQuestionnaire(context.Context, *PublishQuestionnaireRequest) (*PublishQuestionnaireResponse, error)
 	LoadQuestionnaire(context.Context, *LoadQuestionnaireRequest) (*LoadQuestionnaireResponse, error)
+	ListQuestionnaireVersions(context.Context, *ListQuestionnaireVersionsRequest) (*ListQuestionnaireVersionsResponse, error)
+	GetReleasedQuestionnaire(context.Context, *GetReleasedQuestionnaireRequest) (*GetReleasedQuestionnaireResponse, error)
 	mustEmbedUnimplementedQuestionnairesServer()
 }
 
@@ -1249,6 +1275,12 @@ func (UnimplementedQuestionnairesServer) PublishQuestionnaire(context.Context, *
 }
 func (UnimplementedQuestionnairesServer) LoadQuestionnaire(context.Context, *LoadQuestionnaireRequest) (*LoadQuestionnaireResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method LoadQuestionnaire not implemented")
+}
+func (UnimplementedQuestionnairesServer) ListQuestionnaireVersions(context.Context, *ListQuestionnaireVersionsRequest) (*ListQuestionnaireVersionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListQuestionnaireVersions not implemented")
+}
+func (UnimplementedQuestionnairesServer) GetReleasedQuestionnaire(context.Context, *GetReleasedQuestionnaireRequest) (*GetReleasedQuestionnaireResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetReleasedQuestionnaire not implemented")
 }
 func (UnimplementedQuestionnairesServer) mustEmbedUnimplementedQuestionnairesServer() {}
 func (UnimplementedQuestionnairesServer) testEmbeddedByValue()                        {}
@@ -1379,6 +1411,42 @@ func _Questionnaires_LoadQuestionnaire_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Questionnaires_ListQuestionnaireVersions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListQuestionnaireVersionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QuestionnairesServer).ListQuestionnaireVersions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Questionnaires_ListQuestionnaireVersions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QuestionnairesServer).ListQuestionnaireVersions(ctx, req.(*ListQuestionnaireVersionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Questionnaires_GetReleasedQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReleasedQuestionnaireRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QuestionnairesServer).GetReleasedQuestionnaire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Questionnaires_GetReleasedQuestionnaire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QuestionnairesServer).GetReleasedQuestionnaire(ctx, req.(*GetReleasedQuestionnaireRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Questionnaires_ServiceDesc is the grpc.ServiceDesc for Questionnaires service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1409,6 +1477,14 @@ var Questionnaires_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoadQuestionnaire",
 			Handler:    _Questionnaires_LoadQuestionnaire_Handler,
+		},
+		{
+			MethodName: "ListQuestionnaireVersions",
+			Handler:    _Questionnaires_ListQuestionnaireVersions_Handler,
+		},
+		{
+			MethodName: "GetReleasedQuestionnaire",
+			Handler:    _Questionnaires_GetReleasedQuestionnaire_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

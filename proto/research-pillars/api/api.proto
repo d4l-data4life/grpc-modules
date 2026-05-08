@@ -6,6 +6,7 @@ option go_package = "github.com/d4l-data4life/grpc-modules/pkg/research-pillars/
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "research-pillars/types.proto";
 
@@ -362,6 +363,20 @@ service Questionnaires {
       post : "/programs/{programName}/questionnaires/{name}/load",
     };
   }
+
+  rpc ListQuestionnaireVersions(ListQuestionnaireVersionsRequest)
+      returns (ListQuestionnaireVersionsResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires/{name}/versions"
+    };
+  }
+
+  rpc GetReleasedQuestionnaire(GetReleasedQuestionnaireRequest)
+      returns (GetReleasedQuestionnaireResponse) {
+    option (google.api.http) = {
+      get : "/programs/{programName}/questionnaires/{name}/versions/{version}"
+    };
+  }
 }
 
 message GetQuestionnairesRequest { string programName = 1; }
@@ -400,6 +415,29 @@ message LoadQuestionnaireRequest {
   string name = 2;
 }
 message LoadQuestionnaireResponse {}
+
+message ListQuestionnaireVersionsRequest {
+  string programName = 1;
+  string name = 2;
+}
+message ListQuestionnaireVersionsResponse {
+  repeated QuestionnaireVersionInfo versions = 1;
+}
+
+message QuestionnaireVersionInfo {
+  string version = 1;
+  repeated string languages = 2;
+  google.protobuf.Timestamp publishedAt = 3;
+}
+
+message GetReleasedQuestionnaireRequest {
+  string programName = 1;
+  string name = 2;
+  string version = 3;
+}
+message GetReleasedQuestionnaireResponse {
+  Questionnaire questionnaire = 1;
+}
 
 /////////////////////////////////////////////////////////
 // Routines
