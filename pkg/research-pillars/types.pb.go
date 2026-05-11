@@ -41,6 +41,7 @@ const (
 	InputType_geo_location  InputType = 11 // string
 	InputType_list          InputType = 12 // string
 	InputType_group         InputType = 13
+	InputType_country       InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
 )
 
 // Enum value maps for InputType.
@@ -60,6 +61,7 @@ var (
 		11: "geo_location",
 		12: "list",
 		13: "group",
+		16: "country",
 	}
 	InputType_value = map[string]int32{
 		"display":       0,
@@ -76,6 +78,7 @@ var (
 		"geo_location":  11,
 		"list":          12,
 		"group":         13,
+		"country":       16,
 	}
 )
 
@@ -1308,7 +1311,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\xce\x01\n" +
+	"lastUsedAt*\xdb\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1325,7 +1328,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x12\x10\n" +
 	"\fgeo_location\x10\v\x12\b\n" +
 	"\x04list\x10\f\x12\t\n" +
-	"\x05group\x10\r*K\n" +
+	"\x05group\x10\r\x12\v\n" +
+	"\acountry\x10\x10*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
 	"\x06exists\x10\x00\x12\x06\n" +

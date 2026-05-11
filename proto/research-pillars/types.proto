@@ -47,6 +47,8 @@ enum InputType {
   geo_location = 11; // string
   list = 12; // string
   group = 13;
+  // 14 and 15 reserved for unreleased enum values on other branches.
+  country = 16; // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
 }
 
 message Answerset {

@@ -33,6 +33,8 @@ export enum InputType {
   /** list - string */
   list = 12,
   group = 13,
+  /** country - coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2 */
+  country = 16,
   UNRECOGNIZED = -1,
 }
 
@@ -80,6 +82,9 @@ export function inputTypeFromJSON(object: any): InputType {
     case 13:
     case "group":
       return InputType.group;
+    case 16:
+    case "country":
+      return InputType.country;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -117,6 +122,8 @@ export function inputTypeToJSON(object: InputType): string {
       return "list";
     case InputType.group:
       return "group";
+    case InputType.country:
+      return "country";
     case InputType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
