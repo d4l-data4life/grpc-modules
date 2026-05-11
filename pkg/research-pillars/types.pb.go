@@ -41,7 +41,8 @@ const (
 	InputType_geo_location  InputType = 11 // string
 	InputType_list          InputType = 12 // string
 	InputType_group         InputType = 13
-	InputType_country       InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
+	// 14 and 15 reserved for unreleased enum values on other branches.
+	InputType_country InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
 )
 
 // Enum value maps for InputType.
