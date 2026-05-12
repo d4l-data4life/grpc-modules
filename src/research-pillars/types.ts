@@ -37,7 +37,7 @@ export enum InputType {
   matrix = 14,
   /** matrix_item - coding */
   matrix_item = 15,
-  /** country */
+  /** country - coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2 */
   country = 16,
   UNRECOGNIZED = -1,
 }

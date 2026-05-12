@@ -1317,8 +1317,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\xdb\x01\n" +
-	"lastUsedAt*\xeb\x01\n" +
+	"lastUsedAt*\xf8\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1338,7 +1337,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x05group\x10\r\x12\n" +
 	"\n" +
 	"\x06matrix\x10\x0e\x12\x0f\n" +
-	"\vmatrix_item\x10\x0f*K\n" +
+	"\vmatrix_item\x10\x0f\x12\v\n" +
 	"\acountry\x10\x10*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
