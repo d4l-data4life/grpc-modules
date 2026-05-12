@@ -1235,6 +1235,132 @@ func local_request_Questionnaires_LoadQuestionnaire_0(ctx context.Context, marsh
 	return msg, metadata, err
 }
 
+func request_Questionnaires_ListQuestionnaireVersions_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListQuestionnaireVersionsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := client.ListQuestionnaireVersions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Questionnaires_ListQuestionnaireVersions_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListQuestionnaireVersionsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	msg, err := server.ListQuestionnaireVersions(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Questionnaires_GetReleasedQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, client QuestionnairesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetReleasedQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["version"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+	}
+	protoReq.Version, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+	}
+	msg, err := client.GetReleasedQuestionnaire(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Questionnaires_GetReleasedQuestionnaire_0(ctx context.Context, marshaler runtime.Marshaler, server QuestionnairesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetReleasedQuestionnaireRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["name"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "name")
+	}
+	protoReq.Name, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "name", err)
+	}
+	val, ok = pathParams["version"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+	}
+	protoReq.Version, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+	}
+	msg, err := server.GetReleasedQuestionnaire(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_Routines_GetRoutines_0(ctx context.Context, marshaler runtime.Marshaler, client RoutinesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetRoutinesRequest
@@ -5002,6 +5128,46 @@ func RegisterQuestionnairesHandlerServer(ctx context.Context, mux *runtime.Serve
 		}
 		forward_Questionnaires_LoadQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_Questionnaires_ListQuestionnaireVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/ListQuestionnaireVersions", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/versions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Questionnaires_ListQuestionnaireVersions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Questionnaires_ListQuestionnaireVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetReleasedQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Questionnaires/GetReleasedQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/versions/{version}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Questionnaires_GetReleasedQuestionnaire_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Questionnaires_GetReleasedQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -7175,25 +7341,63 @@ func RegisterQuestionnairesHandlerClient(ctx context.Context, mux *runtime.Serve
 		}
 		forward_Questionnaires_LoadQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_Questionnaires_ListQuestionnaireVersions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/ListQuestionnaireVersions", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/versions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Questionnaires_ListQuestionnaireVersions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Questionnaires_ListQuestionnaireVersions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_Questionnaires_GetReleasedQuestionnaire_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Questionnaires/GetReleasedQuestionnaire", runtime.WithHTTPPathPattern("/programs/{programName}/questionnaires/{name}/versions/{version}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Questionnaires_GetReleasedQuestionnaire_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Questionnaires_GetReleasedQuestionnaire_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_Questionnaires_GetQuestionnaires_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
-	pattern_Questionnaires_GetQuestionnaire_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
-	pattern_Questionnaires_UpsertQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
-	pattern_Questionnaires_DeleteQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
-	pattern_Questionnaires_PublishQuestionnaire_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "publish"}, ""))
-	pattern_Questionnaires_LoadQuestionnaire_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "load"}, ""))
+	pattern_Questionnaires_GetQuestionnaires_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_GetQuestionnaire_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_UpsertQuestionnaire_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"programs", "programName", "questionnaires"}, ""))
+	pattern_Questionnaires_DeleteQuestionnaire_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"programs", "programName", "questionnaires", "name"}, ""))
+	pattern_Questionnaires_PublishQuestionnaire_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "publish"}, ""))
+	pattern_Questionnaires_LoadQuestionnaire_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "load"}, ""))
+	pattern_Questionnaires_ListQuestionnaireVersions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"programs", "programName", "questionnaires", "name", "versions"}, ""))
+	pattern_Questionnaires_GetReleasedQuestionnaire_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"programs", "programName", "questionnaires", "name", "versions", "version"}, ""))
 )
 
 var (
-	forward_Questionnaires_GetQuestionnaires_0    = runtime.ForwardResponseMessage
-	forward_Questionnaires_GetQuestionnaire_0     = runtime.ForwardResponseMessage
-	forward_Questionnaires_UpsertQuestionnaire_0  = runtime.ForwardResponseMessage
-	forward_Questionnaires_DeleteQuestionnaire_0  = runtime.ForwardResponseMessage
-	forward_Questionnaires_PublishQuestionnaire_0 = runtime.ForwardResponseMessage
-	forward_Questionnaires_LoadQuestionnaire_0    = runtime.ForwardResponseMessage
+	forward_Questionnaires_GetQuestionnaires_0         = runtime.ForwardResponseMessage
+	forward_Questionnaires_GetQuestionnaire_0          = runtime.ForwardResponseMessage
+	forward_Questionnaires_UpsertQuestionnaire_0       = runtime.ForwardResponseMessage
+	forward_Questionnaires_DeleteQuestionnaire_0       = runtime.ForwardResponseMessage
+	forward_Questionnaires_PublishQuestionnaire_0      = runtime.ForwardResponseMessage
+	forward_Questionnaires_LoadQuestionnaire_0         = runtime.ForwardResponseMessage
+	forward_Questionnaires_ListQuestionnaireVersions_0 = runtime.ForwardResponseMessage
+	forward_Questionnaires_GetReleasedQuestionnaire_0  = runtime.ForwardResponseMessage
 )
 
 // RegisterRoutinesHandlerFromEndpoint is same as RegisterRoutinesHandler but

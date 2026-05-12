@@ -10,6 +10,7 @@ import { grpc } from "@improbable-eng/grpc-web";
 import { BrowserHeaders } from "browser-headers";
 import { HttpBody } from "../../google/api/httpbody";
 import { Struct } from "../../google/protobuf/struct";
+import { Timestamp } from "../../google/protobuf/timestamp";
 import {
   AccessToken,
   BlockedProgram,
@@ -266,6 +267,31 @@ export interface LoadQuestionnaireRequest {
 }
 
 export interface LoadQuestionnaireResponse {
+}
+
+export interface ListQuestionnaireVersionsRequest {
+  programName: string;
+  name: string;
+}
+
+export interface ListQuestionnaireVersionsResponse {
+  versions: QuestionnaireVersionInfo[];
+}
+
+export interface QuestionnaireVersionInfo {
+  version: string;
+  languages: string[];
+  publishedAt?: Date | undefined;
+}
+
+export interface GetReleasedQuestionnaireRequest {
+  programName: string;
+  name: string;
+  version: string;
+}
+
+export interface GetReleasedQuestionnaireResponse {
+  questionnaire?: Questionnaire | undefined;
 }
 
 export interface GetRoutinesRequest {
@@ -4429,6 +4455,404 @@ export const LoadQuestionnaireResponse: MessageFns<LoadQuestionnaireResponse> = 
   },
   fromPartial<I extends Exact<DeepPartial<LoadQuestionnaireResponse>, I>>(_: I): LoadQuestionnaireResponse {
     const message = createBaseLoadQuestionnaireResponse();
+    return message;
+  },
+};
+
+function createBaseListQuestionnaireVersionsRequest(): ListQuestionnaireVersionsRequest {
+  return { programName: "", name: "" };
+}
+
+export const ListQuestionnaireVersionsRequest: MessageFns<ListQuestionnaireVersionsRequest> = {
+  encode(message: ListQuestionnaireVersionsRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ListQuestionnaireVersionsRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListQuestionnaireVersionsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListQuestionnaireVersionsRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+    };
+  },
+
+  toJSON(message: ListQuestionnaireVersionsRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListQuestionnaireVersionsRequest>, I>>(
+    base?: I,
+  ): ListQuestionnaireVersionsRequest {
+    return ListQuestionnaireVersionsRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListQuestionnaireVersionsRequest>, I>>(
+    object: I,
+  ): ListQuestionnaireVersionsRequest {
+    const message = createBaseListQuestionnaireVersionsRequest();
+    message.programName = object.programName ?? "";
+    message.name = object.name ?? "";
+    return message;
+  },
+};
+
+function createBaseListQuestionnaireVersionsResponse(): ListQuestionnaireVersionsResponse {
+  return { versions: [] };
+}
+
+export const ListQuestionnaireVersionsResponse: MessageFns<ListQuestionnaireVersionsResponse> = {
+  encode(message: ListQuestionnaireVersionsResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.versions) {
+      QuestionnaireVersionInfo.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ListQuestionnaireVersionsResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseListQuestionnaireVersionsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.versions.push(QuestionnaireVersionInfo.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ListQuestionnaireVersionsResponse {
+    return {
+      versions: globalThis.Array.isArray(object?.versions)
+        ? object.versions.map((e: any) => QuestionnaireVersionInfo.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: ListQuestionnaireVersionsResponse): unknown {
+    const obj: any = {};
+    if (message.versions?.length) {
+      obj.versions = message.versions.map((e) => QuestionnaireVersionInfo.toJSON(e));
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ListQuestionnaireVersionsResponse>, I>>(
+    base?: I,
+  ): ListQuestionnaireVersionsResponse {
+    return ListQuestionnaireVersionsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ListQuestionnaireVersionsResponse>, I>>(
+    object: I,
+  ): ListQuestionnaireVersionsResponse {
+    const message = createBaseListQuestionnaireVersionsResponse();
+    message.versions = object.versions?.map((e) => QuestionnaireVersionInfo.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseQuestionnaireVersionInfo(): QuestionnaireVersionInfo {
+  return { version: "", languages: [], publishedAt: undefined };
+}
+
+export const QuestionnaireVersionInfo: MessageFns<QuestionnaireVersionInfo> = {
+  encode(message: QuestionnaireVersionInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.version !== "") {
+      writer.uint32(10).string(message.version);
+    }
+    for (const v of message.languages) {
+      writer.uint32(18).string(v!);
+    }
+    if (message.publishedAt !== undefined) {
+      Timestamp.encode(toTimestamp(message.publishedAt), writer.uint32(26).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): QuestionnaireVersionInfo {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQuestionnaireVersionInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.version = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.languages.push(reader.string());
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.publishedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QuestionnaireVersionInfo {
+    return {
+      version: isSet(object.version) ? globalThis.String(object.version) : "",
+      languages: globalThis.Array.isArray(object?.languages)
+        ? object.languages.map((e: any) => globalThis.String(e))
+        : [],
+      publishedAt: isSet(object.publishedAt) ? fromJsonTimestamp(object.publishedAt) : undefined,
+    };
+  },
+
+  toJSON(message: QuestionnaireVersionInfo): unknown {
+    const obj: any = {};
+    if (message.version !== "") {
+      obj.version = message.version;
+    }
+    if (message.languages?.length) {
+      obj.languages = message.languages;
+    }
+    if (message.publishedAt !== undefined) {
+      obj.publishedAt = message.publishedAt.toISOString();
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QuestionnaireVersionInfo>, I>>(base?: I): QuestionnaireVersionInfo {
+    return QuestionnaireVersionInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QuestionnaireVersionInfo>, I>>(object: I): QuestionnaireVersionInfo {
+    const message = createBaseQuestionnaireVersionInfo();
+    message.version = object.version ?? "";
+    message.languages = object.languages?.map((e) => e) || [];
+    message.publishedAt = object.publishedAt ?? undefined;
+    return message;
+  },
+};
+
+function createBaseGetReleasedQuestionnaireRequest(): GetReleasedQuestionnaireRequest {
+  return { programName: "", name: "", version: "" };
+}
+
+export const GetReleasedQuestionnaireRequest: MessageFns<GetReleasedQuestionnaireRequest> = {
+  encode(message: GetReleasedQuestionnaireRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.version !== "") {
+      writer.uint32(26).string(message.version);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetReleasedQuestionnaireRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetReleasedQuestionnaireRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.version = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetReleasedQuestionnaireRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      version: isSet(object.version) ? globalThis.String(object.version) : "",
+    };
+  },
+
+  toJSON(message: GetReleasedQuestionnaireRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.version !== "") {
+      obj.version = message.version;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetReleasedQuestionnaireRequest>, I>>(base?: I): GetReleasedQuestionnaireRequest {
+    return GetReleasedQuestionnaireRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetReleasedQuestionnaireRequest>, I>>(
+    object: I,
+  ): GetReleasedQuestionnaireRequest {
+    const message = createBaseGetReleasedQuestionnaireRequest();
+    message.programName = object.programName ?? "";
+    message.name = object.name ?? "";
+    message.version = object.version ?? "";
+    return message;
+  },
+};
+
+function createBaseGetReleasedQuestionnaireResponse(): GetReleasedQuestionnaireResponse {
+  return { questionnaire: undefined };
+}
+
+export const GetReleasedQuestionnaireResponse: MessageFns<GetReleasedQuestionnaireResponse> = {
+  encode(message: GetReleasedQuestionnaireResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.questionnaire !== undefined) {
+      Questionnaire.encode(message.questionnaire, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetReleasedQuestionnaireResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetReleasedQuestionnaireResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.questionnaire = Questionnaire.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): GetReleasedQuestionnaireResponse {
+    return { questionnaire: isSet(object.questionnaire) ? Questionnaire.fromJSON(object.questionnaire) : undefined };
+  },
+
+  toJSON(message: GetReleasedQuestionnaireResponse): unknown {
+    const obj: any = {};
+    if (message.questionnaire !== undefined) {
+      obj.questionnaire = Questionnaire.toJSON(message.questionnaire);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetReleasedQuestionnaireResponse>, I>>(
+    base?: I,
+  ): GetReleasedQuestionnaireResponse {
+    return GetReleasedQuestionnaireResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetReleasedQuestionnaireResponse>, I>>(
+    object: I,
+  ): GetReleasedQuestionnaireResponse {
+    const message = createBaseGetReleasedQuestionnaireResponse();
+    message.questionnaire = (object.questionnaire !== undefined && object.questionnaire !== null)
+      ? Questionnaire.fromPartial(object.questionnaire)
+      : undefined;
     return message;
   },
 };
@@ -13343,6 +13767,14 @@ export interface Questionnaires {
     request: DeepPartial<LoadQuestionnaireRequest>,
     metadata?: grpc.Metadata,
   ): Promise<LoadQuestionnaireResponse>;
+  ListQuestionnaireVersions(
+    request: DeepPartial<ListQuestionnaireVersionsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ListQuestionnaireVersionsResponse>;
+  GetReleasedQuestionnaire(
+    request: DeepPartial<GetReleasedQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetReleasedQuestionnaireResponse>;
 }
 
 export class QuestionnairesClientImpl implements Questionnaires {
@@ -13356,6 +13788,8 @@ export class QuestionnairesClientImpl implements Questionnaires {
     this.DeleteQuestionnaire = this.DeleteQuestionnaire.bind(this);
     this.PublishQuestionnaire = this.PublishQuestionnaire.bind(this);
     this.LoadQuestionnaire = this.LoadQuestionnaire.bind(this);
+    this.ListQuestionnaireVersions = this.ListQuestionnaireVersions.bind(this);
+    this.GetReleasedQuestionnaire = this.GetReleasedQuestionnaire.bind(this);
   }
 
   GetQuestionnaires(
@@ -13410,6 +13844,28 @@ export class QuestionnairesClientImpl implements Questionnaires {
     metadata?: grpc.Metadata,
   ): Promise<LoadQuestionnaireResponse> {
     return this.rpc.unary(QuestionnairesLoadQuestionnaireDesc, LoadQuestionnaireRequest.fromPartial(request), metadata);
+  }
+
+  ListQuestionnaireVersions(
+    request: DeepPartial<ListQuestionnaireVersionsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<ListQuestionnaireVersionsResponse> {
+    return this.rpc.unary(
+      QuestionnairesListQuestionnaireVersionsDesc,
+      ListQuestionnaireVersionsRequest.fromPartial(request),
+      metadata,
+    );
+  }
+
+  GetReleasedQuestionnaire(
+    request: DeepPartial<GetReleasedQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetReleasedQuestionnaireResponse> {
+    return this.rpc.unary(
+      QuestionnairesGetReleasedQuestionnaireDesc,
+      GetReleasedQuestionnaireRequest.fromPartial(request),
+      metadata,
+    );
   }
 }
 
@@ -13543,6 +13999,52 @@ export const QuestionnairesLoadQuestionnaireDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = LoadQuestionnaireResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuestionnairesListQuestionnaireVersionsDesc: UnaryMethodDefinitionish = {
+  methodName: "ListQuestionnaireVersions",
+  service: QuestionnairesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return ListQuestionnaireVersionsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = ListQuestionnaireVersionsResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const QuestionnairesGetReleasedQuestionnaireDesc: UnaryMethodDefinitionish = {
+  methodName: "GetReleasedQuestionnaire",
+  service: QuestionnairesDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetReleasedQuestionnaireRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetReleasedQuestionnaireResponse.decode(data);
       return {
         ...value,
         toObject() {
@@ -15918,6 +16420,28 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function toTimestamp(date: Date): Timestamp {
+  const seconds = Math.trunc(date.getTime() / 1_000);
+  const nanos = (date.getTime() % 1_000) * 1_000_000;
+  return { seconds, nanos };
+}
+
+function fromTimestamp(t: Timestamp): Date {
+  let millis = (t.seconds || 0) * 1_000;
+  millis += (t.nanos || 0) / 1_000_000;
+  return new globalThis.Date(millis);
+}
+
+function fromJsonTimestamp(o: any): Date {
+  if (o instanceof globalThis.Date) {
+    return o;
+  } else if (typeof o === "string") {
+    return new globalThis.Date(o);
+  } else {
+    return fromTimestamp(Timestamp.fromJSON(o));
+  }
+}
 
 function isObject(value: any): boolean {
   return typeof value === "object" && value !== null;
