@@ -47,6 +47,8 @@ enum InputType {
   geo_location = 11; // string
   list = 12; // string
   group = 13;
+  matrix = 14; // group
+  matrix_item = 15; // coding
 }
 
 message Answerset {

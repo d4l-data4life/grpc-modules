@@ -41,6 +41,8 @@ const (
 	InputType_geo_location  InputType = 11 // string
 	InputType_list          InputType = 12 // string
 	InputType_group         InputType = 13
+	InputType_matrix        InputType = 14 // group
+	InputType_matrix_item   InputType = 15 // coding
 )
 
 // Enum value maps for InputType.
@@ -60,6 +62,8 @@ var (
 		11: "geo_location",
 		12: "list",
 		13: "group",
+		14: "matrix",
+		15: "matrix_item",
 	}
 	InputType_value = map[string]int32{
 		"display":       0,
@@ -76,6 +80,8 @@ var (
 		"geo_location":  11,
 		"list":          12,
 		"group":         13,
+		"matrix":        14,
+		"matrix_item":   15,
 	}
 )
 
@@ -1308,7 +1314,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\xce\x01\n" +
+	"lastUsedAt*\xeb\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1325,7 +1331,10 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x12\x10\n" +
 	"\fgeo_location\x10\v\x12\b\n" +
 	"\x04list\x10\f\x12\t\n" +
-	"\x05group\x10\r*K\n" +
+	"\x05group\x10\r\x12\n" +
+	"\n" +
+	"\x06matrix\x10\x0e\x12\x0f\n" +
+	"\vmatrix_item\x10\x0f*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
 	"\x06exists\x10\x00\x12\x06\n" +
