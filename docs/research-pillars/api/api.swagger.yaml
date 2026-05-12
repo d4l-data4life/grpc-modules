@@ -2765,6 +2765,8 @@ definitions:
       - geo_location
       - list
       - group
+      - matrix
+      - matrix_item
       - country
     default: display
     description: |-
@@ -2775,9 +2777,9 @@ definitions:
        - scale_ordinal: integer
        - geo_location: string
        - list: string
-       - country: 14 and 15 reserved for unreleased enum values on other branches.
-
-      coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
+       - matrix: group
+       - matrix_item: coding
+       - country: coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
     title: |-
       - display: Default Types
        - single_select: Mapped Types

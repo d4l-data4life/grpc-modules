@@ -41,8 +41,9 @@ const (
 	InputType_geo_location  InputType = 11 // string
 	InputType_list          InputType = 12 // string
 	InputType_group         InputType = 13
-	// 14 and 15 reserved for unreleased enum values on other branches.
-	InputType_country InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
+	InputType_matrix        InputType = 14 // group
+	InputType_matrix_item   InputType = 15 // coding
+	InputType_country       InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
 )
 
 // Enum value maps for InputType.
@@ -62,6 +63,8 @@ var (
 		11: "geo_location",
 		12: "list",
 		13: "group",
+		14: "matrix",
+		15: "matrix_item",
 		16: "country",
 	}
 	InputType_value = map[string]int32{
@@ -79,6 +82,8 @@ var (
 		"geo_location":  11,
 		"list":          12,
 		"group":         13,
+		"matrix":        14,
+		"matrix_item":   15,
 		"country":       16,
 	}
 )
@@ -1313,6 +1318,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
 	"lastUsedAt*\xdb\x01\n" +
+	"lastUsedAt*\xeb\x01\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1329,7 +1335,10 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x12\x10\n" +
 	"\fgeo_location\x10\v\x12\b\n" +
 	"\x04list\x10\f\x12\t\n" +
-	"\x05group\x10\r\x12\v\n" +
+	"\x05group\x10\r\x12\n" +
+	"\n" +
+	"\x06matrix\x10\x0e\x12\x0f\n" +
+	"\vmatrix_item\x10\x0f*K\n" +
 	"\acountry\x10\x10*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +

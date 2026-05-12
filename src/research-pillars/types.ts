@@ -33,7 +33,11 @@ export enum InputType {
   /** list - string */
   list = 12,
   group = 13,
-  /** country - 14 and 15 reserved for unreleased enum values on other branches. */
+  /** matrix - group */
+  matrix = 14,
+  /** matrix_item - coding */
+  matrix_item = 15,
+  /** country */
   country = 16,
   UNRECOGNIZED = -1,
 }
@@ -82,6 +86,12 @@ export function inputTypeFromJSON(object: any): InputType {
     case 13:
     case "group":
       return InputType.group;
+    case 14:
+    case "matrix":
+      return InputType.matrix;
+    case 15:
+    case "matrix_item":
+      return InputType.matrix_item;
     case 16:
     case "country":
       return InputType.country;
@@ -122,6 +132,10 @@ export function inputTypeToJSON(object: InputType): string {
       return "list";
     case InputType.group:
       return "group";
+    case InputType.matrix:
+      return "matrix";
+    case InputType.matrix_item:
+      return "matrix_item";
     case InputType.country:
       return "country";
     case InputType.UNRECOGNIZED:
