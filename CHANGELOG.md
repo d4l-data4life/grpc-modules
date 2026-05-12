@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `matrix` input type
 - `country` input type
+- `ListQuestionnaireVersions` and `GetReleasedQuestionnaire` (for versioned questionnaires).
 
 ## [v1.28.0] - 2026-05-05
 
