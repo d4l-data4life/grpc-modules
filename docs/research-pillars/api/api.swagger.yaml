@@ -2767,6 +2767,7 @@ definitions:
       - group
       - matrix
       - matrix_item
+      - country
     default: display
     description: |-
       coding
@@ -2778,6 +2779,7 @@ definitions:
        - list: string
        - matrix: group
        - matrix_item: coding
+       - country: coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
     title: |-
       - display: Default Types
        - single_select: Mapped Types
