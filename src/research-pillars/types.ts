@@ -39,6 +39,8 @@ export enum InputType {
   matrix_item = 15,
   /** country - coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2 */
   country = 16,
+  /** postal_code - string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension */
+  postal_code = 17,
   UNRECOGNIZED = -1,
 }
 
@@ -95,6 +97,9 @@ export function inputTypeFromJSON(object: any): InputType {
     case 16:
     case "country":
       return InputType.country;
+    case 17:
+    case "postal_code":
+      return InputType.postal_code;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -138,6 +143,8 @@ export function inputTypeToJSON(object: InputType): string {
       return "matrix_item";
     case InputType.country:
       return "country";
+    case InputType.postal_code:
+      return "postal_code";
     case InputType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
