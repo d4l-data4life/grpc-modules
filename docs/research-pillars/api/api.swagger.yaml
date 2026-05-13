@@ -2843,6 +2843,7 @@ definitions:
       - matrix
       - matrix_item
       - country
+      - postal_code
     default: display
     description: |-
       coding
@@ -2855,6 +2856,7 @@ definitions:
        - matrix: group
        - matrix_item: coding
        - country: coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
+       - postal_code: string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension
     title: |-
       - display: Default Types
        - single_select: Mapped Types
