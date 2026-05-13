@@ -344,12 +344,6 @@ export interface EnableWhen {
 export interface QuestionImage {
   data: string;
   contentType: string;
-  alt: { [key: string]: string };
-}
-
-export interface QuestionImage_AltEntry {
-  key: string;
-  value: string;
 }
 
 export interface Diff {
@@ -1367,7 +1361,7 @@ export const EnableWhen: MessageFns<EnableWhen> = {
 };
 
 function createBaseQuestionImage(): QuestionImage {
-  return { data: "", contentType: "", alt: {} };
+  return { data: "", contentType: "" };
 }
 
 export const QuestionImage: MessageFns<QuestionImage> = {
@@ -1378,9 +1372,6 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     if (message.contentType !== "") {
       writer.uint32(18).string(message.contentType);
     }
-    globalThis.Object.entries(message.alt).forEach(([key, value]: [string, string]) => {
-      QuestionImage_AltEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).join();
-    });
     return writer;
   },
 
@@ -1407,17 +1398,6 @@ export const QuestionImage: MessageFns<QuestionImage> = {
           message.contentType = reader.string();
           continue;
         }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          const entry3 = QuestionImage_AltEntry.decode(reader, reader.uint32());
-          if (entry3.value !== undefined) {
-            message.alt[entry3.key] = entry3.value;
-          }
-          continue;
-        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1431,15 +1411,6 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     return {
       data: isSet(object.data) ? globalThis.String(object.data) : "",
       contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : "",
-      alt: isObject(object.alt)
-        ? (globalThis.Object.entries(object.alt) as [string, any][]).reduce(
-          (acc: { [key: string]: string }, [key, value]: [string, any]) => {
-            acc[key] = globalThis.String(value);
-            return acc;
-          },
-          {},
-        )
-        : {},
     };
   },
 
@@ -1451,15 +1422,6 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     if (message.contentType !== "") {
       obj.contentType = message.contentType;
     }
-    if (message.alt) {
-      const entries = globalThis.Object.entries(message.alt) as [string, string][];
-      if (entries.length > 0) {
-        obj.alt = {};
-        entries.forEach(([k, v]) => {
-          obj.alt[k] = v;
-        });
-      }
-    }
     return obj;
   },
 
@@ -1470,91 +1432,6 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     const message = createBaseQuestionImage();
     message.data = object.data ?? "";
     message.contentType = object.contentType ?? "";
-    message.alt = (globalThis.Object.entries(object.alt ?? {}) as [string, string][]).reduce(
-      (acc: { [key: string]: string }, [key, value]: [string, string]) => {
-        if (value !== undefined) {
-          acc[key] = globalThis.String(value);
-        }
-        return acc;
-      },
-      {},
-    );
-    return message;
-  },
-};
-
-function createBaseQuestionImage_AltEntry(): QuestionImage_AltEntry {
-  return { key: "", value: "" };
-}
-
-export const QuestionImage_AltEntry: MessageFns<QuestionImage_AltEntry> = {
-  encode(message: QuestionImage_AltEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.value !== "") {
-      writer.uint32(18).string(message.value);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): QuestionImage_AltEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseQuestionImage_AltEntry();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1: {
-          if (tag !== 10) {
-            break;
-          }
-
-          message.key = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.value = reader.string();
-          continue;
-        }
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QuestionImage_AltEntry {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      value: isSet(object.value) ? globalThis.String(object.value) : "",
-    };
-  },
-
-  toJSON(message: QuestionImage_AltEntry): unknown {
-    const obj: any = {};
-    if (message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.value !== "") {
-      obj.value = message.value;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<QuestionImage_AltEntry>, I>>(base?: I): QuestionImage_AltEntry {
-    return QuestionImage_AltEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<QuestionImage_AltEntry>, I>>(object: I): QuestionImage_AltEntry {
-    const message = createBaseQuestionImage_AltEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
     return message;
   },
 };
