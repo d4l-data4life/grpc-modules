@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars/static] `includeAllVersions` request flag for published questionnaire and program data retrieval.
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.31.0] - 2026-05-18
+
+### Added
+
+- [research-pillars/static] `includeAllVersions` request flag for published questionnaire and program data retrieval.
 
 ## [v1.30.0] - 2026-05-13
 
@@ -278,7 +282,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.30.0...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.31.0...HEAD
+[v1.31.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.30.0...v1.31.0
 [v1.30.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.29.1...v1.30.0
 [v1.29.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.29.0...v1.29.1
 [v1.29.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.28.0...v1.29.0
