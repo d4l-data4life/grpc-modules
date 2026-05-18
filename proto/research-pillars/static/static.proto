@@ -57,7 +57,11 @@ message GetProgramsResponse { repeated google.protobuf.Struct programs = 1; }
 message GetProgramRequest { string name = 1; }
 message GetProgramResponse { google.protobuf.Struct program = 1; }
 
-message GetProgramDataRequest { string name = 1; }
+message GetProgramDataRequest {
+  string name = 1;
+  // when true, response contains all published versions per (name, language) instead of latest only.
+  bool includeAllVersions = 2;
+}
 message GetProgramDataResponse {
   google.protobuf.Struct program = 1;
   repeated google.protobuf.Struct surveys = 2;
@@ -120,6 +124,8 @@ service Questionnaires {
 message GetQuestionnairesRequest {
   string programName = 1;
   string language = 2;
+  // when true, response contains all published versions per (name, language) instead of latest only.
+  bool includeAllVersions = 3;
 }
 message GetQuestionnairesResponse {
   repeated google.protobuf.Struct questionnaires = 1;

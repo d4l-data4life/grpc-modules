@@ -30,6 +30,8 @@ export interface GetProgramResponse {
 
 export interface GetProgramDataRequest {
   name: string;
+  /** when true, response contains all published versions per (name, language) instead of latest only. */
+  includeAllVersions: boolean;
 }
 
 export interface GetProgramDataResponse {
@@ -69,6 +71,8 @@ export interface GetSurveyResponse {
 export interface GetQuestionnairesRequest {
   programName: string;
   language: string;
+  /** when true, response contains all published versions per (name, language) instead of latest only. */
+  includeAllVersions: boolean;
 }
 
 export interface GetQuestionnairesResponse {
@@ -386,13 +390,16 @@ export const GetProgramResponse: MessageFns<GetProgramResponse> = {
 };
 
 function createBaseGetProgramDataRequest(): GetProgramDataRequest {
-  return { name: "" };
+  return { name: "", includeAllVersions: false };
 }
 
 export const GetProgramDataRequest: MessageFns<GetProgramDataRequest> = {
   encode(message: GetProgramDataRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
+    }
+    if (message.includeAllVersions !== false) {
+      writer.uint32(16).bool(message.includeAllVersions);
     }
     return writer;
   },
@@ -412,6 +419,14 @@ export const GetProgramDataRequest: MessageFns<GetProgramDataRequest> = {
           message.name = reader.string();
           continue;
         }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.includeAllVersions = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -422,13 +437,19 @@ export const GetProgramDataRequest: MessageFns<GetProgramDataRequest> = {
   },
 
   fromJSON(object: any): GetProgramDataRequest {
-    return { name: isSet(object.name) ? globalThis.String(object.name) : "" };
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      includeAllVersions: isSet(object.includeAllVersions) ? globalThis.Boolean(object.includeAllVersions) : false,
+    };
   },
 
   toJSON(message: GetProgramDataRequest): unknown {
     const obj: any = {};
     if (message.name !== "") {
       obj.name = message.name;
+    }
+    if (message.includeAllVersions !== false) {
+      obj.includeAllVersions = message.includeAllVersions;
     }
     return obj;
   },
@@ -439,6 +460,7 @@ export const GetProgramDataRequest: MessageFns<GetProgramDataRequest> = {
   fromPartial<I extends Exact<DeepPartial<GetProgramDataRequest>, I>>(object: I): GetProgramDataRequest {
     const message = createBaseGetProgramDataRequest();
     message.name = object.name ?? "";
+    message.includeAllVersions = object.includeAllVersions ?? false;
     return message;
   },
 };
@@ -950,7 +972,7 @@ export const GetSurveyResponse: MessageFns<GetSurveyResponse> = {
 };
 
 function createBaseGetQuestionnairesRequest(): GetQuestionnairesRequest {
-  return { programName: "", language: "" };
+  return { programName: "", language: "", includeAllVersions: false };
 }
 
 export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
@@ -960,6 +982,9 @@ export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
     }
     if (message.language !== "") {
       writer.uint32(18).string(message.language);
+    }
+    if (message.includeAllVersions !== false) {
+      writer.uint32(24).bool(message.includeAllVersions);
     }
     return writer;
   },
@@ -987,6 +1012,14 @@ export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
           message.language = reader.string();
           continue;
         }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.includeAllVersions = reader.bool();
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -1000,6 +1033,7 @@ export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
     return {
       programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
       language: isSet(object.language) ? globalThis.String(object.language) : "",
+      includeAllVersions: isSet(object.includeAllVersions) ? globalThis.Boolean(object.includeAllVersions) : false,
     };
   },
 
@@ -1011,6 +1045,9 @@ export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
     if (message.language !== "") {
       obj.language = message.language;
     }
+    if (message.includeAllVersions !== false) {
+      obj.includeAllVersions = message.includeAllVersions;
+    }
     return obj;
   },
 
@@ -1021,6 +1058,7 @@ export const GetQuestionnairesRequest: MessageFns<GetQuestionnairesRequest> = {
     const message = createBaseGetQuestionnairesRequest();
     message.programName = object.programName ?? "";
     message.language = object.language ?? "";
+    message.includeAllVersions = object.includeAllVersions ?? false;
     return message;
   },
 };

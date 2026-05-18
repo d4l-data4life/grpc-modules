@@ -194,10 +194,12 @@ func (x *GetProgramResponse) GetProgram() *structpb.Struct {
 }
 
 type GetProgramDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// when true, response contains all published versions per (name, language) instead of latest only.
+	IncludeAllVersions bool `protobuf:"varint,2,opt,name=includeAllVersions,proto3" json:"includeAllVersions,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetProgramDataRequest) Reset() {
@@ -235,6 +237,13 @@ func (x *GetProgramDataRequest) GetName() string {
 		return x.Name
 	}
 	return ""
+}
+
+func (x *GetProgramDataRequest) GetIncludeAllVersions() bool {
+	if x != nil {
+		return x.IncludeAllVersions
+	}
+	return false
 }
 
 type GetProgramDataResponse struct {
@@ -594,11 +603,13 @@ func (x *GetSurveyResponse) GetSurvey() *structpb.Struct {
 }
 
 type GetQuestionnairesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
-	Language      string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	ProgramName string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
+	Language    string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
+	// when true, response contains all published versions per (name, language) instead of latest only.
+	IncludeAllVersions bool `protobuf:"varint,3,opt,name=includeAllVersions,proto3" json:"includeAllVersions,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetQuestionnairesRequest) Reset() {
@@ -643,6 +654,13 @@ func (x *GetQuestionnairesRequest) GetLanguage() string {
 		return x.Language
 	}
 	return ""
+}
+
+func (x *GetQuestionnairesRequest) GetIncludeAllVersions() bool {
+	if x != nil {
+		return x.IncludeAllVersions
+	}
+	return false
 }
 
 type GetQuestionnairesResponse struct {
@@ -1696,9 +1714,10 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\x11GetProgramRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"G\n" +
 	"\x12GetProgramResponse\x121\n" +
-	"\aprogram\x18\x01 \x01(\v2\x17.google.protobuf.StructR\aprogram\"+\n" +
+	"\aprogram\x18\x01 \x01(\v2\x17.google.protobuf.StructR\aprogram\"[\n" +
 	"\x15GetProgramDataRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\xde\x02\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12.\n" +
+	"\x12includeAllVersions\x18\x02 \x01(\bR\x12includeAllVersions\"\xde\x02\n" +
 	"\x16GetProgramDataResponse\x121\n" +
 	"\aprogram\x18\x01 \x01(\v2\x17.google.protobuf.StructR\aprogram\x121\n" +
 	"\asurveys\x18\x02 \x03(\v2\x17.google.protobuf.StructR\asurveys\x12?\n" +
@@ -1718,10 +1737,11 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"D\n" +
 	"\x11GetSurveyResponse\x12/\n" +
-	"\x06survey\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x06survey\"X\n" +
+	"\x06survey\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x06survey\"\x88\x01\n" +
 	"\x18GetQuestionnairesRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x1a\n" +
-	"\blanguage\x18\x02 \x01(\tR\blanguage\"\\\n" +
+	"\blanguage\x18\x02 \x01(\tR\blanguage\x12.\n" +
+	"\x12includeAllVersions\x18\x03 \x01(\bR\x12includeAllVersions\"\\\n" +
 	"\x19GetQuestionnairesResponse\x12?\n" +
 	"\x0equestionnaires\x18\x01 \x03(\v2\x17.google.protobuf.StructR\x0equestionnaires\"k\n" +
 	"\x17GetQuestionnaireRequest\x12 \n" +
