@@ -51,6 +51,7 @@ enum InputType {
   matrix_item = 15; // coding
   country = 16; // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
   postal_code = 17; // string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension
+  likert_scale = 18; // integer, like scale_ordinal, but with label for each individual value using a valueset
 }
 
 message Answerset {

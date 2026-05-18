@@ -45,6 +45,7 @@ const (
 	InputType_matrix_item   InputType = 15 // coding
 	InputType_country       InputType = 16 // coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
 	InputType_postal_code   InputType = 17 // string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension
+	InputType_likert_scale  InputType = 18 // integer, like scale_ordinal, but with label for each individual value using a valueset
 )
 
 // Enum value maps for InputType.
@@ -68,6 +69,7 @@ var (
 		15: "matrix_item",
 		16: "country",
 		17: "postal_code",
+		18: "likert_scale",
 	}
 	InputType_value = map[string]int32{
 		"display":       0,
@@ -88,6 +90,7 @@ var (
 		"matrix_item":   15,
 		"country":       16,
 		"postal_code":   17,
+		"likert_scale":  18,
 	}
 )
 
@@ -1308,7 +1311,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x03 \x01(\tR\tcreatedAt\x12\x1e\n" +
 	"\n" +
 	"lastUsedAt\x18\x04 \x01(\tR\n" +
-	"lastUsedAt*\x89\x02\n" +
+	"lastUsedAt*\x9b\x02\n" +
 	"\tInputType\x12\v\n" +
 	"\adisplay\x10\x00\x12\n" +
 	"\n" +
@@ -1330,7 +1333,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\x06matrix\x10\x0e\x12\x0f\n" +
 	"\vmatrix_item\x10\x0f\x12\v\n" +
 	"\acountry\x10\x10\x12\x0f\n" +
-	"\vpostal_code\x10\x11*K\n" +
+	"\vpostal_code\x10\x11\x12\x10\n" +
+	"\flikert_scale\x10\x12*K\n" +
 	"\bOperator\x12\n" +
 	"\n" +
 	"\x06exists\x10\x00\x12\x06\n" +
