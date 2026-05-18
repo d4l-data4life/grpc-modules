@@ -98,6 +98,11 @@ paths:
           in: path
           required: true
           type: string
+        - name: includeAllVersions
+          description: when true, response contains all published versions per (name, language) instead of latest only.
+          in: query
+          required: false
+          type: boolean
       tags:
         - Programs
   /programs/{name}/updatedAt:
@@ -275,6 +280,11 @@ paths:
           in: query
           required: false
           type: string
+        - name: includeAllVersions
+          description: when true, response contains all published versions per (name, language) instead of latest only.
+          in: query
+          required: false
+          type: boolean
       tags:
         - Questionnaires
   /programs/{programName}/questionnaires/{name}:
