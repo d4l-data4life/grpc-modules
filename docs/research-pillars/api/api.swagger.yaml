@@ -2844,7 +2844,7 @@ definitions:
       - matrix_item
       - country
       - postal_code
-      - likert_scale
+      - scale_likert
     default: display
     description: |-
       coding
@@ -2858,7 +2858,7 @@ definitions:
        - matrix_item: coding
        - country: coding, answerValueSet = http://hl7.org/fhir/ValueSet/iso3166-1-2
        - postal_code: string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension
-       - likert_scale: integer, like scale_ordinal, but with label for each individual value using a valueset
+       - scale_likert: integer, like scale_ordinal, but with label for each individual value using a valueset
     title: |-
       - display: Default Types
        - single_select: Mapped Types
