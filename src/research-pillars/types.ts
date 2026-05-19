@@ -41,8 +41,8 @@ export enum InputType {
   country = 16,
   /** postal_code - string, live-validated via @d4l/postalcodes; country source carried in postalcode-country-source FHIR extension */
   postal_code = 17,
-  /** likert_scale - integer, like scale_ordinal, but with label for each individual value using a valueset */
-  likert_scale = 18,
+  /** scale_likert - integer, like scale_ordinal, but with label for each individual value using a valueset */
+  scale_likert = 18,
   UNRECOGNIZED = -1,
 }
 
@@ -103,8 +103,8 @@ export function inputTypeFromJSON(object: any): InputType {
     case "postal_code":
       return InputType.postal_code;
     case 18:
-    case "likert_scale":
-      return InputType.likert_scale;
+    case "scale_likert":
+      return InputType.scale_likert;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -150,8 +150,8 @@ export function inputTypeToJSON(object: InputType): string {
       return "country";
     case InputType.postal_code:
       return "postal_code";
-    case InputType.likert_scale:
-      return "likert_scale";
+    case InputType.scale_likert:
+      return "scale_likert";
     case InputType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
