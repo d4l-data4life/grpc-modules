@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add `version` field to `GetQuestionnaireRequest` 
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.33.0] - 2026-07-09
+
+### Added
+
+- Add `version` field to `GetQuestionnaireRequest` 
 
 ## [v1.32.1] - 2026-05-19
 
@@ -296,7 +300,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.1...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.33.0...HEAD
+[v1.33.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.1...v1.33.0
 [v1.32.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.0...v1.32.1
 [v1.32.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.31.0...v1.32.0
 [v1.31.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.30.0...v1.31.0
