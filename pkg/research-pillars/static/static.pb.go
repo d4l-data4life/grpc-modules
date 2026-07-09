@@ -712,6 +712,7 @@ type GetQuestionnaireRequest struct {
 	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Language      string                 `protobuf:"bytes,3,opt,name=language,proto3" json:"language,omitempty"`
+	Version       string                 `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -763,6 +764,13 @@ func (x *GetQuestionnaireRequest) GetName() string {
 func (x *GetQuestionnaireRequest) GetLanguage() string {
 	if x != nil {
 		return x.Language
+	}
+	return ""
+}
+
+func (x *GetQuestionnaireRequest) GetVersion() string {
+	if x != nil {
+		return x.Version
 	}
 	return ""
 }
@@ -1743,11 +1751,12 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\blanguage\x18\x02 \x01(\tR\blanguage\x12.\n" +
 	"\x12includeAllVersions\x18\x03 \x01(\bR\x12includeAllVersions\"\\\n" +
 	"\x19GetQuestionnairesResponse\x12?\n" +
-	"\x0equestionnaires\x18\x01 \x03(\v2\x17.google.protobuf.StructR\x0equestionnaires\"k\n" +
+	"\x0equestionnaires\x18\x01 \x03(\v2\x17.google.protobuf.StructR\x0equestionnaires\"\x85\x01\n" +
 	"\x17GetQuestionnaireRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
-	"\blanguage\x18\x03 \x01(\tR\blanguage\"Y\n" +
+	"\blanguage\x18\x03 \x01(\tR\blanguage\x12\x18\n" +
+	"\aversion\x18\x04 \x01(\tR\aversion\"Y\n" +
 	"\x18GetQuestionnaireResponse\x12=\n" +
 	"\rquestionnaire\x18\x01 \x01(\v2\x17.google.protobuf.StructR\rquestionnaire\"6\n" +
 	"\x12GetRoutinesRequest\x12 \n" +
