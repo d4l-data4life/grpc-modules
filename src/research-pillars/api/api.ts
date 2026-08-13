@@ -81,6 +81,13 @@ export interface UnblockProgramRequest {
 export interface UnblockProgramResponse {
 }
 
+export interface AdminUnblockProgramRequest {
+  programName: string;
+}
+
+export interface AdminUnblockProgramResponse {
+}
+
 export interface GetProgramsRequest {
 }
 
@@ -1649,6 +1656,107 @@ export const UnblockProgramResponse: MessageFns<UnblockProgramResponse> = {
   },
   fromPartial<I extends Exact<DeepPartial<UnblockProgramResponse>, I>>(_: I): UnblockProgramResponse {
     const message = createBaseUnblockProgramResponse();
+    return message;
+  },
+};
+
+function createBaseAdminUnblockProgramRequest(): AdminUnblockProgramRequest {
+  return { programName: "" };
+}
+
+export const AdminUnblockProgramRequest: MessageFns<AdminUnblockProgramRequest> = {
+  encode(message: AdminUnblockProgramRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): AdminUnblockProgramRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAdminUnblockProgramRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.programName = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): AdminUnblockProgramRequest {
+    return { programName: isSet(object.programName) ? globalThis.String(object.programName) : "" };
+  },
+
+  toJSON(message: AdminUnblockProgramRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AdminUnblockProgramRequest>, I>>(base?: I): AdminUnblockProgramRequest {
+    return AdminUnblockProgramRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AdminUnblockProgramRequest>, I>>(object: I): AdminUnblockProgramRequest {
+    const message = createBaseAdminUnblockProgramRequest();
+    message.programName = object.programName ?? "";
+    return message;
+  },
+};
+
+function createBaseAdminUnblockProgramResponse(): AdminUnblockProgramResponse {
+  return {};
+}
+
+export const AdminUnblockProgramResponse: MessageFns<AdminUnblockProgramResponse> = {
+  encode(_: AdminUnblockProgramResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): AdminUnblockProgramResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAdminUnblockProgramResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): AdminUnblockProgramResponse {
+    return {};
+  },
+
+  toJSON(_: AdminUnblockProgramResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<AdminUnblockProgramResponse>, I>>(base?: I): AdminUnblockProgramResponse {
+    return AdminUnblockProgramResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<AdminUnblockProgramResponse>, I>>(_: I): AdminUnblockProgramResponse {
+    const message = createBaseAdminUnblockProgramResponse();
     return message;
   },
 };
@@ -12974,6 +13082,10 @@ export interface Users {
     request: DeepPartial<UnblockProgramRequest>,
     metadata?: grpc.Metadata,
   ): Promise<UnblockProgramResponse>;
+  AdminUnblockProgram(
+    request: DeepPartial<AdminUnblockProgramRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<AdminUnblockProgramResponse>;
 }
 
 export class UsersClientImpl implements Users {
@@ -12989,6 +13101,7 @@ export class UsersClientImpl implements Users {
     this.GetBlockedPrograms = this.GetBlockedPrograms.bind(this);
     this.BlockProgram = this.BlockProgram.bind(this);
     this.UnblockProgram = this.UnblockProgram.bind(this);
+    this.AdminUnblockProgram = this.AdminUnblockProgram.bind(this);
   }
 
   GetSelf(request: DeepPartial<GetSelfRequest>, metadata?: grpc.Metadata): Promise<GetSelfResponse> {
@@ -13033,6 +13146,13 @@ export class UsersClientImpl implements Users {
     metadata?: grpc.Metadata,
   ): Promise<UnblockProgramResponse> {
     return this.rpc.unary(UsersUnblockProgramDesc, UnblockProgramRequest.fromPartial(request), metadata);
+  }
+
+  AdminUnblockProgram(
+    request: DeepPartial<AdminUnblockProgramRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<AdminUnblockProgramResponse> {
+    return this.rpc.unary(UsersAdminUnblockProgramDesc, AdminUnblockProgramRequest.fromPartial(request), metadata);
   }
 }
 
@@ -13212,6 +13332,29 @@ export const UsersUnblockProgramDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = UnblockProgramResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const UsersAdminUnblockProgramDesc: UnaryMethodDefinitionish = {
+  methodName: "AdminUnblockProgram",
+  service: UsersDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return AdminUnblockProgramRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = AdminUnblockProgramResponse.decode(data);
       return {
         ...value,
         toObject() {

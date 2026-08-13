@@ -80,6 +80,12 @@ service Users {
       delete : "/users/blocked-program",
     };
   }
+
+  rpc AdminUnblockProgram(AdminUnblockProgramRequest) returns (AdminUnblockProgramResponse) {
+    option (google.api.http) = {
+      delete : "/users/blocked-program/{programName}",
+    };
+  }
 }
 
 message GetSelfRequest {}
@@ -110,6 +116,9 @@ message BlockProgramResponse {}
 
 message UnblockProgramRequest {}
 message UnblockProgramResponse {}
+
+message AdminUnblockProgramRequest { string programName = 1; }
+message AdminUnblockProgramResponse {}
 
 /////////////////////////////////////////////////////////
 // Programs
