@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [types] Add name to `QuestionImage`
+- [types] Add src and alt to `QuestionImage`
 
 ### Changed
 

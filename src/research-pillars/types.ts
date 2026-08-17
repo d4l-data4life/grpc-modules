@@ -351,7 +351,8 @@ export interface EnableWhen {
 export interface QuestionImage {
   data: string;
   contentType: string;
-  name: string;
+  src: string;
+  alt: string;
 }
 
 export interface Diff {
@@ -1369,7 +1370,7 @@ export const EnableWhen: MessageFns<EnableWhen> = {
 };
 
 function createBaseQuestionImage(): QuestionImage {
-  return { data: "", contentType: "", name: "" };
+  return { data: "", contentType: "", src: "", alt: "" };
 }
 
 export const QuestionImage: MessageFns<QuestionImage> = {
@@ -1380,8 +1381,11 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     if (message.contentType !== "") {
       writer.uint32(18).string(message.contentType);
     }
-    if (message.name !== "") {
-      writer.uint32(26).string(message.name);
+    if (message.src !== "") {
+      writer.uint32(26).string(message.src);
+    }
+    if (message.alt !== "") {
+      writer.uint32(34).string(message.alt);
     }
     return writer;
   },
@@ -1414,7 +1418,15 @@ export const QuestionImage: MessageFns<QuestionImage> = {
             break;
           }
 
-          message.name = reader.string();
+          message.src = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.alt = reader.string();
           continue;
         }
       }
@@ -1430,7 +1442,8 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     return {
       data: isSet(object.data) ? globalThis.String(object.data) : "",
       contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : "",
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      src: isSet(object.src) ? globalThis.String(object.src) : "",
+      alt: isSet(object.alt) ? globalThis.String(object.alt) : "",
     };
   },
 
@@ -1442,8 +1455,11 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     if (message.contentType !== "") {
       obj.contentType = message.contentType;
     }
-    if (message.name !== "") {
-      obj.name = message.name;
+    if (message.src !== "") {
+      obj.src = message.src;
+    }
+    if (message.alt !== "") {
+      obj.alt = message.alt;
     }
     return obj;
   },
@@ -1455,7 +1471,8 @@ export const QuestionImage: MessageFns<QuestionImage> = {
     const message = createBaseQuestionImage();
     message.data = object.data ?? "";
     message.contentType = object.contentType ?? "";
-    message.name = object.name ?? "";
+    message.src = object.src ?? "";
+    message.alt = object.alt ?? "";
     return message;
   },
 };
