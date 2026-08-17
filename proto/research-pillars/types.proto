@@ -76,6 +76,8 @@ message EnableWhen {
 message QuestionImage {
   string data = 1;
   string contentType = 2;
+  string src = 3;
+  string alt = 4;
 }
 
 enum Operator {
