@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [types] Add name to `QuestionImage`
+
 ### Changed
 
 ### Deprecated
@@ -23,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add `version` field to `GetQuestionnaireRequest` 
+- Add `version` field to `GetQuestionnaireRequest`
 
 ## [v1.32.1] - 2026-05-19
 
