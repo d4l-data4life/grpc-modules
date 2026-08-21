@@ -2917,6 +2917,7 @@ definitions:
         type: array
         items:
           type: string
+        title: DEPRECATED — replaced by input/output; kept during the topic migration, see HUB-6797
       items:
         type: array
         items:
@@ -2924,6 +2925,17 @@ definitions:
           $ref: '#/definitions/protoQuestion'
       image:
         $ref: '#/definitions/protoQuestionImage'
+      input:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoTopicInput'
+        title: populate this question's candidate options from topics
+      output:
+        type: array
+        items:
+          type: string
+        title: topic ids this question's answer(s) publish to
   protoQuestionImage:
     type: object
     properties:
@@ -2958,6 +2970,25 @@ definitions:
       - editor
       - manager
     default: viewer
+  protoTopicInput:
+    type: object
+    properties:
+      topic:
+        type: string
+      scope:
+        $ref: '#/definitions/protoTopicScope'
+    description: 'A topic subscription: which topic to read and how far back.'
+  protoTopicScope:
+    type: string
+    enum:
+      - session
+      - latest
+      - all
+    default: session
+    description: |-
+      - session: current fill session only
+       - latest: + the latest persisted response
+       - all: + all persisted responses
   protoUser:
     type: object
     properties:
