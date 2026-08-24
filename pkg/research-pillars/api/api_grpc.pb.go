@@ -20,14 +20,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Users_GetSelf_FullMethodName            = "/proto.api.Users/GetSelf"
-	Users_GetUsers_FullMethodName           = "/proto.api.Users/GetUsers"
-	Users_DeleteUser_FullMethodName         = "/proto.api.Users/DeleteUser"
-	Users_UpsertProgramRole_FullMethodName  = "/proto.api.Users/UpsertProgramRole"
-	Users_DeleteProgramRole_FullMethodName  = "/proto.api.Users/DeleteProgramRole"
-	Users_GetBlockedPrograms_FullMethodName = "/proto.api.Users/GetBlockedPrograms"
-	Users_BlockProgram_FullMethodName       = "/proto.api.Users/BlockProgram"
-	Users_UnblockProgram_FullMethodName     = "/proto.api.Users/UnblockProgram"
+	Users_GetSelf_FullMethodName             = "/proto.api.Users/GetSelf"
+	Users_GetUsers_FullMethodName            = "/proto.api.Users/GetUsers"
+	Users_DeleteUser_FullMethodName          = "/proto.api.Users/DeleteUser"
+	Users_UpsertProgramRole_FullMethodName   = "/proto.api.Users/UpsertProgramRole"
+	Users_DeleteProgramRole_FullMethodName   = "/proto.api.Users/DeleteProgramRole"
+	Users_GetBlockedPrograms_FullMethodName  = "/proto.api.Users/GetBlockedPrograms"
+	Users_BlockProgram_FullMethodName        = "/proto.api.Users/BlockProgram"
+	Users_UnblockProgram_FullMethodName      = "/proto.api.Users/UnblockProgram"
+	Users_AdminUnblockProgram_FullMethodName = "/proto.api.Users/AdminUnblockProgram"
 )
 
 // UsersClient is the client API for Users service.
@@ -42,6 +43,7 @@ type UsersClient interface {
 	GetBlockedPrograms(ctx context.Context, in *GetBlockedProgramsRequest, opts ...grpc.CallOption) (*GetBlockedProgramsResponse, error)
 	BlockProgram(ctx context.Context, in *BlockProgramRequest, opts ...grpc.CallOption) (*BlockProgramResponse, error)
 	UnblockProgram(ctx context.Context, in *UnblockProgramRequest, opts ...grpc.CallOption) (*UnblockProgramResponse, error)
+	AdminUnblockProgram(ctx context.Context, in *AdminUnblockProgramRequest, opts ...grpc.CallOption) (*AdminUnblockProgramResponse, error)
 }
 
 type usersClient struct {
@@ -132,6 +134,16 @@ func (c *usersClient) UnblockProgram(ctx context.Context, in *UnblockProgramRequ
 	return out, nil
 }
 
+func (c *usersClient) AdminUnblockProgram(ctx context.Context, in *AdminUnblockProgramRequest, opts ...grpc.CallOption) (*AdminUnblockProgramResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AdminUnblockProgramResponse)
+	err := c.cc.Invoke(ctx, Users_AdminUnblockProgram_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsersServer is the server API for Users service.
 // All implementations must embed UnimplementedUsersServer
 // for forward compatibility.
@@ -144,6 +156,7 @@ type UsersServer interface {
 	GetBlockedPrograms(context.Context, *GetBlockedProgramsRequest) (*GetBlockedProgramsResponse, error)
 	BlockProgram(context.Context, *BlockProgramRequest) (*BlockProgramResponse, error)
 	UnblockProgram(context.Context, *UnblockProgramRequest) (*UnblockProgramResponse, error)
+	AdminUnblockProgram(context.Context, *AdminUnblockProgramRequest) (*AdminUnblockProgramResponse, error)
 	mustEmbedUnimplementedUsersServer()
 }
 
@@ -177,6 +190,9 @@ func (UnimplementedUsersServer) BlockProgram(context.Context, *BlockProgramReque
 }
 func (UnimplementedUsersServer) UnblockProgram(context.Context, *UnblockProgramRequest) (*UnblockProgramResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UnblockProgram not implemented")
+}
+func (UnimplementedUsersServer) AdminUnblockProgram(context.Context, *AdminUnblockProgramRequest) (*AdminUnblockProgramResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AdminUnblockProgram not implemented")
 }
 func (UnimplementedUsersServer) mustEmbedUnimplementedUsersServer() {}
 func (UnimplementedUsersServer) testEmbeddedByValue()               {}
@@ -343,6 +359,24 @@ func _Users_UnblockProgram_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Users_AdminUnblockProgram_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminUnblockProgramRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsersServer).AdminUnblockProgram(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Users_AdminUnblockProgram_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsersServer).AdminUnblockProgram(ctx, req.(*AdminUnblockProgramRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Users_ServiceDesc is the grpc.ServiceDesc for Users service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -381,6 +415,10 @@ var Users_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnblockProgram",
 			Handler:    _Users_UnblockProgram_Handler,
+		},
+		{
+			MethodName: "AdminUnblockProgram",
+			Handler:    _Users_AdminUnblockProgram_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

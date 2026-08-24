@@ -1989,6 +1989,24 @@ paths:
       tags:
         - Users
   /users/blocked-program/{programName}:
+    delete:
+      operationId: Users_AdminUnblockProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiAdminUnblockProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
     post:
       operationId: Users_BlockProgram
       responses:
@@ -2192,6 +2210,8 @@ definitions:
         type: boolean
       includeETLCSV:
         type: boolean
+  apiAdminUnblockProgramResponse:
+    type: object
   apiAssignCodeResponse:
     type: object
   apiBlockProgramResponse:
