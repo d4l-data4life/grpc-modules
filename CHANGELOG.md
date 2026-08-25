@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [research-pillars] Endpoint for admins to unblock programs
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.35.0] - 2026-08-25
+
+### Added
+
+- [research-pillars] Endpoint for admins to unblock programs
 
 ## [v1.34.0] - 2026-08-17
 
@@ -308,7 +312,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.34.0...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.35.0...HEAD
+[v1.35.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.34.0...v1.35.0
 [v1.34.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.33.0...v1.34.0
 [v1.33.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.1...v1.33.0
 [v1.32.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.0...v1.32.1
