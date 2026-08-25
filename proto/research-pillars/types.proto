@@ -25,9 +25,23 @@ message Question {
   optional google.protobuf.Struct config = 6;
   repeated EnableWhen enable_when = 7;
   optional string enable_behavior = 8;
-  repeated string prepopulate = 9;
+  repeated string prepopulate = 9; // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
   repeated Question items = 10;
   optional QuestionImage image = 11;
+  repeated TopicInput input = 12; // populate this question's candidate options from topics
+  repeated string output = 13; // topic ids this question's answer(s) publish to
+}
+
+// A topic subscription: which topic to read and how far back.
+message TopicInput {
+  string topic = 1;
+  TopicScope scope = 2;
+}
+
+enum TopicScope {
+  session = 0; // current fill session only
+  latest = 1; // + the latest persisted response
+  all = 2; // + all persisted responses
 }
 
 enum InputType {
