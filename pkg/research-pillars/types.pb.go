@@ -404,7 +404,7 @@ type Question struct {
 	Config         *structpb.Struct       `protobuf:"bytes,6,opt,name=config,proto3,oneof" json:"config,omitempty"`
 	EnableWhen     []*EnableWhen          `protobuf:"bytes,7,rep,name=enable_when,json=enableWhen,proto3" json:"enable_when,omitempty"`
 	EnableBehavior *string                `protobuf:"bytes,8,opt,name=enable_behavior,json=enableBehavior,proto3,oneof" json:"enable_behavior,omitempty"`
-	Prepopulate    []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"` // DEPRECATED — replaced by input/output; kept during the topic migration, see HUB-6797
+	Prepopulate    []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"` // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
 	Items          []*Question            `protobuf:"bytes,10,rep,name=items,proto3" json:"items,omitempty"`
 	Image          *QuestionImage         `protobuf:"bytes,11,opt,name=image,proto3,oneof" json:"image,omitempty"`
 	Input          []*TopicInput          `protobuf:"bytes,12,rep,name=input,proto3" json:"input,omitempty"`   // populate this question's candidate options from topics

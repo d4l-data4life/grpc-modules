@@ -2917,7 +2917,7 @@ definitions:
         type: array
         items:
           type: string
-        title: DEPRECATED — replaced by input/output; kept during the topic migration, see HUB-6797
+        title: 'LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired'
       items:
         type: array
         items:

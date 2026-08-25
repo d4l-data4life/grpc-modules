@@ -25,7 +25,7 @@ message Question {
   optional google.protobuf.Struct config = 6;
   repeated EnableWhen enable_when = 7;
   optional string enable_behavior = 8;
-  repeated string prepopulate = 9; // DEPRECATED — replaced by input/output; kept during the topic migration, see HUB-6797
+  repeated string prepopulate = 9; // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
   repeated Question items = 10;
   optional QuestionImage image = 11;
   repeated TopicInput input = 12; // populate this question's candidate options from topics

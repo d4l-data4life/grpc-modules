@@ -358,7 +358,7 @@ export interface Question {
   enableBehavior?:
     | string
     | undefined;
-  /** DEPRECATED — replaced by input/output; kept during the topic migration, see HUB-6797 */
+  /** LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired */
   prepopulate: string[];
   items: Question[];
   image?:
