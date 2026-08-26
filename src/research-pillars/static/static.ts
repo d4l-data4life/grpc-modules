@@ -166,6 +166,26 @@ export interface GetImageRequest {
   name: string;
 }
 
+export interface GetFHIRQuestionnaireRequest {
+  programName: string;
+  name: string;
+  language: string;
+  version: string;
+}
+
+export interface GetFHIRQuestionnaireResponse {
+  questionnaire?: { [key: string]: any } | undefined;
+}
+
+export interface GetStandaloneFHIRQuestionnaireRequest {
+  name: string;
+  language: string;
+}
+
+export interface GetStandaloneFHIRQuestionnaireResponse {
+  questionnaire?: { [key: string]: any } | undefined;
+}
+
 export interface ChecksRequest {
 }
 
@@ -2711,6 +2731,350 @@ export const GetImageRequest: MessageFns<GetImageRequest> = {
   },
 };
 
+function createBaseGetFHIRQuestionnaireRequest(): GetFHIRQuestionnaireRequest {
+  return { programName: "", name: "", language: "", version: "" };
+}
+
+export const GetFHIRQuestionnaireRequest: MessageFns<GetFHIRQuestionnaireRequest> = {
+  encode(message: GetFHIRQuestionnaireRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.language !== "") {
+      writer.uint32(26).string(message.language);
+    }
+    if (message.version !== "") {
+      writer.uint32(34).string(message.version);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetFHIRQuestionnaireRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetFHIRQuestionnaireRequest();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.programName = reader.string();
+            continue;
+          }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.name = reader.string();
+            continue;
+          }
+          case 3: {
+            if (tag !== 26) {
+              break;
+            }
+
+            message.language = reader.string();
+            continue;
+          }
+          case 4: {
+            if (tag !== 34) {
+              break;
+            }
+
+            message.version = reader.string();
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetFHIRQuestionnaireRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      language: isSet(object.language) ? globalThis.String(object.language) : "",
+      version: isSet(object.version) ? globalThis.String(object.version) : "",
+    };
+  },
+
+  toJSON(message: GetFHIRQuestionnaireRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.language !== "") {
+      obj.language = message.language;
+    }
+    if (message.version !== "") {
+      obj.version = message.version;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetFHIRQuestionnaireRequest>, I>>(base?: I): GetFHIRQuestionnaireRequest {
+    return GetFHIRQuestionnaireRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetFHIRQuestionnaireRequest>, I>>(object: I): GetFHIRQuestionnaireRequest {
+    const message = createBaseGetFHIRQuestionnaireRequest();
+    message.programName = object.programName ?? "";
+    message.name = object.name ?? "";
+    message.language = object.language ?? "";
+    message.version = object.version ?? "";
+    return message;
+  },
+};
+
+function createBaseGetFHIRQuestionnaireResponse(): GetFHIRQuestionnaireResponse {
+  return { questionnaire: undefined };
+}
+
+export const GetFHIRQuestionnaireResponse: MessageFns<GetFHIRQuestionnaireResponse> = {
+  encode(message: GetFHIRQuestionnaireResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.questionnaire !== undefined) {
+      Struct.encode(Struct.wrap(message.questionnaire), writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetFHIRQuestionnaireResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetFHIRQuestionnaireResponse();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.questionnaire = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetFHIRQuestionnaireResponse {
+    return { questionnaire: isObject(object.questionnaire) ? object.questionnaire : undefined };
+  },
+
+  toJSON(message: GetFHIRQuestionnaireResponse): unknown {
+    const obj: any = {};
+    if (message.questionnaire !== undefined) {
+      obj.questionnaire = message.questionnaire;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetFHIRQuestionnaireResponse>, I>>(base?: I): GetFHIRQuestionnaireResponse {
+    return GetFHIRQuestionnaireResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetFHIRQuestionnaireResponse>, I>>(object: I): GetFHIRQuestionnaireResponse {
+    const message = createBaseGetFHIRQuestionnaireResponse();
+    message.questionnaire = object.questionnaire ?? undefined;
+    return message;
+  },
+};
+
+function createBaseGetStandaloneFHIRQuestionnaireRequest(): GetStandaloneFHIRQuestionnaireRequest {
+  return { name: "", language: "" };
+}
+
+export const GetStandaloneFHIRQuestionnaireRequest: MessageFns<GetStandaloneFHIRQuestionnaireRequest> = {
+  encode(message: GetStandaloneFHIRQuestionnaireRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.language !== "") {
+      writer.uint32(18).string(message.language);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetStandaloneFHIRQuestionnaireRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetStandaloneFHIRQuestionnaireRequest();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.name = reader.string();
+            continue;
+          }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.language = reader.string();
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetStandaloneFHIRQuestionnaireRequest {
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      language: isSet(object.language) ? globalThis.String(object.language) : "",
+    };
+  },
+
+  toJSON(message: GetStandaloneFHIRQuestionnaireRequest): unknown {
+    const obj: any = {};
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.language !== "") {
+      obj.language = message.language;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetStandaloneFHIRQuestionnaireRequest>, I>>(
+    base?: I,
+  ): GetStandaloneFHIRQuestionnaireRequest {
+    return GetStandaloneFHIRQuestionnaireRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetStandaloneFHIRQuestionnaireRequest>, I>>(
+    object: I,
+  ): GetStandaloneFHIRQuestionnaireRequest {
+    const message = createBaseGetStandaloneFHIRQuestionnaireRequest();
+    message.name = object.name ?? "";
+    message.language = object.language ?? "";
+    return message;
+  },
+};
+
+function createBaseGetStandaloneFHIRQuestionnaireResponse(): GetStandaloneFHIRQuestionnaireResponse {
+  return { questionnaire: undefined };
+}
+
+export const GetStandaloneFHIRQuestionnaireResponse: MessageFns<GetStandaloneFHIRQuestionnaireResponse> = {
+  encode(message: GetStandaloneFHIRQuestionnaireResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.questionnaire !== undefined) {
+      Struct.encode(Struct.wrap(message.questionnaire), writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetStandaloneFHIRQuestionnaireResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetStandaloneFHIRQuestionnaireResponse();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.questionnaire = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetStandaloneFHIRQuestionnaireResponse {
+    return { questionnaire: isObject(object.questionnaire) ? object.questionnaire : undefined };
+  },
+
+  toJSON(message: GetStandaloneFHIRQuestionnaireResponse): unknown {
+    const obj: any = {};
+    if (message.questionnaire !== undefined) {
+      obj.questionnaire = message.questionnaire;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetStandaloneFHIRQuestionnaireResponse>, I>>(
+    base?: I,
+  ): GetStandaloneFHIRQuestionnaireResponse {
+    return GetStandaloneFHIRQuestionnaireResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetStandaloneFHIRQuestionnaireResponse>, I>>(
+    object: I,
+  ): GetStandaloneFHIRQuestionnaireResponse {
+    const message = createBaseGetStandaloneFHIRQuestionnaireResponse();
+    message.questionnaire = object.questionnaire ?? undefined;
+    return message;
+  },
+};
+
 function createBaseChecksRequest(): ChecksRequest {
   return {};
 }
@@ -3447,6 +3811,98 @@ export const ImagesGetImageDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = HttpBody.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export interface FHIR {
+  /** http://collect.dev.d4l-dev.de/fhir/r5/test-program/Questionnaire/demographics */
+  GetQuestionnaire(
+    request: DeepPartial<GetFHIRQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetFHIRQuestionnaireResponse>;
+  /**
+   * http://fhir.data4life.care/r5/Questionnaire/oci_r_eligibility
+   * http://collect.dev.d4l-dev.de/fhir/r5/Questionnaire/oci_r_eligibility
+   */
+  GetStandaloneQuestionnaire(
+    request: DeepPartial<GetStandaloneFHIRQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetStandaloneFHIRQuestionnaireResponse>;
+}
+
+export class FHIRClientImpl implements FHIR {
+  private readonly rpc: Rpc;
+
+  constructor(rpc: Rpc) {
+    this.rpc = rpc;
+    this.GetQuestionnaire = this.GetQuestionnaire.bind(this);
+    this.GetStandaloneQuestionnaire = this.GetStandaloneQuestionnaire.bind(this);
+  }
+
+  GetQuestionnaire(
+    request: DeepPartial<GetFHIRQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetFHIRQuestionnaireResponse> {
+    return this.rpc.unary(FHIRGetQuestionnaireDesc, GetFHIRQuestionnaireRequest.fromPartial(request), metadata);
+  }
+
+  GetStandaloneQuestionnaire(
+    request: DeepPartial<GetStandaloneFHIRQuestionnaireRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetStandaloneFHIRQuestionnaireResponse> {
+    return this.rpc.unary(
+      FHIRGetStandaloneQuestionnaireDesc,
+      GetStandaloneFHIRQuestionnaireRequest.fromPartial(request),
+      metadata,
+    );
+  }
+}
+
+export const FHIRDesc = { serviceName: "proto.static.FHIR" };
+
+export const FHIRGetQuestionnaireDesc: UnaryMethodDefinitionish = {
+  methodName: "GetQuestionnaire",
+  service: FHIRDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetFHIRQuestionnaireRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetFHIRQuestionnaireResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const FHIRGetStandaloneQuestionnaireDesc: UnaryMethodDefinitionish = {
+  methodName: "GetStandaloneQuestionnaire",
+  service: FHIRDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetStandaloneFHIRQuestionnaireRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetStandaloneFHIRQuestionnaireResponse.decode(data);
       return {
         ...value,
         toObject() {

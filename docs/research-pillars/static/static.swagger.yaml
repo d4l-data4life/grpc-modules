@@ -14,6 +14,7 @@ tags:
   - name: Consents
   - name: Utilities
   - name: Images
+  - name: FHIR
   - name: Checks
 consumes:
   - application/json
@@ -402,6 +403,64 @@ paths:
           type: string
       tags:
         - Surveys
+  /r5/Questionnaire/{name}:
+    get:
+      summary: |-
+        http://fhir.data4life.care/r5/Questionnaire/oci_r_eligibility
+        http://collect.dev.d4l-dev.de/fhir/r5/Questionnaire/oci_r_eligibility
+      operationId: FHIR_GetStandaloneQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetStandaloneFHIRQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: language
+          in: query
+          required: false
+          type: string
+      tags:
+        - FHIR
+  /r5/{programName}/Questionnaire/{name}:
+    get:
+      summary: http://collect.dev.d4l-dev.de/fhir/r5/test-program/Questionnaire/demographics
+      operationId: FHIR_GetQuestionnaire
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/staticGetFHIRQuestionnaireResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: language
+          in: query
+          required: false
+          type: string
+        - name: version
+          in: query
+          required: false
+          type: string
+      tags:
+        - FHIR
   /utilities/proxy:
     post:
       operationId: Utilities_Proxy
@@ -667,6 +726,11 @@ definitions:
         type: array
         items:
           type: object
+  staticGetFHIRQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        type: object
   staticGetProgramDataResponse:
     type: object
     properties:
@@ -733,6 +797,11 @@ definitions:
         type: array
         items:
           type: object
+  staticGetStandaloneFHIRQuestionnaireResponse:
+    type: object
+    properties:
+      questionnaire:
+        type: object
   staticGetSurveyResponse:
     type: object
     properties:

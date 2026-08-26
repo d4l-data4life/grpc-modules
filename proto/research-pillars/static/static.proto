@@ -11,11 +11,11 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 // clang-format off
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
-    title: "Research Pillars API";
+    title  : "Research Pillars API";
     version: "1.0";
     contact: {
       name: "Research Enablement Team";
-      url: "https://data4life.care";
+      url : "https://data4life.care";
     };
   };
 };
@@ -28,33 +28,35 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 service Programs {
   rpc GetPrograms(GetProgramsRequest) returns (GetProgramsResponse) {
     option (google.api.http) = {
-      get : "/programs"
+      get: "/programs"
     };
   }
 
   rpc GetProgram(GetProgramRequest) returns (GetProgramResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}"
+      get: "/programs/{name}"
     };
   }
 
   rpc GetProgramData(GetProgramDataRequest) returns (GetProgramDataResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}/data"
+      get: "/programs/{name}/data"
     };
   }
 
   rpc GetProgramUpdatedAt(GetProgramUpdatedAtRequest) returns (GetProgramUpdatedAtResponse) {
     option (google.api.http) = {
-      get : "/programs/{name}/updatedAt"
+      get: "/programs/{name}/updatedAt"
     };
   }
 }
 
 message GetProgramsRequest {}
+
 message GetProgramsResponse { repeated google.protobuf.Struct programs = 1; }
 
 message GetProgramRequest { string name = 1; }
+
 message GetProgramResponse { google.protobuf.Struct program = 1; }
 
 message GetProgramDataRequest {
@@ -62,16 +64,18 @@ message GetProgramDataRequest {
   // when true, response contains all published versions per (name, language) instead of latest only.
   bool includeAllVersions = 2;
 }
+
 message GetProgramDataResponse {
-  google.protobuf.Struct program = 1;
-  repeated google.protobuf.Struct surveys = 2;
+  google.protobuf.Struct          program        = 1;
+  repeated google.protobuf.Struct surveys        = 2;
   repeated google.protobuf.Struct questionnaires = 3;
-  repeated google.protobuf.Struct consents = 4;
-  repeated google.protobuf.Struct routines = 5;
-  repeated google.protobuf.Struct displays = 6;
+  repeated google.protobuf.Struct consents       = 4;
+  repeated google.protobuf.Struct routines       = 5;
+  repeated google.protobuf.Struct displays       = 6;
 }
 
 message GetProgramUpdatedAtRequest { string name = 1; }
+
 message GetProgramUpdatedAtResponse { string updatedAt = 1; }
 
 /////////////////////////////////////////////////////////
@@ -81,24 +85,26 @@ message GetProgramUpdatedAtResponse { string updatedAt = 1; }
 service Surveys {
   rpc GetSurveys(GetSurveysRequest) returns (GetSurveysResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/surveys"
+      get: "/programs/{programName}/surveys"
     };
   }
 
   rpc GetSurvey(GetSurveyRequest) returns (GetSurveyResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/surveys/{name}"
+      get: "/programs/{programName}/surveys/{name}"
     };
   }
 }
 
 message GetSurveysRequest { string programName = 1; }
+
 message GetSurveysResponse { repeated google.protobuf.Struct surveys = 1; }
 
 message GetSurveyRequest {
   string programName = 1;
-  string name = 2;
+  string name        = 2;
 }
+
 message GetSurveyResponse { google.protobuf.Struct survey = 1; }
 
 /////////////////////////////////////////////////////////
@@ -107,36 +113,38 @@ message GetSurveyResponse { google.protobuf.Struct survey = 1; }
 
 service Questionnaires {
   rpc GetQuestionnaires(GetQuestionnairesRequest)
-      returns (GetQuestionnairesResponse) {
+  returns (GetQuestionnairesResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/questionnaires"
+      get: "/programs/{programName}/questionnaires"
     };
   }
 
   rpc GetQuestionnaire(GetQuestionnaireRequest)
-      returns (GetQuestionnaireResponse) {
+  returns (GetQuestionnaireResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/questionnaires/{name}"
+      get: "/programs/{programName}/questionnaires/{name}"
     };
   }
 }
 
 message GetQuestionnairesRequest {
   string programName = 1;
-  string language = 2;
+  string language    = 2;
   // when true, response contains all published versions per (name, language) instead of latest only.
   bool includeAllVersions = 3;
 }
+
 message GetQuestionnairesResponse {
   repeated google.protobuf.Struct questionnaires = 1;
 }
 
 message GetQuestionnaireRequest {
   string programName = 1;
-  string name = 2;
-  string language = 3;
-  string version = 4;
+  string name        = 2;
+  string language    = 3;
+  string version     = 4;
 }
+
 message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }
 
 /////////////////////////////////////////////////////////
@@ -146,24 +154,26 @@ message GetQuestionnaireResponse { google.protobuf.Struct questionnaire = 1; }
 service Routines {
   rpc GetRoutines(GetRoutinesRequest) returns (GetRoutinesResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/routines"
+      get: "/programs/{programName}/routines"
     };
   }
 
   rpc GetRoutine(GetRoutineRequest) returns (GetRoutineResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/routines/{name}"
+      get: "/programs/{programName}/routines/{name}"
     };
   }
 }
 
 message GetRoutinesRequest { string programName = 1; }
+
 message GetRoutinesResponse { repeated google.protobuf.Struct routines = 1; }
 
 message GetRoutineRequest {
   string programName = 1;
-  string name = 2;
+  string name        = 2;
 }
+
 message GetRoutineResponse { google.protobuf.Struct routine = 1; }
 
 /////////////////////////////////////////////////////////
@@ -173,24 +183,26 @@ message GetRoutineResponse { google.protobuf.Struct routine = 1; }
 service Displays {
   rpc GetDisplays(GetDisplaysRequest) returns (GetDisplaysResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/displays"
+      get: "/programs/{programName}/displays"
     };
   }
 
   rpc GetDisplay(GetDisplayRequest) returns (GetDisplayResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/displays/{name}"
+      get: "/programs/{programName}/displays/{name}"
     };
   }
 }
 
 message GetDisplaysRequest { string programName = 1; }
+
 message GetDisplaysResponse { repeated google.protobuf.Struct displays = 1; }
 
 message GetDisplayRequest {
   string programName = 1;
-  string name = 2;
+  string name        = 2;
 }
+
 message GetDisplayResponse { google.protobuf.Struct display = 1; }
 
 /////////////////////////////////////////////////////////
@@ -200,39 +212,42 @@ message GetDisplayResponse { google.protobuf.Struct display = 1; }
 service Consents {
   rpc GetConsents(GetConsentsRequest) returns (GetConsentsResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents"
+      get: "/programs/{programName}/consents"
     };
   }
 
   rpc GetConsent(GetConsentRequest) returns (GetConsentResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents/{name}"
+      get: "/programs/{programName}/consents/{name}"
     };
   }
 
   rpc GetConsentVersion(GetConsentVersionRequest) returns (GetConsentVersionResponse) {
     option (google.api.http) = {
-      get : "/programs/{programName}/consents/{name}/{version}"
+      get: "/programs/{programName}/consents/{name}/{version}"
     };
   }
 }
 
 message GetConsentsRequest { string programName = 1; }
+
 message GetConsentsResponse { repeated google.protobuf.Struct consents = 1; }
 
 message GetConsentRequest {
   string programName = 1;
-  string name = 2;
+  string name        = 2;
 }
+
 message GetConsentResponse {
   repeated google.protobuf.Struct consents = 1;
 }
 
 message GetConsentVersionRequest {
   string programName = 1;
-  string name = 2;
-  int32 version = 3;
+  string name        = 2;
+  int32  version     = 3;
 }
+
 message GetConsentVersionResponse {
   google.protobuf.Struct consent = 1;
 }
@@ -244,17 +259,18 @@ message GetConsentVersionResponse {
 service Utilities {
   rpc Proxy(ProxyRequest) returns (ProxyResponse) {
     option (google.api.http) = {
-      post : "/utilities/proxy",
-      body : "*"
+      post: "/utilities/proxy",
+      body: "*"
     };
   }
 }
 
 message ProxyRequest {
-  string target = 1;
-  google.protobuf.Struct params = 2;
-  string programName = 3;
+  string                 target      = 1;
+  google.protobuf.Struct params      = 2;
+  string                 programName = 3;
 }
+
 message ProxyResponse {
   google.protobuf.Struct body = 1;
 }
@@ -266,14 +282,57 @@ message ProxyResponse {
 service Images {
   rpc GetImage(GetImageRequest) returns (google.api.HttpBody) {
     option (google.api.http) = {
-      get : "/programs/{programName}/images/{name}"
+      get: "/programs/{programName}/images/{name}"
     };
   }
 }
 
 message GetImageRequest {
   string programName = 1;
-  string name = 2;
+  string name        = 2;
+}
+
+/////////////////////////////////////////////////////////
+// FHIR
+/////////////////////////////////////////////////////////
+
+service FHIR {
+  // http://collect.dev.d4l-dev.de/fhir/r5/test-program/Questionnaire/demographics
+  rpc GetQuestionnaire(GetFHIRQuestionnaireRequest)
+  returns (GetFHIRQuestionnaireResponse) {
+    option (google.api.http) = {
+      get: "/r5/{programName}/Questionnaire/{name}"
+    };
+  }
+
+  // http://fhir.data4life.care/r5/Questionnaire/oci_r_eligibility
+  // http://collect.dev.d4l-dev.de/fhir/r5/Questionnaire/oci_r_eligibility
+  rpc GetStandaloneQuestionnaire(GetStandaloneFHIRQuestionnaireRequest)
+  returns (GetStandaloneFHIRQuestionnaireResponse) {
+    option (google.api.http) = {
+      get: "/r5/Questionnaire/{name}"
+    };
+  }
+}
+
+message GetFHIRQuestionnaireRequest {
+  string programName = 1;
+  string name        = 2;
+  string language    = 3;
+  string version     = 4;
+}
+
+message GetFHIRQuestionnaireResponse {
+  google.protobuf.Struct questionnaire = 1;
+}
+
+message GetStandaloneFHIRQuestionnaireRequest {
+  string name     = 1;
+  string language = 2;
+}
+
+message GetStandaloneFHIRQuestionnaireResponse {
+  google.protobuf.Struct questionnaire = 1;
 }
 
 /////////////////////////////////////////////////////////
@@ -283,16 +342,17 @@ message GetImageRequest {
 service Checks {
   rpc Liveness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/checks/liveness"
+      get: "/checks/liveness"
     };
   }
 
   rpc Readiness(ChecksRequest) returns (ChecksResponse) {
     option (google.api.http) = {
-      get : "/checks/readiness"
+      get: "/checks/readiness"
     };
   }
 }
 
 message ChecksRequest { }
+
 message ChecksResponse { string response = 1; }

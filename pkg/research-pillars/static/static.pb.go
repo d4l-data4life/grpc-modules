@@ -1631,6 +1631,214 @@ func (x *GetImageRequest) GetName() string {
 	return ""
 }
 
+type GetFHIRQuestionnaireRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProgramName   string                 `protobuf:"bytes,1,opt,name=programName,proto3" json:"programName,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Language      string                 `protobuf:"bytes,3,opt,name=language,proto3" json:"language,omitempty"`
+	Version       string                 `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFHIRQuestionnaireRequest) Reset() {
+	*x = GetFHIRQuestionnaireRequest{}
+	mi := &file_research_pillars_static_static_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFHIRQuestionnaireRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFHIRQuestionnaireRequest) ProtoMessage() {}
+
+func (x *GetFHIRQuestionnaireRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_static_static_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFHIRQuestionnaireRequest.ProtoReflect.Descriptor instead.
+func (*GetFHIRQuestionnaireRequest) Descriptor() ([]byte, []int) {
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetFHIRQuestionnaireRequest) GetProgramName() string {
+	if x != nil {
+		return x.ProgramName
+	}
+	return ""
+}
+
+func (x *GetFHIRQuestionnaireRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetFHIRQuestionnaireRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+func (x *GetFHIRQuestionnaireRequest) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+type GetFHIRQuestionnaireResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Questionnaire *structpb.Struct       `protobuf:"bytes,1,opt,name=questionnaire,proto3" json:"questionnaire,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFHIRQuestionnaireResponse) Reset() {
+	*x = GetFHIRQuestionnaireResponse{}
+	mi := &file_research_pillars_static_static_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFHIRQuestionnaireResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFHIRQuestionnaireResponse) ProtoMessage() {}
+
+func (x *GetFHIRQuestionnaireResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_static_static_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFHIRQuestionnaireResponse.ProtoReflect.Descriptor instead.
+func (*GetFHIRQuestionnaireResponse) Descriptor() ([]byte, []int) {
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *GetFHIRQuestionnaireResponse) GetQuestionnaire() *structpb.Struct {
+	if x != nil {
+		return x.Questionnaire
+	}
+	return nil
+}
+
+type GetStandaloneFHIRQuestionnaireRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Language      string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStandaloneFHIRQuestionnaireRequest) Reset() {
+	*x = GetStandaloneFHIRQuestionnaireRequest{}
+	mi := &file_research_pillars_static_static_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStandaloneFHIRQuestionnaireRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStandaloneFHIRQuestionnaireRequest) ProtoMessage() {}
+
+func (x *GetStandaloneFHIRQuestionnaireRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_static_static_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStandaloneFHIRQuestionnaireRequest.ProtoReflect.Descriptor instead.
+func (*GetStandaloneFHIRQuestionnaireRequest) Descriptor() ([]byte, []int) {
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *GetStandaloneFHIRQuestionnaireRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetStandaloneFHIRQuestionnaireRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+type GetStandaloneFHIRQuestionnaireResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Questionnaire *structpb.Struct       `protobuf:"bytes,1,opt,name=questionnaire,proto3" json:"questionnaire,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetStandaloneFHIRQuestionnaireResponse) Reset() {
+	*x = GetStandaloneFHIRQuestionnaireResponse{}
+	mi := &file_research_pillars_static_static_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetStandaloneFHIRQuestionnaireResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetStandaloneFHIRQuestionnaireResponse) ProtoMessage() {}
+
+func (x *GetStandaloneFHIRQuestionnaireResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_static_static_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetStandaloneFHIRQuestionnaireResponse.ProtoReflect.Descriptor instead.
+func (*GetStandaloneFHIRQuestionnaireResponse) Descriptor() ([]byte, []int) {
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *GetStandaloneFHIRQuestionnaireResponse) GetQuestionnaire() *structpb.Struct {
+	if x != nil {
+		return x.Questionnaire
+	}
+	return nil
+}
+
 type ChecksRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1639,7 +1847,7 @@ type ChecksRequest struct {
 
 func (x *ChecksRequest) Reset() {
 	*x = ChecksRequest{}
-	mi := &file_research_pillars_static_static_proto_msgTypes[33]
+	mi := &file_research_pillars_static_static_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1651,7 +1859,7 @@ func (x *ChecksRequest) String() string {
 func (*ChecksRequest) ProtoMessage() {}
 
 func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_static_static_proto_msgTypes[33]
+	mi := &file_research_pillars_static_static_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1664,7 +1872,7 @@ func (x *ChecksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksRequest.ProtoReflect.Descriptor instead.
 func (*ChecksRequest) Descriptor() ([]byte, []int) {
-	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{33}
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{37}
 }
 
 type ChecksResponse struct {
@@ -1676,7 +1884,7 @@ type ChecksResponse struct {
 
 func (x *ChecksResponse) Reset() {
 	*x = ChecksResponse{}
-	mi := &file_research_pillars_static_static_proto_msgTypes[34]
+	mi := &file_research_pillars_static_static_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1688,7 +1896,7 @@ func (x *ChecksResponse) String() string {
 func (*ChecksResponse) ProtoMessage() {}
 
 func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_static_static_proto_msgTypes[34]
+	mi := &file_research_pillars_static_static_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1701,7 +1909,7 @@ func (x *ChecksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChecksResponse.ProtoReflect.Descriptor instead.
 func (*ChecksResponse) Descriptor() ([]byte, []int) {
-	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{34}
+	return file_research_pillars_static_static_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ChecksResponse) GetResponse() string {
@@ -1800,7 +2008,19 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\x04body\x18\x01 \x01(\v2\x17.google.protobuf.StructR\x04body\"G\n" +
 	"\x0fGetImageRequest\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\x0f\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\x89\x01\n" +
+	"\x1bGetFHIRQuestionnaireRequest\x12 \n" +
+	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
+	"\blanguage\x18\x03 \x01(\tR\blanguage\x12\x18\n" +
+	"\aversion\x18\x04 \x01(\tR\aversion\"]\n" +
+	"\x1cGetFHIRQuestionnaireResponse\x12=\n" +
+	"\rquestionnaire\x18\x01 \x01(\v2\x17.google.protobuf.StructR\rquestionnaire\"W\n" +
+	"%GetStandaloneFHIRQuestionnaireRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
+	"\blanguage\x18\x02 \x01(\tR\blanguage\"g\n" +
+	"&GetStandaloneFHIRQuestionnaireResponse\x12=\n" +
+	"\rquestionnaire\x18\x01 \x01(\v2\x17.google.protobuf.StructR\rquestionnaire\"\x0f\n" +
 	"\rChecksRequest\",\n" +
 	"\x0eChecksResponse\x12\x1a\n" +
 	"\bresponse\x18\x01 \x01(\tR\bresponse2\xe9\x03\n" +
@@ -1833,7 +2053,10 @@ const file_research_pillars_static_static_proto_rawDesc = "" +
 	"\tUtilities\x12]\n" +
 	"\x05Proxy\x12\x1a.proto.static.ProxyRequest\x1a\x1b.proto.static.ProxyResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/utilities/proxy2x\n" +
 	"\x06Images\x12n\n" +
-	"\bGetImage\x12\x1d.proto.static.GetImageRequest\x1a\x14.google.api.HttpBody\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/images/{name}2\xcc\x01\n" +
+	"\bGetImage\x12\x1d.proto.static.GetImageRequest\x1a\x14.google.api.HttpBody\"-\x82\xd3\xe4\x93\x02'\x12%/programs/{programName}/images/{name}2\xce\x02\n" +
+	"\x04FHIR\x12\x99\x01\n" +
+	"\x10GetQuestionnaire\x12).proto.static.GetFHIRQuestionnaireRequest\x1a*.proto.static.GetFHIRQuestionnaireResponse\".\x82\xd3\xe4\x93\x02(\x12&/r5/{programName}/Questionnaire/{name}\x12\xa9\x01\n" +
+	"\x1aGetStandaloneQuestionnaire\x123.proto.static.GetStandaloneFHIRQuestionnaireRequest\x1a4.proto.static.GetStandaloneFHIRQuestionnaireResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/r5/Questionnaire/{name}2\xcc\x01\n" +
 	"\x06Checks\x12_\n" +
 	"\bLiveness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/checks/liveness\x12a\n" +
 	"\tReadiness\x12\x1b.proto.static.ChecksRequest\x1a\x1c.proto.static.ChecksResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/checks/readinessB\x97\x01\x92AQ\x12O\n" +
@@ -1852,111 +2075,121 @@ func file_research_pillars_static_static_proto_rawDescGZIP() []byte {
 	return file_research_pillars_static_static_proto_rawDescData
 }
 
-var file_research_pillars_static_static_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
+var file_research_pillars_static_static_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_research_pillars_static_static_proto_goTypes = []any{
-	(*GetProgramsRequest)(nil),          // 0: proto.static.GetProgramsRequest
-	(*GetProgramsResponse)(nil),         // 1: proto.static.GetProgramsResponse
-	(*GetProgramRequest)(nil),           // 2: proto.static.GetProgramRequest
-	(*GetProgramResponse)(nil),          // 3: proto.static.GetProgramResponse
-	(*GetProgramDataRequest)(nil),       // 4: proto.static.GetProgramDataRequest
-	(*GetProgramDataResponse)(nil),      // 5: proto.static.GetProgramDataResponse
-	(*GetProgramUpdatedAtRequest)(nil),  // 6: proto.static.GetProgramUpdatedAtRequest
-	(*GetProgramUpdatedAtResponse)(nil), // 7: proto.static.GetProgramUpdatedAtResponse
-	(*GetSurveysRequest)(nil),           // 8: proto.static.GetSurveysRequest
-	(*GetSurveysResponse)(nil),          // 9: proto.static.GetSurveysResponse
-	(*GetSurveyRequest)(nil),            // 10: proto.static.GetSurveyRequest
-	(*GetSurveyResponse)(nil),           // 11: proto.static.GetSurveyResponse
-	(*GetQuestionnairesRequest)(nil),    // 12: proto.static.GetQuestionnairesRequest
-	(*GetQuestionnairesResponse)(nil),   // 13: proto.static.GetQuestionnairesResponse
-	(*GetQuestionnaireRequest)(nil),     // 14: proto.static.GetQuestionnaireRequest
-	(*GetQuestionnaireResponse)(nil),    // 15: proto.static.GetQuestionnaireResponse
-	(*GetRoutinesRequest)(nil),          // 16: proto.static.GetRoutinesRequest
-	(*GetRoutinesResponse)(nil),         // 17: proto.static.GetRoutinesResponse
-	(*GetRoutineRequest)(nil),           // 18: proto.static.GetRoutineRequest
-	(*GetRoutineResponse)(nil),          // 19: proto.static.GetRoutineResponse
-	(*GetDisplaysRequest)(nil),          // 20: proto.static.GetDisplaysRequest
-	(*GetDisplaysResponse)(nil),         // 21: proto.static.GetDisplaysResponse
-	(*GetDisplayRequest)(nil),           // 22: proto.static.GetDisplayRequest
-	(*GetDisplayResponse)(nil),          // 23: proto.static.GetDisplayResponse
-	(*GetConsentsRequest)(nil),          // 24: proto.static.GetConsentsRequest
-	(*GetConsentsResponse)(nil),         // 25: proto.static.GetConsentsResponse
-	(*GetConsentRequest)(nil),           // 26: proto.static.GetConsentRequest
-	(*GetConsentResponse)(nil),          // 27: proto.static.GetConsentResponse
-	(*GetConsentVersionRequest)(nil),    // 28: proto.static.GetConsentVersionRequest
-	(*GetConsentVersionResponse)(nil),   // 29: proto.static.GetConsentVersionResponse
-	(*ProxyRequest)(nil),                // 30: proto.static.ProxyRequest
-	(*ProxyResponse)(nil),               // 31: proto.static.ProxyResponse
-	(*GetImageRequest)(nil),             // 32: proto.static.GetImageRequest
-	(*ChecksRequest)(nil),               // 33: proto.static.ChecksRequest
-	(*ChecksResponse)(nil),              // 34: proto.static.ChecksResponse
-	(*structpb.Struct)(nil),             // 35: google.protobuf.Struct
-	(*httpbody.HttpBody)(nil),           // 36: google.api.HttpBody
+	(*GetProgramsRequest)(nil),                     // 0: proto.static.GetProgramsRequest
+	(*GetProgramsResponse)(nil),                    // 1: proto.static.GetProgramsResponse
+	(*GetProgramRequest)(nil),                      // 2: proto.static.GetProgramRequest
+	(*GetProgramResponse)(nil),                     // 3: proto.static.GetProgramResponse
+	(*GetProgramDataRequest)(nil),                  // 4: proto.static.GetProgramDataRequest
+	(*GetProgramDataResponse)(nil),                 // 5: proto.static.GetProgramDataResponse
+	(*GetProgramUpdatedAtRequest)(nil),             // 6: proto.static.GetProgramUpdatedAtRequest
+	(*GetProgramUpdatedAtResponse)(nil),            // 7: proto.static.GetProgramUpdatedAtResponse
+	(*GetSurveysRequest)(nil),                      // 8: proto.static.GetSurveysRequest
+	(*GetSurveysResponse)(nil),                     // 9: proto.static.GetSurveysResponse
+	(*GetSurveyRequest)(nil),                       // 10: proto.static.GetSurveyRequest
+	(*GetSurveyResponse)(nil),                      // 11: proto.static.GetSurveyResponse
+	(*GetQuestionnairesRequest)(nil),               // 12: proto.static.GetQuestionnairesRequest
+	(*GetQuestionnairesResponse)(nil),              // 13: proto.static.GetQuestionnairesResponse
+	(*GetQuestionnaireRequest)(nil),                // 14: proto.static.GetQuestionnaireRequest
+	(*GetQuestionnaireResponse)(nil),               // 15: proto.static.GetQuestionnaireResponse
+	(*GetRoutinesRequest)(nil),                     // 16: proto.static.GetRoutinesRequest
+	(*GetRoutinesResponse)(nil),                    // 17: proto.static.GetRoutinesResponse
+	(*GetRoutineRequest)(nil),                      // 18: proto.static.GetRoutineRequest
+	(*GetRoutineResponse)(nil),                     // 19: proto.static.GetRoutineResponse
+	(*GetDisplaysRequest)(nil),                     // 20: proto.static.GetDisplaysRequest
+	(*GetDisplaysResponse)(nil),                    // 21: proto.static.GetDisplaysResponse
+	(*GetDisplayRequest)(nil),                      // 22: proto.static.GetDisplayRequest
+	(*GetDisplayResponse)(nil),                     // 23: proto.static.GetDisplayResponse
+	(*GetConsentsRequest)(nil),                     // 24: proto.static.GetConsentsRequest
+	(*GetConsentsResponse)(nil),                    // 25: proto.static.GetConsentsResponse
+	(*GetConsentRequest)(nil),                      // 26: proto.static.GetConsentRequest
+	(*GetConsentResponse)(nil),                     // 27: proto.static.GetConsentResponse
+	(*GetConsentVersionRequest)(nil),               // 28: proto.static.GetConsentVersionRequest
+	(*GetConsentVersionResponse)(nil),              // 29: proto.static.GetConsentVersionResponse
+	(*ProxyRequest)(nil),                           // 30: proto.static.ProxyRequest
+	(*ProxyResponse)(nil),                          // 31: proto.static.ProxyResponse
+	(*GetImageRequest)(nil),                        // 32: proto.static.GetImageRequest
+	(*GetFHIRQuestionnaireRequest)(nil),            // 33: proto.static.GetFHIRQuestionnaireRequest
+	(*GetFHIRQuestionnaireResponse)(nil),           // 34: proto.static.GetFHIRQuestionnaireResponse
+	(*GetStandaloneFHIRQuestionnaireRequest)(nil),  // 35: proto.static.GetStandaloneFHIRQuestionnaireRequest
+	(*GetStandaloneFHIRQuestionnaireResponse)(nil), // 36: proto.static.GetStandaloneFHIRQuestionnaireResponse
+	(*ChecksRequest)(nil),                          // 37: proto.static.ChecksRequest
+	(*ChecksResponse)(nil),                         // 38: proto.static.ChecksResponse
+	(*structpb.Struct)(nil),                        // 39: google.protobuf.Struct
+	(*httpbody.HttpBody)(nil),                      // 40: google.api.HttpBody
 }
 var file_research_pillars_static_static_proto_depIdxs = []int32{
-	35, // 0: proto.static.GetProgramsResponse.programs:type_name -> google.protobuf.Struct
-	35, // 1: proto.static.GetProgramResponse.program:type_name -> google.protobuf.Struct
-	35, // 2: proto.static.GetProgramDataResponse.program:type_name -> google.protobuf.Struct
-	35, // 3: proto.static.GetProgramDataResponse.surveys:type_name -> google.protobuf.Struct
-	35, // 4: proto.static.GetProgramDataResponse.questionnaires:type_name -> google.protobuf.Struct
-	35, // 5: proto.static.GetProgramDataResponse.consents:type_name -> google.protobuf.Struct
-	35, // 6: proto.static.GetProgramDataResponse.routines:type_name -> google.protobuf.Struct
-	35, // 7: proto.static.GetProgramDataResponse.displays:type_name -> google.protobuf.Struct
-	35, // 8: proto.static.GetSurveysResponse.surveys:type_name -> google.protobuf.Struct
-	35, // 9: proto.static.GetSurveyResponse.survey:type_name -> google.protobuf.Struct
-	35, // 10: proto.static.GetQuestionnairesResponse.questionnaires:type_name -> google.protobuf.Struct
-	35, // 11: proto.static.GetQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
-	35, // 12: proto.static.GetRoutinesResponse.routines:type_name -> google.protobuf.Struct
-	35, // 13: proto.static.GetRoutineResponse.routine:type_name -> google.protobuf.Struct
-	35, // 14: proto.static.GetDisplaysResponse.displays:type_name -> google.protobuf.Struct
-	35, // 15: proto.static.GetDisplayResponse.display:type_name -> google.protobuf.Struct
-	35, // 16: proto.static.GetConsentsResponse.consents:type_name -> google.protobuf.Struct
-	35, // 17: proto.static.GetConsentResponse.consents:type_name -> google.protobuf.Struct
-	35, // 18: proto.static.GetConsentVersionResponse.consent:type_name -> google.protobuf.Struct
-	35, // 19: proto.static.ProxyRequest.params:type_name -> google.protobuf.Struct
-	35, // 20: proto.static.ProxyResponse.body:type_name -> google.protobuf.Struct
-	0,  // 21: proto.static.Programs.GetPrograms:input_type -> proto.static.GetProgramsRequest
-	2,  // 22: proto.static.Programs.GetProgram:input_type -> proto.static.GetProgramRequest
-	4,  // 23: proto.static.Programs.GetProgramData:input_type -> proto.static.GetProgramDataRequest
-	6,  // 24: proto.static.Programs.GetProgramUpdatedAt:input_type -> proto.static.GetProgramUpdatedAtRequest
-	8,  // 25: proto.static.Surveys.GetSurveys:input_type -> proto.static.GetSurveysRequest
-	10, // 26: proto.static.Surveys.GetSurvey:input_type -> proto.static.GetSurveyRequest
-	12, // 27: proto.static.Questionnaires.GetQuestionnaires:input_type -> proto.static.GetQuestionnairesRequest
-	14, // 28: proto.static.Questionnaires.GetQuestionnaire:input_type -> proto.static.GetQuestionnaireRequest
-	16, // 29: proto.static.Routines.GetRoutines:input_type -> proto.static.GetRoutinesRequest
-	18, // 30: proto.static.Routines.GetRoutine:input_type -> proto.static.GetRoutineRequest
-	20, // 31: proto.static.Displays.GetDisplays:input_type -> proto.static.GetDisplaysRequest
-	22, // 32: proto.static.Displays.GetDisplay:input_type -> proto.static.GetDisplayRequest
-	24, // 33: proto.static.Consents.GetConsents:input_type -> proto.static.GetConsentsRequest
-	26, // 34: proto.static.Consents.GetConsent:input_type -> proto.static.GetConsentRequest
-	28, // 35: proto.static.Consents.GetConsentVersion:input_type -> proto.static.GetConsentVersionRequest
-	30, // 36: proto.static.Utilities.Proxy:input_type -> proto.static.ProxyRequest
-	32, // 37: proto.static.Images.GetImage:input_type -> proto.static.GetImageRequest
-	33, // 38: proto.static.Checks.Liveness:input_type -> proto.static.ChecksRequest
-	33, // 39: proto.static.Checks.Readiness:input_type -> proto.static.ChecksRequest
-	1,  // 40: proto.static.Programs.GetPrograms:output_type -> proto.static.GetProgramsResponse
-	3,  // 41: proto.static.Programs.GetProgram:output_type -> proto.static.GetProgramResponse
-	5,  // 42: proto.static.Programs.GetProgramData:output_type -> proto.static.GetProgramDataResponse
-	7,  // 43: proto.static.Programs.GetProgramUpdatedAt:output_type -> proto.static.GetProgramUpdatedAtResponse
-	9,  // 44: proto.static.Surveys.GetSurveys:output_type -> proto.static.GetSurveysResponse
-	11, // 45: proto.static.Surveys.GetSurvey:output_type -> proto.static.GetSurveyResponse
-	13, // 46: proto.static.Questionnaires.GetQuestionnaires:output_type -> proto.static.GetQuestionnairesResponse
-	15, // 47: proto.static.Questionnaires.GetQuestionnaire:output_type -> proto.static.GetQuestionnaireResponse
-	17, // 48: proto.static.Routines.GetRoutines:output_type -> proto.static.GetRoutinesResponse
-	19, // 49: proto.static.Routines.GetRoutine:output_type -> proto.static.GetRoutineResponse
-	21, // 50: proto.static.Displays.GetDisplays:output_type -> proto.static.GetDisplaysResponse
-	23, // 51: proto.static.Displays.GetDisplay:output_type -> proto.static.GetDisplayResponse
-	25, // 52: proto.static.Consents.GetConsents:output_type -> proto.static.GetConsentsResponse
-	27, // 53: proto.static.Consents.GetConsent:output_type -> proto.static.GetConsentResponse
-	29, // 54: proto.static.Consents.GetConsentVersion:output_type -> proto.static.GetConsentVersionResponse
-	31, // 55: proto.static.Utilities.Proxy:output_type -> proto.static.ProxyResponse
-	36, // 56: proto.static.Images.GetImage:output_type -> google.api.HttpBody
-	34, // 57: proto.static.Checks.Liveness:output_type -> proto.static.ChecksResponse
-	34, // 58: proto.static.Checks.Readiness:output_type -> proto.static.ChecksResponse
-	40, // [40:59] is the sub-list for method output_type
-	21, // [21:40] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	39, // 0: proto.static.GetProgramsResponse.programs:type_name -> google.protobuf.Struct
+	39, // 1: proto.static.GetProgramResponse.program:type_name -> google.protobuf.Struct
+	39, // 2: proto.static.GetProgramDataResponse.program:type_name -> google.protobuf.Struct
+	39, // 3: proto.static.GetProgramDataResponse.surveys:type_name -> google.protobuf.Struct
+	39, // 4: proto.static.GetProgramDataResponse.questionnaires:type_name -> google.protobuf.Struct
+	39, // 5: proto.static.GetProgramDataResponse.consents:type_name -> google.protobuf.Struct
+	39, // 6: proto.static.GetProgramDataResponse.routines:type_name -> google.protobuf.Struct
+	39, // 7: proto.static.GetProgramDataResponse.displays:type_name -> google.protobuf.Struct
+	39, // 8: proto.static.GetSurveysResponse.surveys:type_name -> google.protobuf.Struct
+	39, // 9: proto.static.GetSurveyResponse.survey:type_name -> google.protobuf.Struct
+	39, // 10: proto.static.GetQuestionnairesResponse.questionnaires:type_name -> google.protobuf.Struct
+	39, // 11: proto.static.GetQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
+	39, // 12: proto.static.GetRoutinesResponse.routines:type_name -> google.protobuf.Struct
+	39, // 13: proto.static.GetRoutineResponse.routine:type_name -> google.protobuf.Struct
+	39, // 14: proto.static.GetDisplaysResponse.displays:type_name -> google.protobuf.Struct
+	39, // 15: proto.static.GetDisplayResponse.display:type_name -> google.protobuf.Struct
+	39, // 16: proto.static.GetConsentsResponse.consents:type_name -> google.protobuf.Struct
+	39, // 17: proto.static.GetConsentResponse.consents:type_name -> google.protobuf.Struct
+	39, // 18: proto.static.GetConsentVersionResponse.consent:type_name -> google.protobuf.Struct
+	39, // 19: proto.static.ProxyRequest.params:type_name -> google.protobuf.Struct
+	39, // 20: proto.static.ProxyResponse.body:type_name -> google.protobuf.Struct
+	39, // 21: proto.static.GetFHIRQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
+	39, // 22: proto.static.GetStandaloneFHIRQuestionnaireResponse.questionnaire:type_name -> google.protobuf.Struct
+	0,  // 23: proto.static.Programs.GetPrograms:input_type -> proto.static.GetProgramsRequest
+	2,  // 24: proto.static.Programs.GetProgram:input_type -> proto.static.GetProgramRequest
+	4,  // 25: proto.static.Programs.GetProgramData:input_type -> proto.static.GetProgramDataRequest
+	6,  // 26: proto.static.Programs.GetProgramUpdatedAt:input_type -> proto.static.GetProgramUpdatedAtRequest
+	8,  // 27: proto.static.Surveys.GetSurveys:input_type -> proto.static.GetSurveysRequest
+	10, // 28: proto.static.Surveys.GetSurvey:input_type -> proto.static.GetSurveyRequest
+	12, // 29: proto.static.Questionnaires.GetQuestionnaires:input_type -> proto.static.GetQuestionnairesRequest
+	14, // 30: proto.static.Questionnaires.GetQuestionnaire:input_type -> proto.static.GetQuestionnaireRequest
+	16, // 31: proto.static.Routines.GetRoutines:input_type -> proto.static.GetRoutinesRequest
+	18, // 32: proto.static.Routines.GetRoutine:input_type -> proto.static.GetRoutineRequest
+	20, // 33: proto.static.Displays.GetDisplays:input_type -> proto.static.GetDisplaysRequest
+	22, // 34: proto.static.Displays.GetDisplay:input_type -> proto.static.GetDisplayRequest
+	24, // 35: proto.static.Consents.GetConsents:input_type -> proto.static.GetConsentsRequest
+	26, // 36: proto.static.Consents.GetConsent:input_type -> proto.static.GetConsentRequest
+	28, // 37: proto.static.Consents.GetConsentVersion:input_type -> proto.static.GetConsentVersionRequest
+	30, // 38: proto.static.Utilities.Proxy:input_type -> proto.static.ProxyRequest
+	32, // 39: proto.static.Images.GetImage:input_type -> proto.static.GetImageRequest
+	33, // 40: proto.static.FHIR.GetQuestionnaire:input_type -> proto.static.GetFHIRQuestionnaireRequest
+	35, // 41: proto.static.FHIR.GetStandaloneQuestionnaire:input_type -> proto.static.GetStandaloneFHIRQuestionnaireRequest
+	37, // 42: proto.static.Checks.Liveness:input_type -> proto.static.ChecksRequest
+	37, // 43: proto.static.Checks.Readiness:input_type -> proto.static.ChecksRequest
+	1,  // 44: proto.static.Programs.GetPrograms:output_type -> proto.static.GetProgramsResponse
+	3,  // 45: proto.static.Programs.GetProgram:output_type -> proto.static.GetProgramResponse
+	5,  // 46: proto.static.Programs.GetProgramData:output_type -> proto.static.GetProgramDataResponse
+	7,  // 47: proto.static.Programs.GetProgramUpdatedAt:output_type -> proto.static.GetProgramUpdatedAtResponse
+	9,  // 48: proto.static.Surveys.GetSurveys:output_type -> proto.static.GetSurveysResponse
+	11, // 49: proto.static.Surveys.GetSurvey:output_type -> proto.static.GetSurveyResponse
+	13, // 50: proto.static.Questionnaires.GetQuestionnaires:output_type -> proto.static.GetQuestionnairesResponse
+	15, // 51: proto.static.Questionnaires.GetQuestionnaire:output_type -> proto.static.GetQuestionnaireResponse
+	17, // 52: proto.static.Routines.GetRoutines:output_type -> proto.static.GetRoutinesResponse
+	19, // 53: proto.static.Routines.GetRoutine:output_type -> proto.static.GetRoutineResponse
+	21, // 54: proto.static.Displays.GetDisplays:output_type -> proto.static.GetDisplaysResponse
+	23, // 55: proto.static.Displays.GetDisplay:output_type -> proto.static.GetDisplayResponse
+	25, // 56: proto.static.Consents.GetConsents:output_type -> proto.static.GetConsentsResponse
+	27, // 57: proto.static.Consents.GetConsent:output_type -> proto.static.GetConsentResponse
+	29, // 58: proto.static.Consents.GetConsentVersion:output_type -> proto.static.GetConsentVersionResponse
+	31, // 59: proto.static.Utilities.Proxy:output_type -> proto.static.ProxyResponse
+	40, // 60: proto.static.Images.GetImage:output_type -> google.api.HttpBody
+	34, // 61: proto.static.FHIR.GetQuestionnaire:output_type -> proto.static.GetFHIRQuestionnaireResponse
+	36, // 62: proto.static.FHIR.GetStandaloneQuestionnaire:output_type -> proto.static.GetStandaloneFHIRQuestionnaireResponse
+	38, // 63: proto.static.Checks.Liveness:output_type -> proto.static.ChecksResponse
+	38, // 64: proto.static.Checks.Readiness:output_type -> proto.static.ChecksResponse
+	44, // [44:65] is the sub-list for method output_type
+	23, // [23:44] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_static_static_proto_init() }
@@ -1970,9 +2203,9 @@ func file_research_pillars_static_static_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_research_pillars_static_static_proto_rawDesc), len(file_research_pillars_static_static_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   35,
+			NumMessages:   39,
 			NumExtensions: 0,
-			NumServices:   9,
+			NumServices:   10,
 		},
 		GoTypes:           file_research_pillars_static_static_proto_goTypes,
 		DependencyIndexes: file_research_pillars_static_static_proto_depIdxs,
