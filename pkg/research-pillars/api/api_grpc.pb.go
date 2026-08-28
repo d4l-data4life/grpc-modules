@@ -3134,6 +3134,7 @@ const (
 	Uploads_GetSubjects_FullMethodName        = "/proto.api.Uploads/GetSubjects"
 	Uploads_GetSubjectData_FullMethodName     = "/proto.api.Uploads/GetSubjectData"
 	Uploads_GetSubjectResource_FullMethodName = "/proto.api.Uploads/GetSubjectResource"
+	Uploads_GetTrackingEvents_FullMethodName  = "/proto.api.Uploads/GetTrackingEvents"
 	Uploads_GetDownloadList_FullMethodName    = "/proto.api.Uploads/GetDownloadList"
 	Uploads_GetDownloadTicket_FullMethodName  = "/proto.api.Uploads/GetDownloadTicket"
 	Uploads_GetStatistics_FullMethodName      = "/proto.api.Uploads/GetStatistics"
@@ -3146,6 +3147,7 @@ type UploadsClient interface {
 	GetSubjects(ctx context.Context, in *GetSubjectsRequest, opts ...grpc.CallOption) (*GetSubjectsResponse, error)
 	GetSubjectData(ctx context.Context, in *GetSubjectDataRequest, opts ...grpc.CallOption) (*GetSubjectDataResponse, error)
 	GetSubjectResource(ctx context.Context, in *GetSubjectResourceRequest, opts ...grpc.CallOption) (*GetSubjectResourceResponse, error)
+	GetTrackingEvents(ctx context.Context, in *GetTrackingEventsRequest, opts ...grpc.CallOption) (*GetTrackingEventsResponse, error)
 	GetDownloadList(ctx context.Context, in *GetDownloadListRequest, opts ...grpc.CallOption) (*GetDownloadListResponse, error)
 	GetDownloadTicket(ctx context.Context, in *GetDownloadTicketRequest, opts ...grpc.CallOption) (*GetDownloadTicketResponse, error)
 	GetStatistics(ctx context.Context, in *GetStatisticsRequest, opts ...grpc.CallOption) (*GetStatisticsResponse, error)
@@ -3189,6 +3191,16 @@ func (c *uploadsClient) GetSubjectResource(ctx context.Context, in *GetSubjectRe
 	return out, nil
 }
 
+func (c *uploadsClient) GetTrackingEvents(ctx context.Context, in *GetTrackingEventsRequest, opts ...grpc.CallOption) (*GetTrackingEventsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTrackingEventsResponse)
+	err := c.cc.Invoke(ctx, Uploads_GetTrackingEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *uploadsClient) GetDownloadList(ctx context.Context, in *GetDownloadListRequest, opts ...grpc.CallOption) (*GetDownloadListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetDownloadListResponse)
@@ -3226,6 +3238,7 @@ type UploadsServer interface {
 	GetSubjects(context.Context, *GetSubjectsRequest) (*GetSubjectsResponse, error)
 	GetSubjectData(context.Context, *GetSubjectDataRequest) (*GetSubjectDataResponse, error)
 	GetSubjectResource(context.Context, *GetSubjectResourceRequest) (*GetSubjectResourceResponse, error)
+	GetTrackingEvents(context.Context, *GetTrackingEventsRequest) (*GetTrackingEventsResponse, error)
 	GetDownloadList(context.Context, *GetDownloadListRequest) (*GetDownloadListResponse, error)
 	GetDownloadTicket(context.Context, *GetDownloadTicketRequest) (*GetDownloadTicketResponse, error)
 	GetStatistics(context.Context, *GetStatisticsRequest) (*GetStatisticsResponse, error)
@@ -3247,6 +3260,9 @@ func (UnimplementedUploadsServer) GetSubjectData(context.Context, *GetSubjectDat
 }
 func (UnimplementedUploadsServer) GetSubjectResource(context.Context, *GetSubjectResourceRequest) (*GetSubjectResourceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSubjectResource not implemented")
+}
+func (UnimplementedUploadsServer) GetTrackingEvents(context.Context, *GetTrackingEventsRequest) (*GetTrackingEventsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTrackingEvents not implemented")
 }
 func (UnimplementedUploadsServer) GetDownloadList(context.Context, *GetDownloadListRequest) (*GetDownloadListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetDownloadList not implemented")
@@ -3332,6 +3348,24 @@ func _Uploads_GetSubjectResource_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Uploads_GetTrackingEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrackingEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UploadsServer).GetTrackingEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Uploads_GetTrackingEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UploadsServer).GetTrackingEvents(ctx, req.(*GetTrackingEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Uploads_GetDownloadList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDownloadListRequest)
 	if err := dec(in); err != nil {
@@ -3404,6 +3438,10 @@ var Uploads_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSubjectResource",
 			Handler:    _Uploads_GetSubjectResource_Handler,
+		},
+		{
+			MethodName: "GetTrackingEvents",
+			Handler:    _Uploads_GetTrackingEvents_Handler,
 		},
 		{
 			MethodName: "GetDownloadList",
