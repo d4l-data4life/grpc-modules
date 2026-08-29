@@ -1933,6 +1933,29 @@ paths:
           type: string
       tags:
         - Uploads
+  /uploads/subjects/{programName}/{subjectID}/tracking-events:
+    get:
+      operationId: Uploads_GetTrackingEvents
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetTrackingEventsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
   /uploads/subjects/{programName}/{subjectID}/{resourceID}:
     get:
       operationId: Uploads_GetSubjectResource
@@ -2579,6 +2602,16 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoDeviceToken'
+  apiGetTrackingEventsResponse:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          type: object
+        title: |-
+          BI tracking events with their batch context, as served by the
+          data-receiver subject API (JSON passthrough like GetSubjectData)
   apiGetUsersResponse:
     type: object
     properties:

@@ -884,6 +884,12 @@ service Uploads {
     };
   }
 
+  rpc GetTrackingEvents(GetTrackingEventsRequest) returns (GetTrackingEventsResponse) {
+    option (google.api.http) = {
+      get : "/uploads/subjects/{programName}/{subjectID}/tracking-events"
+    };
+  }
+
   rpc GetDownloadList(GetDownloadListRequest) returns (GetDownloadListResponse) {
     option (google.api.http) = {
       get : "/download/{programName}",
@@ -919,6 +925,16 @@ message GetSubjectResourceRequest {
   string programName = 1;
   string subjectID = 2;
   string resourceID = 3;
+}
+
+message GetTrackingEventsRequest {
+  string programName = 1;
+  string subjectID = 2;
+}
+message GetTrackingEventsResponse {
+  // BI tracking events with their batch context, as served by the
+  // data-receiver subject API (JSON passthrough like GetSubjectData)
+  repeated google.protobuf.Struct events = 1;
 }
 message GetSubjectResourceResponse {
   google.protobuf.Struct resource = 1;

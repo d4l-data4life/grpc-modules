@@ -586,6 +586,19 @@ export interface GetSubjectResourceRequest {
   resourceID: string;
 }
 
+export interface GetTrackingEventsRequest {
+  programName: string;
+  subjectID: string;
+}
+
+export interface GetTrackingEventsResponse {
+  /**
+   * BI tracking events with their batch context, as served by the
+   * data-receiver subject API (JSON passthrough like GetSubjectData)
+   */
+  events: { [key: string]: any }[];
+}
+
 export interface GetSubjectResourceResponse {
   resource?: { [key: string]: any } | undefined;
 }
@@ -10444,6 +10457,158 @@ export const GetSubjectResourceRequest: MessageFns<GetSubjectResourceRequest> = 
   },
 };
 
+function createBaseGetTrackingEventsRequest(): GetTrackingEventsRequest {
+  return { programName: "", subjectID: "" };
+}
+
+export const GetTrackingEventsRequest: MessageFns<GetTrackingEventsRequest> = {
+  encode(message: GetTrackingEventsRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.programName !== "") {
+      writer.uint32(10).string(message.programName);
+    }
+    if (message.subjectID !== "") {
+      writer.uint32(18).string(message.subjectID);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetTrackingEventsRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetTrackingEventsRequest();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.programName = reader.string();
+            continue;
+          }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.subjectID = reader.string();
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetTrackingEventsRequest {
+    return {
+      programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
+      subjectID: isSet(object.subjectID) ? globalThis.String(object.subjectID) : "",
+    };
+  },
+
+  toJSON(message: GetTrackingEventsRequest): unknown {
+    const obj: any = {};
+    if (message.programName !== "") {
+      obj.programName = message.programName;
+    }
+    if (message.subjectID !== "") {
+      obj.subjectID = message.subjectID;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetTrackingEventsRequest>, I>>(base?: I): GetTrackingEventsRequest {
+    return GetTrackingEventsRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetTrackingEventsRequest>, I>>(object: I): GetTrackingEventsRequest {
+    const message = createBaseGetTrackingEventsRequest();
+    message.programName = object.programName ?? "";
+    message.subjectID = object.subjectID ?? "";
+    return message;
+  },
+};
+
+function createBaseGetTrackingEventsResponse(): GetTrackingEventsResponse {
+  return { events: [] };
+}
+
+export const GetTrackingEventsResponse: MessageFns<GetTrackingEventsResponse> = {
+  encode(message: GetTrackingEventsResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.events) {
+      Struct.encode(Struct.wrap(v!), writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): GetTrackingEventsResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseGetTrackingEventsResponse();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.events.push(Struct.unwrap(Struct.decode(reader, reader.uint32())));
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): GetTrackingEventsResponse {
+    return { events: globalThis.Array.isArray(object?.events) ? [...object.events] : [] };
+  },
+
+  toJSON(message: GetTrackingEventsResponse): unknown {
+    const obj: any = {};
+    if (message.events?.length) {
+      obj.events = message.events;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<GetTrackingEventsResponse>, I>>(base?: I): GetTrackingEventsResponse {
+    return GetTrackingEventsResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetTrackingEventsResponse>, I>>(object: I): GetTrackingEventsResponse {
+    const message = createBaseGetTrackingEventsResponse();
+    message.events = object.events?.map((e) => e) || [];
+    return message;
+  },
+};
+
 function createBaseGetSubjectResourceResponse(): GetSubjectResourceResponse {
   return { resource: undefined };
 }
@@ -17064,6 +17229,10 @@ export interface Uploads {
     request: DeepPartial<GetSubjectResourceRequest>,
     metadata?: grpc.Metadata,
   ): Promise<GetSubjectResourceResponse>;
+  GetTrackingEvents(
+    request: DeepPartial<GetTrackingEventsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetTrackingEventsResponse>;
   GetDownloadList(
     request: DeepPartial<GetDownloadListRequest>,
     metadata?: grpc.Metadata,
@@ -17083,6 +17252,7 @@ export class UploadsClientImpl implements Uploads {
     this.GetSubjects = this.GetSubjects.bind(this);
     this.GetSubjectData = this.GetSubjectData.bind(this);
     this.GetSubjectResource = this.GetSubjectResource.bind(this);
+    this.GetTrackingEvents = this.GetTrackingEvents.bind(this);
     this.GetDownloadList = this.GetDownloadList.bind(this);
     this.GetDownloadTicket = this.GetDownloadTicket.bind(this);
     this.GetStatistics = this.GetStatistics.bind(this);
@@ -17104,6 +17274,13 @@ export class UploadsClientImpl implements Uploads {
     metadata?: grpc.Metadata,
   ): Promise<GetSubjectResourceResponse> {
     return this.rpc.unary(UploadsGetSubjectResourceDesc, GetSubjectResourceRequest.fromPartial(request), metadata);
+  }
+
+  GetTrackingEvents(
+    request: DeepPartial<GetTrackingEventsRequest>,
+    metadata?: grpc.Metadata,
+  ): Promise<GetTrackingEventsResponse> {
+    return this.rpc.unary(UploadsGetTrackingEventsDesc, GetTrackingEventsRequest.fromPartial(request), metadata);
   }
 
   GetDownloadList(
@@ -17186,6 +17363,29 @@ export const UploadsGetSubjectResourceDesc: UnaryMethodDefinitionish = {
   responseType: {
     deserializeBinary(data: Uint8Array) {
       const value = GetSubjectResourceResponse.decode(data);
+      return {
+        ...value,
+        toObject() {
+          return value;
+        },
+      };
+    },
+  } as any,
+};
+
+export const UploadsGetTrackingEventsDesc: UnaryMethodDefinitionish = {
+  methodName: "GetTrackingEvents",
+  service: UploadsDesc,
+  requestStream: false,
+  responseStream: false,
+  requestType: {
+    serializeBinary() {
+      return GetTrackingEventsRequest.encode(this).finish();
+    },
+  } as any,
+  responseType: {
+    deserializeBinary(data: Uint8Array) {
+      const value = GetTrackingEventsResponse.decode(data);
       return {
         ...value,
         toObject() {

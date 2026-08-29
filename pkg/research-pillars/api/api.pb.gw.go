@@ -3081,6 +3081,61 @@ func local_request_Uploads_GetSubjectResource_0(ctx context.Context, marshaler r
 	return msg, metadata, err
 }
 
+func request_Uploads_GetTrackingEvents_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetTrackingEventsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["subjectID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
+	}
+	protoReq.SubjectID, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetTrackingEvents(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Uploads_GetTrackingEvents_0(ctx context.Context, marshaler runtime.Marshaler, server UploadsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetTrackingEventsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["programName"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programName")
+	}
+	protoReq.ProgramName, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programName", err)
+	}
+	val, ok = pathParams["subjectID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "subjectID")
+	}
+	protoReq.SubjectID, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "subjectID", err)
+	}
+	msg, err := server.GetTrackingEvents(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_Uploads_GetDownloadList_0(ctx context.Context, marshaler runtime.Marshaler, client UploadsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetDownloadListRequest
@@ -5997,6 +6052,26 @@ func RegisterUploadsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		}
 		forward_Uploads_GetSubjectResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_Uploads_GetTrackingEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/proto.api.Uploads/GetTrackingEvents", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/tracking-events"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Uploads_GetTrackingEvents_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Uploads_GetTrackingEvents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -8443,6 +8518,23 @@ func RegisterUploadsHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		}
 		forward_Uploads_GetSubjectResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_Uploads_GetTrackingEvents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/proto.api.Uploads/GetTrackingEvents", runtime.WithHTTPPathPattern("/uploads/subjects/{programName}/{subjectID}/tracking-events"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Uploads_GetTrackingEvents_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Uploads_GetTrackingEvents_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_Uploads_GetDownloadList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -8501,6 +8593,7 @@ var (
 	pattern_Uploads_GetSubjects_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"uploads", "subjects", "programName"}, ""))
 	pattern_Uploads_GetSubjectData_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"uploads", "subjects", "programName", "subjectID"}, ""))
 	pattern_Uploads_GetSubjectResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"uploads", "subjects", "programName", "subjectID", "resourceID"}, ""))
+	pattern_Uploads_GetTrackingEvents_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"uploads", "subjects", "programName", "subjectID", "tracking-events"}, ""))
 	pattern_Uploads_GetDownloadList_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
 	pattern_Uploads_GetDownloadTicket_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"download", "programName"}, ""))
 	pattern_Uploads_GetStatistics_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2}, []string{"statistics", "programName", "type"}, ""))
@@ -8510,6 +8603,7 @@ var (
 	forward_Uploads_GetSubjects_0        = runtime.ForwardResponseMessage
 	forward_Uploads_GetSubjectData_0     = runtime.ForwardResponseMessage
 	forward_Uploads_GetSubjectResource_0 = runtime.ForwardResponseMessage
+	forward_Uploads_GetTrackingEvents_0  = runtime.ForwardResponseMessage
 	forward_Uploads_GetDownloadList_0    = runtime.ForwardResponseMessage
 	forward_Uploads_GetDownloadTicket_0  = runtime.ForwardResponseMessage
 	forward_Uploads_GetStatistics_0      = runtime.ForwardResponseMessage
