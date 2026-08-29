@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `Uploads.GetTrackingEvents` returning a subject's BI tracking events with their batch context (Research Studio tracking-events screen)
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.37.0] - 2026-08-29
+
+### Added
+
+- `Uploads.GetTrackingEvents` returning a subject's BI tracking events with their batch context (Research Studio tracking-events screen)
 
 ## [v1.36.0] - 2026-08-26
 
@@ -320,7 +324,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.36.0...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.37.0...HEAD
+[v1.37.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.36.0...v1.37.0
 [v1.36.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.35.0...v1.36.0
 [v1.35.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.34.0...v1.35.0
 [v1.34.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.33.0...v1.34.0
