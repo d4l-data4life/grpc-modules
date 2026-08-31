@@ -369,7 +369,7 @@ export interface Question {
   /** topic ids this question's answer(s) publish to */
   output: string[];
   /** bindings for enable_when_expression (%name -> topic or local question) */
-  questionVariables: QuestionVariable[];
+  itemVariables: ItemVariable[];
   /** SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates */
   enableWhenExpression?: string | undefined;
 }
@@ -412,9 +412,9 @@ export interface EnableWhen {
 /**
  * A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
  * Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
- * FHIR custom extension questionnaire-item-variable (FHIR calls questionnaire nodes "items").
+ * FHIR custom extension questionnaire-item-variable.
  */
-export interface QuestionVariable {
+export interface ItemVariable {
   /** FHIRPath variable name, referenced as %name */
   name: string;
   /** local linkId */
@@ -736,7 +736,7 @@ function createBaseQuestion(): Question {
     image: undefined,
     input: [],
     output: [],
-    questionVariables: [],
+    itemVariables: [],
     enableWhenExpression: undefined,
   };
 }
@@ -782,8 +782,8 @@ export const Question: MessageFns<Question> = {
     for (const v of message.output) {
       writer.uint32(106).string(v!);
     }
-    for (const v of message.questionVariables) {
-      QuestionVariable.encode(v!, writer.uint32(114).fork()).join();
+    for (const v of message.itemVariables) {
+      ItemVariable.encode(v!, writer.uint32(114).fork()).join();
     }
     if (message.enableWhenExpression !== undefined) {
       writer.uint32(122).string(message.enableWhenExpression);
@@ -916,7 +916,7 @@ export const Question: MessageFns<Question> = {
               break;
             }
 
-            message.questionVariables.push(QuestionVariable.decode(reader, reader.uint32()));
+            message.itemVariables.push(ItemVariable.decode(reader, reader.uint32()));
             continue;
           }
           case 15: {
@@ -977,10 +977,10 @@ export const Question: MessageFns<Question> = {
       image: isSet(object.image) ? QuestionImage.fromJSON(object.image) : undefined,
       input: globalThis.Array.isArray(object?.input) ? object.input.map((e: any) => TopicInput.fromJSON(e)) : [],
       output: globalThis.Array.isArray(object?.output) ? object.output.map((e: any) => globalThis.String(e)) : [],
-      questionVariables: globalThis.Array.isArray(object?.questionVariables)
-        ? object.questionVariables.map((e: any) => QuestionVariable.fromJSON(e))
-        : globalThis.Array.isArray(object?.question_variables)
-        ? object.question_variables.map((e: any) => QuestionVariable.fromJSON(e))
+      itemVariables: globalThis.Array.isArray(object?.itemVariables)
+        ? object.itemVariables.map((e: any) => ItemVariable.fromJSON(e))
+        : globalThis.Array.isArray(object?.item_variables)
+        ? object.item_variables.map((e: any) => ItemVariable.fromJSON(e))
         : [],
       enableWhenExpression: isSet(object.enableWhenExpression)
         ? globalThis.String(object.enableWhenExpression)
@@ -1037,8 +1037,8 @@ export const Question: MessageFns<Question> = {
     if (message.output?.length) {
       obj.output = message.output;
     }
-    if (message.questionVariables?.length) {
-      obj.questionVariables = message.questionVariables.map((e) => QuestionVariable.toJSON(e));
+    if (message.itemVariables?.length) {
+      obj.itemVariables = message.itemVariables.map((e) => ItemVariable.toJSON(e));
     }
     if (message.enableWhenExpression !== undefined) {
       obj.enableWhenExpression = message.enableWhenExpression;
@@ -1076,7 +1076,7 @@ export const Question: MessageFns<Question> = {
       : undefined;
     message.input = object.input?.map((e) => TopicInput.fromPartial(e)) || [];
     message.output = object.output?.map((e) => e) || [];
-    message.questionVariables = object.questionVariables?.map((e) => QuestionVariable.fromPartial(e)) || [];
+    message.itemVariables = object.itemVariables?.map((e) => ItemVariable.fromPartial(e)) || [];
     message.enableWhenExpression = object.enableWhenExpression ?? undefined;
     return message;
   },
@@ -1698,12 +1698,12 @@ export const EnableWhen: MessageFns<EnableWhen> = {
   },
 };
 
-function createBaseQuestionVariable(): QuestionVariable {
+function createBaseItemVariable(): ItemVariable {
   return { name: "", question: undefined, topic: undefined, scope: undefined };
 }
 
-export const QuestionVariable: MessageFns<QuestionVariable> = {
-  encode(message: QuestionVariable, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const ItemVariable: MessageFns<ItemVariable> = {
+  encode(message: ItemVariable, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.name !== "") {
       writer.uint32(10).string(message.name);
     }
@@ -1719,7 +1719,7 @@ export const QuestionVariable: MessageFns<QuestionVariable> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): QuestionVariable {
+  decode(input: BinaryReader | Uint8Array, length?: number): ItemVariable {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
     if (previousRecursionDepth >= 100) {
@@ -1728,7 +1728,7 @@ export const QuestionVariable: MessageFns<QuestionVariable> = {
     (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
     try {
       const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseQuestionVariable();
+      const message = createBaseItemVariable();
       while (reader.pos < end) {
         const tag = reader.uint32();
         switch (tag >>> 3) {
@@ -1776,7 +1776,7 @@ export const QuestionVariable: MessageFns<QuestionVariable> = {
     }
   },
 
-  fromJSON(object: any): QuestionVariable {
+  fromJSON(object: any): ItemVariable {
     return {
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       question: isSet(object.question) ? globalThis.String(object.question) : undefined,
@@ -1785,7 +1785,7 @@ export const QuestionVariable: MessageFns<QuestionVariable> = {
     };
   },
 
-  toJSON(message: QuestionVariable): unknown {
+  toJSON(message: ItemVariable): unknown {
     const obj: any = {};
     if (message.name !== "") {
       obj.name = message.name;
@@ -1802,11 +1802,11 @@ export const QuestionVariable: MessageFns<QuestionVariable> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QuestionVariable>, I>>(base?: I): QuestionVariable {
-    return QuestionVariable.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ItemVariable>, I>>(base?: I): ItemVariable {
+    return ItemVariable.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<QuestionVariable>, I>>(object: I): QuestionVariable {
-    const message = createBaseQuestionVariable();
+  fromPartial<I extends Exact<DeepPartial<ItemVariable>, I>>(object: I): ItemVariable {
+    const message = createBaseItemVariable();
     message.name = object.name ?? "";
     message.question = object.question ?? undefined;
     message.topic = object.topic ?? undefined;

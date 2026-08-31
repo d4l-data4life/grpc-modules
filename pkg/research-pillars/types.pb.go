@@ -409,7 +409,7 @@ type Question struct {
 	Image                *QuestionImage         `protobuf:"bytes,11,opt,name=image,proto3,oneof" json:"image,omitempty"`
 	Input                []*TopicInput          `protobuf:"bytes,12,rep,name=input,proto3" json:"input,omitempty"`                                                                   // populate this question's candidate options from topics
 	Output               []string               `protobuf:"bytes,13,rep,name=output,proto3" json:"output,omitempty"`                                                                 // topic ids this question's answer(s) publish to
-	QuestionVariables    []*QuestionVariable    `protobuf:"bytes,14,rep,name=question_variables,json=questionVariables,proto3" json:"question_variables,omitempty"`                  // bindings for enable_when_expression (%name -> topic or local question)
+	ItemVariables        []*ItemVariable        `protobuf:"bytes,14,rep,name=item_variables,json=itemVariables,proto3" json:"item_variables,omitempty"`                              // bindings for enable_when_expression (%name -> topic or local question)
 	EnableWhenExpression *string                `protobuf:"bytes,15,opt,name=enable_when_expression,json=enableWhenExpression,proto3,oneof" json:"enable_when_expression,omitempty"` // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -536,9 +536,9 @@ func (x *Question) GetOutput() []string {
 	return nil
 }
 
-func (x *Question) GetQuestionVariables() []*QuestionVariable {
+func (x *Question) GetItemVariables() []*ItemVariable {
 	if x != nil {
-		return x.QuestionVariables
+		return x.ItemVariables
 	}
 	return nil
 }
@@ -793,34 +793,34 @@ func (x *EnableWhen) GetAnswerDate() string {
 
 // A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
 // Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
-// FHIR custom extension questionnaire-item-variable (FHIR calls questionnaire nodes "items").
-type QuestionVariable struct {
+// FHIR custom extension questionnaire-item-variable.
+type ItemVariable struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"` // FHIRPath variable name, referenced as %name
 	// Types that are valid to be assigned to Source:
 	//
-	//	*QuestionVariable_Question
-	//	*QuestionVariable_Topic
-	Source        isQuestionVariable_Source `protobuf_oneof:"source"`
-	Scope         *TopicScope               `protobuf:"varint,4,opt,name=scope,proto3,enum=proto.TopicScope,oneof" json:"scope,omitempty"` // read scope when source is topic (session|latest|all); ignored for local question sources
+	//	*ItemVariable_Question
+	//	*ItemVariable_Topic
+	Source        isItemVariable_Source `protobuf_oneof:"source"`
+	Scope         *TopicScope           `protobuf:"varint,4,opt,name=scope,proto3,enum=proto.TopicScope,oneof" json:"scope,omitempty"` // read scope when source is topic (session|latest|all); ignored for local question sources
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *QuestionVariable) Reset() {
-	*x = QuestionVariable{}
+func (x *ItemVariable) Reset() {
+	*x = ItemVariable{}
 	mi := &file_research_pillars_types_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *QuestionVariable) String() string {
+func (x *ItemVariable) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QuestionVariable) ProtoMessage() {}
+func (*ItemVariable) ProtoMessage() {}
 
-func (x *QuestionVariable) ProtoReflect() protoreflect.Message {
+func (x *ItemVariable) ProtoReflect() protoreflect.Message {
 	mi := &file_research_pillars_types_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -832,65 +832,65 @@ func (x *QuestionVariable) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use QuestionVariable.ProtoReflect.Descriptor instead.
-func (*QuestionVariable) Descriptor() ([]byte, []int) {
+// Deprecated: Use ItemVariable.ProtoReflect.Descriptor instead.
+func (*ItemVariable) Descriptor() ([]byte, []int) {
 	return file_research_pillars_types_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *QuestionVariable) GetName() string {
+func (x *ItemVariable) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *QuestionVariable) GetSource() isQuestionVariable_Source {
+func (x *ItemVariable) GetSource() isItemVariable_Source {
 	if x != nil {
 		return x.Source
 	}
 	return nil
 }
 
-func (x *QuestionVariable) GetQuestion() string {
+func (x *ItemVariable) GetQuestion() string {
 	if x != nil {
-		if x, ok := x.Source.(*QuestionVariable_Question); ok {
+		if x, ok := x.Source.(*ItemVariable_Question); ok {
 			return x.Question
 		}
 	}
 	return ""
 }
 
-func (x *QuestionVariable) GetTopic() string {
+func (x *ItemVariable) GetTopic() string {
 	if x != nil {
-		if x, ok := x.Source.(*QuestionVariable_Topic); ok {
+		if x, ok := x.Source.(*ItemVariable_Topic); ok {
 			return x.Topic
 		}
 	}
 	return ""
 }
 
-func (x *QuestionVariable) GetScope() TopicScope {
+func (x *ItemVariable) GetScope() TopicScope {
 	if x != nil && x.Scope != nil {
 		return *x.Scope
 	}
 	return TopicScope_session
 }
 
-type isQuestionVariable_Source interface {
-	isQuestionVariable_Source()
+type isItemVariable_Source interface {
+	isItemVariable_Source()
 }
 
-type QuestionVariable_Question struct {
+type ItemVariable_Question struct {
 	Question string `protobuf:"bytes,2,opt,name=question,proto3,oneof"` // local linkId
 }
 
-type QuestionVariable_Topic struct {
+type ItemVariable_Topic struct {
 	Topic string `protobuf:"bytes,3,opt,name=topic,proto3,oneof"` // topic canonical
 }
 
-func (*QuestionVariable_Question) isQuestionVariable_Source() {}
+func (*ItemVariable_Question) isItemVariable_Source() {}
 
-func (*QuestionVariable_Topic) isQuestionVariable_Source() {}
+func (*ItemVariable_Topic) isItemVariable_Source() {}
 
 type QuestionImage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1477,7 +1477,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"TitleEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb3\x06\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa7\x06\n" +
 	"\bQuestion\x12\x16\n" +
 	"\x06linkId\x18\x01 \x01(\tR\x06linkId\x12.\n" +
 	"\tinputType\x18\x02 \x01(\x0e2\x10.proto.InputTypeR\tinputType\x12\x1a\n" +
@@ -1493,8 +1493,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	" \x03(\v2\x0f.proto.QuestionR\x05items\x12/\n" +
 	"\x05image\x18\v \x01(\v2\x14.proto.QuestionImageH\x03R\x05image\x88\x01\x01\x12'\n" +
 	"\x05input\x18\f \x03(\v2\x11.proto.TopicInputR\x05input\x12\x16\n" +
-	"\x06output\x18\r \x03(\tR\x06output\x12F\n" +
-	"\x12question_variables\x18\x0e \x03(\v2\x17.proto.QuestionVariableR\x11questionVariables\x129\n" +
+	"\x06output\x18\r \x03(\tR\x06output\x12:\n" +
+	"\x0eitem_variables\x18\x0e \x03(\v2\x13.proto.ItemVariableR\ritemVariables\x129\n" +
 	"\x16enable_when_expression\x18\x0f \x01(\tH\x04R\x14enableWhenExpression\x88\x01\x01\x1a7\n" +
 	"\tTextEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
@@ -1530,8 +1530,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"answerDate\x88\x01\x01B\x10\n" +
 	"\x0e_answer_codingB\x11\n" +
 	"\x0f_answer_decimalB\x0e\n" +
-	"\f_answer_date\"\x9e\x01\n" +
-	"\x10QuestionVariable\x12\x12\n" +
+	"\f_answer_date\"\x9a\x01\n" +
+	"\fItemVariable\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
 	"\bquestion\x18\x02 \x01(\tH\x00R\bquestion\x12\x16\n" +
 	"\x05topic\x18\x03 \x01(\tH\x00R\x05topic\x12,\n" +
@@ -1646,31 +1646,31 @@ func file_research_pillars_types_proto_rawDescGZIP() []byte {
 var file_research_pillars_types_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_research_pillars_types_proto_goTypes = []any{
-	(TopicScope)(0),          // 0: proto.TopicScope
-	(InputType)(0),           // 1: proto.InputType
-	(Operator)(0),            // 2: proto.Operator
-	(Role)(0),                // 3: proto.Role
-	(CodeStatus)(0),          // 4: proto.CodeStatus
-	(*Questionnaire)(nil),    // 5: proto.Questionnaire
-	(*Question)(nil),         // 6: proto.Question
-	(*TopicInput)(nil),       // 7: proto.TopicInput
-	(*Answerset)(nil),        // 8: proto.Answerset
-	(*Answer)(nil),           // 9: proto.Answer
-	(*EnableWhen)(nil),       // 10: proto.EnableWhen
-	(*QuestionVariable)(nil), // 11: proto.QuestionVariable
-	(*QuestionImage)(nil),    // 12: proto.QuestionImage
-	(*Diff)(nil),             // 13: proto.Diff
-	(*User)(nil),             // 14: proto.User
-	(*ProgramRole)(nil),      // 15: proto.ProgramRole
-	(*BlockedProgram)(nil),   // 16: proto.BlockedProgram
-	(*ParticipantCode)(nil),  // 17: proto.ParticipantCode
-	(*Client)(nil),           // 18: proto.Client
-	(*DeviceToken)(nil),      // 19: proto.DeviceToken
-	(*AccessToken)(nil),      // 20: proto.AccessToken
-	nil,                      // 21: proto.Questionnaire.TitleEntry
-	nil,                      // 22: proto.Question.TextEntry
-	nil,                      // 23: proto.Answer.LanguagesEntry
-	(*structpb.Struct)(nil),  // 24: google.protobuf.Struct
+	(TopicScope)(0),         // 0: proto.TopicScope
+	(InputType)(0),          // 1: proto.InputType
+	(Operator)(0),           // 2: proto.Operator
+	(Role)(0),               // 3: proto.Role
+	(CodeStatus)(0),         // 4: proto.CodeStatus
+	(*Questionnaire)(nil),   // 5: proto.Questionnaire
+	(*Question)(nil),        // 6: proto.Question
+	(*TopicInput)(nil),      // 7: proto.TopicInput
+	(*Answerset)(nil),       // 8: proto.Answerset
+	(*Answer)(nil),          // 9: proto.Answer
+	(*EnableWhen)(nil),      // 10: proto.EnableWhen
+	(*ItemVariable)(nil),    // 11: proto.ItemVariable
+	(*QuestionImage)(nil),   // 12: proto.QuestionImage
+	(*Diff)(nil),            // 13: proto.Diff
+	(*User)(nil),            // 14: proto.User
+	(*ProgramRole)(nil),     // 15: proto.ProgramRole
+	(*BlockedProgram)(nil),  // 16: proto.BlockedProgram
+	(*ParticipantCode)(nil), // 17: proto.ParticipantCode
+	(*Client)(nil),          // 18: proto.Client
+	(*DeviceToken)(nil),     // 19: proto.DeviceToken
+	(*AccessToken)(nil),     // 20: proto.AccessToken
+	nil,                     // 21: proto.Questionnaire.TitleEntry
+	nil,                     // 22: proto.Question.TextEntry
+	nil,                     // 23: proto.Answer.LanguagesEntry
+	(*structpb.Struct)(nil), // 24: google.protobuf.Struct
 }
 var file_research_pillars_types_proto_depIdxs = []int32{
 	21, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
@@ -1683,12 +1683,12 @@ var file_research_pillars_types_proto_depIdxs = []int32{
 	6,  // 7: proto.Question.items:type_name -> proto.Question
 	12, // 8: proto.Question.image:type_name -> proto.QuestionImage
 	7,  // 9: proto.Question.input:type_name -> proto.TopicInput
-	11, // 10: proto.Question.question_variables:type_name -> proto.QuestionVariable
+	11, // 10: proto.Question.item_variables:type_name -> proto.ItemVariable
 	0,  // 11: proto.TopicInput.scope:type_name -> proto.TopicScope
 	9,  // 12: proto.Answerset.answers:type_name -> proto.Answer
 	23, // 13: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
 	2,  // 14: proto.EnableWhen.operator:type_name -> proto.Operator
-	0,  // 15: proto.QuestionVariable.scope:type_name -> proto.TopicScope
+	0,  // 15: proto.ItemVariable.scope:type_name -> proto.TopicScope
 	24, // 16: proto.Diff.change:type_name -> google.protobuf.Struct
 	14, // 17: proto.Diff.user:type_name -> proto.User
 	15, // 18: proto.User.programRoles:type_name -> proto.ProgramRole
@@ -1710,8 +1710,8 @@ func file_research_pillars_types_proto_init() {
 	file_research_pillars_types_proto_msgTypes[3].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[5].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[6].OneofWrappers = []any{
-		(*QuestionVariable_Question)(nil),
-		(*QuestionVariable_Topic)(nil),
+		(*ItemVariable_Question)(nil),
+		(*ItemVariable_Topic)(nil),
 	}
 	file_research_pillars_types_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}

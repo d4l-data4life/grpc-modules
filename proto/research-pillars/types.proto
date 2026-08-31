@@ -30,7 +30,7 @@ message Question {
   optional QuestionImage image = 11;
   repeated TopicInput input = 12; // populate this question's candidate options from topics
   repeated string output = 13; // topic ids this question's answer(s) publish to
-  repeated QuestionVariable question_variables = 14; // bindings for enable_when_expression (%name -> topic or local question)
+  repeated ItemVariable item_variables = 14; // bindings for enable_when_expression (%name -> topic or local question)
   optional string enable_when_expression = 15; // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
 }
 
@@ -91,8 +91,8 @@ message EnableWhen {
 
 // A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
 // Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
-// FHIR custom extension questionnaire-item-variable (FHIR calls questionnaire nodes "items").
-message QuestionVariable {
+// FHIR custom extension questionnaire-item-variable.
+message ItemVariable {
   string name = 1; // FHIRPath variable name, referenced as %name
   oneof source {
     string question = 2; // local linkId

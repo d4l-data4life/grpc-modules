@@ -2915,6 +2915,25 @@ definitions:
     title: |-
       - display: Default Types
        - single_select: Mapped Types
+  protoItemVariable:
+    type: object
+    properties:
+      name:
+        type: string
+        title: FHIRPath variable name, referenced as %name
+      question:
+        type: string
+        title: local linkId
+      topic:
+        type: string
+        title: topic canonical
+      scope:
+        $ref: '#/definitions/protoTopicScope'
+        title: read scope when source is topic (session|latest|all); ignored for local question sources
+    description: |-
+      A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+      Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+      FHIR custom extension questionnaire-item-variable.
   protoOperator:
     type: string
     enum:
@@ -2989,11 +3008,11 @@ definitions:
         items:
           type: string
         title: topic ids this question's answer(s) publish to
-      questionVariables:
+      itemVariables:
         type: array
         items:
           type: object
-          $ref: '#/definitions/protoQuestionVariable'
+          $ref: '#/definitions/protoItemVariable'
         title: bindings for enable_when_expression (%name -> topic or local question)
       enableWhenExpression:
         type: string
@@ -3009,25 +3028,6 @@ definitions:
         type: string
       alt:
         type: string
-  protoQuestionVariable:
-    type: object
-    properties:
-      name:
-        type: string
-        title: FHIRPath variable name, referenced as %name
-      question:
-        type: string
-        title: local linkId
-      topic:
-        type: string
-        title: topic canonical
-      scope:
-        $ref: '#/definitions/protoTopicScope'
-        title: read scope when source is topic (session|latest|all); ignored for local question sources
-    description: |-
-      A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
-      Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
-      FHIR custom extension questionnaire-item-variable (FHIR calls questionnaire nodes "items").
   protoQuestionnaire:
     type: object
     properties:
