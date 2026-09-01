@@ -395,22 +395,24 @@ func (x *Questionnaire) GetQuestions() []*Question {
 }
 
 type Question struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	LinkId         string                 `protobuf:"bytes,1,opt,name=linkId,proto3" json:"linkId,omitempty"`
-	InputType      InputType              `protobuf:"varint,2,opt,name=inputType,proto3,enum=proto.InputType" json:"inputType,omitempty"`
-	Required       bool                   `protobuf:"varint,3,opt,name=required,proto3" json:"required,omitempty"`
-	Text           map[string]string      `protobuf:"bytes,4,rep,name=text,proto3" json:"text,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Answerset      *Answerset             `protobuf:"bytes,5,opt,name=answerset,proto3,oneof" json:"answerset,omitempty"`
-	Config         *structpb.Struct       `protobuf:"bytes,6,opt,name=config,proto3,oneof" json:"config,omitempty"`
-	EnableWhen     []*EnableWhen          `protobuf:"bytes,7,rep,name=enable_when,json=enableWhen,proto3" json:"enable_when,omitempty"`
-	EnableBehavior *string                `protobuf:"bytes,8,opt,name=enable_behavior,json=enableBehavior,proto3,oneof" json:"enable_behavior,omitempty"`
-	Prepopulate    []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"` // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
-	Items          []*Question            `protobuf:"bytes,10,rep,name=items,proto3" json:"items,omitempty"`
-	Image          *QuestionImage         `protobuf:"bytes,11,opt,name=image,proto3,oneof" json:"image,omitempty"`
-	Input          []*TopicInput          `protobuf:"bytes,12,rep,name=input,proto3" json:"input,omitempty"`   // populate this question's candidate options from topics
-	Output         []string               `protobuf:"bytes,13,rep,name=output,proto3" json:"output,omitempty"` // topic ids this question's answer(s) publish to
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	LinkId               string                 `protobuf:"bytes,1,opt,name=linkId,proto3" json:"linkId,omitempty"`
+	InputType            InputType              `protobuf:"varint,2,opt,name=inputType,proto3,enum=proto.InputType" json:"inputType,omitempty"`
+	Required             bool                   `protobuf:"varint,3,opt,name=required,proto3" json:"required,omitempty"`
+	Text                 map[string]string      `protobuf:"bytes,4,rep,name=text,proto3" json:"text,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Answerset            *Answerset             `protobuf:"bytes,5,opt,name=answerset,proto3,oneof" json:"answerset,omitempty"`
+	Config               *structpb.Struct       `protobuf:"bytes,6,opt,name=config,proto3,oneof" json:"config,omitempty"`
+	EnableWhen           []*EnableWhen          `protobuf:"bytes,7,rep,name=enable_when,json=enableWhen,proto3" json:"enable_when,omitempty"`
+	EnableBehavior       *string                `protobuf:"bytes,8,opt,name=enable_behavior,json=enableBehavior,proto3,oneof" json:"enable_behavior,omitempty"`
+	Prepopulate          []string               `protobuf:"bytes,9,rep,name=prepopulate,proto3" json:"prepopulate,omitempty"` // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
+	Items                []*Question            `protobuf:"bytes,10,rep,name=items,proto3" json:"items,omitempty"`
+	Image                *QuestionImage         `protobuf:"bytes,11,opt,name=image,proto3,oneof" json:"image,omitempty"`
+	Input                []*TopicInput          `protobuf:"bytes,12,rep,name=input,proto3" json:"input,omitempty"`                                                                   // populate this question's candidate options from topics
+	Output               []string               `protobuf:"bytes,13,rep,name=output,proto3" json:"output,omitempty"`                                                                 // topic ids this question's answer(s) publish to
+	ItemVariables        []*ItemVariable        `protobuf:"bytes,14,rep,name=item_variables,json=itemVariables,proto3" json:"item_variables,omitempty"`                              // bindings for enable_when_expression (%name -> topic or local question)
+	EnableWhenExpression *string                `protobuf:"bytes,15,opt,name=enable_when_expression,json=enableWhenExpression,proto3,oneof" json:"enable_when_expression,omitempty"` // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Question) Reset() {
@@ -532,6 +534,20 @@ func (x *Question) GetOutput() []string {
 		return x.Output
 	}
 	return nil
+}
+
+func (x *Question) GetItemVariables() []*ItemVariable {
+	if x != nil {
+		return x.ItemVariables
+	}
+	return nil
+}
+
+func (x *Question) GetEnableWhenExpression() string {
+	if x != nil && x.EnableWhenExpression != nil {
+		return *x.EnableWhenExpression
+	}
+	return ""
 }
 
 // A topic subscription: which topic to read and how far back.
@@ -775,6 +791,79 @@ func (x *EnableWhen) GetAnswerDate() string {
 	return ""
 }
 
+// A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+// Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+// FHIR custom extension questionnaire-item-variable.
+type ItemVariable struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"` // FHIRPath variable name, referenced as %name
+	// Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+	// so the message round-trips through encoding/json, which the questionnaire persistence uses.
+	Question      *string     `protobuf:"bytes,2,opt,name=question,proto3,oneof" json:"question,omitempty"`                  // local linkId
+	Topic         *string     `protobuf:"bytes,3,opt,name=topic,proto3,oneof" json:"topic,omitempty"`                        // topic canonical
+	Scope         *TopicScope `protobuf:"varint,4,opt,name=scope,proto3,enum=proto.TopicScope,oneof" json:"scope,omitempty"` // read scope when source is topic (session|latest|all); ignored for local question sources
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ItemVariable) Reset() {
+	*x = ItemVariable{}
+	mi := &file_research_pillars_types_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ItemVariable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ItemVariable) ProtoMessage() {}
+
+func (x *ItemVariable) ProtoReflect() protoreflect.Message {
+	mi := &file_research_pillars_types_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ItemVariable.ProtoReflect.Descriptor instead.
+func (*ItemVariable) Descriptor() ([]byte, []int) {
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ItemVariable) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ItemVariable) GetQuestion() string {
+	if x != nil && x.Question != nil {
+		return *x.Question
+	}
+	return ""
+}
+
+func (x *ItemVariable) GetTopic() string {
+	if x != nil && x.Topic != nil {
+		return *x.Topic
+	}
+	return ""
+}
+
+func (x *ItemVariable) GetScope() TopicScope {
+	if x != nil && x.Scope != nil {
+		return *x.Scope
+	}
+	return TopicScope_session
+}
+
 type QuestionImage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
@@ -787,7 +876,7 @@ type QuestionImage struct {
 
 func (x *QuestionImage) Reset() {
 	*x = QuestionImage{}
-	mi := &file_research_pillars_types_proto_msgTypes[6]
+	mi := &file_research_pillars_types_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -799,7 +888,7 @@ func (x *QuestionImage) String() string {
 func (*QuestionImage) ProtoMessage() {}
 
 func (x *QuestionImage) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[6]
+	mi := &file_research_pillars_types_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -812,7 +901,7 @@ func (x *QuestionImage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QuestionImage.ProtoReflect.Descriptor instead.
 func (*QuestionImage) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{6}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *QuestionImage) GetData() string {
@@ -854,7 +943,7 @@ type Diff struct {
 
 func (x *Diff) Reset() {
 	*x = Diff{}
-	mi := &file_research_pillars_types_proto_msgTypes[7]
+	mi := &file_research_pillars_types_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -866,7 +955,7 @@ func (x *Diff) String() string {
 func (*Diff) ProtoMessage() {}
 
 func (x *Diff) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[7]
+	mi := &file_research_pillars_types_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +968,7 @@ func (x *Diff) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Diff.ProtoReflect.Descriptor instead.
 func (*Diff) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{7}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Diff) GetChange() *structpb.Struct {
@@ -915,7 +1004,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_research_pillars_types_proto_msgTypes[8]
+	mi := &file_research_pillars_types_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -927,7 +1016,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[8]
+	mi := &file_research_pillars_types_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -940,7 +1029,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{8}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *User) GetEmail() string {
@@ -982,7 +1071,7 @@ type ProgramRole struct {
 
 func (x *ProgramRole) Reset() {
 	*x = ProgramRole{}
-	mi := &file_research_pillars_types_proto_msgTypes[9]
+	mi := &file_research_pillars_types_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -994,7 +1083,7 @@ func (x *ProgramRole) String() string {
 func (*ProgramRole) ProtoMessage() {}
 
 func (x *ProgramRole) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[9]
+	mi := &file_research_pillars_types_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1007,7 +1096,7 @@ func (x *ProgramRole) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramRole.ProtoReflect.Descriptor instead.
 func (*ProgramRole) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{9}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ProgramRole) GetUserEmail() string {
@@ -1042,7 +1131,7 @@ type BlockedProgram struct {
 
 func (x *BlockedProgram) Reset() {
 	*x = BlockedProgram{}
-	mi := &file_research_pillars_types_proto_msgTypes[10]
+	mi := &file_research_pillars_types_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1054,7 +1143,7 @@ func (x *BlockedProgram) String() string {
 func (*BlockedProgram) ProtoMessage() {}
 
 func (x *BlockedProgram) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[10]
+	mi := &file_research_pillars_types_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1067,7 +1156,7 @@ func (x *BlockedProgram) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockedProgram.ProtoReflect.Descriptor instead.
 func (*BlockedProgram) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{10}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *BlockedProgram) GetUserEmail() string {
@@ -1101,7 +1190,7 @@ type ParticipantCode struct {
 
 func (x *ParticipantCode) Reset() {
 	*x = ParticipantCode{}
-	mi := &file_research_pillars_types_proto_msgTypes[11]
+	mi := &file_research_pillars_types_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1113,7 +1202,7 @@ func (x *ParticipantCode) String() string {
 func (*ParticipantCode) ProtoMessage() {}
 
 func (x *ParticipantCode) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[11]
+	mi := &file_research_pillars_types_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1126,7 +1215,7 @@ func (x *ParticipantCode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParticipantCode.ProtoReflect.Descriptor instead.
 func (*ParticipantCode) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{11}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ParticipantCode) GetCode() string {
@@ -1155,7 +1244,7 @@ type Client struct {
 
 func (x *Client) Reset() {
 	*x = Client{}
-	mi := &file_research_pillars_types_proto_msgTypes[12]
+	mi := &file_research_pillars_types_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1167,7 +1256,7 @@ func (x *Client) String() string {
 func (*Client) ProtoMessage() {}
 
 func (x *Client) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[12]
+	mi := &file_research_pillars_types_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1180,7 +1269,7 @@ func (x *Client) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Client.ProtoReflect.Descriptor instead.
 func (*Client) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{12}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Client) GetName() string {
@@ -1223,7 +1312,7 @@ type DeviceToken struct {
 
 func (x *DeviceToken) Reset() {
 	*x = DeviceToken{}
-	mi := &file_research_pillars_types_proto_msgTypes[13]
+	mi := &file_research_pillars_types_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1235,7 +1324,7 @@ func (x *DeviceToken) String() string {
 func (*DeviceToken) ProtoMessage() {}
 
 func (x *DeviceToken) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[13]
+	mi := &file_research_pillars_types_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1248,7 +1337,7 @@ func (x *DeviceToken) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeviceToken.ProtoReflect.Descriptor instead.
 func (*DeviceToken) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{13}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeviceToken) GetProgramName() string {
@@ -1291,7 +1380,7 @@ type AccessToken struct {
 
 func (x *AccessToken) Reset() {
 	*x = AccessToken{}
-	mi := &file_research_pillars_types_proto_msgTypes[14]
+	mi := &file_research_pillars_types_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1303,7 +1392,7 @@ func (x *AccessToken) String() string {
 func (*AccessToken) ProtoMessage() {}
 
 func (x *AccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_research_pillars_types_proto_msgTypes[14]
+	mi := &file_research_pillars_types_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1316,7 +1405,7 @@ func (x *AccessToken) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccessToken.ProtoReflect.Descriptor instead.
 func (*AccessToken) Descriptor() ([]byte, []int) {
-	return file_research_pillars_types_proto_rawDescGZIP(), []int{14}
+	return file_research_pillars_types_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *AccessToken) GetProgramName() string {
@@ -1360,7 +1449,7 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\n" +
 	"TitleEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x95\x05\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa7\x06\n" +
 	"\bQuestion\x12\x16\n" +
 	"\x06linkId\x18\x01 \x01(\tR\x06linkId\x12.\n" +
 	"\tinputType\x18\x02 \x01(\x0e2\x10.proto.InputTypeR\tinputType\x12\x1a\n" +
@@ -1376,7 +1465,9 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	" \x03(\v2\x0f.proto.QuestionR\x05items\x12/\n" +
 	"\x05image\x18\v \x01(\v2\x14.proto.QuestionImageH\x03R\x05image\x88\x01\x01\x12'\n" +
 	"\x05input\x18\f \x03(\v2\x11.proto.TopicInputR\x05input\x12\x16\n" +
-	"\x06output\x18\r \x03(\tR\x06output\x1a7\n" +
+	"\x06output\x18\r \x03(\tR\x06output\x12:\n" +
+	"\x0eitem_variables\x18\x0e \x03(\v2\x13.proto.ItemVariableR\ritemVariables\x129\n" +
+	"\x16enable_when_expression\x18\x0f \x01(\tH\x04R\x14enableWhenExpression\x88\x01\x01\x1a7\n" +
 	"\tTextEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\f\n" +
@@ -1384,7 +1475,8 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"_answersetB\t\n" +
 	"\a_configB\x12\n" +
 	"\x10_enable_behaviorB\b\n" +
-	"\x06_image\"K\n" +
+	"\x06_imageB\x19\n" +
+	"\x17_enable_when_expression\"K\n" +
 	"\n" +
 	"TopicInput\x12\x14\n" +
 	"\x05topic\x18\x01 \x01(\tR\x05topic\x12'\n" +
@@ -1410,7 +1502,15 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"answerDate\x88\x01\x01B\x10\n" +
 	"\x0e_answer_codingB\x11\n" +
 	"\x0f_answer_decimalB\x0e\n" +
-	"\f_answer_date\"i\n" +
+	"\f_answer_date\"\xad\x01\n" +
+	"\fItemVariable\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
+	"\bquestion\x18\x02 \x01(\tH\x00R\bquestion\x88\x01\x01\x12\x19\n" +
+	"\x05topic\x18\x03 \x01(\tH\x01R\x05topic\x88\x01\x01\x12,\n" +
+	"\x05scope\x18\x04 \x01(\x0e2\x11.proto.TopicScopeH\x02R\x05scope\x88\x01\x01B\v\n" +
+	"\t_questionB\b\n" +
+	"\x06_topicB\b\n" +
+	"\x06_scope\"i\n" +
 	"\rQuestionImage\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\tR\x04data\x12 \n" +
 	"\vcontentType\x18\x02 \x01(\tR\vcontentType\x12\x10\n" +
@@ -1517,7 +1617,7 @@ func file_research_pillars_types_proto_rawDescGZIP() []byte {
 }
 
 var file_research_pillars_types_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_research_pillars_types_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_research_pillars_types_proto_goTypes = []any{
 	(TopicScope)(0),         // 0: proto.TopicScope
 	(InputType)(0),          // 1: proto.InputType
@@ -1530,45 +1630,48 @@ var file_research_pillars_types_proto_goTypes = []any{
 	(*Answerset)(nil),       // 8: proto.Answerset
 	(*Answer)(nil),          // 9: proto.Answer
 	(*EnableWhen)(nil),      // 10: proto.EnableWhen
-	(*QuestionImage)(nil),   // 11: proto.QuestionImage
-	(*Diff)(nil),            // 12: proto.Diff
-	(*User)(nil),            // 13: proto.User
-	(*ProgramRole)(nil),     // 14: proto.ProgramRole
-	(*BlockedProgram)(nil),  // 15: proto.BlockedProgram
-	(*ParticipantCode)(nil), // 16: proto.ParticipantCode
-	(*Client)(nil),          // 17: proto.Client
-	(*DeviceToken)(nil),     // 18: proto.DeviceToken
-	(*AccessToken)(nil),     // 19: proto.AccessToken
-	nil,                     // 20: proto.Questionnaire.TitleEntry
-	nil,                     // 21: proto.Question.TextEntry
-	nil,                     // 22: proto.Answer.LanguagesEntry
-	(*structpb.Struct)(nil), // 23: google.protobuf.Struct
+	(*ItemVariable)(nil),    // 11: proto.ItemVariable
+	(*QuestionImage)(nil),   // 12: proto.QuestionImage
+	(*Diff)(nil),            // 13: proto.Diff
+	(*User)(nil),            // 14: proto.User
+	(*ProgramRole)(nil),     // 15: proto.ProgramRole
+	(*BlockedProgram)(nil),  // 16: proto.BlockedProgram
+	(*ParticipantCode)(nil), // 17: proto.ParticipantCode
+	(*Client)(nil),          // 18: proto.Client
+	(*DeviceToken)(nil),     // 19: proto.DeviceToken
+	(*AccessToken)(nil),     // 20: proto.AccessToken
+	nil,                     // 21: proto.Questionnaire.TitleEntry
+	nil,                     // 22: proto.Question.TextEntry
+	nil,                     // 23: proto.Answer.LanguagesEntry
+	(*structpb.Struct)(nil), // 24: google.protobuf.Struct
 }
 var file_research_pillars_types_proto_depIdxs = []int32{
-	20, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
+	21, // 0: proto.Questionnaire.title:type_name -> proto.Questionnaire.TitleEntry
 	6,  // 1: proto.Questionnaire.questions:type_name -> proto.Question
 	1,  // 2: proto.Question.inputType:type_name -> proto.InputType
-	21, // 3: proto.Question.text:type_name -> proto.Question.TextEntry
+	22, // 3: proto.Question.text:type_name -> proto.Question.TextEntry
 	8,  // 4: proto.Question.answerset:type_name -> proto.Answerset
-	23, // 5: proto.Question.config:type_name -> google.protobuf.Struct
+	24, // 5: proto.Question.config:type_name -> google.protobuf.Struct
 	10, // 6: proto.Question.enable_when:type_name -> proto.EnableWhen
 	6,  // 7: proto.Question.items:type_name -> proto.Question
-	11, // 8: proto.Question.image:type_name -> proto.QuestionImage
+	12, // 8: proto.Question.image:type_name -> proto.QuestionImage
 	7,  // 9: proto.Question.input:type_name -> proto.TopicInput
-	0,  // 10: proto.TopicInput.scope:type_name -> proto.TopicScope
-	9,  // 11: proto.Answerset.answers:type_name -> proto.Answer
-	22, // 12: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
-	2,  // 13: proto.EnableWhen.operator:type_name -> proto.Operator
-	23, // 14: proto.Diff.change:type_name -> google.protobuf.Struct
-	13, // 15: proto.Diff.user:type_name -> proto.User
-	14, // 16: proto.User.programRoles:type_name -> proto.ProgramRole
-	3,  // 17: proto.ProgramRole.role:type_name -> proto.Role
-	4,  // 18: proto.ParticipantCode.status:type_name -> proto.CodeStatus
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	11, // 10: proto.Question.item_variables:type_name -> proto.ItemVariable
+	0,  // 11: proto.TopicInput.scope:type_name -> proto.TopicScope
+	9,  // 12: proto.Answerset.answers:type_name -> proto.Answer
+	23, // 13: proto.Answer.languages:type_name -> proto.Answer.LanguagesEntry
+	2,  // 14: proto.EnableWhen.operator:type_name -> proto.Operator
+	0,  // 15: proto.ItemVariable.scope:type_name -> proto.TopicScope
+	24, // 16: proto.Diff.change:type_name -> google.protobuf.Struct
+	14, // 17: proto.Diff.user:type_name -> proto.User
+	15, // 18: proto.User.programRoles:type_name -> proto.ProgramRole
+	3,  // 19: proto.ProgramRole.role:type_name -> proto.Role
+	4,  // 20: proto.ParticipantCode.status:type_name -> proto.CodeStatus
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_types_proto_init() }
@@ -1579,14 +1682,15 @@ func file_research_pillars_types_proto_init() {
 	file_research_pillars_types_proto_msgTypes[1].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[3].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[5].OneofWrappers = []any{}
-	file_research_pillars_types_proto_msgTypes[13].OneofWrappers = []any{}
+	file_research_pillars_types_proto_msgTypes[6].OneofWrappers = []any{}
+	file_research_pillars_types_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_research_pillars_types_proto_rawDesc), len(file_research_pillars_types_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   18,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

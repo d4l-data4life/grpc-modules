@@ -368,6 +368,10 @@ export interface Question {
   input: TopicInput[];
   /** topic ids this question's answer(s) publish to */
   output: string[];
+  /** bindings for enable_when_expression (%name -> topic or local question) */
+  itemVariables: ItemVariable[];
+  /** SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates */
+  enableWhenExpression?: string | undefined;
 }
 
 export interface Question_TextEntry {
@@ -403,6 +407,29 @@ export interface EnableWhen {
   answerCoding?: string | undefined;
   answerDecimal?: number | undefined;
   answerDate?: string | undefined;
+}
+
+/**
+ * A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+ * Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+ * FHIR custom extension questionnaire-item-variable.
+ */
+export interface ItemVariable {
+  /** FHIRPath variable name, referenced as %name */
+  name: string;
+  /**
+   * Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+   * so the message round-trips through encoding/json, which the questionnaire persistence uses.
+   */
+  question?:
+    | string
+    | undefined;
+  /** topic canonical */
+  topic?:
+    | string
+    | undefined;
+  /** read scope when source is topic (session|latest|all); ignored for local question sources */
+  scope?: TopicScope | undefined;
 }
 
 export interface QuestionImage {
@@ -712,6 +739,8 @@ function createBaseQuestion(): Question {
     image: undefined,
     input: [],
     output: [],
+    itemVariables: [],
+    enableWhenExpression: undefined,
   };
 }
 
@@ -755,6 +784,12 @@ export const Question: MessageFns<Question> = {
     }
     for (const v of message.output) {
       writer.uint32(106).string(v!);
+    }
+    for (const v of message.itemVariables) {
+      ItemVariable.encode(v!, writer.uint32(114).fork()).join();
+    }
+    if (message.enableWhenExpression !== undefined) {
+      writer.uint32(122).string(message.enableWhenExpression);
     }
     return writer;
   },
@@ -879,6 +914,22 @@ export const Question: MessageFns<Question> = {
             message.output.push(reader.string());
             continue;
           }
+          case 14: {
+            if (tag !== 114) {
+              break;
+            }
+
+            message.itemVariables.push(ItemVariable.decode(reader, reader.uint32()));
+            continue;
+          }
+          case 15: {
+            if (tag !== 122) {
+              break;
+            }
+
+            message.enableWhenExpression = reader.string();
+            continue;
+          }
         }
         if ((tag & 7) === 4 || tag === 0) {
           break;
@@ -929,6 +980,16 @@ export const Question: MessageFns<Question> = {
       image: isSet(object.image) ? QuestionImage.fromJSON(object.image) : undefined,
       input: globalThis.Array.isArray(object?.input) ? object.input.map((e: any) => TopicInput.fromJSON(e)) : [],
       output: globalThis.Array.isArray(object?.output) ? object.output.map((e: any) => globalThis.String(e)) : [],
+      itemVariables: globalThis.Array.isArray(object?.itemVariables)
+        ? object.itemVariables.map((e: any) => ItemVariable.fromJSON(e))
+        : globalThis.Array.isArray(object?.item_variables)
+        ? object.item_variables.map((e: any) => ItemVariable.fromJSON(e))
+        : [],
+      enableWhenExpression: isSet(object.enableWhenExpression)
+        ? globalThis.String(object.enableWhenExpression)
+        : isSet(object.enable_when_expression)
+        ? globalThis.String(object.enable_when_expression)
+        : undefined,
     };
   },
 
@@ -979,6 +1040,12 @@ export const Question: MessageFns<Question> = {
     if (message.output?.length) {
       obj.output = message.output;
     }
+    if (message.itemVariables?.length) {
+      obj.itemVariables = message.itemVariables.map((e) => ItemVariable.toJSON(e));
+    }
+    if (message.enableWhenExpression !== undefined) {
+      obj.enableWhenExpression = message.enableWhenExpression;
+    }
     return obj;
   },
 
@@ -1012,6 +1079,8 @@ export const Question: MessageFns<Question> = {
       : undefined;
     message.input = object.input?.map((e) => TopicInput.fromPartial(e)) || [];
     message.output = object.output?.map((e) => e) || [];
+    message.itemVariables = object.itemVariables?.map((e) => ItemVariable.fromPartial(e)) || [];
+    message.enableWhenExpression = object.enableWhenExpression ?? undefined;
     return message;
   },
 };
@@ -1628,6 +1697,123 @@ export const EnableWhen: MessageFns<EnableWhen> = {
     message.answerCoding = object.answerCoding ?? undefined;
     message.answerDecimal = object.answerDecimal ?? undefined;
     message.answerDate = object.answerDate ?? undefined;
+    return message;
+  },
+};
+
+function createBaseItemVariable(): ItemVariable {
+  return { name: "", question: undefined, topic: undefined, scope: undefined };
+}
+
+export const ItemVariable: MessageFns<ItemVariable> = {
+  encode(message: ItemVariable, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.question !== undefined) {
+      writer.uint32(18).string(message.question);
+    }
+    if (message.topic !== undefined) {
+      writer.uint32(26).string(message.topic);
+    }
+    if (message.scope !== undefined) {
+      writer.uint32(32).int32(message.scope);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ItemVariable {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseItemVariable();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.name = reader.string();
+            continue;
+          }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.question = reader.string();
+            continue;
+          }
+          case 3: {
+            if (tag !== 26) {
+              break;
+            }
+
+            message.topic = reader.string();
+            continue;
+          }
+          case 4: {
+            if (tag !== 32) {
+              break;
+            }
+
+            message.scope = reader.int32() as any;
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): ItemVariable {
+    return {
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      question: isSet(object.question) ? globalThis.String(object.question) : undefined,
+      topic: isSet(object.topic) ? globalThis.String(object.topic) : undefined,
+      scope: isSet(object.scope) ? topicScopeFromJSON(object.scope) : undefined,
+    };
+  },
+
+  toJSON(message: ItemVariable): unknown {
+    const obj: any = {};
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.question !== undefined) {
+      obj.question = message.question;
+    }
+    if (message.topic !== undefined) {
+      obj.topic = message.topic;
+    }
+    if (message.scope !== undefined) {
+      obj.scope = topicScopeToJSON(message.scope);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ItemVariable>, I>>(base?: I): ItemVariable {
+    return ItemVariable.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ItemVariable>, I>>(object: I): ItemVariable {
+    const message = createBaseItemVariable();
+    message.name = object.name ?? "";
+    message.question = object.question ?? undefined;
+    message.topic = object.topic ?? undefined;
+    message.scope = object.scope ?? undefined;
     return message;
   },
 };

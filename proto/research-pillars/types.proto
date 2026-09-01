@@ -30,6 +30,8 @@ message Question {
   optional QuestionImage image = 11;
   repeated TopicInput input = 12; // populate this question's candidate options from topics
   repeated string output = 13; // topic ids this question's answer(s) publish to
+  repeated ItemVariable item_variables = 14; // bindings for enable_when_expression (%name -> topic or local question)
+  optional string enable_when_expression = 15; // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
 }
 
 // A topic subscription: which topic to read and how far back.
@@ -85,6 +87,18 @@ message EnableWhen {
   optional string answer_coding = 3;
   optional double answer_decimal = 4;
   optional string answer_date = 5;
+}
+
+// A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+// Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+// FHIR custom extension questionnaire-item-variable.
+message ItemVariable {
+  string name = 1; // FHIRPath variable name, referenced as %name
+  // Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+  // so the message round-trips through encoding/json, which the questionnaire persistence uses.
+  optional string question = 2; // local linkId
+  optional string topic = 3; // topic canonical
+  optional TopicScope scope = 4; // read scope when source is topic (session|latest|all); ignored for local question sources
 }
 
 message QuestionImage {
