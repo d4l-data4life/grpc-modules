@@ -94,10 +94,10 @@ message EnableWhen {
 // FHIR custom extension questionnaire-item-variable.
 message ItemVariable {
   string name = 1; // FHIRPath variable name, referenced as %name
-  oneof source {
-    string question = 2; // local linkId
-    string topic = 3; // topic canonical
-  }
+  // Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+  // so the message round-trips through encoding/json, which the questionnaire persistence uses.
+  optional string question = 2; // local linkId
+  optional string topic = 3; // topic canonical
   optional TopicScope scope = 4; // read scope when source is topic (session|latest|all); ignored for local question sources
 }
 

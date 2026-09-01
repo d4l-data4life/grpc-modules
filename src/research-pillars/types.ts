@@ -417,7 +417,10 @@ export interface EnableWhen {
 export interface ItemVariable {
   /** FHIRPath variable name, referenced as %name */
   name: string;
-  /** local linkId */
+  /**
+   * Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+   * so the message round-trips through encoding/json, which the questionnaire persistence uses.
+   */
   question?:
     | string
     | undefined;

@@ -797,12 +797,11 @@ func (x *EnableWhen) GetAnswerDate() string {
 type ItemVariable struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"` // FHIRPath variable name, referenced as %name
-	// Types that are valid to be assigned to Source:
-	//
-	//	*ItemVariable_Question
-	//	*ItemVariable_Topic
-	Source        isItemVariable_Source `protobuf_oneof:"source"`
-	Scope         *TopicScope           `protobuf:"varint,4,opt,name=scope,proto3,enum=proto.TopicScope,oneof" json:"scope,omitempty"` // read scope when source is topic (session|latest|all); ignored for local question sources
+	// Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+	// so the message round-trips through encoding/json, which the questionnaire persistence uses.
+	Question      *string     `protobuf:"bytes,2,opt,name=question,proto3,oneof" json:"question,omitempty"`                  // local linkId
+	Topic         *string     `protobuf:"bytes,3,opt,name=topic,proto3,oneof" json:"topic,omitempty"`                        // topic canonical
+	Scope         *TopicScope `protobuf:"varint,4,opt,name=scope,proto3,enum=proto.TopicScope,oneof" json:"scope,omitempty"` // read scope when source is topic (session|latest|all); ignored for local question sources
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -844,27 +843,16 @@ func (x *ItemVariable) GetName() string {
 	return ""
 }
 
-func (x *ItemVariable) GetSource() isItemVariable_Source {
-	if x != nil {
-		return x.Source
-	}
-	return nil
-}
-
 func (x *ItemVariable) GetQuestion() string {
-	if x != nil {
-		if x, ok := x.Source.(*ItemVariable_Question); ok {
-			return x.Question
-		}
+	if x != nil && x.Question != nil {
+		return *x.Question
 	}
 	return ""
 }
 
 func (x *ItemVariable) GetTopic() string {
-	if x != nil {
-		if x, ok := x.Source.(*ItemVariable_Topic); ok {
-			return x.Topic
-		}
+	if x != nil && x.Topic != nil {
+		return *x.Topic
 	}
 	return ""
 }
@@ -875,22 +863,6 @@ func (x *ItemVariable) GetScope() TopicScope {
 	}
 	return TopicScope_session
 }
-
-type isItemVariable_Source interface {
-	isItemVariable_Source()
-}
-
-type ItemVariable_Question struct {
-	Question string `protobuf:"bytes,2,opt,name=question,proto3,oneof"` // local linkId
-}
-
-type ItemVariable_Topic struct {
-	Topic string `protobuf:"bytes,3,opt,name=topic,proto3,oneof"` // topic canonical
-}
-
-func (*ItemVariable_Question) isItemVariable_Source() {}
-
-func (*ItemVariable_Topic) isItemVariable_Source() {}
 
 type QuestionImage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1530,13 +1502,14 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"answerDate\x88\x01\x01B\x10\n" +
 	"\x0e_answer_codingB\x11\n" +
 	"\x0f_answer_decimalB\x0e\n" +
-	"\f_answer_date\"\x9a\x01\n" +
+	"\f_answer_date\"\xad\x01\n" +
 	"\fItemVariable\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1c\n" +
-	"\bquestion\x18\x02 \x01(\tH\x00R\bquestion\x12\x16\n" +
-	"\x05topic\x18\x03 \x01(\tH\x00R\x05topic\x12,\n" +
-	"\x05scope\x18\x04 \x01(\x0e2\x11.proto.TopicScopeH\x01R\x05scope\x88\x01\x01B\b\n" +
-	"\x06sourceB\b\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1f\n" +
+	"\bquestion\x18\x02 \x01(\tH\x00R\bquestion\x88\x01\x01\x12\x19\n" +
+	"\x05topic\x18\x03 \x01(\tH\x01R\x05topic\x88\x01\x01\x12,\n" +
+	"\x05scope\x18\x04 \x01(\x0e2\x11.proto.TopicScopeH\x02R\x05scope\x88\x01\x01B\v\n" +
+	"\t_questionB\b\n" +
+	"\x06_topicB\b\n" +
 	"\x06_scope\"i\n" +
 	"\rQuestionImage\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\tR\x04data\x12 \n" +
@@ -1709,10 +1682,7 @@ func file_research_pillars_types_proto_init() {
 	file_research_pillars_types_proto_msgTypes[1].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[3].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[5].OneofWrappers = []any{}
-	file_research_pillars_types_proto_msgTypes[6].OneofWrappers = []any{
-		(*ItemVariable_Question)(nil),
-		(*ItemVariable_Topic)(nil),
-	}
+	file_research_pillars_types_proto_msgTypes[6].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

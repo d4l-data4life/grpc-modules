@@ -2923,7 +2923,11 @@ definitions:
         title: FHIRPath variable name, referenced as %name
       question:
         type: string
-        title: local linkId
+        description: |-
+          Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+          so the message round-trips through encoding/json, which the questionnaire persistence uses.
+
+          local linkId
       topic:
         type: string
         title: topic canonical
