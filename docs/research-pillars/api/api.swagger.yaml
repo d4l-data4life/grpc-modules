@@ -2162,6 +2162,9 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
+        description: 'Provider-specific, non-secret configuration (e.g. Line Systems: baseUrl, realm)'
   ConsentsUpsertConsentBody:
     type: object
     properties:
@@ -2836,6 +2839,9 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
+        description: 'Provider-specific, non-secret configuration (e.g. Line Systems: baseUrl, realm, careSiteId)'
   protoCodeStatus:
     type: string
     enum:

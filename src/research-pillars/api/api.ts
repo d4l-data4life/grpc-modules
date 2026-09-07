@@ -679,6 +679,8 @@ export interface UpsertClientRequest {
   name: string;
   clientID: string;
   clientSecret: string;
+  /** Provider-specific, non-secret configuration (e.g. Line Systems: baseUrl, realm) */
+  extra?: { [key: string]: any } | undefined;
 }
 
 export interface UpsertClientResponse {
@@ -11878,7 +11880,7 @@ export const GetClientResponse: MessageFns<GetClientResponse> = {
 };
 
 function createBaseUpsertClientRequest(): UpsertClientRequest {
-  return { programName: "", name: "", clientID: "", clientSecret: "" };
+  return { programName: "", name: "", clientID: "", clientSecret: "", extra: undefined };
 }
 
 export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
@@ -11894,6 +11896,9 @@ export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
     }
     if (message.clientSecret !== "") {
       writer.uint32(34).string(message.clientSecret);
+    }
+    if (message.extra !== undefined) {
+      Struct.encode(Struct.wrap(message.extra), writer.uint32(42).fork()).join();
     }
     return writer;
   },
@@ -11943,6 +11948,14 @@ export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
             message.clientSecret = reader.string();
             continue;
           }
+          case 5: {
+            if (tag !== 42) {
+              break;
+            }
+
+            message.extra = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+            continue;
+          }
         }
         if ((tag & 7) === 4 || tag === 0) {
           break;
@@ -11961,6 +11974,7 @@ export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       clientID: isSet(object.clientID) ? globalThis.String(object.clientID) : "",
       clientSecret: isSet(object.clientSecret) ? globalThis.String(object.clientSecret) : "",
+      extra: isObject(object.extra) ? object.extra : undefined,
     };
   },
 
@@ -11978,6 +11992,9 @@ export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
     if (message.clientSecret !== "") {
       obj.clientSecret = message.clientSecret;
     }
+    if (message.extra !== undefined) {
+      obj.extra = message.extra;
+    }
     return obj;
   },
 
@@ -11990,6 +12007,7 @@ export const UpsertClientRequest: MessageFns<UpsertClientRequest> = {
     message.name = object.name ?? "";
     message.clientID = object.clientID ?? "";
     message.clientSecret = object.clientSecret ?? "";
+    message.extra = object.extra ?? undefined;
     return message;
   },
 };
