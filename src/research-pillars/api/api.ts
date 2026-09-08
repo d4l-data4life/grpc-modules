@@ -679,7 +679,6 @@ export interface UpsertClientRequest {
   name: string;
   clientID: string;
   clientSecret: string;
-  /** Provider-specific, non-secret configuration (e.g. Line Systems: baseUrl, realm) */
   extra?: { [key: string]: any } | undefined;
 }
 

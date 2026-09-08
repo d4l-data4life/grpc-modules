@@ -474,7 +474,6 @@ export interface Client {
   programName: string;
   clientID: string;
   clientSecret: string;
-  /** Provider-specific, non-secret configuration (e.g. Line Systems: baseUrl, realm, careSiteId) */
   extra?: { [key: string]: any } | undefined;
 }
 
