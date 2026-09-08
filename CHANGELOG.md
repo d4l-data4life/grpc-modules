@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- research-pillars: `extra` Struct on `Client` and `UpsertClientRequest` for provider-specific client configuration (Line Systems baseUrl/realm/careSiteId)
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.39.0] - 2026-09-08
+
+### Added
+
+- research-pillars: `extra` Struct on `Client` and `UpsertClientRequest` for provider-specific client configuration (Line Systems baseUrl/realm/careSiteId)
 
 ## [v1.38.0] - 2026-09-01
 
@@ -332,7 +336,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.38.0...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.0...HEAD
+[v1.39.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.38.0...v1.39.0
 [v1.38.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.37.0...v1.38.0
 [v1.37.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.36.0...v1.37.0
 [v1.36.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.35.0...v1.36.0
