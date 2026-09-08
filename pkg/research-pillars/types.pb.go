@@ -1238,6 +1238,7 @@ type Client struct {
 	ProgramName   string                 `protobuf:"bytes,2,opt,name=programName,proto3" json:"programName,omitempty"`
 	ClientID      string                 `protobuf:"bytes,3,opt,name=clientID,proto3" json:"clientID,omitempty"`
 	ClientSecret  string                 `protobuf:"bytes,4,opt,name=clientSecret,proto3" json:"clientSecret,omitempty"`
+	Extra         *structpb.Struct       `protobuf:"bytes,5,opt,name=extra,proto3,oneof" json:"extra,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1298,6 +1299,13 @@ func (x *Client) GetClientSecret() string {
 		return x.ClientSecret
 	}
 	return ""
+}
+
+func (x *Client) GetExtra() *structpb.Struct {
+	if x != nil {
+		return x.Extra
+	}
+	return nil
 }
 
 type DeviceToken struct {
@@ -1535,12 +1543,14 @@ const file_research_pillars_types_proto_rawDesc = "" +
 	"\ttimestamp\x18\x03 \x01(\tR\ttimestamp\"P\n" +
 	"\x0fParticipantCode\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12)\n" +
-	"\x06status\x18\x02 \x01(\x0e2\x11.proto.CodeStatusR\x06status\"~\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x11.proto.CodeStatusR\x06status\"\xbc\x01\n" +
 	"\x06Client\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vprogramName\x18\x02 \x01(\tR\vprogramName\x12\x1a\n" +
 	"\bclientID\x18\x03 \x01(\tR\bclientID\x12\"\n" +
-	"\fclientSecret\x18\x04 \x01(\tR\fclientSecret\"\xa6\x01\n" +
+	"\fclientSecret\x18\x04 \x01(\tR\fclientSecret\x122\n" +
+	"\x05extra\x18\x05 \x01(\v2\x17.google.protobuf.StructH\x00R\x05extra\x88\x01\x01B\b\n" +
+	"\x06_extra\"\xa6\x01\n" +
 	"\vDeviceToken\x12 \n" +
 	"\vprogramName\x18\x01 \x01(\tR\vprogramName\x12\x1c\n" +
 	"\tsubjectID\x18\x02 \x01(\tR\tsubjectID\x12\x14\n" +
@@ -1667,11 +1677,12 @@ var file_research_pillars_types_proto_depIdxs = []int32{
 	15, // 18: proto.User.programRoles:type_name -> proto.ProgramRole
 	3,  // 19: proto.ProgramRole.role:type_name -> proto.Role
 	4,  // 20: proto.ParticipantCode.status:type_name -> proto.CodeStatus
-	21, // [21:21] is the sub-list for method output_type
-	21, // [21:21] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	24, // 21: proto.Client.extra:type_name -> google.protobuf.Struct
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_research_pillars_types_proto_init() }
@@ -1683,6 +1694,7 @@ func file_research_pillars_types_proto_init() {
 	file_research_pillars_types_proto_msgTypes[3].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[5].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[6].OneofWrappers = []any{}
+	file_research_pillars_types_proto_msgTypes[13].OneofWrappers = []any{}
 	file_research_pillars_types_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- research-pillars: `extra` Struct on `Client` and `UpsertClientRequest` for provider-specific client configuration (Line Systems baseUrl/realm/careSiteId)
+
 ### Changed
 
 ### Deprecated

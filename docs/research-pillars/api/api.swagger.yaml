@@ -2162,6 +2162,8 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
   ConsentsUpsertConsentBody:
     type: object
     properties:
@@ -2836,6 +2838,8 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
   protoCodeStatus:
     type: string
     enum:

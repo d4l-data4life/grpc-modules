@@ -474,6 +474,7 @@ export interface Client {
   programName: string;
   clientID: string;
   clientSecret: string;
+  extra?: { [key: string]: any } | undefined;
 }
 
 export interface DeviceToken {
@@ -2443,7 +2444,7 @@ export const ParticipantCode: MessageFns<ParticipantCode> = {
 };
 
 function createBaseClient(): Client {
-  return { name: "", programName: "", clientID: "", clientSecret: "" };
+  return { name: "", programName: "", clientID: "", clientSecret: "", extra: undefined };
 }
 
 export const Client: MessageFns<Client> = {
@@ -2459,6 +2460,9 @@ export const Client: MessageFns<Client> = {
     }
     if (message.clientSecret !== "") {
       writer.uint32(34).string(message.clientSecret);
+    }
+    if (message.extra !== undefined) {
+      Struct.encode(Struct.wrap(message.extra), writer.uint32(42).fork()).join();
     }
     return writer;
   },
@@ -2508,6 +2512,14 @@ export const Client: MessageFns<Client> = {
             message.clientSecret = reader.string();
             continue;
           }
+          case 5: {
+            if (tag !== 42) {
+              break;
+            }
+
+            message.extra = Struct.unwrap(Struct.decode(reader, reader.uint32()));
+            continue;
+          }
         }
         if ((tag & 7) === 4 || tag === 0) {
           break;
@@ -2526,6 +2538,7 @@ export const Client: MessageFns<Client> = {
       programName: isSet(object.programName) ? globalThis.String(object.programName) : "",
       clientID: isSet(object.clientID) ? globalThis.String(object.clientID) : "",
       clientSecret: isSet(object.clientSecret) ? globalThis.String(object.clientSecret) : "",
+      extra: isObject(object.extra) ? object.extra : undefined,
     };
   },
 
@@ -2543,6 +2556,9 @@ export const Client: MessageFns<Client> = {
     if (message.clientSecret !== "") {
       obj.clientSecret = message.clientSecret;
     }
+    if (message.extra !== undefined) {
+      obj.extra = message.extra;
+    }
     return obj;
   },
 
@@ -2555,6 +2571,7 @@ export const Client: MessageFns<Client> = {
     message.programName = object.programName ?? "";
     message.clientID = object.clientID ?? "";
     message.clientSecret = object.clientSecret ?? "";
+    message.extra = object.extra ?? undefined;
     return message;
   },
 };
