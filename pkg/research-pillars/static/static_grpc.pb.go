@@ -1178,6 +1178,152 @@ var Images_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	FHIR_GetQuestionnaire_FullMethodName           = "/proto.static.FHIR/GetQuestionnaire"
+	FHIR_GetStandaloneQuestionnaire_FullMethodName = "/proto.static.FHIR/GetStandaloneQuestionnaire"
+)
+
+// FHIRClient is the client API for FHIR service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FHIRClient interface {
+	// http://collect.dev.d4l-dev.de/fhir/r5/test-program/Questionnaire/demographics
+	GetQuestionnaire(ctx context.Context, in *GetFHIRQuestionnaireRequest, opts ...grpc.CallOption) (*GetFHIRQuestionnaireResponse, error)
+	// http://fhir.data4life.care/r5/Questionnaire/oci_r_eligibility
+	// http://collect.dev.d4l-dev.de/fhir/r5/Questionnaire/oci_r_eligibility
+	GetStandaloneQuestionnaire(ctx context.Context, in *GetStandaloneFHIRQuestionnaireRequest, opts ...grpc.CallOption) (*GetStandaloneFHIRQuestionnaireResponse, error)
+}
+
+type fHIRClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFHIRClient(cc grpc.ClientConnInterface) FHIRClient {
+	return &fHIRClient{cc}
+}
+
+func (c *fHIRClient) GetQuestionnaire(ctx context.Context, in *GetFHIRQuestionnaireRequest, opts ...grpc.CallOption) (*GetFHIRQuestionnaireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFHIRQuestionnaireResponse)
+	err := c.cc.Invoke(ctx, FHIR_GetQuestionnaire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fHIRClient) GetStandaloneQuestionnaire(ctx context.Context, in *GetStandaloneFHIRQuestionnaireRequest, opts ...grpc.CallOption) (*GetStandaloneFHIRQuestionnaireResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStandaloneFHIRQuestionnaireResponse)
+	err := c.cc.Invoke(ctx, FHIR_GetStandaloneQuestionnaire_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FHIRServer is the server API for FHIR service.
+// All implementations must embed UnimplementedFHIRServer
+// for forward compatibility.
+type FHIRServer interface {
+	// http://collect.dev.d4l-dev.de/fhir/r5/test-program/Questionnaire/demographics
+	GetQuestionnaire(context.Context, *GetFHIRQuestionnaireRequest) (*GetFHIRQuestionnaireResponse, error)
+	// http://fhir.data4life.care/r5/Questionnaire/oci_r_eligibility
+	// http://collect.dev.d4l-dev.de/fhir/r5/Questionnaire/oci_r_eligibility
+	GetStandaloneQuestionnaire(context.Context, *GetStandaloneFHIRQuestionnaireRequest) (*GetStandaloneFHIRQuestionnaireResponse, error)
+	mustEmbedUnimplementedFHIRServer()
+}
+
+// UnimplementedFHIRServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedFHIRServer struct{}
+
+func (UnimplementedFHIRServer) GetQuestionnaire(context.Context, *GetFHIRQuestionnaireRequest) (*GetFHIRQuestionnaireResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetQuestionnaire not implemented")
+}
+func (UnimplementedFHIRServer) GetStandaloneQuestionnaire(context.Context, *GetStandaloneFHIRQuestionnaireRequest) (*GetStandaloneFHIRQuestionnaireResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetStandaloneQuestionnaire not implemented")
+}
+func (UnimplementedFHIRServer) mustEmbedUnimplementedFHIRServer() {}
+func (UnimplementedFHIRServer) testEmbeddedByValue()              {}
+
+// UnsafeFHIRServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FHIRServer will
+// result in compilation errors.
+type UnsafeFHIRServer interface {
+	mustEmbedUnimplementedFHIRServer()
+}
+
+func RegisterFHIRServer(s grpc.ServiceRegistrar, srv FHIRServer) {
+	// If the following call panics, it indicates UnimplementedFHIRServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&FHIR_ServiceDesc, srv)
+}
+
+func _FHIR_GetQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFHIRQuestionnaireRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FHIRServer).GetQuestionnaire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FHIR_GetQuestionnaire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FHIRServer).GetQuestionnaire(ctx, req.(*GetFHIRQuestionnaireRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FHIR_GetStandaloneQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStandaloneFHIRQuestionnaireRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FHIRServer).GetStandaloneQuestionnaire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FHIR_GetStandaloneQuestionnaire_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FHIRServer).GetStandaloneQuestionnaire(ctx, req.(*GetStandaloneFHIRQuestionnaireRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// FHIR_ServiceDesc is the grpc.ServiceDesc for FHIR service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FHIR_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.static.FHIR",
+	HandlerType: (*FHIRServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetQuestionnaire",
+			Handler:    _FHIR_GetQuestionnaire_Handler,
+		},
+		{
+			MethodName: "GetStandaloneQuestionnaire",
+			Handler:    _FHIR_GetStandaloneQuestionnaire_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "research-pillars/static/static.proto",
+}
+
+const (
 	Checks_Liveness_FullMethodName  = "/proto.static.Checks/Liveness"
 	Checks_Readiness_FullMethodName = "/proto.static.Checks/Readiness"
 )

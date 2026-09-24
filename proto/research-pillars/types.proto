@@ -25,9 +25,25 @@ message Question {
   optional google.protobuf.Struct config = 6;
   repeated EnableWhen enable_when = 7;
   optional string enable_behavior = 8;
-  repeated string prepopulate = 9;
+  repeated string prepopulate = 9; // LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired
   repeated Question items = 10;
   optional QuestionImage image = 11;
+  repeated TopicInput input = 12; // populate this question's candidate options from topics
+  repeated string output = 13; // topic ids this question's answer(s) publish to
+  repeated ItemVariable item_variables = 14; // bindings for enable_when_expression (%name -> topic or local question)
+  optional string enable_when_expression = 15; // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
+}
+
+// A topic subscription: which topic to read and how far back.
+message TopicInput {
+  string topic = 1;
+  TopicScope scope = 2;
+}
+
+enum TopicScope {
+  session = 0; // current fill session only
+  latest = 1; // + the latest persisted response
+  all = 2; // + all persisted responses
 }
 
 enum InputType {
@@ -73,9 +89,23 @@ message EnableWhen {
   optional string answer_date = 5;
 }
 
+// A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+// Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+// FHIR custom extension questionnaire-item-variable.
+message ItemVariable {
+  string name = 1; // FHIRPath variable name, referenced as %name
+  // Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+  // so the message round-trips through encoding/json, which the questionnaire persistence uses.
+  optional string question = 2; // local linkId
+  optional string topic = 3; // topic canonical
+  optional TopicScope scope = 4; // read scope when source is topic (session|latest|all); ignored for local question sources
+}
+
 message QuestionImage {
   string data = 1;
   string contentType = 2;
+  string src = 3;
+  string alt = 4;
 }
 
 enum Operator {
@@ -134,6 +164,7 @@ message Client {
   string programName = 2;
   string clientID = 3;
   string clientSecret = 4;
+  optional google.protobuf.Struct extra = 5;
 }
 
 message DeviceToken {

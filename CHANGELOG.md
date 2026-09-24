@@ -19,11 +19,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [v1.39.0] - 2026-09-08
+
+### Added
+
+- research-pillars: `extra` Struct on `Client` and `UpsertClientRequest` for provider-specific client configuration (Line Systems baseUrl/realm/careSiteId)
+
+## [v1.38.0] - 2026-09-01
+
+### Added
+
+- Support for `enableWhenExpression` for questions including support for variables
+
+## [v1.37.0] - 2026-08-29
+
+### Added
+
+- `Uploads.GetTrackingEvents` returning a subject's BI tracking events with their batch context (Research Studio tracking-events screen)
+
+## [v1.36.0] - 2026-08-26
+
+### Added
+
+- [research-pillars] FHIR service to host questionnaires under their URL
+
+## [v1.35.0] - 2026-08-25
+
+### Added
+
+- [research-pillars] Endpoint for admins to unblock programs
+
+## [v1.34.0] - 2026-08-17
+
+### Added
+
+- [types] Add src and alt to `QuestionImage`
+
 ## [v1.33.0] - 2026-07-09
 
 ### Added
 
-- Add `version` field to `GetQuestionnaireRequest` 
+- Add `version` field to `GetQuestionnaireRequest`
 
 ## [v1.32.1] - 2026-05-19
 
@@ -300,7 +336,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.33.0...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.0...HEAD
+[v1.39.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.38.0...v1.39.0
+[v1.38.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.37.0...v1.38.0
+[v1.37.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.36.0...v1.37.0
+[v1.36.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.35.0...v1.36.0
+[v1.35.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.34.0...v1.35.0
+[v1.34.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.33.0...v1.34.0
 [v1.33.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.1...v1.33.0
 [v1.32.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.32.0...v1.32.1
 [v1.32.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.31.0...v1.32.0

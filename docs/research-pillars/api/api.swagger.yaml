@@ -1933,6 +1933,29 @@ paths:
           type: string
       tags:
         - Uploads
+  /uploads/subjects/{programName}/{subjectID}/tracking-events:
+    get:
+      operationId: Uploads_GetTrackingEvents
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiGetTrackingEventsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+        - name: subjectID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Uploads
   /uploads/subjects/{programName}/{subjectID}/{resourceID}:
     get:
       operationId: Uploads_GetSubjectResource
@@ -1989,6 +2012,24 @@ paths:
       tags:
         - Users
   /users/blocked-program/{programName}:
+    delete:
+      operationId: Users_AdminUnblockProgram
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiAdminUnblockProgramResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+        - name: programName
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
     post:
       operationId: Users_BlockProgram
       responses:
@@ -2121,6 +2162,8 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
   ConsentsUpsertConsentBody:
     type: object
     properties:
@@ -2192,6 +2235,8 @@ definitions:
         type: boolean
       includeETLCSV:
         type: boolean
+  apiAdminUnblockProgramResponse:
+    type: object
   apiAssignCodeResponse:
     type: object
   apiBlockProgramResponse:
@@ -2559,6 +2604,16 @@ definitions:
         items:
           type: object
           $ref: '#/definitions/protoDeviceToken'
+  apiGetTrackingEventsResponse:
+    type: object
+    properties:
+      events:
+        type: array
+        items:
+          type: object
+        title: |-
+          BI tracking events with their batch context, as served by the
+          data-receiver subject API (JSON passthrough like GetSubjectData)
   apiGetUsersResponse:
     type: object
     properties:
@@ -2783,6 +2838,8 @@ definitions:
         type: string
       clientSecret:
         type: string
+      extra:
+        type: object
   protoCodeStatus:
     type: string
     enum:
@@ -2862,6 +2919,29 @@ definitions:
     title: |-
       - display: Default Types
        - single_select: Mapped Types
+  protoItemVariable:
+    type: object
+    properties:
+      name:
+        type: string
+        title: FHIRPath variable name, referenced as %name
+      question:
+        type: string
+        description: |-
+          Exactly one of question/topic is set: the variable's source. Two optional fields (not a oneof)
+          so the message round-trips through encoding/json, which the questionnaire persistence uses.
+
+          local linkId
+      topic:
+        type: string
+        title: topic canonical
+      scope:
+        $ref: '#/definitions/protoTopicScope'
+        title: read scope when source is topic (session|latest|all); ignored for local question sources
+    description: |-
+      A named variable bound for an enable_when_expression (FHIRPath), referenced as %name.
+      Source-neutral: the value comes from a topic or a local question (linkId). Mirrors the
+      FHIR custom extension questionnaire-item-variable.
   protoOperator:
     type: string
     enum:
@@ -2917,6 +2997,7 @@ definitions:
         type: array
         items:
           type: string
+        title: 'LEGACY(prepopulate) [HUB-6797]: replaced by input/output; remove + reserve field 9 when retired'
       items:
         type: array
         items:
@@ -2924,12 +3005,36 @@ definitions:
           $ref: '#/definitions/protoQuestion'
       image:
         $ref: '#/definitions/protoQuestionImage'
+      input:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoTopicInput'
+        title: populate this question's candidate options from topics
+      output:
+        type: array
+        items:
+          type: string
+        title: topic ids this question's answer(s) publish to
+      itemVariables:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoItemVariable'
+        title: bindings for enable_when_expression (%name -> topic or local question)
+      enableWhenExpression:
+        type: string
+        title: SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
   protoQuestionImage:
     type: object
     properties:
       data:
         type: string
       contentType:
+        type: string
+      src:
+        type: string
+      alt:
         type: string
   protoQuestionnaire:
     type: object
@@ -2954,6 +3059,25 @@ definitions:
       - editor
       - manager
     default: viewer
+  protoTopicInput:
+    type: object
+    properties:
+      topic:
+        type: string
+      scope:
+        $ref: '#/definitions/protoTopicScope'
+    description: 'A topic subscription: which topic to read and how far back.'
+  protoTopicScope:
+    type: string
+    enum:
+      - session
+      - latest
+      - all
+    default: session
+    description: |-
+      - session: current fill session only
+       - latest: + the latest persisted response
+       - all: + all persisted responses
   protoUser:
     type: object
     properties:
