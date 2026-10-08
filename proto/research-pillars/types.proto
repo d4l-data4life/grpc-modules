@@ -32,6 +32,14 @@ message Question {
   repeated string output = 13; // topic ids this question's answer(s) publish to
   repeated ItemVariable item_variables = 14; // bindings for enable_when_expression (%name -> topic or local question)
   optional string enable_when_expression = 15; // SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
+  repeated Coding code = 16; // FHIR Questionnaire.item.code, e.g. SNOMED/LOINC concepts the question represents
+}
+
+// A FHIR Coding, e.g. a terminology concept (system + code) attached to a question.
+message Coding {
+  string system = 1;
+  string code = 2;
+  optional string display = 3;
 }
 
 // A topic subscription: which topic to read and how far back.

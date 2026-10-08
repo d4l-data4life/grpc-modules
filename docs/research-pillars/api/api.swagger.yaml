@@ -2846,6 +2846,16 @@ definitions:
       - unused
       - used
     default: unused
+  protoCoding:
+    type: object
+    properties:
+      system:
+        type: string
+      code:
+        type: string
+      display:
+        type: string
+    description: A FHIR Coding, e.g. a terminology concept (system + code) attached to a question.
   protoDeviceToken:
     type: object
     properties:
@@ -3025,6 +3035,12 @@ definitions:
       enableWhenExpression:
         type: string
         title: SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates
+      code:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoCoding'
+        title: FHIR Questionnaire.item.code, e.g. SNOMED/LOINC concepts the question represents
   protoQuestionImage:
     type: object
     properties:

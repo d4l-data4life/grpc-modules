@@ -371,12 +371,23 @@ export interface Question {
   /** bindings for enable_when_expression (%name -> topic or local question) */
   itemVariables: ItemVariable[];
   /** SDC enableWhenExpression (text/fhirpath); when set, replaces native enable_when for cross-questionnaire/derived gates */
-  enableWhenExpression?: string | undefined;
+  enableWhenExpression?:
+    | string
+    | undefined;
+  /** FHIR Questionnaire.item.code, e.g. SNOMED/LOINC concepts the question represents */
+  code: Coding[];
 }
 
 export interface Question_TextEntry {
   key: string;
   value: string;
+}
+
+/** A FHIR Coding, e.g. a terminology concept (system + code) attached to a question. */
+export interface Coding {
+  system: string;
+  code: string;
+  display?: string | undefined;
 }
 
 /** A topic subscription: which topic to read and how far back. */
@@ -742,6 +753,7 @@ function createBaseQuestion(): Question {
     output: [],
     itemVariables: [],
     enableWhenExpression: undefined,
+    code: [],
   };
 }
 
@@ -791,6 +803,9 @@ export const Question: MessageFns<Question> = {
     }
     if (message.enableWhenExpression !== undefined) {
       writer.uint32(122).string(message.enableWhenExpression);
+    }
+    for (const v of message.code) {
+      Coding.encode(v!, writer.uint32(130).fork()).join();
     }
     return writer;
   },
@@ -931,6 +946,14 @@ export const Question: MessageFns<Question> = {
             message.enableWhenExpression = reader.string();
             continue;
           }
+          case 16: {
+            if (tag !== 130) {
+              break;
+            }
+
+            message.code.push(Coding.decode(reader, reader.uint32()));
+            continue;
+          }
         }
         if ((tag & 7) === 4 || tag === 0) {
           break;
@@ -991,6 +1014,9 @@ export const Question: MessageFns<Question> = {
         : isSet(object.enable_when_expression)
         ? globalThis.String(object.enable_when_expression)
         : undefined,
+      code: globalThis.Array.isArray(object?.code)
+        ? object.code.map((e: any) => Coding.fromJSON(e))
+        : [],
     };
   },
 
@@ -1047,6 +1073,9 @@ export const Question: MessageFns<Question> = {
     if (message.enableWhenExpression !== undefined) {
       obj.enableWhenExpression = message.enableWhenExpression;
     }
+    if (message.code?.length) {
+      obj.code = message.code.map((e) => Coding.toJSON(e));
+    }
     return obj;
   },
 
@@ -1082,6 +1111,7 @@ export const Question: MessageFns<Question> = {
     message.output = object.output?.map((e) => e) || [];
     message.itemVariables = object.itemVariables?.map((e) => ItemVariable.fromPartial(e)) || [];
     message.enableWhenExpression = object.enableWhenExpression ?? undefined;
+    message.code = object.code?.map((e) => Coding.fromPartial(e)) || [];
     return message;
   },
 };
@@ -1167,6 +1197,107 @@ export const Question_TextEntry: MessageFns<Question_TextEntry> = {
     const message = createBaseQuestion_TextEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? "";
+    return message;
+  },
+};
+
+function createBaseCoding(): Coding {
+  return { system: "", code: "", display: undefined };
+}
+
+export const Coding: MessageFns<Coding> = {
+  encode(message: Coding, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.system !== "") {
+      writer.uint32(10).string(message.system);
+    }
+    if (message.code !== "") {
+      writer.uint32(18).string(message.code);
+    }
+    if (message.display !== undefined) {
+      writer.uint32(26).string(message.display);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): Coding {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+    if (previousRecursionDepth >= 100) {
+      throw new globalThis.Error("protobuf decode recursion limit exceeded");
+    }
+    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+    try {
+      const end = length === undefined ? reader.len : reader.pos + length;
+      const message = createBaseCoding();
+      while (reader.pos < end) {
+        const tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1: {
+            if (tag !== 10) {
+              break;
+            }
+
+            message.system = reader.string();
+            continue;
+          }
+          case 2: {
+            if (tag !== 18) {
+              break;
+            }
+
+            message.code = reader.string();
+            continue;
+          }
+          case 3: {
+            if (tag !== 26) {
+              break;
+            }
+
+            message.display = reader.string();
+            continue;
+          }
+        }
+        if ((tag & 7) === 4 || tag === 0) {
+          break;
+        }
+        reader.skip(tag & 7);
+      }
+      return message;
+    } finally {
+      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+    }
+  },
+
+  fromJSON(object: any): Coding {
+    return {
+      system: isSet(object.system) ? globalThis.String(object.system) : "",
+      code: isSet(object.code) ? globalThis.String(object.code) : "",
+      display: isSet(object.display) ? globalThis.String(object.display) : undefined,
+    };
+  },
+
+  toJSON(message: Coding): unknown {
+    const obj: any = {};
+    if (message.system !== "") {
+      obj.system = message.system;
+    }
+    if (message.code !== "") {
+      obj.code = message.code;
+    }
+    if (message.display !== undefined) {
+      obj.display = message.display;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Coding>, I>>(base?: I): Coding {
+    return Coding.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Coding>, I>>(object: I): Coding {
+    const message = createBaseCoding();
+    message.system = object.system ?? "";
+    message.code = object.code ?? "";
+    message.display = object.display ?? undefined;
     return message;
   },
 };
