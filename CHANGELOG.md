@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Raise the minimum Go version to 1.27.
 - upgrade dependencies
+- pin dependencies in Dockerfile to keep a consistent version
 
 ### Deprecated
 
