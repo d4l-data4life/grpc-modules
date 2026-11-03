@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add require field to exports for research pillars
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.39.2] - 2026-11-03
+
+### Added
+
+- Add require field to exports for research pillars
 
 ## [v1.39.1] - 2026-10-08
 
@@ -348,7 +352,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.1...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.2...HEAD
+[v1.39.2]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.1...v1.39.2
 [v1.39.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.0...v1.39.1
 [v1.39.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.38.0...v1.39.0
 [v1.38.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.37.0...v1.38.0
