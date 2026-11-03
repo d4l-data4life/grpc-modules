@@ -9,7 +9,7 @@ ARG GO_VERSION=1.27
 FROM golang:${GO_VERSION}-alpine AS code-gen
 
 RUN apk add --no-cache nodejs npm protobuf-dev bash
-RUN npm i -g ts-proto@2.12.1
+RUN npm i -g ts-proto@2.18.3
 
 WORKDIR /app
 
