@@ -3,16 +3,16 @@ module github.com/d4l-data4life/grpc-modules
 go 1.27.0
 
 require (
-	github.com/d4l-data4life/go-svc v1.89.0
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20251202230838-ff82c1b0f217
-	google.golang.org/grpc v1.79.3
-	google.golang.org/protobuf v1.36.10
+	github.com/d4l-data4life/go-svc v1.95.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.33.0
+	google.golang.org/genproto/googleapis/api v0.0.0-20261026165753-2ffab32bce7e
+	google.golang.org/grpc v1.85.0
+	google.golang.org/protobuf v1.36.12
 )
 
 require (
-	golang.org/x/net v0.48.0 // indirect
-	golang.org/x/sys v0.39.0 // indirect
-	golang.org/x/text v0.32.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
+	golang.org/x/net v0.61.0 // indirect
+	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/text v0.43.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20261019180522-ce908d29299b // indirect
 )
