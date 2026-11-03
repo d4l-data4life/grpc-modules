@@ -1,6 +1,6 @@
 module github.com/d4l-data4life/grpc-modules
 
-go 1.25
+go 1.27.0
 
 require (
 	github.com/d4l-data4life/go-svc v1.89.0
