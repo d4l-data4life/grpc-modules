@@ -14,10 +14,12 @@
   "exports": {
     "./research-pillars": {
       "import": "./research-pillars/types.js",
+      "require": "./research-pillars/types.js",
       "types": "./research-pillars/types.d.ts"
     },
     "./research-pillars/*": {
       "import": "./research-pillars/*/*.js",
+      "require": "./research-pillars/*/*.js",
       "types": "./research-pillars/*/*.d.ts"
     }
   },
