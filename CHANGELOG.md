@@ -11,11 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Raise the minimum Go version to 1.27.
-- upgrade dependencies
-- pin dependencies in Dockerfile to keep a consistent version
-- Regenerate the TypeScript code with ts-proto 2.18.3. 
-
 ### Deprecated
 
 ### Removed
@@ -23,6 +18,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [v1.40.0] - 2026-11-04
+
+### Changed
+
+- Raise the minimum Go version to 1.27.
+- upgrade dependencies
+- pin dependencies in Dockerfile to keep a consistent version
+- Regenerate the TypeScript code with ts-proto 2.18.3. 
 
 ## [v1.39.2] - 2026-11-03
 
@@ -357,7 +361,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - research-pillars
 - utils for grpc server-to-server communication
 
-[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.2...HEAD
+[Unreleased]: https://github.com/d4l-data4life/grpc-modules/compare/v1.40.0...HEAD
+[v1.40.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.2...v1.40.0
 [v1.39.2]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.1...v1.39.2
 [v1.39.1]: https://github.com/d4l-data4life/grpc-modules/compare/v1.39.0...v1.39.1
 [v1.39.0]: https://github.com/d4l-data4life/grpc-modules/compare/v1.38.0...v1.39.0
